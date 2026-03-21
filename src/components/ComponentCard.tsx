@@ -71,6 +71,40 @@ const HooksViz: React.FC<{ v: Translations['viz'] }> = ({ v }) => (
 );
 
 const WorkflowsViz: React.FC<{ v: Translations['viz'] }> = ({ v }) => (
+  <div className="viz viz-workflows-stack">
+    <div className="viz-terminal viz-terminal--file">
+      <div className="terminal-bar">
+        <span className="terminal-dot terminal-dot--red" />
+        <span className="terminal-dot terminal-dot--yellow" />
+        <span className="terminal-dot terminal-dot--green" />
+        <span className="terminal-filename">triage.md</span>
+      </div>
+      <div className="terminal-line">
+        <span className="terminal-keyword">---</span>
+      </div>
+      <div className="terminal-line">
+        <span className="terminal-keyword">triggers: </span>
+        <span className="terminal-cmd">issues.opened</span>
+      </div>
+      <div className="terminal-line">
+        <span className="terminal-keyword">---</span>
+      </div>
+      <div className="terminal-line">
+        <span className="terminal-comment">Label and assign new issues</span>
+      </div>
+    </div>
+    <div className="workflows-arrow">↓</div>
+    <div className="viz-terminal">
+      <div className="terminal-line">
+        <span className="terminal-prompt">$ </span>
+        <span className="terminal-cmd">gh aw compile</span>
+      </div>
+      <span className="terminal-comment">{v.markdownToActions}</span>
+    </div>
+  </div>
+);
+
+const SetupStepsViz: React.FC = () => (
   <div className="viz viz-terminal">
     <div className="terminal-bar">
       <span className="terminal-dot terminal-dot--red" />
@@ -78,10 +112,16 @@ const WorkflowsViz: React.FC<{ v: Translations['viz'] }> = ({ v }) => (
       <span className="terminal-dot terminal-dot--green" />
     </div>
     <div className="terminal-line">
-      <span className="terminal-prompt">$ </span>
-      <span className="terminal-cmd">gh aw</span>
+      <span className="terminal-comment">{'# copilot-setup-steps.yml'}</span>
     </div>
-    <span className="terminal-comment">{v.markdownToActions}</span>
+    <div className="terminal-line">
+      <span className="terminal-keyword">- uses: </span>
+      <span className="terminal-cmd">actions/setup-node@v4</span>
+    </div>
+    <div className="terminal-line">
+      <span className="terminal-keyword">- run: </span>
+      <span className="terminal-cmd">npm ci</span>
+    </div>
   </div>
 );
 
@@ -111,6 +151,7 @@ const ComponentCard: React.FC<ComponentCardProps> = ({ component, layerColor, on
       case 'skills': return <SkillsViz v={v} />;
       case 'hooks': return <HooksViz v={v} />;
       case 'agentic-workflows': return <WorkflowsViz v={v} />;
+      case 'copilot-setup-steps': return <SetupStepsViz />;
       case 'plugins': return <PluginsViz v={v} />;
       default: return null;
     }

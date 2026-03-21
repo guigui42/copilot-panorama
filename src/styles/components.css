@@ -547,6 +547,64 @@ html[data-theme="light"] .viz-terminal {
   margin-top: 2px;
 }
 
+.terminal-keyword {
+  color: #ff7b72;
+}
+
+/* Workflows — stacked markdown → compile */
+.viz-workflows-stack {
+  margin-bottom: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  align-items: center;
+}
+
+.viz-workflows-stack .viz-terminal {
+  width: 100%;
+}
+
+.viz-terminal--file {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  border-bottom: none;
+  padding-bottom: 10px;
+}
+
+.terminal-filename {
+  color: #8b949e;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  margin-left: auto;
+}
+
+.workflows-arrow {
+  background: #0d1117;
+  color: #3fb950;
+  font-size: 0.85rem;
+  font-weight: 600;
+  width: 100%;
+  text-align: center;
+  padding: 2px 0;
+  border-left: 1px solid #30363d;
+  border-right: 1px solid #30363d;
+}
+
+html[data-theme="light"] .workflows-arrow {
+  background: #1e1e2e;
+  border-color: #313244;
+}
+
+.viz-workflows-stack .viz-terminal:last-child {
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  border-top: 1px dashed #30363d;
+}
+
+html[data-theme="light"] .viz-workflows-stack .viz-terminal:last-child {
+  border-top-color: #313244;
+}
+
 /* Plugins — distribution flow */
 .viz-distribution {
   display: flex;

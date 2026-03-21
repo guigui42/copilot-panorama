@@ -36,21 +36,21 @@ interface ComponentMeta {
 const COMPONENT_META: Record<string, ComponentMeta> = {
   instructions: {
     id: 'instructions',
-    path: '.github/copilot-instructions.md + .github/instructions/*.instructions.md',
+    path: '.github/copilot-instructions.md + .github/instructions/<name>.instructions.md',
     icon: '🧠',
     docUrl: 'https://docs.github.com/en/copilot/how-tos/configure-custom-instructions/add-repository-instructions?tool=vscode',
     awesomeUrl: 'https://awesome-copilot.github.com/instructions/',
   },
   'prompt-files': {
     id: 'prompt-files',
-    path: '.github/prompts/*.prompt.md',
+    path: '.github/prompts/<name>.prompt.md',
     icon: '📋',
     docUrl: 'https://docs.github.com/en/copilot/how-tos/configure-custom-instructions/add-repository-instructions?tool=vscode&search-overlay-input=copilot+custom+prompts&search-overlay-ask-ai=true#enabling-and-using-prompt-files',
     awesomeUrl: 'https://awesome-copilot.github.com/skills/',
   },
   'custom-agents': {
     id: 'custom-agents',
-    path: '.github/agents/*.agent.md',
+    path: '.github/agents/<name>.agent.md',
     icon: '🤖',
     docUrl: 'https://docs.github.com/en/copilot/how-tos/use-copilot-agents/coding-agent/create-custom-agents',
     awesomeUrl: 'https://awesome-copilot.github.com/agents/',
@@ -64,7 +64,7 @@ const COMPONENT_META: Record<string, ComponentMeta> = {
   },
   hooks: {
     id: 'hooks',
-    path: '.github/hooks/*.json',
+    path: '.github/hooks/<name>.json',
     icon: '🔒',
     docUrl: 'https://docs.github.com/en/copilot/how-tos/use-copilot-agents/coding-agent/use-hooks',
     altDocUrl: 'https://code.visualstudio.com/docs/copilot/customization/hooks',
@@ -73,10 +73,16 @@ const COMPONENT_META: Record<string, ComponentMeta> = {
   },
   'agentic-workflows': {
     id: 'agentic-workflows',
-    path: '.github/workflows/ (Markdown .md sources)',
+    path: '.github/workflows/<name>.md',
     icon: '⚙️',
     docUrl: 'https://github.github.com/gh-aw/',
     awesomeUrl: 'https://awesome-copilot.github.com/workflows/',
+  },
+  'copilot-setup-steps': {
+    id: 'copilot-setup-steps',
+    path: '.github/workflows/copilot-setup-steps.yml',
+    icon: '🏗️',
+    docUrl: 'https://docs.github.com/en/copilot/how-tos/use-copilot-agents/coding-agent/customize-the-agent-environment',
   },
   plugins: {
     id: 'plugins',
@@ -103,7 +109,7 @@ interface LayerDef {
 const LAYER_DEFS: LayerDef[] = [
   { id: 'always-on-context', number: 1, color: '#58a6ff', componentIds: ['instructions'] },
   { id: 'on-demand-capabilities', number: 2, color: '#3fb950', componentIds: ['prompt-files', 'custom-agents', 'skills'] },
-  { id: 'enforcement-automation', number: 3, color: '#d29922', componentIds: ['hooks', 'agentic-workflows'] },
+  { id: 'enforcement-automation', number: 3, color: '#d29922', componentIds: ['hooks', 'agentic-workflows', 'copilot-setup-steps'] },
   { id: 'distribution', number: 4, color: '#bc8cff', componentIds: ['plugins'] },
 ];
 

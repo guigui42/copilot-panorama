@@ -124,6 +124,21 @@ export const es: Translations = {
         'y aislamiento de red. Compatible con GitHub Copilot, Claude u OpenAI Codex.',
       useCases: ['Triaje de issues', 'Análisis de fallos CI', 'Reportes diarios'],
     },
+    'copilot-setup-steps': {
+      name: 'Copilot Setup Steps',
+      description: 'Workflow de GitHub Actions que preconfigura el entorno del agente de codificación',
+      details:
+        'Copilot Setup Steps es un workflow especial de GitHub Actions ubicado en ' +
+        '`.github/workflows/copilot-setup-steps.yml` que se ejecuta antes de que el agente ' +
+        'de codificación comience a trabajar. Úsalo para instalar de forma determinista ' +
+        'herramientas, dependencias o configurar el runner — para que el agente pueda ' +
+        'compilar, probar y ejecutar linters de inmediato sin prueba y error. También puedes ' +
+        'escalar a runners más potentes, cambiar a Windows, habilitar Git LFS o definir ' +
+        'variables de entorno mediante el entorno de Actions `copilot`. El workflow debe ' +
+        'contener un único job `copilot-setup-steps` y solo surte efecto cuando está presente ' +
+        'en la rama por defecto.',
+      useCases: ['Preinstalar dependencias', 'Runners más potentes', 'Variables de entorno'],
+    },
     plugins: {
       name: 'Plugins',
       description: 'Paquetes instalables que agrupan agentes, skills, hooks y configs MCP',
