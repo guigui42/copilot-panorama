@@ -71,7 +71,7 @@ export const fr: Translations = {
         'commandes slash (ex. `/security-review`, `/release-notes`). Ils permettent ' +
         'aux équipes de standardiser les prompts courants pour que chaque développeur ' +
         'obtienne des résultats cohérents et de qualité pour les tâches récurrentes.',
-      useCases: ['/security-review', '/release-notes', '/changelog'],
+      useCases: ['API Review', 'Perf Audit', 'Onboarding Guide'],
     },
     'custom-agents': {
       name: 'Agents personnalisés',
@@ -83,7 +83,7 @@ export const fr: Translations = {
         'agents peuvent être chaînés via la propriété `handoffs` — ex. un agent de ' +
         'planification passe la main à un agent d\'implémentation, puis à un agent de ' +
         'revue. Le LLM lit les descriptions pour décider quel agent activer.',
-      useCases: ['Agent de planification', 'Agent d\'implémentation', 'Agent de revue'],
+      useCases: ['Auditeur sécurité', 'Spécialiste BDD', 'Concepteur d\'API'],
     },
     skills: {
       name: 'Skills',
@@ -95,7 +95,7 @@ export const fr: Translations = {
         '`description` — le `SKILL.md` complet n\'est injecté dans le contexte que ' +
         'lorsque le modèle le juge pertinent. Stockez les skills projet dans ' +
         '`.github/skills/<nom>/` et les skills personnels dans `~/.copilot/skills/<nom>/`.',
-      useCases: ['Runbooks répétables', 'Triage d\'incidents', 'Analyse de risque IaC'],
+      useCases: ['Modules Terraform', 'Manifestes K8s', 'Stack d\'observabilité'],
     },
     hooks: {
       name: 'Hooks',
@@ -112,15 +112,17 @@ export const fr: Translations = {
     },
     'agentic-workflows': {
       name: 'Workflows agentiques',
-      description: 'Automatisation en langage naturel via l\'extension CLI gh aw',
+      description: 'Automatisation de dépôts par des agents IA, exécutés dans GitHub Actions avec des garde-fous',
       details:
         'Les workflows agentiques sont des fichiers Markdown avec frontmatter YAML ' +
         '(permissions, safe-outputs, déclencheurs) compilés en GitHub Actions via ' +
-        'l\'extension CLI `gh aw`. Ils s\'exécutent avec des permissions en lecture ' +
-        'seule par défaut ; les opérations d\'écriture nécessitent une approbation ' +
-        'explicite via safe-output. Les agents s\'exécutent dans des conteneurs ' +
-        'sandboxés avec filtrage d\'outils et isolation réseau.',
-      useCases: ['Triage d\'issues', 'Analyse d\'échecs CI', 'Maintenance planifiée'],
+        'l\'extension CLI `gh aw`. Définissez l\'automatisation en langage naturel — ' +
+        'planifiez des rapports quotidiens, triez les issues, analysez les échecs CI ' +
+        'ou maintenez la documentation. Les agents s\'exécutent en lecture seule par ' +
+        'défaut ; les écritures nécessitent une approbation explicite via safe-output. ' +
+        'Exécution sandboxée avec filtrage d\'outils et isolation réseau. Compatible ' +
+        'avec GitHub Copilot, Claude ou OpenAI Codex.',
+      useCases: ['Triage d\'issues', 'Analyse d\'échecs CI', 'Rapports quotidiens'],
     },
     plugins: {
       name: 'Plugins',

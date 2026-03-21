@@ -612,9 +612,7 @@ html[data-theme="light"] .viz-terminal {
 }
 
 .usecase::before {
-  content: '→';
-  opacity: 0.5;
-  font-size: 0.625rem;
+  content: none;
 }
 
 /* === Awesome Copilot Link (per card) === */

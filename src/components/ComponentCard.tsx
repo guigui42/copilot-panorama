@@ -32,11 +32,9 @@ const AgentFlowViz: React.FC<{ v: Translations['viz'] }> = ({ v }) => (
     <span className="agent-step">
       <span className="agent-step-emoji">📋</span> {v.planning}
     </span>
-    <span className="agent-arrow">→</span>
     <span className="agent-step">
       <span className="agent-step-emoji">🔨</span> {v.implementation}
     </span>
-    <span className="agent-arrow">→</span>
     <span className="agent-step">
       <span className="agent-step-emoji">✅</span> {v.review}
     </span>

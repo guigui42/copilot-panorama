@@ -71,7 +71,7 @@ export const en: Translations = {
         '(e.g., `/security-review`, `/release-notes`). They let teams standardize ' +
         'common prompts so every developer gets consistent, high-quality outputs ' +
         'for recurring tasks.',
-      useCases: ['/security-review', '/release-notes', '/changelog'],
+      useCases: ['API Review', 'Perf Audit', 'Onboarding Guide'],
     },
     'custom-agents': {
       name: 'Custom Agents',
@@ -83,7 +83,7 @@ export const en: Translations = {
         'via the `handoffs` property — e.g., a planning agent hands off to an ' +
         'implementation agent, which hands off to a review agent. The LLM reads ' +
         'agent descriptions to decide which to activate.',
-      useCases: ['Planning Agent', 'Implementation Agent', 'Review Agent'],
+      useCases: ['Security Auditor', 'Database Specialist', 'API Designer'],
     },
     skills: {
       name: 'Skills',
@@ -95,7 +95,7 @@ export const en: Translations = {
         'field — only then is the full `SKILL.md` injected into the agent\'s context. ' +
         'Store project skills in `.github/skills/<name>/` and personal skills in ' +
         '`~/.copilot/skills/<name>/`.',
-      useCases: ['Repeatable Runbooks', 'Incident Triage', 'IaC Risk Analysis'],
+      useCases: ['Terraform Modules', 'K8s Manifests', 'Observability Stack'],
     },
     hooks: {
       name: 'Hooks',
@@ -111,14 +111,16 @@ export const en: Translations = {
     },
     'agentic-workflows': {
       name: 'Agentic Workflows',
-      description: 'Natural language automation via the gh aw CLI extension',
+      description: 'Repository automation powered by AI coding agents, running in GitHub Actions with guardrails',
       details:
         'Agentic workflows are Markdown files with YAML frontmatter (permissions, ' +
         'safe-outputs, triggers) compiled to GitHub Actions via the `gh aw` CLI ' +
-        'extension. They run with read-only permissions by default; write ' +
-        'operations require explicit safe-output approval. Agents execute in ' +
-        'sandboxed containers with tool allowlisting and network isolation.',
-      useCases: ['Issue Triage', 'CI Failure Analysis', 'Scheduled Maintenance'],
+        'extension. Define automation in natural language — schedule daily reports, ' +
+        'triage issues, analyze CI failures, or maintain docs. Agents run with ' +
+        'read-only permissions by default; write operations require explicit ' +
+        'safe-output approval. Execution is sandboxed with tool allowlisting ' +
+        'and network isolation. Works with GitHub Copilot, Claude, or OpenAI Codex.',
+      useCases: ['Issue Triage', 'CI Failure Analysis', 'Daily Status Reports'],
     },
     plugins: {
       name: 'Plugins',

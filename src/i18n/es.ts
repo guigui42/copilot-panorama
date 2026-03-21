@@ -71,7 +71,7 @@ export const es: Translations = {
         'slash (ej. `/security-review`, `/release-notes`). Permiten a los equipos ' +
         'estandarizar prompts comunes para que cada desarrollador obtenga resultados ' +
         'consistentes y de alta calidad en tareas recurrentes.',
-      useCases: ['/security-review', '/release-notes', '/changelog'],
+      useCases: ['API Review', 'Perf Audit', 'Onboarding Guide'],
     },
     'custom-agents': {
       name: 'Agentes personalizados',
@@ -83,7 +83,7 @@ export const es: Translations = {
         'pueden encadenarse mediante la propiedad `handoffs` — ej. un agente de ' +
         'planificación pasa a uno de implementación, que pasa a uno de revisión. ' +
         'El LLM lee las descripciones para decidir qué agente activar.',
-      useCases: ['Agente de planificación', 'Agente de implementación', 'Agente de revisión'],
+      useCases: ['Auditor de seguridad', 'Especialista en BD', 'Diseñador de API'],
     },
     skills: {
       name: 'Skills',
@@ -95,7 +95,7 @@ export const es: Translations = {
         'entonces se inyecta el `SKILL.md` completo en el contexto del agente. Almacena ' +
         'skills de proyecto en `.github/skills/<nombre>/` y personales en ' +
         '`~/.copilot/skills/<nombre>/`.',
-      useCases: ['Runbooks repetibles', 'Triaje de incidentes', 'Análisis de riesgo IaC'],
+      useCases: ['Módulos Terraform', 'Manifiestos K8s', 'Stack de observabilidad'],
     },
     hooks: {
       name: 'Hooks',
@@ -112,14 +112,16 @@ export const es: Translations = {
     },
     'agentic-workflows': {
       name: 'Workflows agénticos',
-      description: 'Automatización en lenguaje natural vía la extensión CLI gh aw',
+      description: 'Automatización de repositorios con agentes IA, ejecutados en GitHub Actions con protecciones',
       details:
         'Los workflows agénticos son archivos Markdown con frontmatter YAML (permisos, ' +
         'safe-outputs, triggers) compilados a GitHub Actions mediante la extensión CLI ' +
-        '`gh aw`. Se ejecutan con permisos de solo lectura por defecto; las operaciones ' +
-        'de escritura requieren aprobación explícita vía safe-output. Los agentes se ' +
-        'ejecutan en contenedores sandbox con filtrado de herramientas y aislamiento de red.',
-      useCases: ['Triaje de issues', 'Análisis de fallos CI', 'Mantenimiento programado'],
+        '`gh aw`. Define automatización en lenguaje natural — programa reportes diarios, ' +
+        'clasifica issues, analiza fallos CI o mantén la documentación. Se ejecutan con ' +
+        'permisos de solo lectura por defecto; las escrituras requieren aprobación ' +
+        'explícita vía safe-output. Ejecución en sandbox con filtrado de herramientas ' +
+        'y aislamiento de red. Compatible con GitHub Copilot, Claude u OpenAI Codex.',
+      useCases: ['Triaje de issues', 'Análisis de fallos CI', 'Reportes diarios'],
     },
     plugins: {
       name: 'Plugins',
