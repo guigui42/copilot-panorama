@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import type { Component } from '../data/layers';
 import { useI18n } from '../i18n';
+import { useFocusTrap } from '../hooks/useFocusTrap';
 
 interface DetailPanelProps {
   component: Component | null;
@@ -10,6 +11,7 @@ interface DetailPanelProps {
 
 const DetailPanel: React.FC<DetailPanelProps> = ({ component, layerColor, onClose }) => {
   const closeBtnRef = useRef<HTMLButtonElement>(null);
+  const trapRef = useFocusTrap(!!component);
   const t = useI18n();
 
   useEffect(() => {
@@ -38,10 +40,12 @@ const DetailPanel: React.FC<DetailPanelProps> = ({ component, layerColor, onClos
 
   return (
     <>
-      <div className="detail-overlay" onClick={onClose} />
+      <div className="detail-overlay" onClick={onClose} aria-hidden="true" />
       <div
+        ref={trapRef}
         className="detail-panel"
         role="dialog"
+        aria-modal="true"
         aria-label={component.name}
         style={layerColor ? { '--layer-color': layerColor } as React.CSSProperties : undefined}
       >

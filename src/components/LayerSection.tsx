@@ -52,7 +52,7 @@ const LayerSection: React.FC<LayerSectionProps> = ({
   return (
     <>
       {isFocused && (
-        <div className="layer-focus-overlay" onClick={onDismissAll ?? onToggleFocus} />
+        <div className="layer-focus-overlay" onClick={onDismissAll ?? onToggleFocus} aria-hidden="true" />
       )}
       <section
         ref={ref}
@@ -61,7 +61,16 @@ const LayerSection: React.FC<LayerSectionProps> = ({
           '--layer-color': layer.color,
           '--delay': `${(layer.number - 1) * 0.1}s`,
         } as React.CSSProperties}
+        aria-label={`${t.ui.layerPrefix} ${layer.number}: ${layer.title}`}
+        tabIndex={0}
         onClick={handleHeaderClick}
+        onKeyDown={(e) => {
+          if (e.target !== e.currentTarget) return;
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            handleHeaderClick(e as unknown as React.MouseEvent);
+          }
+        }}
       >
         {isFocused && (
           <button
@@ -77,7 +86,7 @@ const LayerSection: React.FC<LayerSectionProps> = ({
         )}
 
         <div className="layer-band-header">
-          <span className="layer-num">{layer.number}</span>
+          <span className="layer-num" aria-hidden="true">{layer.number}</span>
           <div className="layer-band-titles">
             <span className="layer-label">{t.ui.layerPrefix} {layer.number}</span>
             <h2 className="layer-band-title">{layer.title}</h2>
@@ -93,7 +102,7 @@ const LayerSection: React.FC<LayerSectionProps> = ({
               aria-label="Focus this layer fullscreen"
               title="Focus this layer"
             >
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
                 <path d="M1.75 10a.75.75 0 01.75.75v2.5c0 .138.112.25.25.25h2.5a.75.75 0 010 1.5h-2.5A1.75 1.75 0 011 13.25v-2.5A.75.75 0 011.75 10zm12.5 0a.75.75 0 01.75.75v2.5A1.75 1.75 0 0113.25 15h-2.5a.75.75 0 010-1.5h2.5a.25.25 0 00.25-.25v-2.5a.75.75 0 01.75-.75zM2.75 1.5a.25.25 0 00-.25.25v2.5a.75.75 0 01-1.5 0v-2.5C1 .784 1.784 0 2.75 0h2.5a.75.75 0 010 1.5h-2.5zm10.5 0h-2.5a.75.75 0 010-1.5h2.5C14.216 0 15 .784 15 1.75v2.5a.75.75 0 01-1.5 0v-2.5a.25.25 0 00-.25-.25z"/>
               </svg>
             </button>

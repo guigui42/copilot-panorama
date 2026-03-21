@@ -1,4 +1,4 @@
-import React, { useState, useRef, useCallback, useEffect } from 'react';
+import React, { useState, useRef, useCallback, useEffect, useId } from 'react';
 
 interface TooltipProps {
   content: string;
@@ -9,6 +9,7 @@ const Tooltip: React.FC<TooltipProps> = ({ content, children }) => {
   const [visible, setVisible] = useState(false);
   const [showBelow, setShowBelow] = useState(false);
   const wrapperRef = useRef<HTMLSpanElement>(null);
+  const tooltipId = useId();
 
   const show = useCallback(() => {
     if (wrapperRef.current) {
@@ -40,6 +41,13 @@ const Tooltip: React.FC<TooltipProps> = ({ content, children }) => {
       ref={wrapperRef}
       onMouseEnter={show}
       onMouseLeave={hide}
+      onFocus={show}
+      onBlur={hide}
+      onKeyDown={(e) => {
+        if (e.key === 'Escape') {
+          setVisible(false);
+        }
+      }}
       onTouchStart={(e) => {
         e.stopPropagation();
         setVisible((v) => !v);
@@ -48,10 +56,15 @@ const Tooltip: React.FC<TooltipProps> = ({ content, children }) => {
           setShowBelow(rect.top < 60);
         }
       }}
+      aria-describedby={visible ? tooltipId : undefined}
     >
       {children}
       {visible && (
-        <span className={`tooltip ${showBelow ? 'tooltip-below' : ''}`}>
+        <span
+          id={tooltipId}
+          role="tooltip"
+          className={`tooltip ${showBelow ? 'tooltip-below' : ''}`}
+        >
           {content}
         </span>
       )}

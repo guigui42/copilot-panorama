@@ -36,9 +36,12 @@ function AppContent() {
 
   return (
     <>
+      <a href="#main-content" className="skip-link">
+        Skip to main content
+      </a>
       <Header theme={theme} onToggleTheme={toggleTheme} />
 
-      <main className="poster">
+      <main id="main-content" className="poster">
         {layers.map((layer, i) => (
           <div key={layer.id}>
             <LayerSection
@@ -59,6 +62,7 @@ function AppContent() {
             {i < layers.length - 1 ? (
               <div
                 className="layer-connector"
+                aria-hidden="true"
                 style={{
                   '--connector-from': layerColors[i],
                   '--connector-to': layerColors[i + 1],
@@ -70,13 +74,25 @@ function AppContent() {
       </main>
 
       {insightsFocused && (
-        <div className="layer-focus-overlay" onClick={() => setInsightsFocused(false)} />
+        <div className="layer-focus-overlay" onClick={() => setInsightsFocused(false)} aria-hidden="true" />
       )}
       <section
         className={`insights ${insightsFocused ? 'insights-focused' : ''}`}
+        aria-label={t.ui.insightsTitle}
+        tabIndex={insightsFocused ? undefined : 0}
+        role={insightsFocused ? undefined : 'button'}
         onClick={(e) => {
           if (!(e.target as HTMLElement).closest('.insight-card') && !insightsFocused) {
             setInsightsFocused(true);
+          }
+        }}
+        onKeyDown={(e) => {
+          if ((e.key === 'Enter' || e.key === ' ') && !insightsFocused) {
+            e.preventDefault();
+            setInsightsFocused(true);
+          }
+          if (e.key === 'Escape' && insightsFocused) {
+            setInsightsFocused(false);
           }
         }}
       >
@@ -105,7 +121,7 @@ function AppContent() {
               aria-label="Focus this section fullscreen"
               title="Focus this section"
             >
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
                 <path d="M1.75 10a.75.75 0 01.75.75v2.5c0 .138.112.25.25.25h2.5a.75.75 0 010 1.5h-2.5A1.75 1.75 0 011 13.25v-2.5A.75.75 0 011.75 10zm12.5 0a.75.75 0 01.75.75v2.5A1.75 1.75 0 0113.25 15h-2.5a.75.75 0 010-1.5h2.5a.25.25 0 00.25-.25v-2.5a.75.75 0 01.75-.75zM2.75 1.5a.25.25 0 00-.25.25v2.5a.75.75 0 01-1.5 0v-2.5C1 .784 1.784 0 2.75 0h2.5a.75.75 0 010 1.5h-2.5zm10.5 0h-2.5a.75.75 0 010-1.5h2.5C14.216 0 15 .784 15 1.75v2.5a.75.75 0 01-1.5 0v-2.5a.25.25 0 00-.25-.25z"/>
               </svg>
             </button>
@@ -114,7 +130,7 @@ function AppContent() {
         <div className="insights-grid">
           {t.insights.map((insight, i) => (
             <div key={i} className="insight-card">
-              <span className="insight-icon">{insight.icon}</span>
+              <span className="insight-icon" aria-hidden="true">{insight.icon}</span>
               <span dangerouslySetInnerHTML={{ __html: insight.content }} />
             </div>
           ))}

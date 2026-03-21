@@ -2,6 +2,27 @@
    COPILOT INFOGRAPHIC — POSTER LAYOUT
    ========================================== */
 
+/* === Skip Navigation === */
+
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 16px;
+  z-index: 10000;
+  padding: 12px 24px;
+  background: var(--color-accent-blue);
+  color: #fff;
+  font-weight: 600;
+  font-size: 0.875rem;
+  border-radius: 0 0 8px 8px;
+  text-decoration: none;
+  transition: top 0.2s ease;
+}
+
+.skip-link:focus {
+  top: 0;
+}
+
 /* === Hero Header === */
 
 .hero {
@@ -64,6 +85,11 @@
 .awesome-copilot-link:hover {
   background: var(--accent);
   color: #fff;
+}
+
+.awesome-copilot-link:focus-visible {
+  outline: 2px solid var(--color-accent-blue);
+  outline-offset: 2px;
 }
 
 /* === Language Switcher === */
@@ -188,6 +214,11 @@
     0 4px 32px -8px color-mix(in srgb, var(--layer-color) 18%, transparent);
 }
 
+.layer-band:focus-visible {
+  outline: 2px solid var(--color-accent-blue);
+  outline-offset: 2px;
+}
+
 /* ── Layer focus / fullscreen mode ── */
 
 .layer-focus-overlay {
@@ -298,6 +329,11 @@
   border-color: var(--layer-color);
 }
 
+.layer-focus-close:focus-visible {
+  outline: 2px solid var(--color-accent-blue);
+  outline-offset: 2px;
+}
+
 .layer-expand-btn {
   display: flex;
   align-items: center;
@@ -322,6 +358,16 @@
   background: var(--color-bg-tertiary);
   color: var(--layer-color);
   border-color: var(--layer-color);
+}
+
+.layer-expand-btn:focus-visible {
+  opacity: 1;
+  outline: 2px solid var(--color-accent-blue);
+  outline-offset: 2px;
+}
+
+.layer-band:focus-within .layer-expand-btn {
+  opacity: 1;
 }
 
 .layer-band-header {
@@ -834,6 +880,11 @@ html[data-theme="light"] .viz-workflows-stack .viz-terminal:last-child {
   border-color: transparent;
 }
 
+.awesome-link:focus-visible {
+  outline: 2px solid var(--color-accent-blue);
+  outline-offset: 2px;
+}
+
 /* === Key Insights === */
 
 .insights {
@@ -1000,6 +1051,11 @@ html[data-theme="light"] .viz-workflows-stack .viz-terminal:last-child {
 
 .footer a:hover {
   text-decoration: underline;
+}
+
+.footer a:focus-visible {
+  outline: 2px solid var(--color-accent-blue);
+  outline-offset: 2px;
 }
 
 .footer p {
@@ -1256,6 +1312,11 @@ body[data-layer-focused] .detail-panel {
 .detail-doc-link:hover {
   background: var(--color-bg-tertiary);
   border-color: var(--color-accent-blue);
+}
+
+.detail-doc-link:focus-visible {
+  outline: 2px solid var(--color-accent-blue);
+  outline-offset: 2px;
 }
 
 /* === Tooltip === */

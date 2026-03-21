@@ -71,7 +71,7 @@ const HooksViz: React.FC<{ v: Translations['viz'] }> = ({ v }) => (
 );
 
 const WorkflowsViz: React.FC<{ v: Translations['viz'] }> = ({ v }) => (
-  <div className="viz viz-workflows-stack">
+  <div className="viz viz-workflows-stack" aria-hidden="true">
     <div className="viz-terminal viz-terminal--file">
       <div className="terminal-bar">
         <span className="terminal-dot terminal-dot--red" />
@@ -105,7 +105,7 @@ const WorkflowsViz: React.FC<{ v: Translations['viz'] }> = ({ v }) => (
 );
 
 const SetupStepsViz: React.FC = () => (
-  <div className="viz viz-terminal">
+  <div className="viz viz-terminal" aria-hidden="true">
     <div className="terminal-bar">
       <span className="terminal-dot terminal-dot--red" />
       <span className="terminal-dot terminal-dot--yellow" />
@@ -164,6 +164,7 @@ const ComponentCard: React.FC<ComponentCardProps> = ({ component, layerColor, on
       onClick={() => onClick(component)}
       role="button"
       tabIndex={0}
+      aria-label={`${component.name} — ${component.description}`}
       onKeyDown={(e) => {
         if (e.key === 'Enter' || e.key === ' ') {
           e.preventDefault();
@@ -172,7 +173,7 @@ const ComponentCard: React.FC<ComponentCardProps> = ({ component, layerColor, on
       }}
     >
       <div className="component-section-header">
-        <span className="component-section-icon">{component.icon}</span>
+        <span className="component-section-icon" aria-hidden="true">{component.icon}</span>
         <div className="component-section-meta">
           <h3 className="component-section-name">{component.name}</h3>
           <code className="component-section-path">{component.path}</code>

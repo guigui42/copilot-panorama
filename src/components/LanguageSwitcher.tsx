@@ -15,8 +15,9 @@ const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({ locale, onChange })
       <button
         key={loc}
         className={`lang-btn ${loc === locale ? 'lang-btn--active' : ''}`}
+        role="radio"
+        aria-checked={loc === locale}
         onClick={() => onChange(loc)}
-        aria-pressed={loc === locale}
       >
         {LOCALE_LABELS[loc]}
       </button>
