@@ -838,11 +838,67 @@ html[data-theme="light"] .viz-workflows-stack .viz-terminal:last-child {
   max-width: 1100px;
   margin: 0 auto;
   padding: 0 24px 40px;
+  cursor: pointer;
+  position: relative;
+}
+
+.insights:hover .layer-expand-btn {
+  opacity: 1;
 }
 
 .insights-header {
   text-align: center;
   margin-bottom: 24px;
+  position: relative;
+}
+
+.insights-expand-btn {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* ── Insights focused / fullscreen ── */
+
+.insights.insights-focused {
+  position: fixed;
+  inset: 0;
+  z-index: 910;
+  max-width: none;
+  padding: 40px 48px;
+  background: var(--color-bg-primary);
+  overflow-y: auto;
+  animation: layerFocusIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) both;
+  cursor: default;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.insights.insights-focused .insights-header {
+  margin-bottom: 36px;
+}
+
+.insights.insights-focused .insights-title {
+  font-size: 2rem;
+}
+
+.insights.insights-focused .insights-subtitle {
+  font-size: 1.0625rem;
+  margin-top: 6px;
+}
+
+.insights.insights-focused .insights-grid {
+  max-width: 1000px;
+  width: 100%;
+  gap: 20px;
+}
+
+.insights.insights-focused .insight-card {
+  font-size: 0.9375rem;
+  padding: 22px 24px;
 }
 
 .insights-title {
