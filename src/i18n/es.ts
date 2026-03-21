@@ -87,14 +87,15 @@ export const es: Translations = {
     },
     skills: {
       name: 'Skills',
-      description: 'Carpetas autónomas de instrucciones, scripts y recursos — cargadas bajo demanda',
+      description: 'Carpetas autónomas de instrucciones, scripts y recursos — cargadas automáticamente por el LLM cuando es relevante',
       details:
-        'Los skills son carpetas con un archivo `SKILL.md` (nombre + descripción en ' +
-        'frontmatter YAML, instrucciones en Markdown) más scripts y recursos opcionales. ' +
-        'Copilot decide cuándo usar un skill basándose en su campo `description` — solo ' +
-        'entonces se inyecta el `SKILL.md` completo en el contexto del agente. Almacena ' +
-        'skills de proyecto en `.github/skills/<nombre>/` y personales en ' +
-        '`~/.copilot/skills/<nombre>/`.',
+        'A diferencia de otras funciones bajo demanda invocadas por el usuario, los skills ' +
+        'son seleccionados autónomamente por el LLM. Cada skill es una carpeta con un ' +
+        'archivo `SKILL.md` (nombre + descripción en frontmatter YAML, instrucciones en ' +
+        'Markdown) más scripts y recursos opcionales. El modelo lee las descripciones para ' +
+        'decidir cuáles activar — solo entonces se inyecta el `SKILL.md` completo en el ' +
+        'contexto. No requiere acción del usuario. Almacena skills de proyecto en ' +
+        '`.github/skills/<nombre>/` y personales en `~/.copilot/skills/<nombre>/`.',
       useCases: ['Módulos Terraform', 'Manifiestos K8s', 'Stack de observabilidad'],
     },
     hooks: {

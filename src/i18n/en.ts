@@ -87,14 +87,15 @@ export const en: Translations = {
     },
     skills: {
       name: 'Skills',
-      description: 'Self-contained folders of instructions, scripts & resources — loaded on demand',
+      description: 'Self-contained folders of instructions, scripts & resources — automatically loaded by the LLM when relevant',
       details:
-        'Skills are folders with a `SKILL.md` file (name + description in YAML ' +
-        'frontmatter, instructions in Markdown body) plus optional scripts and ' +
-        'resources. Copilot decides when to use a skill based on its `description` ' +
-        'field — only then is the full `SKILL.md` injected into the agent\'s context. ' +
-        'Store project skills in `.github/skills/<name>/` and personal skills in ' +
-        '`~/.copilot/skills/<name>/`.',
+        'Unlike other on-demand features that are invoked by the user, skills are ' +
+        'autonomously selected by the LLM. Each skill is a folder with a `SKILL.md` ' +
+        'file (name + description in YAML frontmatter, instructions in Markdown body) ' +
+        'plus optional scripts and resources. The model reads skill descriptions to ' +
+        'decide which ones to activate — only then is the full `SKILL.md` injected ' +
+        'into context. No user action required. Store project skills in ' +
+        '`.github/skills/<name>/` and personal skills in `~/.copilot/skills/<name>/`.',
       useCases: ['Terraform Modules', 'K8s Manifests', 'Observability Stack'],
     },
     hooks: {

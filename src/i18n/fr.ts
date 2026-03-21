@@ -87,14 +87,16 @@ export const fr: Translations = {
     },
     skills: {
       name: 'Skills',
-      description: 'Dossiers autonomes d\'instructions, scripts et ressources — chargés à la demande',
+      description: 'Dossiers autonomes d\'instructions, scripts et ressources — chargés automatiquement par le LLM quand pertinent',
       details:
-        'Les skills sont des dossiers contenant un fichier `SKILL.md` (nom + description ' +
-        'en frontmatter YAML, instructions en Markdown) et des scripts/ressources ' +
-        'optionnels. Copilot décide quand utiliser un skill en se basant sur son champ ' +
-        '`description` — le `SKILL.md` complet n\'est injecté dans le contexte que ' +
-        'lorsque le modèle le juge pertinent. Stockez les skills projet dans ' +
-        '`.github/skills/<nom>/` et les skills personnels dans `~/.copilot/skills/<nom>/`.',
+        'Contrairement aux autres fonctionnalités à la demande invoquées par l\'utilisateur, ' +
+        'les skills sont sélectionnés de façon autonome par le LLM. Chaque skill est un ' +
+        'dossier avec un fichier `SKILL.md` (nom + description en frontmatter YAML, ' +
+        'instructions en Markdown) et des scripts/ressources optionnels. Le modèle lit ' +
+        'les descriptions pour décider lesquels activer — le `SKILL.md` complet n\'est ' +
+        'injecté dans le contexte qu\'à ce moment-là. Aucune action utilisateur requise. ' +
+        'Stockez les skills projet dans `.github/skills/<nom>/` et les skills personnels ' +
+        'dans `~/.copilot/skills/<nom>/`.',
       useCases: ['Modules Terraform', 'Manifestes K8s', 'Stack d\'observabilité'],
     },
     hooks: {
