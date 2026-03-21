@@ -1170,6 +1170,72 @@ body[data-layer-focused] .detail-panel {
   line-height: var(--line-height-relaxed);
 }
 
+/* Use cases — card-style inside detail panel */
+.detail-panel .usecases {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.detail-panel .usecase {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
+  background: color-mix(in srgb, var(--layer-color) 8%, var(--color-bg-secondary));
+  border: 1px solid color-mix(in srgb, var(--layer-color) 20%, transparent);
+  border-left: 3px solid var(--layer-color);
+  border-radius: var(--radius-md);
+  white-space: normal;
+  cursor: default;
+  transition: background-color 0.2s ease, transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+  animation: usecaseFadeIn 0.4s ease both;
+}
+
+.detail-panel .usecase:nth-child(1) { animation-delay: 0.05s; }
+.detail-panel .usecase:nth-child(2) { animation-delay: 0.15s; }
+.detail-panel .usecase:nth-child(3) { animation-delay: 0.25s; }
+.detail-panel .usecase:nth-child(4) { animation-delay: 0.35s; }
+
+.detail-panel .usecase::before {
+  content: '';
+  display: block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--layer-color);
+  box-shadow: 0 0 10px color-mix(in srgb, var(--layer-color) 70%, transparent);
+  flex-shrink: 0;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.detail-panel .usecase:hover {
+  background: color-mix(in srgb, var(--layer-color) 14%, var(--color-bg-secondary));
+  border-color: color-mix(in srgb, var(--layer-color) 40%, transparent);
+  transform: translateX(3px);
+  box-shadow: 0 2px 12px color-mix(in srgb, var(--layer-color) 15%, transparent);
+}
+
+.detail-panel .usecase:hover::before {
+  transform: scale(1.4);
+  box-shadow: 0 0 14px color-mix(in srgb, var(--layer-color) 90%, transparent);
+}
+
+@keyframes usecaseFadeIn {
+  from {
+    opacity: 0;
+    transform: translateX(-12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
 .detail-doc-link {
   display: inline-flex;
   align-items: center;

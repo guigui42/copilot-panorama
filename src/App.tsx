@@ -13,6 +13,7 @@ function AppContent() {
   const { theme, toggleTheme } = useTheme();
   const t = useI18n();
   const [selectedComponent, setSelectedComponent] = useState<Component | null>(null);
+  const [selectedLayerColor, setSelectedLayerColor] = useState<string | null>(null);
   const [focusedLayerId, setFocusedLayerId] = useState<string | null>(null);
   const [insightsFocused, setInsightsFocused] = useState(false);
 
@@ -42,7 +43,10 @@ function AppContent() {
           <div key={layer.id}>
             <LayerSection
               layer={layer}
-              onComponentClick={setSelectedComponent}
+              onComponentClick={(comp) => {
+                setSelectedComponent(comp);
+                setSelectedLayerColor(layer.color);
+              }}
               isFocused={focusedLayerId === layer.id}
               onToggleFocus={() =>
                 setFocusedLayerId((prev) => (prev === layer.id ? null : layer.id))
@@ -143,6 +147,7 @@ function AppContent() {
 
       <DetailPanel
         component={selectedComponent}
+        layerColor={selectedLayerColor}
         onClose={() => setSelectedComponent(null)}
       />
     </>

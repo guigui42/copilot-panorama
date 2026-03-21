@@ -4,10 +4,11 @@ import { useI18n } from '../i18n';
 
 interface DetailPanelProps {
   component: Component | null;
+  layerColor?: string | null;
   onClose: () => void;
 }
 
-const DetailPanel: React.FC<DetailPanelProps> = ({ component, onClose }) => {
+const DetailPanel: React.FC<DetailPanelProps> = ({ component, layerColor, onClose }) => {
   const closeBtnRef = useRef<HTMLButtonElement>(null);
   const t = useI18n();
 
@@ -38,7 +39,12 @@ const DetailPanel: React.FC<DetailPanelProps> = ({ component, onClose }) => {
   return (
     <>
       <div className="detail-overlay" onClick={onClose} />
-      <div className="detail-panel" role="dialog" aria-label={component.name}>
+      <div
+        className="detail-panel"
+        role="dialog"
+        aria-label={component.name}
+        style={layerColor ? { '--layer-color': layerColor } as React.CSSProperties : undefined}
+      >
         <div className="detail-header">
           <div className="detail-header-left">
             <span className="detail-icon">{component.icon}</span>

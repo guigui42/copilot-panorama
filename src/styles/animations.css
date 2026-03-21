@@ -140,7 +140,8 @@
   .animate-shimmer,
   .animate-visible,
   .layer-band.layer-focused,
-  .layer-focus-overlay {
+  .layer-focus-overlay,
+  .detail-panel .usecase {
     animation: none !important;
     transition-duration: 0.01ms !important;
   }
