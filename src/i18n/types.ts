@@ -1,4 +1,4 @@
-export type Locale = 'en' | 'fr' | 'es';
+export type Locale = 'en' | 'fr' | 'es' | 'de';
 
 export interface ComponentI18n {
   name: string;

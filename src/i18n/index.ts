@@ -3,15 +3,17 @@ import type { Locale, Translations } from './types';
 import { en } from './en';
 import { fr } from './fr';
 import { es } from './es';
+import { de } from './de';
 
 export type { Locale, Translations } from './types';
 
-export const translationsMap: Record<Locale, Translations> = { en, fr, es };
+export const translationsMap: Record<Locale, Translations> = { en, fr, es, de };
 
 export const LOCALE_LABELS: Record<Locale, string> = {
   en: 'EN',
   fr: 'FR',
   es: 'ES',
+  de: 'DE',
 };
 
 const STORAGE_KEY = 'copilot-infographic-locale';
@@ -20,13 +22,14 @@ export function getInitialLocale(): Locale {
   // Check URL parameter first (for hreflang links)
   const urlParams = new URLSearchParams(window.location.search);
   const langParam = urlParams.get('lang');
-  if (langParam === 'en' || langParam === 'fr' || langParam === 'es') return langParam;
+  if (langParam === 'en' || langParam === 'fr' || langParam === 'es' || langParam === 'de') return langParam;
 
   const stored = localStorage.getItem(STORAGE_KEY);
-  if (stored === 'en' || stored === 'fr' || stored === 'es') return stored;
+  if (stored === 'en' || stored === 'fr' || stored === 'es' || stored === 'de') return stored;
   const nav = navigator.language.slice(0, 2);
   if (nav === 'fr') return 'fr';
   if (nav === 'es') return 'es';
+  if (nav === 'de') return 'de';
   return 'en';
 }
 
