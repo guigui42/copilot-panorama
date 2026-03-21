@@ -1,6 +1,7 @@
 import React from 'react';
 import type { Layer, Component } from '../data/layers';
 import { useIntersectionObserver } from '../hooks/useIntersectionObserver';
+import { useI18n } from '../i18n';
 import ComponentCard from './ComponentCard';
 
 interface LayerSectionProps {
@@ -8,15 +9,9 @@ interface LayerSectionProps {
   onComponentClick: (component: Component) => void;
 }
 
-const LAYER_LABELS: Record<number, string> = {
-  1: 'Layer 1',
-  2: 'Layer 2',
-  3: 'Layer 3',
-  4: 'Layer 4',
-};
-
 const LayerSection: React.FC<LayerSectionProps> = ({ layer, onComponentClick }) => {
   const { ref, isVisible } = useIntersectionObserver({ threshold: 0.05 });
+  const t = useI18n();
 
   const gridClass = `layer-components layer-components-${Math.min(layer.components.length, 3)}`;
 
@@ -32,7 +27,7 @@ const LayerSection: React.FC<LayerSectionProps> = ({ layer, onComponentClick }) 
       <div className="layer-band-header">
         <span className="layer-num">{layer.number}</span>
         <div className="layer-band-titles">
-          <span className="layer-label">{LAYER_LABELS[layer.number]}</span>
+          <span className="layer-label">{t.ui.layerPrefix} {layer.number}</span>
           <h2 className="layer-band-title">{layer.title}</h2>
           <p className="layer-band-subtitle">{layer.subtitle}</p>
         </div>

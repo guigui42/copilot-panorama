@@ -1,5 +1,7 @@
 import React from 'react';
 import type { Component } from '../data/layers';
+import { useI18n } from '../i18n';
+import type { Translations } from '../i18n';
 
 interface ComponentCardProps {
   component: Component;
@@ -9,11 +11,11 @@ interface ComponentCardProps {
 
 /* ── Per-component visualizations ── */
 
-const InstructionsViz: React.FC = () => (
+const InstructionsViz: React.FC<{ v: Translations['viz'] }> = ({ v }) => (
   <div className="viz viz-always-on">
     <span className="always-on-dot" />
-    <span className="always-on-label">Always active</span>
-    <span>— loads into every conversation automatically</span>
+    <span className="always-on-label">{v.alwaysActive}</span>
+    <span>{v.loadsAutomatically}</span>
   </div>
 );
 
@@ -25,46 +27,44 @@ const PromptFilesViz: React.FC = () => (
   </div>
 );
 
-const AgentFlowViz: React.FC = () => (
+const AgentFlowViz: React.FC<{ v: Translations['viz'] }> = ({ v }) => (
   <div className="viz viz-agent-flow">
     <span className="agent-step">
-      <span className="agent-step-emoji">📋</span> Planning
+      <span className="agent-step-emoji">📋</span> {v.planning}
     </span>
     <span className="agent-arrow">→</span>
     <span className="agent-step">
-      <span className="agent-step-emoji">🔨</span> Implementation
+      <span className="agent-step-emoji">🔨</span> {v.implementation}
     </span>
     <span className="agent-arrow">→</span>
     <span className="agent-step">
-      <span className="agent-step-emoji">✅</span> Review
+      <span className="agent-step-emoji">✅</span> {v.review}
     </span>
   </div>
 );
 
-const SkillsViz: React.FC = () => (
+const SkillsViz: React.FC<{ v: Translations['viz'] }> = ({ v }) => (
   <div className="viz viz-progressive">
     <div className="progressive-step">
       <span className="progressive-num">1</span>
       <span className="progressive-text">
-        <em>description</em> read from SKILL.md frontmatter
+        <em>description</em> {v.descriptionRead}
       </span>
     </div>
     <div className="progressive-step">
       <span className="progressive-num">2</span>
-      <span className="progressive-text">
-        Full SKILL.md <em>injected</em> into context when relevant
-      </span>
+      <span className="progressive-text">{v.fullSkillInjected}</span>
     </div>
   </div>
 );
 
-const HooksViz: React.FC = () => (
+const HooksViz: React.FC<{ v: Translations['viz'] }> = ({ v }) => (
   <div className="viz viz-lifecycle">
     <div className="lifecycle-item">sessionStart</div>
     <div className="lifecycle-item">userPromptSubmitted</div>
     <div className="lifecycle-item lifecycle-item--active">
       preToolUse
-      <span className="lifecycle-badge">approve / deny</span>
+      <span className="lifecycle-badge">{v.approveDeny}</span>
     </div>
     <div className="lifecycle-item">postToolUse</div>
     <div className="lifecycle-item">errorOccurred</div>
@@ -72,7 +72,7 @@ const HooksViz: React.FC = () => (
   </div>
 );
 
-const WorkflowsViz: React.FC = () => (
+const WorkflowsViz: React.FC<{ v: Translations['viz'] }> = ({ v }) => (
   <div className="viz viz-terminal">
     <div className="terminal-bar">
       <span className="terminal-dot terminal-dot--red" />
@@ -83,36 +83,40 @@ const WorkflowsViz: React.FC = () => (
       <span className="terminal-prompt">$ </span>
       <span className="terminal-cmd">gh aw</span>
     </div>
-    <span className="terminal-comment"># Markdown → GitHub Actions YAML</span>
+    <span className="terminal-comment">{v.markdownToActions}</span>
   </div>
 );
 
-const PluginsViz: React.FC = () => (
+const PluginsViz: React.FC<{ v: Translations['viz'] }> = ({ v }) => (
   <div className="viz viz-distribution">
-    <span className="dist-source">📦 plugin.json</span>
+    <span className="dist-source">📦 {v.pluginJson}</span>
     <span className="dist-arrow">→</span>
     <div className="dist-targets">
-      <span className="dist-target">🏪 Marketplace</span>
-      <span className="dist-target">🔗 Git Repo</span>
-      <span className="dist-target">📁 Local Path</span>
+      <span className="dist-target">🏪 {v.marketplace}</span>
+      <span className="dist-target">🔗 {v.gitRepo}</span>
+      <span className="dist-target">📁 {v.localPath}</span>
     </div>
   </div>
 );
 
-const VISUALIZATIONS: Record<string, React.FC> = {
-  instructions: InstructionsViz,
-  'prompt-files': PromptFilesViz,
-  'custom-agents': AgentFlowViz,
-  skills: SkillsViz,
-  hooks: HooksViz,
-  'agentic-workflows': WorkflowsViz,
-  plugins: PluginsViz,
-};
-
 /* ── Card ── */
 
 const ComponentCard: React.FC<ComponentCardProps> = ({ component, layerColor, onClick }) => {
-  const Viz = VISUALIZATIONS[component.id];
+  const t = useI18n();
+  const v = t.viz;
+
+  const renderViz = () => {
+    switch (component.id) {
+      case 'instructions': return <InstructionsViz v={v} />;
+      case 'prompt-files': return <PromptFilesViz />;
+      case 'custom-agents': return <AgentFlowViz v={v} />;
+      case 'skills': return <SkillsViz v={v} />;
+      case 'hooks': return <HooksViz v={v} />;
+      case 'agentic-workflows': return <WorkflowsViz v={v} />;
+      case 'plugins': return <PluginsViz v={v} />;
+      default: return null;
+    }
+  };
 
   return (
     <div
@@ -138,7 +142,7 @@ const ComponentCard: React.FC<ComponentCardProps> = ({ component, layerColor, on
 
       <p className="component-section-desc">{component.description}</p>
 
-      {Viz && <Viz />}
+      {renderViz()}
 
       <div className="usecases">
         {component.useCases.map((uc) => (

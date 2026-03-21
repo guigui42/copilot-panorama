@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import type { Component } from '../data/layers';
+import { useI18n } from '../i18n';
 
 interface DetailPanelProps {
   component: Component | null;
@@ -8,6 +9,7 @@ interface DetailPanelProps {
 
 const DetailPanel: React.FC<DetailPanelProps> = ({ component, onClose }) => {
   const closeBtnRef = useRef<HTMLButtonElement>(null);
+  const t = useI18n();
 
   useEffect(() => {
     if (!component) return;
@@ -52,12 +54,12 @@ const DetailPanel: React.FC<DetailPanelProps> = ({ component, onClose }) => {
         <p className="detail-description">{component.description}</p>
 
         <div className="detail-section">
-          <h3 className="detail-section-title">Details</h3>
+          <h3 className="detail-section-title">{t.ui.detailsLabel}</h3>
           <p className="detail-section-text">{component.details}</p>
         </div>
 
         <div className="detail-section">
-          <h3 className="detail-section-title">Use Cases</h3>
+          <h3 className="detail-section-title">{t.ui.useCasesLabel}</h3>
           <div className="usecases">
             {component.useCases.map((useCase) => (
               <span key={useCase} className="usecase">
@@ -74,7 +76,7 @@ const DetailPanel: React.FC<DetailPanelProps> = ({ component, onClose }) => {
             target="_blank"
             rel="noopener noreferrer"
           >
-            📖 Documentation
+            📖 {t.ui.documentationLabel}
           </a>
           {component.altDocUrl && (
             <>
@@ -86,7 +88,7 @@ const DetailPanel: React.FC<DetailPanelProps> = ({ component, onClose }) => {
                 rel="noopener noreferrer"
                 style={{ marginLeft: 8 }}
               >
-                📖 {component.altDocLabel || 'Alt Docs'}
+                📖 {component.altDocLabel || t.ui.documentationLabel}
               </a>
             </>
           )}
