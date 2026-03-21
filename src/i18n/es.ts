@@ -2,6 +2,10 @@ import type { Translations } from './types';
 
 export const es: Translations = {
   locale: 'es',
+  seo: {
+    title: '.github/ stack composable — Sistema Composable de Copilot',
+    description: 'Guía visual interactiva del sistema composable de GitHub Copilot — explora las 4 capas: Contexto Permanente, Capacidades Bajo Demanda, Control & Automatización, y Distribución.',
+  },
   ui: {
     heroTitle: 'stack composable',
     layerPrefix: 'CAPA',

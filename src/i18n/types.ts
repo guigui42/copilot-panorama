@@ -17,8 +17,14 @@ export interface InsightI18n {
   content: string;
 }
 
+export interface SeoMeta {
+  title: string;
+  description: string;
+}
+
 export interface Translations {
   locale: Locale;
+  seo: SeoMeta;
   ui: {
     heroTitle: string;
     layerPrefix: string;

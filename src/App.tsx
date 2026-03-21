@@ -1,8 +1,8 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { getLayers } from './data/layers';
 import type { Component } from './data/layers';
 import { useTheme } from './hooks/useTheme';
-import { I18nContext, translationsMap, getInitialLocale, persistLocale, useI18n } from './i18n';
+import { I18nContext, translationsMap, getInitialLocale, persistLocale, updateDocumentMeta, useI18n } from './i18n';
 import type { Locale } from './i18n';
 import Header from './components/Header';
 import LayerSection from './components/LayerSection';
@@ -95,6 +95,11 @@ function App() {
     setLocale(newLocale);
     persistLocale(newLocale);
   };
+
+  useEffect(() => {
+    updateDocumentMeta(translationsMap[locale]);
+    persistLocale(locale);
+  }, [locale]);
 
   return (
     <I18nContext.Provider value={translationsMap[locale]}>
