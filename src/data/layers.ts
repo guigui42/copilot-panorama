@@ -36,7 +36,7 @@ interface ComponentMeta {
 const COMPONENT_META: Record<string, ComponentMeta> = {
   instructions: {
     id: 'instructions',
-    path: '.github/copilot-instructions.md + .github/instructions/<name>.instructions.md',
+    path: '.github/copilot-instructions.md\n.github/instructions/<name>.instructions.md',
     icon: '🧠',
     docUrl: 'https://docs.github.com/en/copilot/how-tos/configure-custom-instructions/add-repository-instructions?tool=vscode',
     awesomeUrl: 'https://awesome-copilot.github.com/instructions/',
