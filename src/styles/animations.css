@@ -1,0 +1,134 @@
+/* ===== Keyframe animations ===== */
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideOutRight {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.04);
+  }
+}
+
+@keyframes flowDash {
+  from {
+    stroke-dashoffset: 20;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* ===== Utility classes ===== */
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.5s var(--transition-slow) both;
+  animation-delay: var(--delay, 0ms);
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.4s ease both;
+  animation-delay: var(--delay, 0ms);
+}
+
+.animate-slide-in-right {
+  animation: slideInRight 0.35s var(--transition-slow) both;
+}
+
+.animate-slide-out-right {
+  animation: slideOutRight 0.3s ease both;
+}
+
+.animate-pulse {
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.animate-flow-dash {
+  animation: flowDash 1s linear infinite;
+}
+
+.animate-shimmer {
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--color-bg-tertiary) 50%,
+    transparent 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.8s ease-in-out infinite;
+}
+
+/* Intersection observer visibility states */
+.animate-hidden {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.animate-visible {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.5s ease, transform 0.5s var(--transition-slow);
+  transition-delay: var(--delay, 0ms);
+}
+
+/* Reduced motion: respect user preference */
+@media (prefers-reduced-motion: reduce) {
+  .animate-fade-in-up,
+  .animate-fade-in,
+  .animate-slide-in-right,
+  .animate-slide-out-right,
+  .animate-pulse,
+  .animate-flow-dash,
+  .animate-shimmer,
+  .animate-visible {
+    animation: none !important;
+    transition-duration: 0.01ms !important;
+  }
+}
