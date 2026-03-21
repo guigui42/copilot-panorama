@@ -1,4 +1,4 @@
-import React, { useState, useRef, useCallback } from 'react';
+import React, { useState, useRef, useCallback, useEffect } from 'react';
 
 interface TooltipProps {
   content: string;
@@ -10,7 +10,7 @@ const Tooltip: React.FC<TooltipProps> = ({ content, children }) => {
   const [showBelow, setShowBelow] = useState(false);
   const wrapperRef = useRef<HTMLSpanElement>(null);
 
-  const handleMouseEnter = useCallback(() => {
+  const show = useCallback(() => {
     if (wrapperRef.current) {
       const rect = wrapperRef.current.getBoundingClientRect();
       setShowBelow(rect.top < 60);
@@ -18,16 +18,36 @@ const Tooltip: React.FC<TooltipProps> = ({ content, children }) => {
     setVisible(true);
   }, []);
 
-  const handleMouseLeave = useCallback(() => {
+  const hide = useCallback(() => {
     setVisible(false);
   }, []);
+
+  // Close tooltip on outside touch
+  useEffect(() => {
+    if (!visible) return;
+    const handleTouch = (e: TouchEvent) => {
+      if (wrapperRef.current && !wrapperRef.current.contains(e.target as Node)) {
+        setVisible(false);
+      }
+    };
+    document.addEventListener('touchstart', handleTouch, { passive: true });
+    return () => document.removeEventListener('touchstart', handleTouch);
+  }, [visible]);
 
   return (
     <span
       className="tooltip-wrapper"
       ref={wrapperRef}
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
+      onMouseEnter={show}
+      onMouseLeave={hide}
+      onTouchStart={(e) => {
+        e.stopPropagation();
+        setVisible((v) => !v);
+        if (wrapperRef.current) {
+          const rect = wrapperRef.current.getBoundingClientRect();
+          setShowBelow(rect.top < 60);
+        }
+      }}
     >
       {children}
       {visible && (

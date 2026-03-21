@@ -56,8 +56,8 @@
 }
 
 .lang-btn {
-  padding: 4px 10px;
-  font-size: 0.6875rem;
+  padding: 8px 12px;
+  font-size: 0.75rem;
   font-weight: 600;
   letter-spacing: 0.03em;
   color: var(--color-text-muted);
@@ -65,6 +65,11 @@
   border: none;
   cursor: pointer;
   transition: color 0.15s ease, background 0.15s ease;
+  min-height: 44px;
+  min-width: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .lang-btn:not(:last-child) {
@@ -189,7 +194,7 @@
 
 .layer-label {
   display: block;
-  font-size: 0.625rem;
+  font-size: 0.6875rem;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.12em;
@@ -500,7 +505,8 @@ html[data-theme="light"] .viz-terminal {
 .terminal-dot--green { background: #28c840; }
 
 .terminal-line {
-  white-space: nowrap;
+  white-space: pre-wrap;
+  word-break: break-all;
 }
 
 .terminal-prompt {
@@ -728,8 +734,8 @@ html[data-theme="light"] .viz-terminal {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 36px;
-  height: 36px;
+  width: 44px;
+  height: 44px;
   padding: 0;
   border: 1px solid var(--color-border);
   border-radius: 50%;
@@ -807,8 +813,8 @@ html[data-theme="light"] .viz-terminal {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 32px;
-  height: 32px;
+  width: 44px;
+  height: 44px;
   padding: 0;
   border: none;
   border-radius: var(--radius-sm);
@@ -817,6 +823,7 @@ html[data-theme="light"] .viz-terminal {
   cursor: pointer;
   font-size: var(--font-size-lg);
   transition: background-color 0.15s ease, color 0.15s ease;
+  flex-shrink: 0;
 }
 
 .detail-close:hover {
@@ -943,22 +950,42 @@ html[data-theme="light"] .viz-terminal {
   }
 }
 
+@media (max-width: 768px) {
+  .detail-panel {
+    width: 100%;
+    border-left: none;
+  }
+
+  .insights-title {
+    font-size: 1.25rem;
+  }
+
+  .layer-band-title {
+    font-size: 1.25rem;
+  }
+}
+
 @media (max-width: 680px) {
   .hero {
     padding: 48px 16px 36px;
   }
 
+  .hero-controls {
+    top: 12px;
+    right: 12px;
+  }
+
   .hero-title {
     font-size: 1.75rem;
+    gap: 10px;
   }
 
   .poster {
-    padding: 20px 16px;
-    gap: 20px;
+    padding: 20px 12px;
   }
 
   .layer-band {
-    padding: 20px 18px;
+    padding: 20px 16px;
   }
 
   .layer-band-header {
@@ -977,18 +1004,38 @@ html[data-theme="light"] .viz-terminal {
     font-size: 1.125rem;
   }
 
+  .layer-band-subtitle {
+    font-size: 0.75rem;
+  }
+
   .layer-components-2,
   .layer-components-3 {
     grid-template-columns: 1fr;
   }
 
-  .insights-grid {
-    grid-template-columns: 1fr;
+  .component-section {
+    padding: 16px;
   }
 
-  .detail-panel {
-    width: 100%;
-    border-left: none;
+  .insights {
+    padding: 0 12px 32px;
+  }
+
+  .insights-grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .insights-title {
+    font-size: 1.125rem;
+  }
+
+  .insight-card {
+    padding: 14px 16px;
+  }
+
+  .layer-connector {
+    height: 28px;
   }
 
   .viz-agent-flow {
@@ -999,5 +1046,59 @@ html[data-theme="light"] .viz-terminal {
   .viz-distribution {
     flex-direction: column;
     align-items: flex-start;
+  }
+
+  .footer {
+    padding: 24px 16px 40px;
+  }
+
+  /* Disable hover lift on touch devices — it sticks */
+  .component-section:hover {
+    transform: none;
+  }
+}
+
+@media (max-width: 400px) {
+  .hero {
+    padding: 44px 10px 28px;
+  }
+
+  .hero-title {
+    font-size: 1.5rem;
+  }
+
+  .hero-subtitle {
+    font-size: 0.875rem;
+  }
+
+  .poster {
+    padding: 16px 8px;
+  }
+
+  .layer-band {
+    padding: 16px 12px;
+    border-radius: 8px;
+  }
+
+  .component-section {
+    padding: 14px 12px;
+  }
+
+  .component-section-header {
+    gap: 8px;
+  }
+
+  .component-section-icon {
+    width: 36px;
+    height: 36px;
+    font-size: 1.375rem;
+  }
+
+  .viz {
+    padding: 10px;
+  }
+
+  .insights {
+    padding: 0 8px 24px;
   }
 }

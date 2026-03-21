@@ -20,11 +20,16 @@ const DetailPanel: React.FC<DetailPanelProps> = ({ component, onClose }) => {
       }
     };
 
+    // Lock body scroll when panel is open
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+
     document.addEventListener('keydown', handleKeyDown);
     closeBtnRef.current?.focus();
 
     return () => {
       document.removeEventListener('keydown', handleKeyDown);
+      document.body.style.overflow = prevOverflow;
     };
   }, [component, onClose]);
 
@@ -86,7 +91,7 @@ const DetailPanel: React.FC<DetailPanelProps> = ({ component, onClose }) => {
                 href={component.altDocUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                style={{ marginLeft: 8 }}
+                style={{ marginLeft: 'var(--space-2)' }}
               >
                 📖 {component.altDocLabel || t.ui.documentationLabel}
               </a>
