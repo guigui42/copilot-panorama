@@ -1,5 +1,6 @@
 import React from 'react';
 import ThemeToggle from './ThemeToggle';
+import { CopilotIcon } from './GitHubIcons';
 
 interface HeaderProps {
   theme: 'dark' | 'light';
@@ -14,11 +15,9 @@ const Header: React.FC<HeaderProps> = ({ theme, onToggleTheme }) => {
       </div>
       <div className="hero-content">
         <h1 className="hero-title">
-          <code>.github/</code> folder evolution
+          <CopilotIcon size={40} className="hero-copilot-icon" />
+          <code>.github/</code> composable stack
         </h1>
-        <p className="hero-subtitle">
-          The composable Copilot customization stack
-        </p>
       </div>
     </header>
   );

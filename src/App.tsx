@@ -5,6 +5,7 @@ import { useTheme } from './hooks/useTheme';
 import Header from './components/Header';
 import LayerSection from './components/LayerSection';
 import DetailPanel from './components/DetailPanel';
+import { GitHubMark } from './components/GitHubIcons';
 
 const LAYER_COLORS = layers.map((l) => l.color);
 
@@ -70,6 +71,7 @@ function App() {
 
       <footer className="footer">
         <p>
+          <GitHubMark size={18} className="footer-github-mark" />{' '}
           Built for GitHub Copilot users ·{' '}
           <a
             href="https://docs.github.com/en/copilot/concepts/agents"
