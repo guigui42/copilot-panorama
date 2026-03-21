@@ -68,6 +68,16 @@ function AppContent() {
             {t.ui.footerDocsLink} ↗
           </a>
         </p>
+        <p className="footer-credit">
+          Inspired by{' '}
+          <a
+            href="https://www.linkedin.com/in/ashishkhichi/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Ashish S K
+          </a>
+        </p>
       </footer>
 
       <DetailPanel

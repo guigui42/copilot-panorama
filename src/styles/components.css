@@ -716,6 +716,12 @@ html[data-theme="light"] .viz-terminal {
   flex-shrink: 0;
 }
 
+.footer-credit {
+  margin-top: 4px;
+  font-size: 0.6875rem;
+  opacity: 0.55;
+}
+
 /* === Theme Toggle === */
 
 .theme-toggle {
