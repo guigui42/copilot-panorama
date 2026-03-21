@@ -13,9 +13,24 @@ function AppContent() {
   const { theme, toggleTheme } = useTheme();
   const t = useI18n();
   const [selectedComponent, setSelectedComponent] = useState<Component | null>(null);
+  const [focusedLayerId, setFocusedLayerId] = useState<string | null>(null);
 
   const layers = useMemo(() => getLayers(t), [t]);
   const layerColors = layers.map((l) => l.color);
+
+  useEffect(() => {
+    if (focusedLayerId) {
+      document.body.style.overflow = 'hidden';
+      document.body.setAttribute('data-layer-focused', '');
+    } else {
+      document.body.style.overflow = '';
+      document.body.removeAttribute('data-layer-focused');
+    }
+    return () => {
+      document.body.style.overflow = '';
+      document.body.removeAttribute('data-layer-focused');
+    };
+  }, [focusedLayerId]);
 
   return (
     <>
@@ -27,6 +42,14 @@ function AppContent() {
             <LayerSection
               layer={layer}
               onComponentClick={setSelectedComponent}
+              isFocused={focusedLayerId === layer.id}
+              onToggleFocus={() =>
+                setFocusedLayerId((prev) => (prev === layer.id ? null : layer.id))
+              }
+              onDismissAll={() => {
+                setFocusedLayerId(null);
+                setSelectedComponent(null);
+              }}
             />
             {i < layers.length - 1 ? (
               <div

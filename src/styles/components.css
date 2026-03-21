@@ -179,12 +179,149 @@
   border-radius: 12px;
   padding: 28px 32px;
   transition: box-shadow 0.35s ease;
+  cursor: pointer;
 }
 
 .layer-band:hover {
   box-shadow:
     0 0 0 1px color-mix(in srgb, var(--layer-color) 15%, transparent),
     0 4px 32px -8px color-mix(in srgb, var(--layer-color) 18%, transparent);
+}
+
+/* ── Layer focus / fullscreen mode ── */
+
+.layer-focus-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 900;
+  animation: fadeIn 0.25s ease both;
+  cursor: pointer;
+}
+
+.layer-band.layer-focused {
+  position: fixed;
+  inset: 0;
+  z-index: 910;
+  border-radius: 0;
+  border-left-width: 6px;
+  padding: 40px 48px;
+  overflow-y: auto;
+  animation: layerFocusIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) both;
+  cursor: default;
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--layer-color) 20%, transparent),
+    0 0 80px -12px color-mix(in srgb, var(--layer-color) 25%, transparent);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.layer-band.layer-focused .layer-band-header,
+.layer-band.layer-focused .layer-components {
+  width: 100%;
+  max-width: 100%;
+}
+
+.layer-band.layer-focused .layer-band-header {
+  gap: 24px;
+  margin-bottom: 36px;
+  flex-direction: column;
+  text-align: center;
+}
+
+.layer-band.layer-focused .layer-num {
+  width: 56px;
+  height: 56px;
+  font-size: 1.5rem;
+  border-radius: 14px;
+}
+
+.layer-band.layer-focused .layer-label {
+  font-size: 0.8125rem;
+  letter-spacing: 0.14em;
+}
+
+.layer-band.layer-focused .layer-band-title {
+  font-size: 2rem;
+}
+
+.layer-band.layer-focused .layer-band-subtitle {
+  font-size: 1.0625rem;
+  margin-top: 4px;
+}
+
+.layer-band.layer-focused .component-section {
+  font-size: 1.0625rem;
+}
+
+.layer-band.layer-focused .component-section-name {
+  font-size: 1.25rem;
+}
+
+.layer-band.layer-focused .component-section-desc {
+  font-size: 1rem;
+}
+
+.layer-band.layer-focused .layer-components-1 {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.layer-band.layer-focused:hover {
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--layer-color) 20%, transparent),
+    0 0 80px -12px color-mix(in srgb, var(--layer-color) 25%, transparent);
+}
+
+.layer-focus-close {
+  position: absolute;
+  top: 16px;
+  right: 20px;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  background: var(--color-bg-tertiary);
+  color: var(--color-text-secondary);
+  font-size: 1rem;
+  cursor: pointer;
+  z-index: 920;
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.layer-focus-close:hover {
+  background: var(--color-bg-secondary);
+  color: var(--color-text-primary);
+  border-color: var(--layer-color);
+}
+
+.layer-expand-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  background: transparent;
+  color: var(--color-text-tertiary);
+  cursor: pointer;
+  flex-shrink: 0;
+  opacity: 0;
+  transition: opacity 0.2s ease, background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.layer-band:hover .layer-expand-btn {
+  opacity: 1;
+}
+
+.layer-expand-btn:hover {
+  background: var(--color-bg-tertiary);
+  color: var(--layer-color);
+  border-color: var(--layer-color);
 }
 
 .layer-band-header {
@@ -881,6 +1018,11 @@ html[data-theme="light"] .viz-workflows-stack .viz-terminal:last-child {
   box-shadow: -4px 0 24px var(--color-shadow);
   animation: slideInRight 0.35s cubic-bezier(0.16, 1, 0.3, 1) both;
   overflow-y: auto;
+  transition: width 0.3s ease;
+}
+
+body[data-layer-focused] .detail-panel {
+  width: 560px;
 }
 
 .detail-header {

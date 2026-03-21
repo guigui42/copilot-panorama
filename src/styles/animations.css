@@ -66,6 +66,17 @@
   }
 }
 
+@keyframes layerFocusIn {
+  from {
+    opacity: 0;
+    transform: scale(0.92);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
 /* ===== Utility classes ===== */
 
 .animate-fade-in-up {
@@ -127,7 +138,9 @@
   .animate-pulse,
   .animate-flow-dash,
   .animate-shimmer,
-  .animate-visible {
+  .animate-visible,
+  .layer-band.layer-focused,
+  .layer-focus-overlay {
     animation: none !important;
     transition-duration: 0.01ms !important;
   }
