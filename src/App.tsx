@@ -23,7 +23,7 @@ function App() {
               layer={layer}
               onComponentClick={setSelectedComponent}
             />
-            {i < layers.length - 1 && (
+            {i < layers.length - 1 ? (
               <div
                 className="layer-connector"
                 style={{
@@ -31,7 +31,7 @@ function App() {
                   '--connector-to': LAYER_COLORS[i + 1],
                 } as React.CSSProperties}
               />
-            )}
+            ) : null}
           </div>
         ))}
       </main>
@@ -49,14 +49,15 @@ function App() {
           </div>
           <div className="insight-card">
             <span className="insight-icon">🧩</span>
-            <strong>Skills are INDEXED, not loaded</strong> — Copilot reads the description
-            in <code>SKILL.md</code> frontmatter first, then injects the full body only when
-            it matches your prompt.
+            <strong>Skills are loaded on demand</strong> — Copilot reads only the <code>description</code> in
+            SKILL.md frontmatter first. The full file is injected into the agent's context only when
+            the model decides the skill is relevant to your prompt.
           </div>
           <div className="insight-card">
             <span className="insight-icon">🔒</span>
             <strong>Hooks are the only deterministic primitive.</strong> Instructions are
-            advisory. Hooks are enforcement. They fire at every lifecycle point.
+            advisory. Hooks are enforcement — 6 lifecycle events including <code>preToolUse</code> which
+            can approve or deny tool executions before they happen.
           </div>
           <div className="insight-card">
             <span className="insight-icon">🔀</span>

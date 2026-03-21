@@ -46,13 +46,13 @@ const SkillsViz: React.FC = () => (
     <div className="progressive-step">
       <span className="progressive-num">1</span>
       <span className="progressive-text">
-        Description <em>indexed</em> from SKILL.md frontmatter
+        <em>description</em> read from SKILL.md frontmatter
       </span>
     </div>
     <div className="progressive-step">
       <span className="progressive-num">2</span>
       <span className="progressive-text">
-        Full body <em>injected</em> only when prompt matches
+        Full SKILL.md <em>injected</em> into context when relevant
       </span>
     </div>
   </div>
@@ -60,12 +60,15 @@ const SkillsViz: React.FC = () => (
 
 const HooksViz: React.FC = () => (
   <div className="viz viz-lifecycle">
+    <div className="lifecycle-item">sessionStart</div>
+    <div className="lifecycle-item">userPromptSubmitted</div>
     <div className="lifecycle-item lifecycle-item--active">
       preToolUse
       <span className="lifecycle-badge">approve / deny</span>
     </div>
     <div className="lifecycle-item">postToolUse</div>
     <div className="lifecycle-item">errorOccurred</div>
+    <div className="lifecycle-item">sessionEnd</div>
   </div>
 );
 
@@ -86,11 +89,12 @@ const WorkflowsViz: React.FC = () => (
 
 const PluginsViz: React.FC = () => (
   <div className="viz viz-distribution">
-    <span className="dist-source">📦 Your Plugin</span>
+    <span className="dist-source">📦 plugin.json</span>
     <span className="dist-arrow">→</span>
     <div className="dist-targets">
-      <span className="dist-target">🏢 Your Repo</span>
       <span className="dist-target">🏪 Marketplace</span>
+      <span className="dist-target">🔗 Git Repo</span>
+      <span className="dist-target">📁 Local Path</span>
     </div>
   </div>
 );

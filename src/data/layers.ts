@@ -39,9 +39,10 @@ export const layers: Layer[] = [
         details:
           "Instructions are the foundation of Copilot customization. They load FIRST " +
           "and are always-on passive memory. Place repo-wide conventions in " +
-          "`.github/copilot-instructions.md` and scoped instructions in " +
-          "`.github/instructions/*.instructions.md`. These are advisory — they guide " +
-          "the model but don't enforce behavior deterministically.",
+          "`.github/copilot-instructions.md` and path-specific instructions in " +
+          "`.github/instructions/NAME.instructions.md` (with `applyTo` glob frontmatter). " +
+          "These are advisory — they guide the model but don't enforce behavior " +
+          "deterministically.",
         useCases: ["Coding Standards", "Framework Rules", "Repo Conventions"],
         docUrl:
           "https://docs.github.com/en/copilot/how-tos/configure-custom-instructions/add-repository-instructions?tool=vscode",
@@ -80,11 +81,12 @@ export const layers: Layer[] = [
         description:
           "Specialist personas with their own tools and MCP servers",
         details:
-          "Custom agents are specialist personas defined in Markdown. Each agent can " +
-          "have its own set of MCP servers and tools. Agents can be chained via " +
-          "handoffs — e.g., a planning agent hands off to an implementation agent, " +
-          "which hands off to a review agent. The LLM reads agent descriptions to " +
-          "decide which to activate — writing good descriptions matters.",
+          "Custom agents are specialist personas defined in Markdown with YAML " +
+          "frontmatter. Each profile specifies a `description`, `tools` list, " +
+          "optional `mcp-servers`, and a `model` preference. Agents can be chained " +
+          "via the `handoffs` property — e.g., a planning agent hands off to an " +
+          "implementation agent, which hands off to a review agent. The LLM reads " +
+          "agent descriptions to decide which to activate.",
         useCases: ["Planning Agent", "Implementation Agent", "Review Agent"],
         docUrl:
           "https://docs.github.com/en/copilot/how-tos/use-copilot-agents/coding-agent/create-custom-agents",
@@ -94,14 +96,14 @@ export const layers: Layer[] = [
         name: "Skills",
         path: ".github/skills/<name>/SKILL.md",
         icon: "🧩",
-        description: "Self-contained folded logic — progressively loaded",
+        description: "Self-contained folders of instructions, scripts & resources — loaded on demand",
         details:
-          "Skills are self-contained folders with instructions, scripts, and " +
-          "references. They are INDEXED but not loaded — Copilot reads the " +
-          "description first and only injects full instructions when relevant to " +
-          "the prompt. This progressive loading is key: write clear, specific " +
-          "descriptions in SKILL.md frontmatter so the model can match skills to " +
-          "user intent.",
+          "Skills are folders with a `SKILL.md` file (name + description in YAML " +
+          "frontmatter, instructions in Markdown body) plus optional scripts and " +
+          "resources. Copilot decides when to use a skill based on its `description` " +
+          "field — only then is the full `SKILL.md` injected into the agent's context. " +
+          "Store project skills in `.github/skills/<name>/` and personal skills in " +
+          "`~/.copilot/skills/<name>/`.",
         useCases: [
           "Repeatable Runbooks",
           "Incident Triage",
@@ -126,14 +128,14 @@ export const layers: Layer[] = [
         name: "Hooks",
         path: ".github/hooks/*.json",
         icon: "🔒",
-        description: "Deterministic shell commands at lifecycle events",
+        description: "Deterministic shell commands at 6 lifecycle events",
         details:
           "Hooks are the ONLY deterministic primitive in the Copilot system. They " +
-          "fire at every lifecycle point — preToolUse, postToolUse, errorOccurred, " +
-          "and more. The preToolUse hook can approve or deny tool executions before " +
-          "they happen. Unlike instructions (which are advisory), hooks are " +
-          "enforcement. Use them for policy gates, file access controls, and audit " +
-          "logging.",
+          "fire at six lifecycle points: `sessionStart`, `sessionEnd`, " +
+          "`userPromptSubmitted`, `preToolUse`, `postToolUse`, and `errorOccurred`. " +
+          "The `preToolUse` hook can approve or deny tool executions before they " +
+          "happen. Define hooks in a JSON file in `.github/hooks/` with `version: 1`. " +
+          "Unlike instructions (which are advisory), hooks are enforcement.",
         useCases: ["Policy Gates", "File Access Controls", "Audit Logging"],
         docUrl:
           "https://docs.github.com/en/copilot/how-tos/use-copilot-agents/coding-agent/use-hooks",
@@ -145,12 +147,13 @@ export const layers: Layer[] = [
         name: "Agentic Workflows",
         path: ".github/workflows/ (as Markdown .md sources)",
         icon: "⚙️",
-        description: "Natural language automation compiled to GitHub Actions",
+        description: "Natural language automation via the gh aw CLI extension",
         details:
-          "Agentic workflows are written as Markdown and compiled to GitHub Actions " +
-          "YAML via `gh aw`. They run with read-only permissions by default. This " +
-          "brings natural language automation to CI/CD — describe what you want in " +
-          "plain English, and it becomes a GitHub Action.",
+          "Agentic workflows are Markdown files with YAML frontmatter (permissions, " +
+          "safe-outputs, triggers) compiled to GitHub Actions via the `gh aw` CLI " +
+          "extension. They run with read-only permissions by default; write " +
+          "operations require explicit safe-output approval. Agents execute in " +
+          "sandboxed containers with tool allowlisting and network isolation.",
         useCases: [
           "Issue Triage",
           "CI Failure Analysis",
@@ -173,18 +176,19 @@ export const layers: Layer[] = [
       {
         id: "plugins",
         name: "Plugins",
-        path: "Bundling agents + skills + commands",
+        path: ".github/plugin/plugin.json (or repo root)",
         icon: "📦",
-        description: "Decentralized packaging for sharing agent stacks",
+        description: "Installable packages bundling agents, skills, hooks & MCP configs",
         details:
-          "Plugins bundle agents, skills, and commands into distributable packages. " +
-          "They enable decentralized packaging — host on your own repo or list in " +
-          "the marketplace. This is how platform engineering teams share " +
-          "team-specific agent stacks across repositories.",
+          "Plugins are distributable packages that extend Copilot CLI. Each plugin " +
+          "can contain custom agents, skills, hooks, MCP server configs, and LSP " +
+          "server configs. Install from registered marketplaces (like `copilot-plugins` " +
+          "or `awesome-copilot`), directly from a Git repo, or from a local path. " +
+          "Create your own marketplace to share team-specific stacks.",
         useCases: [
-          "Share Team Agent Stacks",
-          "List in Marketplace",
-          "Cross-Repo Distribution",
+          "Reuse Across Projects",
+          "Team Standardization",
+          "Marketplace Distribution",
         ],
         docUrl: "https://docs.github.com/en/copilot/how-tos/copilot-cli/customize-copilot/plugins-finding-installing",
       },
