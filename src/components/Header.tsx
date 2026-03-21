@@ -17,13 +17,21 @@ const Header: React.FC<HeaderProps> = ({ theme, onToggleTheme }) => {
   return (
     <header className="hero">
       <div className="hero-controls">
+        <a
+          href="https://awesome-copilot.github.com/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="awesome-copilot-link"
+          title="Community-contributed agents, instructions, and skills to enhance your GitHub Copilot experience"
+        >
+          ✨ Awesome Copilot
+        </a>
         <LanguageSwitcher locale={locale} onChange={setLocale} />
         <ThemeToggle theme={theme} onToggle={onToggleTheme} />
       </div>
       <div className="hero-content">
         <h1 className="hero-title">
-          <CopilotIcon size={40} className="hero-copilot-icon" />
-          <code>.github/</code> {t.ui.heroTitle}
+          <code>.github/</code> <CopilotIcon size={40} className="hero-copilot-icon" /> {t.ui.heroTitle}
         </h1>
       </div>
     </header>

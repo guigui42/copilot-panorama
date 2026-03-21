@@ -45,6 +45,27 @@
   gap: 8px;
 }
 
+/* === Awesome Copilot Link === */
+.awesome-copilot-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-decoration: none;
+  color: var(--accent);
+  border: 1px solid var(--accent);
+  background: transparent;
+  transition: background 0.2s, color 0.2s;
+  white-space: nowrap;
+}
+.awesome-copilot-link:hover {
+  background: var(--accent);
+  color: #fff;
+}
+
 /* === Language Switcher === */
 
 .lang-switcher {
@@ -973,6 +994,15 @@ html[data-theme="light"] .viz-terminal {
   .hero-controls {
     top: 12px;
     right: 12px;
+  }
+
+  .awesome-copilot-link {
+    font-size: 0;
+    padding: 6px;
+  }
+  .awesome-copilot-link::before {
+    content: "✨";
+    font-size: 1rem;
   }
 
   .hero-title {
