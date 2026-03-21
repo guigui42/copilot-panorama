@@ -7,6 +7,8 @@ export interface Component {
   details: string;
   useCases: string[];
   docUrl: string;
+  altDocUrl?: string;
+  altDocLabel?: string;
   flowTo?: string[];
 }
 
@@ -42,7 +44,7 @@ export const layers: Layer[] = [
           "the model but don't enforce behavior deterministically.",
         useCases: ["Coding Standards", "Framework Rules", "Repo Conventions"],
         docUrl:
-          "https://docs.github.com/en/copilot/customizing-copilot/adding-repository-instructions-for-github-copilot",
+          "https://docs.github.com/en/copilot/how-tos/configure-custom-instructions/add-repository-instructions?tool=vscode",
       },
     ],
   },
@@ -68,7 +70,7 @@ export const layers: Layer[] = [
           "for recurring tasks.",
         useCases: ["/security-review", "/release-notes", "/changelog"],
         docUrl:
-          "https://docs.github.com/en/copilot/customizing-copilot/adding-custom-prompt-files",
+          "https://docs.github.com/en/copilot/how-tos/configure-custom-instructions/add-repository-instructions?tool=vscode&search-overlay-input=copilot+custom+prompts&search-overlay-ask-ai=true#enabling-and-using-prompt-files",
       },
       {
         id: "custom-agents",
@@ -85,7 +87,7 @@ export const layers: Layer[] = [
           "decide which to activate — writing good descriptions matters.",
         useCases: ["Planning Agent", "Implementation Agent", "Review Agent"],
         docUrl:
-          "https://docs.github.com/en/copilot/customizing-copilot/extending-copilot-chat-in-vs-code/using-custom-agents",
+          "https://docs.github.com/en/copilot/how-tos/use-copilot-agents/coding-agent/create-custom-agents",
       },
       {
         id: "skills",
@@ -106,7 +108,7 @@ export const layers: Layer[] = [
           "IaC Risk Analysis",
         ],
         docUrl:
-          "https://docs.github.com/en/copilot/customizing-copilot/extending-copilot-chat-in-vs-code/using-copilot-skills",
+          "https://docs.github.com/en/copilot/concepts/agents/about-agent-skills",
       },
     ],
   },
@@ -134,7 +136,9 @@ export const layers: Layer[] = [
           "logging.",
         useCases: ["Policy Gates", "File Access Controls", "Audit Logging"],
         docUrl:
-          "https://docs.github.com/en/copilot/customizing-copilot/extending-copilot-chat-in-vs-code/using-copilot-hooks",
+          "https://docs.github.com/en/copilot/how-tos/use-copilot-agents/coding-agent/use-hooks",
+        altDocUrl: "https://code.visualstudio.com/docs/copilot/customization/hooks",
+        altDocLabel: "VS Code Hooks Guide",
       },
       {
         id: "agentic-workflows",
@@ -153,7 +157,7 @@ export const layers: Layer[] = [
           "Scheduled Maintenance",
         ],
         docUrl:
-          "https://docs.github.com/en/copilot/using-github-copilot/using-copilot-coding-agent",
+          "https://github.github.com/gh-aw/",
       },
     ],
   },
@@ -182,7 +186,7 @@ export const layers: Layer[] = [
           "List in Marketplace",
           "Cross-Repo Distribution",
         ],
-        docUrl: "https://docs.github.com/en/copilot/concepts/agents",
+        docUrl: "https://docs.github.com/en/copilot/how-tos/copilot-cli/customize-copilot/plugins-finding-installing",
       },
     ],
   },

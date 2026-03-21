@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import type { Layer, Component } from '../data/layers';
 import { useIntersectionObserver } from '../hooks/useIntersectionObserver';
 import ComponentCard from './ComponentCard';
@@ -6,68 +6,49 @@ import ComponentCard from './ComponentCard';
 interface LayerSectionProps {
   layer: Layer;
   onComponentClick: (component: Component) => void;
-  defaultExpanded?: boolean;
 }
 
-const LayerSection: React.FC<LayerSectionProps> = ({
-  layer,
-  onComponentClick,
-  defaultExpanded = false,
-}) => {
-  const [expanded, setExpanded] = useState(defaultExpanded);
-  const { ref, isVisible } = useIntersectionObserver({ threshold: 0.1 });
+const LAYER_LABELS: Record<number, string> = {
+  1: 'Layer 1',
+  2: 'Layer 2',
+  3: 'Layer 3',
+  4: 'Layer 4',
+};
 
-  const gridClass =
-    layer.components.length === 1
-      ? 'layer-grid layer-grid-1'
-      : layer.components.length === 2
-        ? 'layer-grid layer-grid-2'
-        : 'layer-grid layer-grid-3';
+const LayerSection: React.FC<LayerSectionProps> = ({ layer, onComponentClick }) => {
+  const { ref, isVisible } = useIntersectionObserver({ threshold: 0.05 });
+
+  const gridClass = `layer-components layer-components-${Math.min(layer.components.length, 3)}`;
 
   return (
-    <div
+    <section
       ref={ref}
-      className={`layer animate-fade-in-up ${isVisible ? 'animate-visible' : ''}`}
+      className={`layer-band ${isVisible ? 'animate-visible' : 'animate-hidden'}`}
       style={{
         '--layer-color': layer.color,
-        '--delay': `${(layer.number - 1) * 0.15}s`,
+        '--delay': `${(layer.number - 1) * 0.1}s`,
       } as React.CSSProperties}
     >
-      <button
-        className="layer-header"
-        onClick={() => setExpanded((prev) => !prev)}
-        aria-expanded={expanded}
-      >
-        <div className="layer-header-left">
-          <span
-            className="layer-badge"
-            style={{ '--layer-color': layer.color } as React.CSSProperties}
-          >
-            {layer.number}
-          </span>
-          <div className="layer-titles">
-            <h2 className="layer-title">{layer.title}</h2>
-            <p className="layer-subtitle">{layer.subtitle}</p>
-          </div>
-        </div>
-        <span className={`layer-chevron ${expanded ? 'layer-chevron-expanded' : ''}`}>
-          ▶
-        </span>
-      </button>
-
-      <div className={`layer-content ${expanded ? 'layer-content-expanded' : ''}`}>
-        <div className={gridClass}>
-          {layer.components.map((component) => (
-            <ComponentCard
-              key={component.id}
-              component={component}
-              layerColor={layer.color}
-              onClick={onComponentClick}
-            />
-          ))}
+      <div className="layer-band-header">
+        <span className="layer-num">{layer.number}</span>
+        <div className="layer-band-titles">
+          <span className="layer-label">{LAYER_LABELS[layer.number]}</span>
+          <h2 className="layer-band-title">{layer.title}</h2>
+          <p className="layer-band-subtitle">{layer.subtitle}</p>
         </div>
       </div>
-    </div>
+
+      <div className={gridClass}>
+        {layer.components.map((component) => (
+          <ComponentCard
+            key={component.id}
+            component={component}
+            layerColor={layer.color}
+            onClick={onComponentClick}
+          />
+        ))}
+      </div>
+    </section>
   );
 };
 

@@ -58,9 +58,9 @@ const DetailPanel: React.FC<DetailPanelProps> = ({ component, onClose }) => {
 
         <div className="detail-section">
           <h3 className="detail-section-title">Use Cases</h3>
-          <div className="component-tags">
+          <div className="usecases">
             {component.useCases.map((useCase) => (
-              <span key={useCase} className="tag">
+              <span key={useCase} className="usecase">
                 {useCase}
               </span>
             ))}
@@ -76,6 +76,20 @@ const DetailPanel: React.FC<DetailPanelProps> = ({ component, onClose }) => {
           >
             📖 Documentation
           </a>
+          {component.altDocUrl && (
+            <>
+              {' '}
+              <a
+                className="detail-doc-link"
+                href={component.altDocUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ marginLeft: 8 }}
+              >
+                📖 {component.altDocLabel || 'Alt Docs'}
+              </a>
+            </>
+          )}
         </div>
       </div>
     </>
