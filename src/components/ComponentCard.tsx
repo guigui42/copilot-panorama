@@ -151,6 +151,18 @@ const ComponentCard: React.FC<ComponentCardProps> = ({ component, layerColor, on
           </span>
         ))}
       </div>
+
+      {component.awesomeUrl && (
+        <a
+          href={component.awesomeUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="awesome-link"
+          onClick={(e) => e.stopPropagation()}
+        >
+          ✨ Browse community examples
+        </a>
+      )}
     </div>
   );
 };

@@ -617,6 +617,28 @@ html[data-theme="light"] .viz-terminal {
   font-size: 0.625rem;
 }
 
+/* === Awesome Copilot Link (per card) === */
+.awesome-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 8px;
+  padding: 3px 10px;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  color: var(--layer-color);
+  text-decoration: none;
+  border: 1px solid color-mix(in srgb, var(--layer-color) 25%, transparent);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--layer-color) 6%, transparent);
+  transition: background 0.2s, border-color 0.2s;
+  width: fit-content;
+}
+.awesome-link:hover {
+  background: color-mix(in srgb, var(--layer-color) 15%, transparent);
+  border-color: var(--layer-color);
+}
+
 /* === Key Insights === */
 
 .insights {
