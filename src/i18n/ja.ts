@@ -18,6 +18,8 @@ export const ja: Translations = {
     footerDocsLink: 'コンポーザブルシステムの完全なドキュメント',
     pageStack: '.github/ スタック',
     pageTools: 'Copilot Everywhere',
+    shareLink: 'リンクを共有',
+    shareCopied: 'コピーしました！',
   },
   viz: {
     alwaysActive: '常時アクティブ',

@@ -18,6 +18,8 @@ export const de: Translations = {
     footerDocsLink: 'Vollständige Dokumentation zum Composable System',
     pageStack: '.github/ Stack',
     pageTools: 'Copilot Everywhere',
+    shareLink: 'Link teilen',
+    shareCopied: 'Kopiert!',
   },
   viz: {
     alwaysActive: 'Immer aktiv',

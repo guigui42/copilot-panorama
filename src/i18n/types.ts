@@ -39,6 +39,8 @@ export interface Translations {
     footerDocsLink: string;
     pageStack: string;
     pageTools: string;
+    shareLink: string;
+    shareCopied: string;
   };
   viz: {
     alwaysActive: string;
