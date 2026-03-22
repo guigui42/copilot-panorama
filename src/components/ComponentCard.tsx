@@ -170,7 +170,7 @@ const AutocompleteViz: React.FC<{ v: Translations['toolsViz'] }> = ({ v }) => (
 );
 
 const AskViz: React.FC<{ v: Translations['toolsViz'] }> = ({ v }) => (
-  <div className="viz viz-chat-keywords">
+  <div className="viz viz-chat-keywords" aria-hidden="true">
     <span className="chat-keyword chat-keyword--participant">{v.chatParticipants}</span>
     <span className="chat-keyword chat-keyword--command">{v.slashCommands}</span>
     <span className="chat-keyword chat-keyword--variable">{v.chatVariables}</span>
@@ -178,7 +178,7 @@ const AskViz: React.FC<{ v: Translations['toolsViz'] }> = ({ v }) => (
 );
 
 const AgentModeViz: React.FC<{ v: Translations['toolsViz'] }> = ({ v }) => (
-  <div className="viz viz-agent-loop">
+  <div className="viz viz-agent-loop" aria-hidden="true">
     <span className="agent-loop-step">🔍 {v.analyze}</span>
     <span className="agent-loop-arrow">→</span>
     <span className="agent-loop-step">✏️ {v.edit}</span>
@@ -215,7 +215,7 @@ const CodingAgentViz: React.FC<{ v: Translations['toolsViz'] }> = ({ v }) => (
 );
 
 const ReviewAgentViz: React.FC<{ v: Translations['toolsViz'] }> = ({ v }) => (
-  <div className="viz viz-review-flow">
+  <div className="viz viz-review-flow" aria-hidden="true">
     <div className="review-step">👤 {v.addReviewer}</div>
     <div className="review-step review-step--active">💬 {v.reviewComments}</div>
     <div className="review-step">✅ {v.suggestedFixes}</div>
@@ -231,7 +231,7 @@ const ThirdPartyAgentsCloudViz: React.FC<{ v: Translations['toolsViz'] }> = ({ v
 );
 
 const CopilotChatCloudViz: React.FC<{ v: Translations['toolsViz'] }> = ({ v }) => (
-  <div className="viz viz-chat-keywords">
+  <div className="viz viz-chat-keywords" aria-hidden="true">
     <span className="chat-keyword chat-keyword--participant">{v.askAnything}</span>
     <span className="chat-keyword chat-keyword--variable">{v.repoContext}</span>
     <span className="chat-keyword chat-keyword--command">{v.webSearch}</span>

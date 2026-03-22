@@ -33,13 +33,13 @@ const Header: React.FC<HeaderProps> = ({ theme, onToggleTheme, page, onPageChang
         <ThemeToggle theme={theme} onToggle={onToggleTheme} />
       </div>
       <div className="hero-content">
-        <nav className="page-switcher" aria-label="Page navigation">
+        <nav className="page-switcher" aria-label={`${t.ui.pageStack} / ${t.ui.pageTools}`}>
           <button
             className={`page-switcher-btn ${page === 'stack' ? 'page-switcher-btn--active' : ''}`}
             onClick={() => onPageChange('stack')}
             aria-current={page === 'stack' ? 'page' : undefined}
           >
-            <code>.github/</code> <CopilotIcon size={18} className="page-switcher-icon" /> Stack
+            <code>.github/</code> <CopilotIcon size={18} className="page-switcher-icon" /> {t.ui.pageStack}
           </button>
           <button
             className={`page-switcher-btn ${page === 'tools' ? 'page-switcher-btn--active' : ''}`}
