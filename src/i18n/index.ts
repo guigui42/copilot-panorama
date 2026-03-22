@@ -1,5 +1,5 @@
 import { createContext, useContext } from 'react';
-import type { Locale, Translations } from './types';
+import type { Locale, Translations, PageId } from './types';
 import { en } from './en';
 import { fr } from './fr';
 import { es } from './es';
@@ -42,7 +42,7 @@ export function persistLocale(locale: Locale) {
 }
 
 /** Update document meta tags to match the current locale and page */
-export function updateDocumentMeta(translations: Translations, page: 'stack' | 'tools' = 'stack') {
+export function updateDocumentMeta(translations: Translations, page: PageId = 'stack') {
   const seo = page === 'tools' ? translations.toolsSeo : translations.seo;
   document.title = seo.title;
 

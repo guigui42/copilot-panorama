@@ -1560,7 +1560,9 @@ body[data-layer-focused] .detail-panel {
   font-size: var(--font-size-sm);
   font-weight: 500;
   cursor: pointer;
-  transition: all var(--transition-fast) ease;
+  transition: background-color var(--transition-fast) ease,
+              border-color var(--transition-fast) ease,
+              color var(--transition-fast) ease;
   white-space: nowrap;
 }
 
