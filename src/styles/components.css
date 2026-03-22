@@ -67,6 +67,17 @@
   align-items: center;
   gap: 8px;
   flex-shrink: 0;
+  border: none;
+  background: none;
+  padding: 4px 8px;
+  margin: -4px -8px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.hero-brand:hover {
+  background: color-mix(in srgb, var(--color-accent-blue) 8%, transparent);
 }
 
 .hero-brand-icon {
@@ -80,6 +91,13 @@
   color: var(--color-text-primary);
   letter-spacing: -0.02em;
   white-space: nowrap;
+}
+
+.hero-brand-copied {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--color-accent-green, #3fb950);
+  animation: fadeIn 0.15s ease;
 }
 
 .hero-toggle {

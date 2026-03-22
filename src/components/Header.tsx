@@ -58,10 +58,11 @@ const Header: React.FC<HeaderProps> = ({ theme, onToggleTheme, page, onPageChang
   return (
     <header className="hero">
       <div className="hero-bar">
-        <div className="hero-brand">
+        <button className="hero-brand" onClick={handleCopyLink} title={SHARE_URL}>
           <CopilotIcon size={22} className="hero-brand-icon" />
           <span className="hero-brand-name">Copilot Panorama</span>
-        </div>
+          {copied && <span className="hero-brand-copied">{t.ui.shareCopied}</span>}
+        </button>
 
         <nav className="page-switcher" aria-label={`${t.ui.pageStack} / ${t.ui.pageTools}`}>
           <button
