@@ -16,6 +16,8 @@ export const ja: Translations = {
     documentationLabel: 'ドキュメント',
     footerBuiltFor: 'GitHub Copilot ユーザーのために構築',
     footerDocsLink: 'コンポーザブルシステムの完全なドキュメント',
+    pageStack: '.github/ スタック',
+    pageTools: 'Copilot ツール',
   },
   viz: {
     alwaysActive: '常時アクティブ',
@@ -173,6 +175,198 @@ export const ja: Translations = {
         '<strong>LLM がルーターです。</strong>別個のオーケストレーターは存在しません — ' +
         'モデルはインデックス化されたエージェントの説明とスキルのフロントマターを読んで、' +
         '何を有効化するかを決定します。だからこそ、良い説明を書くことが重要なのです。',
+    },
+  ],
+
+  /* ── Tools ページ ── */
+  toolsSeo: {
+    title: 'Copilot ツール — ターミナル、IDE、クラウド',
+    description: 'GitHub Copilot ツールのインタラクティブなビジュアルガイド — 3つのレイヤーを探索：ターミナル（CLI）、IDE（オートコンプリート、チャット、Agent Mode、サードパーティエージェント）、クラウド（Coding Agent、Review Agent、サードパーティエージェント）。',
+  },
+  toolsUi: {
+    heroTitle: 'Copilot ツール',
+    insightsTitle: 'ほとんどの開発者が見落とす重要な違い',
+    insightsSubtitle: '3つのレイヤーにまたがるアーキテクチャの洞察',
+    footerBuiltFor: 'GitHub Copilot ユーザーのために構築',
+    footerDocsLink: 'Copilot 機能の完全なドキュメント',
+  },
+  toolsViz: {
+    interactive: 'インタラクティブ',
+    programmatic: 'プログラマティック',
+    ghostText: 'ゴーストテキスト',
+    tabToAccept: 'Tab で受け入れ',
+    chatParticipants: '@workspace',
+    slashCommands: '/fix',
+    chatVariables: '#file',
+    analyze: '分析',
+    edit: '編集',
+    run: '実行',
+    fix: '修正',
+    local: 'ローカル',
+    cloud: 'クラウド',
+    issueAssigned: 'Issue がアサインされました',
+    agentCodes: 'エージェントがコーディング',
+    prCreated: 'PR が作成されました',
+    securityChecks: 'セキュリティチェック',
+    addReviewer: 'レビュアーを追加',
+    reviewComments: 'レビューコメント',
+    suggestedFixes: '修正の提案',
+    selectAgent: 'エージェントを選択',
+    askAnything: '何でも質問',
+    repoContext: 'リポジトリコンテキスト',
+    webSearch: 'ウェブ検索',
+  },
+  toolsLayers: {
+    terminal: {
+      title: 'ターミナル',
+      subtitle: 'コマンドラインで動く AI コーディングエージェント',
+    },
+    ide: {
+      title: 'IDE',
+      subtitle: 'エディター内でのインライン提案、チャット、自律編集、サードパーティエージェント',
+    },
+    cloud: {
+      title: 'クラウド',
+      subtitle: 'GitHub プラットフォーム上の自律エージェント — コーディング、レビュー、サードパーティ',
+    },
+  },
+  toolsComponents: {
+    'copilot-cli': {
+      name: 'GitHub Copilot CLI',
+      description: 'ターミナルで動くフル AI エージェント — インタラクティブセッション、ファイル編集、GitHub 連携',
+      details:
+        'GitHub Copilot CLI は、ターミナルから直接 Copilot を使用できます。`copilot` で' +
+        'インタラクティブセッションを開始するか、`copilot -p "..."` で単一のプロンプトを' +
+        '渡せます。ローカルファイルの編集、シェルコマンドの実行、GitHub.com との連携' +
+        '（PR やIssue の作成、ワークフロー管理）、反復的な作業が可能です。Plan Mode' +
+        '（Shift+Tab）による構造化された実装、MCP サーバー、カスタムエージェント、' +
+        'スキル、フック、無限セッションのための自動コンテキスト圧縮をサポートしています。',
+      useCases: ['ターミナル自動化', 'コード生成', 'Git 操作', 'GitHub 連携', 'PR 管理'],
+    },
+    autocomplete: {
+      name: 'オートコンプリート',
+      description: '入力中にインラインで表示されるゴーストテキストのコード提案',
+      details:
+        'Copilot は入力中にオートコンプリート形式の提案を表示します — 関数本体、ループ、' +
+        '条件分岐など、コードコンテキストに基づいた提案です。Alt+] / Alt+[ で候補を切り替え、' +
+        'Ctrl+→ で単語ごとに受け入れ、Tab で提案全体を受け入れます。Next Edit Suggestions' +
+        '（NES）は次の編集位置を予測し、その補完を提案します。VS Code、Visual Studio、' +
+        'JetBrains IDE、Azure Data Studio、Xcode、Vim/Neovim、Eclipse で利用可能です。',
+      useCases: ['コード補完', 'ボイラープレート生成', 'パターン補完', 'コメントからコード生成'],
+    },
+    ask: {
+      name: 'Ask（Copilot Chat）',
+      description: 'コードの質問、説明、生成のための対話型 AI チャット',
+      details:
+        'Copilot Chat はコーディングの質問をするための対話型インターフェースを提供します。' +
+        'チャット参加者（@workspace、@github、@terminal）、スラッシュコマンド（/fix、/explain、' +
+        '/tests、/doc）、チャット変数（#file、#selection、#web）で正確なコンテキストを指定できます。' +
+        '@github 参加者はウェブ検索、Issue の検索、PR の分析を可能にします。複数の AI モデルを' +
+        'サポートし、モデルピッカーで会話中に切り替えられます。VS Code、Visual Studio、' +
+        'JetBrains、Eclipse、Xcode、GitHub.com、GitHub Mobile で利用可能です。',
+      useCases: ['コード説明', 'デバッグ', 'テスト生成', 'コードリファクタリング', '学習'],
+    },
+    'agent-mode': {
+      name: 'Agent Mode',
+      description: '自律的なローカルコーディング — Copilot がファイルを判断し、編集を行い、コマンドを実行して反復',
+      details:
+        'Agent Mode は Copilot が IDE 内で自律的にコードを編集できるようにします。変更すべき' +
+        'ファイルを判断し、複数ファイルの編集を行い、ターミナルコマンドを提案・実行し、タスクが' +
+        '完了するまでエラーを修正しながら反復します。MCP サーバーの統合、委任サブタスクのための' +
+        'サブエージェント、カスタムエージェントをサポートします。課金されるのはプロンプトのみで、' +
+        'フォローアップのツール呼び出しは無料です。GitHub Actions で実行される Copilot coding ' +
+        'agent（クラウドレイヤー）とは異なります。',
+      useCases: ['複雑なタスク', '複数ステップの実装', 'エラー解決', 'ビルド自動化'],
+    },
+    'third-party-agents-ide': {
+      name: 'サードパーティエージェント',
+      description: 'VS Code でネイティブ SDK を使用して動作する Claude と Codex のエージェント',
+      details:
+        'Anthropic（Claude）と OpenAI（Codex）のサードパーティエージェントは、各プロバイダーの' +
+        'ネイティブ SDK とエージェントハーネスを使用して VS Code 内で直接実行されます。ローカル' +
+        'セッション（ワークスペースで実行）またはクラウドセッション（リモート環境）を選択できます。' +
+        'Claude はスラッシュコマンド（/agents、/hooks、/memory、/review、/security-review）、' +
+        '権限モード（自動編集、承認リクエスト、プラン）、CLAUDE.md による永続的コンテキストを' +
+        'サポートします。すべて Copilot サブスクリプションで課金され、別途プロバイダーの設定は不要です。',
+      useCases: ['自律コーディング', 'セキュリティレビュー', 'プロバイダー固有の機能', 'バックグラウンドタスク'],
+    },
+    'copilot-chat-cloud': {
+      name: 'Copilot Chat',
+      description: 'GitHub.com 上の会話型 AI — リポジトリ、Issue、PR、ウェブについて質問',
+      details:
+        'GitHub.com の Copilot Chat では、どのページからでも質問できます — リポジトリ、Issue、' +
+        'PR、または一般的なソフトウェアトピックについて。GitHub からコンテキストを取得するために ' +
+        'Skills を使用し（コード検索、コミット履歴、Issue 詳細）、オプションで Bing ウェブ検索に' +
+        'よる最新情報も取得できます。マルチモデル選択、会話を分岐するサブスレッド、プレビュー付き' +
+        'ファイル生成、会話履歴（最大 100 スレッド、28 日間保持）をサポートします。GitHub Mobile ' +
+        'でも利用可能です。',
+      useCases: ['リポジトリ Q&A', 'Issue 分析', 'PR の理解', 'ウェブ検索', 'コード生成'],
+    },
+    'coding-agent': {
+      name: 'Coding Agent',
+      description: '自律型クラウドエージェント — Issue をアサインすると、セキュリティチェック付きの PR を作成',
+      details:
+        'Copilot coding agent は GitHub Actions 環境で独立して動作します。Issue を @copilot に' +
+        'アサインするか、PR でメンションするか、Chat から依頼すると、タスクを評価し、変更を行い、' +
+        'テストとリンターを実行し、CodeQL セキュリティ分析を行い、シークレットをチェックし、' +
+        'レビュー用のドラフト PR を作成します。カスタム Instructions、MCP サーバー、カスタム' +
+        'エージェント、Hooks、Skills、Copilot Memory をサポートします。`copilot/` ブランチにのみ' +
+        'プッシュします。Pro、Pro+、Business、Enterprise で利用可能です。',
+      useCases: ['バグ修正', '機能実装', 'テストカバレッジ', '技術的負債', 'セキュリティキャンペーン'],
+    },
+    'review-agent': {
+      name: 'Review Agent',
+      description: 'プロジェクト全体のコンテキストと修正提案を備えた AI コードレビュアー',
+      details:
+        'Copilot コードレビューはプルリクエストを分析し、ワンクリックで適用できる変更提案付きの' +
+        'フィードバックを提供します。エージェント機能を使用してプロジェクト全体のコンテキストを' +
+        '収集し、リポジトリ全体を分析してコード変更を理解します。すべての PR に対する自動レビューを' +
+        '設定できます。.github/copilot-instructions.md によるカスタム Instructions とパス固有の' +
+        'ルールをサポートします。GitHub.com、GitHub Mobile、VS Code、Visual Studio、Xcode、' +
+        'JetBrains で利用可能です。',
+      useCases: ['コード品質', 'セキュリティレビュー', 'ベストプラクティス', 'PR ワークフロー', 'チームガバナンス'],
+    },
+    'third-party-agents-cloud': {
+      name: 'サードパーティエージェント',
+      description: 'GitHub 上のクラウドコーディングエージェントとしての Anthropic Claude と OpenAI Codex',
+      details:
+        'サードパーティのコーディングエージェントは GitHub プラットフォーム上で Copilot coding ' +
+        'agent と並んで動作します。現在 Anthropic Claude（Claude Agent SDK）と OpenAI Codex' +
+        '（Codex SDK）をサポートしています。Issue のアサイン、Agents タブからのタスク開始、' +
+        'PR での @AGENT_NAME メンション、VS Code や GitHub Mobile からのセッション開始が可能です。' +
+        'Copilot coding agent と同じセキュリティ保護が適用されます。各セッションは1つのプレミアム' +
+        'リクエストと GitHub Actions の分数を消費します。現在パブリックプレビュー中です。',
+      useCases: ['マルチエージェントワークフロー', 'エージェント比較', '専門タスク', '並行開発'],
+    },
+  },
+  toolsInsights: [
+    {
+      icon: '🔀',
+      content:
+        '<strong>Agent Mode ≠ Coding Agent。</strong>Agent Mode は IDE 内でローカルに実行され、' +
+        'あなたが操作に関与し続けます。Coding Agent はクラウドの GitHub Actions で実行され、' +
+        '独立して作業し、完了すると PR を作成します。',
+    },
+    {
+      icon: '🧠',
+      content:
+        '<strong>サードパーティエージェントは IDE とクラウドの両方に存在します。</strong>' +
+        'VS Code では Claude と Codex がネイティブ SDK でローカルに動作します。GitHub 上では' +
+        'Copilot coding agent と並んでクラウドエージェントとして実行されます。',
+    },
+    {
+      icon: '💬',
+      content:
+        '<strong>Ask モードが出発点です。</strong>チャット参加者（@workspace）、スラッシュコマンド' +
+        '（/fix）、変数（#file）で質問のスコープを正確に絞り、自律的な作業のために Agent Mode に' +
+        'エスカレーションできます。',
+    },
+    {
+      icon: '🔒',
+      content:
+        '<strong>クラウドエージェントにはセキュリティが組み込まれています。</strong>Coding Agent は ' +
+        'CodeQL、シークレットスキャン、依存関係チェックを自動的に実行します。' +
+        '<code>copilot/</code> ブランチにのみプッシュでき、常にドラフト PR を作成します。',
     },
   ],
 };

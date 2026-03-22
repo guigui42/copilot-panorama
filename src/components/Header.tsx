@@ -4,13 +4,16 @@ import LanguageSwitcher from './LanguageSwitcher';
 import { CopilotIcon } from './GitHubIcons';
 import { useI18n } from '../i18n';
 import { LocaleContext } from '../App';
+import type { PageId } from '../i18n/types';
 
 interface HeaderProps {
   theme: 'dark' | 'light';
   onToggleTheme: () => void;
+  page: PageId;
+  onPageChange: (page: PageId) => void;
 }
 
-const Header: React.FC<HeaderProps> = ({ theme, onToggleTheme }) => {
+const Header: React.FC<HeaderProps> = ({ theme, onToggleTheme, page, onPageChange }) => {
   const t = useI18n();
   const { locale, setLocale } = useContext(LocaleContext);
 
@@ -30,8 +33,32 @@ const Header: React.FC<HeaderProps> = ({ theme, onToggleTheme }) => {
         <ThemeToggle theme={theme} onToggle={onToggleTheme} />
       </div>
       <div className="hero-content">
+        <nav className="page-switcher" aria-label="Page navigation">
+          <button
+            className={`page-switcher-btn ${page === 'stack' ? 'page-switcher-btn--active' : ''}`}
+            onClick={() => onPageChange('stack')}
+            aria-current={page === 'stack' ? 'page' : undefined}
+          >
+            <code>.github/</code> <CopilotIcon size={18} className="page-switcher-icon" /> Stack
+          </button>
+          <button
+            className={`page-switcher-btn ${page === 'tools' ? 'page-switcher-btn--active' : ''}`}
+            onClick={() => onPageChange('tools')}
+            aria-current={page === 'tools' ? 'page' : undefined}
+          >
+            <CopilotIcon size={18} className="page-switcher-icon" /> {t.ui.pageTools}
+          </button>
+        </nav>
         <h1 className="hero-title">
-          <code>.github/</code> <CopilotIcon size={40} className="hero-copilot-icon" /> {t.ui.heroTitle}
+          {page === 'stack' ? (
+            <>
+              <code>.github/</code> <CopilotIcon size={40} className="hero-copilot-icon" /> {t.ui.heroTitle}
+            </>
+          ) : (
+            <>
+              <CopilotIcon size={40} className="hero-copilot-icon" /> {t.toolsUi.heroTitle}
+            </>
+          )}
         </h1>
       </div>
     </header>

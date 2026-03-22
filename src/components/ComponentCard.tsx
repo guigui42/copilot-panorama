@@ -137,6 +137,107 @@ const PluginsViz: React.FC<{ v: Translations['viz'] }> = ({ v }) => (
   </div>
 );
 
+/* ── Tools page visualizations ── */
+
+const CopilotCliViz: React.FC<{ v: Translations['toolsViz'] }> = ({ v }) => (
+  <div className="viz viz-terminal" aria-hidden="true">
+    <div className="terminal-bar">
+      <span className="terminal-dot terminal-dot--red" />
+      <span className="terminal-dot terminal-dot--yellow" />
+      <span className="terminal-dot terminal-dot--green" />
+    </div>
+    <div className="terminal-line">
+      <span className="terminal-prompt">$ </span>
+      <span className="terminal-cmd">copilot</span>
+      <span className="terminal-comment"> # {v.interactive}</span>
+    </div>
+    <div className="terminal-line">
+      <span className="terminal-prompt">$ </span>
+      <span className="terminal-cmd">copilot -p "fix the bug"</span>
+      <span className="terminal-comment"> # {v.programmatic}</span>
+    </div>
+  </div>
+);
+
+const AutocompleteViz: React.FC<{ v: Translations['toolsViz'] }> = ({ v }) => (
+  <div className="viz viz-autocomplete" aria-hidden="true">
+    <div className="autocomplete-line">
+      <span className="autocomplete-typed">function sort(</span>
+      <span className="autocomplete-ghost">{v.ghostText}</span>
+    </div>
+    <div className="autocomplete-hint">↹ {v.tabToAccept}</div>
+  </div>
+);
+
+const AskViz: React.FC<{ v: Translations['toolsViz'] }> = ({ v }) => (
+  <div className="viz viz-chat-keywords">
+    <span className="chat-keyword chat-keyword--participant">{v.chatParticipants}</span>
+    <span className="chat-keyword chat-keyword--command">{v.slashCommands}</span>
+    <span className="chat-keyword chat-keyword--variable">{v.chatVariables}</span>
+  </div>
+);
+
+const AgentModeViz: React.FC<{ v: Translations['toolsViz'] }> = ({ v }) => (
+  <div className="viz viz-agent-loop">
+    <span className="agent-loop-step">🔍 {v.analyze}</span>
+    <span className="agent-loop-arrow">→</span>
+    <span className="agent-loop-step">✏️ {v.edit}</span>
+    <span className="agent-loop-arrow">→</span>
+    <span className="agent-loop-step">▶ {v.run}</span>
+    <span className="agent-loop-arrow">→</span>
+    <span className="agent-loop-step">🔧 {v.fix}</span>
+  </div>
+);
+
+const ThirdPartyAgentsIdeViz: React.FC<{ v: Translations['toolsViz'] }> = ({ v }) => (
+  <div className="viz viz-session-picker" aria-hidden="true">
+    <div className="session-option session-option--active">🟣 Claude <span className="session-badge">{v.local}</span></div>
+    <div className="session-option">🟢 Codex <span className="session-badge">{v.local}</span></div>
+    <div className="session-option">☁️ Claude <span className="session-badge">{v.cloud}</span></div>
+  </div>
+);
+
+const CodingAgentViz: React.FC<{ v: Translations['toolsViz'] }> = ({ v }) => (
+  <div className="viz viz-agent-flow">
+    <span className="agent-step">
+      <span className="agent-step-emoji">📋</span> {v.issueAssigned}
+    </span>
+    <span className="agent-step">
+      <span className="agent-step-emoji">🤖</span> {v.agentCodes}
+    </span>
+    <span className="agent-step">
+      <span className="agent-step-emoji">🔒</span> {v.securityChecks}
+    </span>
+    <span className="agent-step">
+      <span className="agent-step-emoji">📬</span> {v.prCreated}
+    </span>
+  </div>
+);
+
+const ReviewAgentViz: React.FC<{ v: Translations['toolsViz'] }> = ({ v }) => (
+  <div className="viz viz-review-flow">
+    <div className="review-step">👤 {v.addReviewer}</div>
+    <div className="review-step review-step--active">💬 {v.reviewComments}</div>
+    <div className="review-step">✅ {v.suggestedFixes}</div>
+  </div>
+);
+
+const ThirdPartyAgentsCloudViz: React.FC<{ v: Translations['toolsViz'] }> = ({ v }) => (
+  <div className="viz viz-session-picker" aria-hidden="true">
+    <div className="session-option session-option--active">🟣 Anthropic Claude <span className="session-badge">{v.cloud}</span></div>
+    <div className="session-option">🟢 OpenAI Codex <span className="session-badge">{v.cloud}</span></div>
+    <div className="session-hint">{v.selectAgent}</div>
+  </div>
+);
+
+const CopilotChatCloudViz: React.FC<{ v: Translations['toolsViz'] }> = ({ v }) => (
+  <div className="viz viz-chat-keywords">
+    <span className="chat-keyword chat-keyword--participant">{v.askAnything}</span>
+    <span className="chat-keyword chat-keyword--variable">{v.repoContext}</span>
+    <span className="chat-keyword chat-keyword--command">{v.webSearch}</span>
+  </div>
+);
+
 /* ── Card ── */
 
 const ComponentCard: React.FC<ComponentCardProps> = ({ component, layerColor, onClick }) => {
@@ -144,6 +245,7 @@ const ComponentCard: React.FC<ComponentCardProps> = ({ component, layerColor, on
   const v = t.viz;
 
   const renderViz = () => {
+    const tv = t.toolsViz;
     switch (component.id) {
       case 'instructions': return <InstructionsViz v={v} />;
       case 'prompt-files': return <PromptFilesViz />;
@@ -153,6 +255,16 @@ const ComponentCard: React.FC<ComponentCardProps> = ({ component, layerColor, on
       case 'agentic-workflows': return <WorkflowsViz v={v} />;
       case 'copilot-setup-steps': return <SetupStepsViz />;
       case 'plugins': return <PluginsViz v={v} />;
+      /* Tools page */
+      case 'copilot-cli': return <CopilotCliViz v={tv} />;
+      case 'autocomplete': return <AutocompleteViz v={tv} />;
+      case 'ask': return <AskViz v={tv} />;
+      case 'agent-mode': return <AgentModeViz v={tv} />;
+      case 'third-party-agents-ide': return <ThirdPartyAgentsIdeViz v={tv} />;
+      case 'coding-agent': return <CodingAgentViz v={tv} />;
+      case 'review-agent': return <ReviewAgentViz v={tv} />;
+      case 'third-party-agents-cloud': return <ThirdPartyAgentsCloudViz v={tv} />;
+      case 'copilot-chat-cloud': return <CopilotChatCloudViz v={tv} />;
       default: return null;
     }
   };

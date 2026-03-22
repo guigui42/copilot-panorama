@@ -16,6 +16,8 @@ export const fr: Translations = {
     documentationLabel: 'Documentation',
     footerBuiltFor: 'Conçu pour les utilisateurs de GitHub Copilot',
     footerDocsLink: 'Documentation complète du système composable',
+    pageStack: '.github/ Stack',
+    pageTools: 'Copilot Tools',
   },
   viz: {
     alwaysActive: 'Toujours actif',
@@ -181,6 +183,208 @@ export const fr: Translations = {
         '<strong>Le LLM est le routeur.</strong> Il n\'y a pas d\'orchestrateur séparé — le ' +
         'modèle lit les descriptions des agents et le frontmatter des skills pour décider ' +
         'quoi activer. C\'est pourquoi écrire de bonnes descriptions est essentiel.',
+    },
+  ],
+
+  /* ── Page Outils ── */
+  toolsSeo: {
+    title: 'Copilot Tools — Terminal, IDE & Cloud',
+    description: 'Guide visuel interactif des outils GitHub Copilot sur trois couches : Terminal (CLI), IDE (Autocomplétion, Chat, Agent Mode, Agents tiers), et Cloud (Agent de codage, Agent de revue, Agents tiers).',
+  },
+  toolsUi: {
+    heroTitle: 'Copilot Tools',
+    insightsTitle: 'Les distinctions clés que la plupart des développeurs ignorent',
+    insightsSubtitle: 'Points d\'architecture à travers les trois couches',
+    footerBuiltFor: 'Conçu pour les utilisateurs de GitHub Copilot',
+    footerDocsLink: 'Documentation complète sur les fonctionnalités Copilot',
+  },
+  toolsViz: {
+    interactive: 'Interactif',
+    programmatic: 'Programmatique',
+    ghostText: 'texte fantôme',
+    tabToAccept: 'Tab pour accepter',
+    chatParticipants: '@workspace',
+    slashCommands: '/fix',
+    chatVariables: '#file',
+    analyze: 'Analyser',
+    edit: 'Éditer',
+    run: 'Exécuter',
+    fix: 'Corriger',
+    local: 'Local',
+    cloud: 'Cloud',
+    issueAssigned: 'Issue assignée',
+    agentCodes: 'L\'agent code',
+    prCreated: 'PR créée',
+    securityChecks: 'Vérifications de sécurité',
+    addReviewer: 'Ajouter un reviewer',
+    reviewComments: 'Commentaires de revue',
+    suggestedFixes: 'Corrections suggérées',
+    selectAgent: 'Sélectionner un agent',
+    askAnything: 'Demandez n\'importe quoi',
+    repoContext: 'Contexte du dépôt',
+    webSearch: 'Recherche web',
+  },
+  toolsLayers: {
+    terminal: {
+      title: 'Terminal',
+      subtitle: 'Agent de codage IA directement dans votre ligne de commande',
+    },
+    ide: {
+      title: 'IDE',
+      subtitle: 'Suggestions inline, chat, édition autonome et agents tiers dans votre éditeur',
+    },
+    cloud: {
+      title: 'Cloud',
+      subtitle: 'Agents autonomes sur la plateforme GitHub — codage, revue et agents tiers',
+    },
+  },
+  toolsComponents: {
+    'copilot-cli': {
+      name: 'GitHub Copilot CLI',
+      description: 'Un agent IA complet dans votre terminal — sessions interactives, édition de fichiers et intégration GitHub',
+      details:
+        'GitHub Copilot CLI vous permet d\'utiliser Copilot directement depuis votre terminal. ' +
+        'Lancez une session interactive avec `copilot` ou passez un prompt unique avec ' +
+        '`copilot -p "..."`. Il peut éditer des fichiers locaux, exécuter des commandes shell, ' +
+        'interagir avec GitHub.com (créer des PRs, issues, gérer les workflows), et travailler ' +
+        'de manière itérative avec vous. Supporte le Plan Mode (Shift+Tab) pour une implémentation ' +
+        'structurée, les serveurs MCP, les agents personnalisés, les skills, les hooks, et la ' +
+        'compaction automatique du contexte pour des sessions infinies.',
+      useCases: ['Automatisation terminal', 'Génération de code', 'Opérations Git', 'Intégration GitHub', 'Gestion de PRs'],
+    },
+    autocomplete: {
+      name: 'Autocomplétion',
+      description: 'Suggestions de code en texte fantôme qui apparaissent inline pendant la saisie',
+      details:
+        'Copilot propose des suggestions de type autocomplétion pendant que vous tapez — corps ' +
+        'de fonctions complets, boucles, conditions et plus encore selon le contexte de votre code. ' +
+        'Parcourez les alternatives avec Alt+] / Alt+[, acceptez mot par mot avec Ctrl+→, ou ' +
+        'acceptez la suggestion complète avec Tab. Next Edit Suggestions (NES) prédit ' +
+        'l\'emplacement de votre prochaine modification et suggère des complétions pour celle-ci. ' +
+        'Disponible dans VS Code, Visual Studio, les IDE JetBrains, Azure Data Studio, Xcode, ' +
+        'Vim/Neovim et Eclipse.',
+      useCases: ['Complétion de code', 'Génération de boilerplate', 'Complétion de patterns', 'Commentaire vers code'],
+    },
+    ask: {
+      name: 'Ask (Copilot Chat)',
+      description: 'Chat IA conversationnel pour les questions, explications et génération de code',
+      details:
+        'Copilot Chat fournit une interface conversationnelle pour poser des questions sur le code. ' +
+        'Utilisez les participants de chat (@workspace, @github, @terminal), les commandes slash ' +
+        '(/fix, /explain, /tests, /doc) et les variables de chat (#file, #selection, #web) pour ' +
+        'un contexte précis. Le participant @github permet la recherche web, la consultation ' +
+        'd\'issues et l\'analyse de PRs. Supporte plusieurs modèles d\'IA — changez en cours de ' +
+        'conversation via le sélecteur de modèle. Disponible dans VS Code, Visual Studio, ' +
+        'JetBrains, Eclipse, Xcode, GitHub.com et GitHub Mobile.',
+      useCases: ['Explication de code', 'Débogage', 'Génération de tests', 'Refactoring', 'Apprentissage'],
+    },
+    'agent-mode': {
+      name: 'Agent Mode',
+      description: 'Codage local autonome — Copilot détermine les fichiers, effectue les modifications, exécute les commandes et itère',
+      details:
+        'Agent Mode permet à Copilot de modifier votre code de manière autonome dans l\'IDE. Il ' +
+        'détermine quels fichiers modifier, effectue des éditions multi-fichiers, suggère et exécute ' +
+        'des commandes terminal, et itère pour corriger les erreurs jusqu\'à ce que la tâche soit ' +
+        'terminée. Supporte l\'intégration de serveurs MCP, les sous-agents pour les sous-tâches ' +
+        'déléguées, et les agents personnalisés. Seuls vos prompts sont facturés — les appels ' +
+        'd\'outils de suivi sont gratuits. À distinguer de l\'agent de codage Copilot (couche Cloud), ' +
+        'qui s\'exécute sur GitHub Actions.',
+      useCases: ['Tâches complexes', 'Implémentation multi-étapes', 'Résolution d\'erreurs', 'Automatisation de builds'],
+    },
+    'third-party-agents-ide': {
+      name: 'Agents tiers',
+      description: 'Agents Claude et Codex fonctionnant dans VS Code avec leurs SDK natifs',
+      details:
+        'Les agents tiers d\'Anthropic (Claude) et d\'OpenAI (Codex) s\'exécutent directement dans ' +
+        'VS Code en utilisant le SDK natif et le harnais d\'agent de chaque fournisseur. Choisissez ' +
+        'entre des sessions locales (dans votre workspace) ou des sessions cloud (environnement ' +
+        'distant). Claude supporte les commandes slash (/agents, /hooks, /memory, /review, ' +
+        '/security-review), les modes de permission (éditer automatiquement, demander approbation, ' +
+        'planifier), et le contexte persistant via CLAUDE.md. Le tout facturé via votre abonnement ' +
+        'Copilot — aucune configuration de fournisseur séparée.',
+      useCases: ['Codage autonome', 'Revue de sécurité', 'Fonctionnalités spécifiques au fournisseur', 'Tâches en arrière-plan'],
+    },
+    'copilot-chat-cloud': {
+      name: 'Copilot Chat',
+      description: 'IA conversationnelle sur GitHub.com — posez des questions sur les dépôts, issues, PRs et le web',
+      details:
+        'Copilot Chat sur GitHub.com vous permet de poser des questions depuis n\'importe quelle page — ' +
+        'sur un dépôt, une issue, une PR ou des sujets logiciels généraux. Il utilise des skills pour ' +
+        'récupérer du contexte depuis GitHub (recherche de code, historique des commits, détails des issues) ' +
+        'et optionnellement la recherche web Bing pour des informations à jour. Supporte la sélection ' +
+        'multi-modèles, les sous-conversations pour ramifier les discussions, la génération de fichiers ' +
+        'avec aperçu, et l\'historique des conversations (jusqu\'à 100 fils, rétention de 28 jours). ' +
+        'Également disponible sur GitHub Mobile.',
+      useCases: ['Q&R sur les dépôts', 'Analyse d\'issues', 'Compréhension des PRs', 'Recherche web', 'Génération de code'],
+    },
+    'coding-agent': {
+      name: 'Agent de codage',
+      description: 'Agent cloud autonome — assignez une issue, obtenez une PR avec vérifications de sécurité',
+      details:
+        'L\'agent de codage Copilot travaille de manière indépendante dans un environnement propulsé ' +
+        'par GitHub Actions. Assignez une issue à @copilot, mentionnez-le sur une PR, ou demandez ' +
+        'depuis le Chat — il évalue la tâche, effectue les modifications, exécute les tests et ' +
+        'linters, réalise une analyse de sécurité CodeQL, vérifie les secrets, et crée une PR ' +
+        'brouillon pour revue. Supporte les instructions personnalisées, les serveurs MCP, les ' +
+        'agents personnalisés, les hooks, les skills et Copilot Memory. Ne pousse que sur les ' +
+        'branches `copilot/`. Disponible sur Pro, Pro+, Business, Enterprise.',
+      useCases: ['Corrections de bugs', 'Implémentation de fonctionnalités', 'Couverture de tests', 'Dette technique', 'Campagnes de sécurité'],
+    },
+    'review-agent': {
+      name: 'Agent de revue',
+      description: 'Reviewer de code IA avec contexte projet complet et corrections suggérées',
+      details:
+        'La revue de code Copilot analyse les pull requests et fournit des retours avec des ' +
+        'suggestions de modifications applicables en un clic. Utilise des capacités agentiques ' +
+        'pour collecter le contexte complet du projet — il analyse l\'ensemble de votre dépôt pour ' +
+        'comprendre les changements de code. Peut être configuré pour des revues automatiques sur ' +
+        'toutes les PRs. Supporte les instructions personnalisées via .github/copilot-instructions.md ' +
+        'et les règles par chemin. Disponible sur GitHub.com, GitHub Mobile, VS Code, Visual Studio, ' +
+        'Xcode et JetBrains.',
+      useCases: ['Qualité du code', 'Revue de sécurité', 'Bonnes pratiques', 'Workflow de PRs', 'Gouvernance d\'équipe'],
+    },
+    'third-party-agents-cloud': {
+      name: 'Agents tiers',
+      description: 'Anthropic Claude et OpenAI Codex comme agents de codage cloud sur GitHub',
+      details:
+        'Les agents de codage tiers fonctionnent aux côtés de l\'agent de codage Copilot sur la ' +
+        'plateforme GitHub. Supporte actuellement Anthropic Claude (Claude Agent SDK) et OpenAI ' +
+        'Codex (Codex SDK). Assignez des issues, lancez des tâches depuis l\'onglet Agents, ' +
+        'mentionnez @NOM_AGENT sur les PRs, ou démarrez des sessions depuis VS Code et GitHub ' +
+        'Mobile. Soumis aux mêmes protections de sécurité que l\'agent de codage Copilot. Chaque ' +
+        'session consomme une requête premium plus des minutes GitHub Actions. Actuellement en ' +
+        'préversion publique.',
+      useCases: ['Workflows multi-agents', 'Comparaison d\'agents', 'Tâches spécialisées', 'Développement parallèle'],
+    },
+  },
+  toolsInsights: [
+    {
+      icon: '🔀',
+      content:
+        '<strong>Agent Mode ≠ Agent de codage.</strong> Agent Mode s\'exécute localement dans ' +
+        'votre IDE — vous restez dans la boucle. L\'agent de codage s\'exécute sur GitHub Actions ' +
+        'dans le cloud — il travaille de manière indépendante et crée une PR quand il a terminé.',
+    },
+    {
+      icon: '🧠',
+      content:
+        '<strong>Les agents tiers existent dans l\'IDE et le Cloud.</strong> Dans VS Code, Claude ' +
+        'et Codex utilisent leurs SDK natifs localement. Sur GitHub, ils s\'exécutent comme agents ' +
+        'cloud aux côtés de l\'agent de codage Copilot.',
+    },
+    {
+      icon: '💬',
+      content:
+        '<strong>Le mode Ask est le point de départ.</strong> Les participants de chat (@workspace), ' +
+        'les commandes slash (/fix) et les variables (#file) vous permettent de cadrer précisément ' +
+        'vos questions avant de passer à Agent Mode pour un travail autonome.',
+    },
+    {
+      icon: '🔒',
+      content:
+        '<strong>Les agents cloud intègrent la sécurité.</strong> L\'agent de codage exécute ' +
+        'CodeQL, la détection de secrets et les vérifications de dépendances automatiquement. ' +
+        'Il ne peut pousser que sur les branches <code>copilot/</code> et crée toujours des PRs brouillon.',
     },
   ],
 };
