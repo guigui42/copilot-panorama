@@ -22,6 +22,8 @@ export interface SeoMeta {
   description: string;
 }
 
+export type PageId = 'stack' | 'tools';
+
 export interface Translations {
   locale: Locale;
   seo: SeoMeta;
@@ -35,6 +37,8 @@ export interface Translations {
     documentationLabel: string;
     footerBuiltFor: string;
     footerDocsLink: string;
+    pageStack: string;
+    pageTools: string;
   };
   viz: {
     alwaysActive: string;
@@ -54,4 +58,43 @@ export interface Translations {
   layers: Record<string, LayerI18n>;
   components: Record<string, ComponentI18n>;
   insights: InsightI18n[];
+
+  /* ── Tools page ── */
+  toolsSeo: SeoMeta;
+  toolsUi: {
+    heroTitle: string;
+    insightsTitle: string;
+    insightsSubtitle: string;
+    footerBuiltFor: string;
+    footerDocsLink: string;
+  };
+  toolsViz: {
+    interactive: string;
+    programmatic: string;
+    ghostText: string;
+    tabToAccept: string;
+    chatParticipants: string;
+    slashCommands: string;
+    chatVariables: string;
+    analyze: string;
+    edit: string;
+    run: string;
+    fix: string;
+    local: string;
+    cloud: string;
+    issueAssigned: string;
+    agentCodes: string;
+    prCreated: string;
+    securityChecks: string;
+    addReviewer: string;
+    reviewComments: string;
+    suggestedFixes: string;
+    selectAgent: string;
+    askAnything: string;
+    repoContext: string;
+    webSearch: string;
+  };
+  toolsLayers: Record<string, LayerI18n>;
+  toolsComponents: Record<string, ComponentI18n>;
+  toolsInsights: InsightI18n[];
 }

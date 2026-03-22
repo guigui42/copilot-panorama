@@ -1,6 +1,8 @@
-import { useState, useMemo, useEffect } from 'react';
+import React, { useState, useMemo, useEffect, useCallback, useRef, createContext } from 'react';
 import { getLayers } from './data/layers';
+import { getToolsLayers } from './data/tools';
 import type { Component } from './data/layers';
+import type { PageId } from './i18n/types';
 import { useTheme } from './hooks/useTheme';
 import { I18nContext, translationsMap, getInitialLocale, persistLocale, updateDocumentMeta, useI18n } from './i18n';
 import type { Locale } from './i18n';
@@ -9,6 +11,33 @@ import LayerSection from './components/LayerSection';
 import DetailPanel from './components/DetailPanel';
 import { GitHubMark } from './components/GitHubIcons';
 
+function getInitialPage(): PageId {
+  const urlParams = new URLSearchParams(window.location.search);
+  const p = urlParams.get('page');
+  if (p === 'tools') return 'tools';
+  return 'stack';
+}
+
+function persistPage(page: PageId) {
+  const url = new URL(window.location.href);
+  if (page === 'stack') {
+    url.searchParams.delete('page');
+  } else {
+    url.searchParams.set('page', page);
+  }
+  window.history.replaceState({}, '', url.toString());
+}
+
+export const LocaleContext = createContext<{ locale: Locale; setLocale: (l: Locale) => void }>({
+  locale: 'en',
+  setLocale: () => {},
+});
+
+export const PageContext = createContext<{ page: PageId; setPage: (p: PageId) => void }>({
+  page: 'stack',
+  setPage: () => {},
+});
+
 function AppContent() {
   const { theme, toggleTheme } = useTheme();
   const t = useI18n();
@@ -16,9 +45,100 @@ function AppContent() {
   const [selectedLayerColor, setSelectedLayerColor] = useState<string | null>(null);
   const [focusedLayerId, setFocusedLayerId] = useState<string | null>(null);
   const [insightsFocused, setInsightsFocused] = useState(false);
+  const exportRef = useRef<HTMLDivElement>(null);
+  const [exporting, setExporting] = useState(false);
+  const { page, setPage: handlePageChange } = React.useContext(PageContext);
 
-  const layers = useMemo(() => getLayers(t), [t]);
+  const resetViewState = useCallback(() => {
+    setSelectedComponent(null);
+    setSelectedLayerColor(null);
+    setFocusedLayerId(null);
+    setInsightsFocused(false);
+  }, []);
+
+  const handleExportPng = useCallback(async () => {
+    if (!exportRef.current || exporting) return;
+    setExporting(true);
+    try {
+      const { toCanvas } = await import('html-to-image');
+      const container = exportRef.current;
+
+      // Force all layers visible for capture (they may be hidden by intersection observer)
+      const hiddenEls = container.querySelectorAll('.animate-hidden');
+      hiddenEls.forEach((el) => {
+        el.classList.remove('animate-hidden');
+        el.classList.add('animate-visible');
+      });
+
+      // Show the export banner
+      const banner = container.querySelector('.export-banner') as HTMLElement | null;
+      if (banner) banner.style.display = 'block';
+
+      // Let layout settle after DOM changes
+      await new Promise((r) => requestAnimationFrame(() => requestAnimationFrame(r)));
+
+      const pixelRatio = 2;
+      const bgColor = getComputedStyle(document.documentElement).getPropertyValue('--color-bg-primary').trim() || '#0d1117';
+
+      const fullCanvas = await toCanvas(container, {
+        backgroundColor: bgColor,
+        pixelRatio,
+      });
+
+      // Crop to content area (poster is max-width 1100px + 24px padding each side = 1148px)
+      const poster = container.querySelector('.poster') as HTMLElement | null;
+      const containerRect = container.getBoundingClientRect();
+      const contentRect = poster ? poster.getBoundingClientRect() : containerRect;
+
+      const cropX = (contentRect.left - containerRect.left) * pixelRatio;
+      const cropW = contentRect.width * pixelRatio;
+      const cropH = fullCanvas.height;
+
+      const croppedCanvas = document.createElement('canvas');
+      croppedCanvas.width = cropW;
+      croppedCanvas.height = cropH;
+      const ctx = croppedCanvas.getContext('2d')!;
+      // Fill background first (for banner area above poster)
+      ctx.fillStyle = bgColor;
+      ctx.fillRect(0, 0, cropW, cropH);
+      ctx.drawImage(fullCanvas, cropX, 0, cropW, cropH, 0, 0, cropW, cropH);
+
+      // Restore DOM
+      hiddenEls.forEach((el) => {
+        el.classList.remove('animate-visible');
+        el.classList.add('animate-hidden');
+      });
+      if (banner) banner.style.display = 'none';
+
+      const link = document.createElement('a');
+      link.download = `copilot-panorama-${page}.png`;
+      link.href = croppedCanvas.toDataURL('image/png');
+      link.click();
+    } catch (err) {
+      console.error('Export failed:', err);
+    } finally {
+      setExporting(false);
+    }
+  }, [page, exporting]);
+
+  const onPageChange = useCallback((newPage: PageId) => {
+    handlePageChange(newPage);
+    resetViewState();
+  }, [handlePageChange, resetViewState]);
+
+  const stackLayers = useMemo(() => getLayers(t), [t]);
+  const toolsLayers = useMemo(() => getToolsLayers(t), [t]);
+  const layers = page === 'tools' ? toolsLayers : stackLayers;
   const layerColors = layers.map((l) => l.color);
+
+  const currentInsights = page === 'tools' ? t.toolsInsights : t.insights;
+  const currentInsightsTitle = page === 'tools' ? t.toolsUi.insightsTitle : t.ui.insightsTitle;
+  const currentInsightsSubtitle = page === 'tools' ? t.toolsUi.insightsSubtitle : t.ui.insightsSubtitle;
+  const currentFooterBuiltFor = page === 'tools' ? t.toolsUi.footerBuiltFor : t.ui.footerBuiltFor;
+  const currentFooterDocsLink = page === 'tools' ? t.toolsUi.footerDocsLink : t.ui.footerDocsLink;
+  const footerDocsUrl = page === 'tools'
+    ? 'https://docs.github.com/en/copilot/about-github-copilot/github-copilot-features'
+    : 'https://docs.github.com/en/copilot/concepts/agents';
 
   useEffect(() => {
     if (focusedLayerId || insightsFocused) {
@@ -39,8 +159,19 @@ function AppContent() {
       <a href="#main-content" className="skip-link">
         Skip to main content
       </a>
-      <Header theme={theme} onToggleTheme={toggleTheme} />
+      <Header theme={theme} onToggleTheme={toggleTheme} page={page} onPageChange={onPageChange} onExportPng={handleExportPng} exporting={exporting} />
 
+      <div ref={exportRef}>
+      <div className="export-banner" aria-hidden="true">
+        <span className="export-banner-brand">Copilot Panorama</span>
+        <span className="export-banner-page">
+          {page === 'stack' ? (
+            <><code>.github/</code> {t.ui.heroTitle}</>
+          ) : (
+            t.toolsUi.heroTitle
+          )}
+        </span>
+      </div>
       <main id="main-content" className="poster">
         {layers.map((layer, i) => (
           <div key={layer.id}>
@@ -78,7 +209,7 @@ function AppContent() {
       )}
       <section
         className={`insights ${insightsFocused ? 'insights-focused' : ''}`}
-        aria-label={t.ui.insightsTitle}
+        aria-label={currentInsightsTitle}
         tabIndex={insightsFocused ? undefined : 0}
         role={insightsFocused ? undefined : 'button'}
         onClick={(e) => {
@@ -109,8 +240,8 @@ function AppContent() {
           </button>
         )}
         <div className="insights-header">
-          <h2 className="insights-title">{t.ui.insightsTitle}</h2>
-          <p className="insights-subtitle">{t.ui.insightsSubtitle}</p>
+          <h2 className="insights-title">{currentInsightsTitle}</h2>
+          <p className="insights-subtitle">{currentInsightsSubtitle}</p>
           {!insightsFocused && (
             <button
               className="layer-expand-btn insights-expand-btn"
@@ -128,7 +259,7 @@ function AppContent() {
           )}
         </div>
         <div className="insights-grid">
-          {t.insights.map((insight, i) => (
+          {currentInsights.map((insight, i) => (
             <div key={i} className="insight-card">
               <span className="insight-icon" aria-hidden="true">{insight.icon}</span>
               <span dangerouslySetInnerHTML={{ __html: insight.content }} />
@@ -136,29 +267,32 @@ function AppContent() {
           ))}
         </div>
       </section>
+      </div>
 
       <footer className="footer">
         <p>
           <GitHubMark size={18} className="footer-github-mark" />{' '}
-          {t.ui.footerBuiltFor} ·{' '}
+          {currentFooterBuiltFor} ·{' '}
           <a
-            href="https://docs.github.com/en/copilot/concepts/agents"
+            href={footerDocsUrl}
             target="_blank"
             rel="noopener noreferrer"
           >
-            {t.ui.footerDocsLink} ↗
+            {currentFooterDocsLink} ↗
           </a>
         </p>
-        <p className="footer-credit">
-          Inspired by{' '}
-          <a
-            href="https://www.linkedin.com/in/ashishkhichi/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Ashish S K
-          </a>
-        </p>
+        {page === 'stack' && (
+          <p className="footer-credit">
+            Inspired by{' '}
+            <a
+              href="https://www.linkedin.com/in/ashishkhichi/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Ashish S K
+            </a>
+          </p>
+        )}
       </footer>
 
       <DetailPanel
@@ -172,30 +306,32 @@ function AppContent() {
 
 function App() {
   const [locale, setLocale] = useState<Locale>(getInitialLocale);
+  const [page, setPage] = useState<PageId>(getInitialPage);
 
   const handleLocaleChange = (newLocale: Locale) => {
     setLocale(newLocale);
     persistLocale(newLocale);
   };
 
+  const handlePageChange = useCallback((newPage: PageId) => {
+    setPage(newPage);
+    persistPage(newPage);
+  }, []);
+
   useEffect(() => {
-    updateDocumentMeta(translationsMap[locale]);
+    updateDocumentMeta(translationsMap[locale], page);
     persistLocale(locale);
-  }, [locale]);
+  }, [locale, page]);
 
   return (
     <I18nContext.Provider value={translationsMap[locale]}>
       <LocaleContext.Provider value={{ locale, setLocale: handleLocaleChange }}>
-        <AppContent />
+        <PageContext.Provider value={{ page, setPage: handlePageChange }}>
+          <AppContent />
+        </PageContext.Provider>
       </LocaleContext.Provider>
     </I18nContext.Provider>
   );
 }
-
-import { createContext } from 'react';
-export const LocaleContext = createContext<{ locale: Locale; setLocale: (l: Locale) => void }>({
-  locale: 'en',
-  setLocale: () => {},
-});
 
 export default App;
