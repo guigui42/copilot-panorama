@@ -407,6 +407,17 @@
   background-clip: text;
 }
 
+.export-banner-url {
+  display: block;
+  margin-top: 6px;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--color-text-muted, var(--color-text-secondary));
+  opacity: 0.7;
+  letter-spacing: 0.02em;
+}
+
 /* === Poster Main === */
 
 .poster {

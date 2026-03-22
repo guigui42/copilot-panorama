@@ -171,6 +171,7 @@ function AppContent() {
             t.toolsUi.heroTitle
           )}
         </span>
+        <span className="export-banner-url">gh.io/copilot-panorama</span>
       </div>
       <main id="main-content" className="poster">
         {layers.map((layer, i) => (
