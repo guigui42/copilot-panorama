@@ -294,6 +294,16 @@ function AppContent() {
             </a>
           </p>
         )}
+        <p className="footer-credit">
+          Made by{' '}
+          <a
+            href="https://github.com/guigui42"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            @guigui42
+          </a>
+        </p>
       </footer>
 
       <DetailPanel
