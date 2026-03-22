@@ -3,7 +3,7 @@ import type { Translations } from './types';
 export const fr: Translations = {
   locale: 'fr',
   seo: {
-    title: '.github/ stack composable — Système Composable Copilot',
+    title: 'Copilot Panorama — .github/ Stack',
     description: 'Guide visuel interactif du système composable GitHub Copilot — explorez les 4 couches : Contexte Permanent, Capacités à la Demande, Contrôle & Automatisation, et Distribution.',
   },
   ui: {
@@ -17,7 +17,7 @@ export const fr: Translations = {
     footerBuiltFor: 'Conçu pour les utilisateurs de GitHub Copilot',
     footerDocsLink: 'Documentation complète du système composable',
     pageStack: '.github/ Stack',
-    pageTools: 'Copilot Tools',
+    pageTools: 'Copilot Everywhere',
   },
   viz: {
     alwaysActive: 'Toujours actif',
@@ -188,11 +188,11 @@ export const fr: Translations = {
 
   /* ── Page Outils ── */
   toolsSeo: {
-    title: 'Copilot Tools — Terminal, IDE & Cloud',
+    title: 'Copilot Panorama — Copilot Everywhere',
     description: 'Guide visuel interactif des outils GitHub Copilot sur trois couches : Terminal (CLI), IDE (Autocomplétion, Chat, Agent Mode, Agents tiers), et Cloud (Agent de codage, Agent de revue, Agents tiers).',
   },
   toolsUi: {
-    heroTitle: 'Copilot Tools',
+    heroTitle: 'Copilot Everywhere',
     insightsTitle: 'Les distinctions clés que la plupart des développeurs ignorent',
     insightsSubtitle: 'Points d\'architecture à travers les trois couches',
     footerBuiltFor: 'Conçu pour les utilisateurs de GitHub Copilot',

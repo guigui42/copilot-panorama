@@ -3,7 +3,7 @@ import type { Translations } from './types';
 export const ja: Translations = {
   locale: 'ja',
   seo: {
-    title: '.github/ コンポーザブルスタック — Copilot Composable System',
+    title: 'Copilot Panorama — .github/ スタック',
     description: 'GitHub Copilot コンポーザブルシステムのインタラクティブなビジュアルガイド — 4つのレイヤーを探索：常時オンコンテキスト、オンデマンド機能、実行制御と自動化、ディストリビューション。',
   },
   ui: {
@@ -17,7 +17,7 @@ export const ja: Translations = {
     footerBuiltFor: 'GitHub Copilot ユーザーのために構築',
     footerDocsLink: 'コンポーザブルシステムの完全なドキュメント',
     pageStack: '.github/ スタック',
-    pageTools: 'Copilot ツール',
+    pageTools: 'Copilot Everywhere',
   },
   viz: {
     alwaysActive: '常時アクティブ',
@@ -180,11 +180,11 @@ export const ja: Translations = {
 
   /* ── Tools ページ ── */
   toolsSeo: {
-    title: 'Copilot ツール — ターミナル、IDE、クラウド',
+    title: 'Copilot Panorama — Copilot Everywhere',
     description: 'GitHub Copilot ツールのインタラクティブなビジュアルガイド — 3つのレイヤーを探索：ターミナル（CLI）、IDE（オートコンプリート、チャット、Agent Mode、サードパーティエージェント）、クラウド（Coding Agent、Review Agent、サードパーティエージェント）。',
   },
   toolsUi: {
-    heroTitle: 'Copilot ツール',
+    heroTitle: 'Copilot Everywhere',
     insightsTitle: 'ほとんどの開発者が見落とす重要な違い',
     insightsSubtitle: '3つのレイヤーにまたがるアーキテクチャの洞察',
     footerBuiltFor: 'GitHub Copilot ユーザーのために構築',

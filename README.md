@@ -1,6 +1,6 @@
-# .github/ Composable Stack — Copilot Infographic
+# Copilot Panorama
 
-An interactive visual guide to the **GitHub Copilot composable system** — explore the 4 layers that make up the `.github/` directory for customising Copilot:
+An interactive visual guide to **everything GitHub Copilot can do** — see the full picture, from the `.github/` composable stack to Copilot's tools across Terminal, IDE, and Cloud:
 
 1. **Always-On Context** — Instructions that automatically apply to every conversation
 2. **On-Demand Capabilities** — Prompt files, custom agents, and skills

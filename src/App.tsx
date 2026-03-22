@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useEffect, useCallback, createContext } from 'react';
+import React, { useState, useMemo, useEffect, useCallback, useRef, createContext } from 'react';
 import { getLayers } from './data/layers';
 import { getToolsLayers } from './data/tools';
 import type { Component } from './data/layers';
@@ -45,6 +45,8 @@ function AppContent() {
   const [selectedLayerColor, setSelectedLayerColor] = useState<string | null>(null);
   const [focusedLayerId, setFocusedLayerId] = useState<string | null>(null);
   const [insightsFocused, setInsightsFocused] = useState(false);
+  const exportRef = useRef<HTMLDivElement>(null);
+  const [exporting, setExporting] = useState(false);
   const { page, setPage: handlePageChange } = React.useContext(PageContext);
 
   const resetViewState = useCallback(() => {
@@ -53,6 +55,71 @@ function AppContent() {
     setFocusedLayerId(null);
     setInsightsFocused(false);
   }, []);
+
+  const handleExportPng = useCallback(async () => {
+    if (!exportRef.current || exporting) return;
+    setExporting(true);
+    try {
+      const { toCanvas } = await import('html-to-image');
+      const container = exportRef.current;
+
+      // Force all layers visible for capture (they may be hidden by intersection observer)
+      const hiddenEls = container.querySelectorAll('.animate-hidden');
+      hiddenEls.forEach((el) => {
+        el.classList.remove('animate-hidden');
+        el.classList.add('animate-visible');
+      });
+
+      // Show the export banner
+      const banner = container.querySelector('.export-banner') as HTMLElement | null;
+      if (banner) banner.style.display = 'block';
+
+      // Let layout settle after DOM changes
+      await new Promise((r) => requestAnimationFrame(() => requestAnimationFrame(r)));
+
+      const pixelRatio = 2;
+      const bgColor = getComputedStyle(document.documentElement).getPropertyValue('--color-bg-primary').trim() || '#0d1117';
+
+      const fullCanvas = await toCanvas(container, {
+        backgroundColor: bgColor,
+        pixelRatio,
+      });
+
+      // Crop to content area (poster is max-width 1100px + 24px padding each side = 1148px)
+      const poster = container.querySelector('.poster') as HTMLElement | null;
+      const containerRect = container.getBoundingClientRect();
+      const contentRect = poster ? poster.getBoundingClientRect() : containerRect;
+
+      const cropX = (contentRect.left - containerRect.left) * pixelRatio;
+      const cropW = contentRect.width * pixelRatio;
+      const cropH = fullCanvas.height;
+
+      const croppedCanvas = document.createElement('canvas');
+      croppedCanvas.width = cropW;
+      croppedCanvas.height = cropH;
+      const ctx = croppedCanvas.getContext('2d')!;
+      // Fill background first (for banner area above poster)
+      ctx.fillStyle = bgColor;
+      ctx.fillRect(0, 0, cropW, cropH);
+      ctx.drawImage(fullCanvas, cropX, 0, cropW, cropH, 0, 0, cropW, cropH);
+
+      // Restore DOM
+      hiddenEls.forEach((el) => {
+        el.classList.remove('animate-visible');
+        el.classList.add('animate-hidden');
+      });
+      if (banner) banner.style.display = 'none';
+
+      const link = document.createElement('a');
+      link.download = `copilot-panorama-${page}.png`;
+      link.href = croppedCanvas.toDataURL('image/png');
+      link.click();
+    } catch (err) {
+      console.error('Export failed:', err);
+    } finally {
+      setExporting(false);
+    }
+  }, [page, exporting]);
 
   const onPageChange = useCallback((newPage: PageId) => {
     handlePageChange(newPage);
@@ -92,8 +159,19 @@ function AppContent() {
       <a href="#main-content" className="skip-link">
         Skip to main content
       </a>
-      <Header theme={theme} onToggleTheme={toggleTheme} page={page} onPageChange={onPageChange} />
+      <Header theme={theme} onToggleTheme={toggleTheme} page={page} onPageChange={onPageChange} onExportPng={handleExportPng} exporting={exporting} />
 
+      <div ref={exportRef}>
+      <div className="export-banner" aria-hidden="true">
+        <span className="export-banner-brand">Copilot Panorama</span>
+        <span className="export-banner-page">
+          {page === 'stack' ? (
+            <><code>.github/</code> {t.ui.heroTitle}</>
+          ) : (
+            t.toolsUi.heroTitle
+          )}
+        </span>
+      </div>
       <main id="main-content" className="poster">
         {layers.map((layer, i) => (
           <div key={layer.id}>
@@ -189,6 +267,7 @@ function AppContent() {
           ))}
         </div>
       </section>
+      </div>
 
       <footer className="footer">
         <p>
@@ -202,16 +281,18 @@ function AppContent() {
             {currentFooterDocsLink} ↗
           </a>
         </p>
-        <p className="footer-credit">
-          Inspired by{' '}
-          <a
-            href="https://www.linkedin.com/in/ashishkhichi/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Ashish S K
-          </a>
-        </p>
+        {page === 'stack' && (
+          <p className="footer-credit">
+            Inspired by{' '}
+            <a
+              href="https://www.linkedin.com/in/ashishkhichi/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Ashish S K
+            </a>
+          </p>
+        )}
       </footer>
 
       <DetailPanel
