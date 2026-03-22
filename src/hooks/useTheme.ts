@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 
 type Theme = 'dark' | 'light';
 
-const STORAGE_KEY = 'copilot-infographic-theme';
+const STORAGE_KEY = 'copilot-panorama-theme';
 
 function getInitialTheme(): Theme {
   const stored = localStorage.getItem(STORAGE_KEY);

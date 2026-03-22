@@ -18,7 +18,7 @@ export const LOCALE_LABELS: Record<Locale, string> = {
   ja: 'JA',
 };
 
-const STORAGE_KEY = 'copilot-infographic-locale';
+const STORAGE_KEY = 'copilot-panorama-locale';
 
 export function getInitialLocale(): Locale {
   // Check URL parameter first (for hreflang links)

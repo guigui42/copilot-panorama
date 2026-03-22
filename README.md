@@ -7,14 +7,14 @@ An interactive visual guide to **everything GitHub Copilot can do** — see the 
 3. **Enforcement & Automation** — Hooks and agentic workflows
 4. **Distribution** — Plugins to package and share your setup
 
-🌐 **Live site:** <https://guigui42.github.io/copilot-infographic/>
+🌐 **Live site:** <https://guigui42.github.io/copilot-panorama/>
 
 ## Getting started
 
 ```bash
 # Clone the repo
-git clone https://github.com/guigui42/copilot-infographic.git
-cd copilot-infographic
+git clone https://github.com/guigui42/copilot-panorama.git
+cd copilot-panorama
 
 # Install dependencies
 npm install
