@@ -214,7 +214,11 @@ function AppContent() {
         tabIndex={insightsFocused ? undefined : 0}
         role={insightsFocused ? undefined : 'button'}
         onClick={(e) => {
-          if (!(e.target as HTMLElement).closest('.insight-card') && !insightsFocused) {
+          if (insightsFocused) {
+            if (e.target === e.currentTarget) {
+              setInsightsFocused(false);
+            }
+          } else if (!(e.target as HTMLElement).closest('.insight-card')) {
             setInsightsFocused(true);
           }
         }}
