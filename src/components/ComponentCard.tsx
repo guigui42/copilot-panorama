@@ -284,19 +284,22 @@ const ComponentCard: React.FC<ComponentCardProps> = ({ component, layerColor, on
         }
       }}
     >
-      <div className="component-section-header">
-        <span className="component-section-icon" aria-hidden="true">{component.icon}</span>
-        <div className="component-section-meta">
-          <h3 className="component-section-name">{component.name}</h3>
-          <code className="component-section-path">{component.path}</code>
+      <div className="component-section-body">
+        <div className="component-section-header">
+          <span className="component-section-icon" aria-hidden="true">{component.icon}</span>
+          <div className="component-section-meta">
+            <h3 className="component-section-name">{component.name}</h3>
+            <code className="component-section-path">{component.path}</code>
+          </div>
         </div>
+
+        <p className="component-section-desc">{component.description}</p>
+
+        {renderViz()}
       </div>
 
-      <p className="component-section-desc">{component.description}</p>
-
-      {renderViz()}
-
       <div className="usecases">
+        <span className="usecases-label">{t.ui.useCasesLabel}</span>
         {component.useCases.map((uc) => (
           <span key={uc} className="usecase">
             {uc}
