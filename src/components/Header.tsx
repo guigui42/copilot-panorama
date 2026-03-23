@@ -3,7 +3,7 @@ import ThemeToggle from './ThemeToggle';
 import LanguageSwitcher from './LanguageSwitcher';
 import { CopilotIcon } from './GitHubIcons';
 import { useI18n } from '../i18n';
-import { LocaleContext } from '../App';
+import { LocaleContext } from '../contexts';
 import type { PageId } from '../i18n/types';
 
 const SHARE_URL = 'https://gh.io/copilot-panorama';

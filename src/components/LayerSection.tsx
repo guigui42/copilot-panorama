@@ -25,7 +25,11 @@ const LayerSection: React.FC<LayerSectionProps> = ({
   const handleEscape = useCallback(
     (e: KeyboardEvent) => {
       if (e.key === 'Escape' && isFocused) {
-        onDismissAll ? onDismissAll() : onToggleFocus?.();
+        if (onDismissAll) {
+          onDismissAll();
+        } else {
+          onToggleFocus?.();
+        }
       }
     },
     [isFocused, onDismissAll, onToggleFocus],
@@ -43,7 +47,11 @@ const LayerSection: React.FC<LayerSectionProps> = ({
   const handleHeaderClick = (e: React.MouseEvent) => {
     if ((e.target as HTMLElement).closest('.component-section')) return;
     if (isFocused) {
-      onDismissAll ? onDismissAll() : onToggleFocus?.();
+      if (onDismissAll) {
+        onDismissAll();
+      } else {
+        onToggleFocus?.();
+      }
     } else {
       onToggleFocus?.();
     }
@@ -77,7 +85,11 @@ const LayerSection: React.FC<LayerSectionProps> = ({
             className="layer-focus-close"
             onClick={(e) => {
               e.stopPropagation();
-              onDismissAll ? onDismissAll() : onToggleFocus?.();
+              if (onDismissAll) {
+                onDismissAll();
+              } else {
+                onToggleFocus?.();
+              }
             }}
             aria-label="Exit fullscreen"
           >
