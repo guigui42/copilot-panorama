@@ -1966,6 +1966,12 @@ body[data-layer-focused] .detail-panel {
   color: var(--color-text-secondary);
 }
 
+.brand-icon {
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+}
+
 .session-option--active {
   border-color: var(--color-accent-blue);
   background: rgba(88, 166, 255, 0.08);

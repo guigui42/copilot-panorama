@@ -9,6 +9,20 @@ interface ComponentCardProps {
   onClick: (component: Component) => void;
 }
 
+/* ── Brand icons ── */
+
+const ClaudeIcon: React.FC<{ className?: string }> = ({ className }) => (
+  <svg className={className} width="16" height="16" viewBox="0 0 1200 1200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <path fill="#d97757" d="M234 800l235-132 4-11-4-7h-11l-39-2-134-4-116-5-113-6-28-6-27-35 3-18 24-16 34 3 76 5 113 8 82 5 122 13h19l3-8-6-5-5-5L346 496 220 412l-66-48-36-25-18-23-8-50 33-36 44 3 11 3 44 34 95 73 124 91 18 15 7-5 1-4-9-13-67-122-72-124-32-51-8-31c-3-13-5-23-5-36l37-50 21-7 49 7 21 18 31 70 50 111 77 151 23 44 12 42 4 12h8v-7l6-85 12-104 11-134 4-38 19-45 37-24 29 14 24 34-3 22-15 92-27 145-19 96 11 0 12-12 49-65 82-102 36-41 42-45 27-21 52 0 38 56-17 58-53 67-44 57-62 84-40 68 4 5 9-1 142-30 77-14 91-16 42 20 4 19-16 40-98 25-115 22-170 41-3 1 3 3 77 7 33 2 81 0 150 11 39 26 24 32-4 24-60 31-82-20-190-45-65-16-10 0 0 6 54 53 100 90 125 116 6 29-16 22-17-2-110-83-42-37-96-81-6 0 0 9 22 32 117 175 6 54-9 17-30 11-33-6-68-96-71-108-57-96-7 4-34 161-16 19-36 13-30-23-16-37 16-74 19-95 16-76 14-95 8-31 1-2-7 1-71 98-109 146-85 92-20 8-36-18 3-33 20-30 119-149 72-94 46-46v-8l-3 0L205 929l-56 8-24-23 3-37 11-12 95-65z"/>
+  </svg>
+);
+
+const OpenAIIcon: React.FC<{ className?: string }> = ({ className }) => (
+  <svg className={className} width="16" height="16" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <path fill="currentColor" d="M474.123 209.81c11.525-34.577 7.569-72.423-10.838-103.904-27.696-48.168-83.433-72.94-137.794-61.414a127.14 127.14 0 00-95.475-42.49c-55.564 0-104.936 35.781-122.139 88.593-35.781 7.397-66.574 29.76-84.637 61.414-27.868 48.167-21.503 108.72 15.826 150.007-11.525 34.578-7.569 72.424 10.838 103.733 27.696 48.34 83.433 73.111 137.966 61.585 24.084 27.18 58.833 42.835 95.303 42.663 55.564 0 104.936-35.782 122.139-88.594 35.782-7.397 66.574-29.76 84.465-61.413 28.04-48.168 21.676-108.722-15.654-150.008v-.172zm-39.567-87.218c11.01 19.267 15.139 41.803 11.354 63.65-.688-.516-2.064-1.204-2.924-1.72l-101.152-58.49a16.965 16.965 0 00-16.687 0L206.621 194.5v-50.232l97.883-56.597c45.587-26.32 103.732-10.666 130.052 34.921zm-227.935 104.42l49.888-28.9 49.887 28.9v57.63l-49.887 28.9-49.888-28.9v-57.63zm23.223-191.81c22.364 0 43.867 7.742 61.07 22.02-.688.344-2.064 1.204-3.097 1.72L186.666 117.26c-5.161 2.925-8.258 8.43-8.258 14.45v136.934l-43.523-25.116V130.333c0-52.64 42.491-95.13 95.131-95.302l-.172.172zM52.14 168.697c11.182-19.268 28.557-34.062 49.544-41.803V247.14c0 6.02 3.097 11.354 8.258 14.45l118.354 68.295-43.695 25.288-97.711-56.425c-45.415-26.32-61.07-84.465-34.75-130.052zm26.665 220.71c-11.182-19.095-15.139-41.802-11.354-63.65.688.516 2.064 1.204 2.924 1.72l101.152 58.49a16.965 16.965 0 0016.687 0l118.354-68.467v50.232l-97.883 56.425c-45.587 26.148-103.732 10.665-130.052-34.75h.172zm204.54 87.39c-22.192 0-43.867-7.741-60.898-22.02a62.439 62.439 0 003.097-1.72l101.152-58.317c5.16-2.924 8.429-8.43 8.257-14.45V243.527l43.523 25.116v113.022c0 52.64-42.663 95.303-95.131 95.303v-.172zM461.22 343.303c-11.182 19.267-28.729 34.061-49.544 41.63V264.687c0-6.021-3.097-11.526-8.257-14.45L284.893 181.77l43.523-25.116 97.883 56.424c45.587 26.32 61.07 84.466 34.75 130.053l.172.172z"/>
+  </svg>
+);
+
 /* ── Per-component visualizations ── */
 
 const InstructionsViz: React.FC<{ v: Translations['viz'] }> = ({ v }) => (
@@ -70,7 +84,7 @@ const HooksViz: React.FC<{ v: Translations['viz'] }> = ({ v }) => (
   </div>
 );
 
-const WorkflowsViz: React.FC<{ v: Translations['viz'] }> = ({ v }) => (
+const WorkflowsViz: React.FC = () => (
   <div className="viz viz-workflows-stack" aria-hidden="true">
     <div className="viz-terminal viz-terminal--file">
       <div className="terminal-bar">
@@ -99,7 +113,7 @@ const WorkflowsViz: React.FC<{ v: Translations['viz'] }> = ({ v }) => (
         <span className="terminal-prompt">$ </span>
         <span className="terminal-cmd">gh aw compile</span>
       </div>
-      <span className="terminal-comment">{v.markdownToActions}</span>
+
     </div>
   </div>
 );
@@ -191,9 +205,9 @@ const AgentModeViz: React.FC<{ v: Translations['toolsViz'] }> = ({ v }) => (
 
 const ThirdPartyAgentsIdeViz: React.FC<{ v: Translations['toolsViz'] }> = ({ v }) => (
   <div className="viz viz-session-picker" aria-hidden="true">
-    <div className="session-option session-option--active">🟣 Claude <span className="session-badge">{v.local}</span></div>
-    <div className="session-option">🟢 Codex <span className="session-badge">{v.local}</span></div>
-    <div className="session-option">☁️ Claude <span className="session-badge">{v.cloud}</span></div>
+    <div className="session-option session-option--active"><ClaudeIcon className="brand-icon" /> Claude <span className="session-badge">{v.local}</span></div>
+    <div className="session-option"><OpenAIIcon className="brand-icon" /> Codex <span className="session-badge">{v.local}</span></div>
+    <div className="session-option"><ClaudeIcon className="brand-icon" /> Claude <span className="session-badge">{v.cloud}</span></div>
   </div>
 );
 
@@ -224,8 +238,8 @@ const ReviewAgentViz: React.FC<{ v: Translations['toolsViz'] }> = ({ v }) => (
 
 const ThirdPartyAgentsCloudViz: React.FC<{ v: Translations['toolsViz'] }> = ({ v }) => (
   <div className="viz viz-session-picker" aria-hidden="true">
-    <div className="session-option session-option--active">🟣 Anthropic Claude <span className="session-badge">{v.cloud}</span></div>
-    <div className="session-option">🟢 OpenAI Codex <span className="session-badge">{v.cloud}</span></div>
+    <div className="session-option session-option--active"><ClaudeIcon className="brand-icon" /> Anthropic Claude <span className="session-badge">{v.cloud}</span></div>
+    <div className="session-option"><OpenAIIcon className="brand-icon" /> OpenAI Codex <span className="session-badge">{v.cloud}</span></div>
     <div className="session-hint">{v.selectAgent}</div>
   </div>
 );
@@ -252,7 +266,7 @@ const ComponentCard: React.FC<ComponentCardProps> = ({ component, layerColor, on
       case 'custom-agents': return <AgentFlowViz v={v} />;
       case 'skills': return <SkillsViz v={v} />;
       case 'hooks': return <HooksViz v={v} />;
-      case 'agentic-workflows': return <WorkflowsViz v={v} />;
+      case 'agentic-workflows': return <WorkflowsViz />;
       case 'copilot-setup-steps': return <SetupStepsViz />;
       case 'plugins': return <PluginsViz v={v} />;
       /* Tools page */

@@ -30,7 +30,7 @@ export const ja: Translations = {
     descriptionRead: 'SKILL.md フロントマターから説明を読み取り',
     fullSkillInjected: '関連性がある場合、完全な SKILL.md がコンテキストに挿入されます',
     approveDeny: '承認 / 拒否',
-    markdownToActions: '# Markdown → GitHub Actions YAML',
+
     pluginJson: 'plugin.json',
     marketplace: 'マーケットプレイス',
     gitRepo: 'Git リポジトリ',

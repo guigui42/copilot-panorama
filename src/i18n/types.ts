@@ -51,7 +51,7 @@ export interface Translations {
     descriptionRead: string;
     fullSkillInjected: string;
     approveDeny: string;
-    markdownToActions: string;
+
     pluginJson: string;
     marketplace: string;
     gitRepo: string;

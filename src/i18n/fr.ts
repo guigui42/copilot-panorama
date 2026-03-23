@@ -30,7 +30,7 @@ export const fr: Translations = {
     descriptionRead: 'description lue depuis le frontmatter SKILL.md',
     fullSkillInjected: 'SKILL.md complet injecté dans le contexte si pertinent',
     approveDeny: 'approuver / refuser',
-    markdownToActions: '# Markdown → GitHub Actions YAML',
+
     pluginJson: 'plugin.json',
     marketplace: 'Marketplace',
     gitRepo: 'Dépôt Git',
