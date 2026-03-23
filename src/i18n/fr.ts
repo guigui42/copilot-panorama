@@ -68,7 +68,7 @@ export const fr: Translations = {
       useCases: ['Standards de code', 'Règles de framework', 'Conventions du dépôt'],
     },
     'prompt-files': {
-      name: 'Fichiers de prompts',
+      name: 'Prompt Files',
       description: 'Invoqués manuellement via des commandes slash',
       details:
         'Les fichiers de prompts sont des modèles réutilisables invoqués avec des ' +
@@ -78,7 +78,7 @@ export const fr: Translations = {
       useCases: ['API Review', 'Perf Audit', 'Onboarding Guide'],
     },
     'custom-agents': {
-      name: 'Agents personnalisés',
+      name: 'Custom Agents',
       description: 'Personas spécialisés avec leurs propres outils et serveurs MCP',
       details:
         'Les agents personnalisés sont des personas spécialisés définis en Markdown avec ' +
@@ -117,7 +117,7 @@ export const fr: Translations = {
       useCases: ['Portes de conformité', 'Contrôle d\'accès fichiers', 'Journalisation d\'audit'],
     },
     'agentic-workflows': {
-      name: 'Workflows agentiques',
+      name: 'Agentic Workflows',
       description: 'Automatisation de dépôts par des agents IA, exécutés dans GitHub Actions avec des garde-fous',
       details:
         'Les workflows agentiques sont des fichiers Markdown avec frontmatter YAML ' +
@@ -255,7 +255,7 @@ export const fr: Translations = {
       useCases: ['Livraison Issue-to-PR', 'Modernisation de code legacy', 'Exécution parallèle Fleet', 'Tri & planification du backlog', 'Développement agnostique d\'éditeur', 'Automatisation'],
     },
     autocomplete: {
-      name: 'Autocomplétion',
+      name: 'Autocomplete',
       description: 'Suggestions de code en texte fantôme qui apparaissent inline pendant la saisie',
       details:
         'Copilot propose des suggestions de type autocomplétion pendant que vous tapez — corps ' +
@@ -294,7 +294,7 @@ export const fr: Translations = {
       useCases: ['Tâches complexes', 'Implémentation multi-étapes', 'Résolution d\'erreurs', 'Automatisation de builds'],
     },
     'third-party-agents-ide': {
-      name: 'Agents tiers',
+      name: '3rd-Party Agents',
       description: 'Agents Claude et Codex fonctionnant dans VS Code avec leurs SDK natifs',
       details:
         'Les agents tiers d\'Anthropic (Claude) et d\'OpenAI (Codex) s\'exécutent directement dans ' +
@@ -320,7 +320,7 @@ export const fr: Translations = {
       useCases: ['Q&R sur les dépôts', 'Analyse d\'issues', 'Compréhension des PRs', 'Recherche web', 'Génération de code'],
     },
     'coding-agent': {
-      name: 'Agent de codage',
+      name: 'Coding Agent',
       description: 'Agent cloud autonome — assignez une issue, obtenez une PR avec vérifications de sécurité',
       details:
         'L\'agent de codage Copilot travaille de manière indépendante dans un environnement propulsé ' +
@@ -333,7 +333,7 @@ export const fr: Translations = {
       useCases: ['Corrections de bugs', 'Implémentation de fonctionnalités', 'Couverture de tests', 'Dette technique', 'Campagnes de sécurité'],
     },
     'review-agent': {
-      name: 'Agent de revue',
+      name: 'Review Agent',
       description: 'Reviewer de code IA avec contexte projet complet et corrections suggérées',
       details:
         'La revue de code Copilot analyse les pull requests et fournit des retours avec des ' +
@@ -346,7 +346,7 @@ export const fr: Translations = {
       useCases: ['Qualité du code', 'Revue de sécurité', 'Bonnes pratiques', 'Workflow de PRs', 'Gouvernance d\'équipe'],
     },
     'third-party-agents-cloud': {
-      name: 'Agents tiers',
+      name: '3rd-Party Agents',
       description: 'Anthropic Claude et OpenAI Codex comme agents de codage cloud sur GitHub',
       details:
         'Les agents de codage tiers fonctionnent aux côtés de l\'agent de codage Copilot sur la ' +

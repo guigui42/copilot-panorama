@@ -56,7 +56,7 @@ export const es: Translations = {
   },
   components: {
     instructions: {
-      name: 'Instrucciones',
+      name: 'Instructions',
       description: 'Memoria pasiva que se aplica automáticamente a cada prompt',
       details:
         'Las instrucciones son la base de la personalización de Copilot. Se cargan ' +
@@ -68,7 +68,7 @@ export const es: Translations = {
       useCases: ['Estándares de código', 'Reglas de framework', 'Convenciones del repo'],
     },
     'prompt-files': {
-      name: 'Archivos de prompts',
+      name: 'Prompt Files',
       description: 'Invocados manualmente mediante comandos slash',
       details:
         'Los archivos de prompts son plantillas reutilizables invocadas con comandos ' +
@@ -78,7 +78,7 @@ export const es: Translations = {
       useCases: ['API Review', 'Perf Audit', 'Onboarding Guide'],
     },
     'custom-agents': {
-      name: 'Agentes personalizados',
+      name: 'Custom Agents',
       description: 'Personas especializadas con sus propias herramientas y servidores MCP',
       details:
         'Los agentes personalizados son personas especializadas definidas en Markdown ' +
@@ -116,7 +116,7 @@ export const es: Translations = {
       useCases: ['Puertas de conformidad', 'Control de acceso a archivos', 'Registro de auditoría'],
     },
     'agentic-workflows': {
-      name: 'Workflows agénticos',
+      name: 'Agentic Workflows',
       description: 'Automatización de repositorios con agentes IA, ejecutados en GitHub Actions con protecciones',
       details:
         'Los workflows agénticos son archivos Markdown con frontmatter YAML (permisos, ' +
@@ -252,7 +252,7 @@ export const es: Translations = {
       useCases: ['Entrega Issue-to-PR', 'Modernización de código legacy', 'Ejecución paralela Fleet', 'Triaje y planificación del backlog', 'Desarrollo agnóstico de editor', 'Automatización'],
     },
     autocomplete: {
-      name: 'Autocompletado',
+      name: 'Autocomplete',
       description: 'Sugerencias de código como texto fantasma que aparecen inline mientras escribes',
       details:
         'Copilot ofrece sugerencias de autocompletado mientras escribes — cuerpos de funciones ' +
@@ -289,7 +289,7 @@ export const es: Translations = {
       useCases: ['Tareas complejas', 'Implementación multi-paso', 'Resolución de errores', 'Automatización de builds'],
     },
     'third-party-agents-ide': {
-      name: 'Agentes de terceros',
+      name: '3rd-Party Agents',
       description: 'Agentes Claude y Codex ejecutándose en VS Code con sus SDKs nativos',
       details:
         'Los agentes de terceros de Anthropic (Claude) y OpenAI (Codex) se ejecutan directamente ' +
@@ -315,7 +315,7 @@ export const es: Translations = {
       useCases: ['Preguntas sobre repos', 'Análisis de issues', 'Comprensión de PRs', 'Búsqueda web', 'Generación de código'],
     },
     'coding-agent': {
-      name: 'Agente de codificación',
+      name: 'Coding Agent',
       description: 'Agente autónomo en la nube — asigna un issue y obtén un PR con comprobaciones de seguridad',
       details:
         'El agente de codificación de Copilot trabaja de forma independiente en un entorno ' +
@@ -328,7 +328,7 @@ export const es: Translations = {
       useCases: ['Corrección de bugs', 'Implementación de funcionalidades', 'Cobertura de tests', 'Deuda técnica', 'Campañas de seguridad'],
     },
     'review-agent': {
-      name: 'Agente de revisión',
+      name: 'Review Agent',
       description: 'Revisor de código con IA con contexto completo del proyecto y correcciones sugeridas',
       details:
         'La revisión de código de Copilot analiza pull requests y proporciona comentarios con ' +
@@ -341,7 +341,7 @@ export const es: Translations = {
       useCases: ['Calidad de código', 'Revisión de seguridad', 'Buenas prácticas', 'Flujo de PRs', 'Gobernanza de equipo'],
     },
     'third-party-agents-cloud': {
-      name: 'Agentes de terceros',
+      name: '3rd-Party Agents',
       description: 'Anthropic Claude y OpenAI Codex como agentes de codificación en la nube en GitHub',
       details:
         'Los agentes de codificación de terceros trabajan junto al agente de codificación de ' +
