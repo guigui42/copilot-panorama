@@ -316,6 +316,11 @@ const ComponentCard: React.FC<ComponentCardProps> = ({ component, layerColor, on
           onClick={(e) => e.stopPropagation()}
         >
           ✨ Browse community examples
+          <svg width="11" height="11" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{ marginLeft: 2 }}>
+            <path d="M6 3H3a1 1 0 0 0-1 1v9a1 1 0 0 0 1 1h9a1 1 0 0 0 1-1v-3" />
+            <path d="M10 2h4v4" />
+            <path d="M14 2 7.5 8.5" />
+          </svg>
         </a>
       )}
     </div>
