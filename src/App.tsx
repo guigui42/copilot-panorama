@@ -1,11 +1,14 @@
-import React, { useState, useMemo, useEffect, useCallback, useRef, createContext } from 'react';
+import React, { useState, useMemo, useEffect, useCallback, useRef } from 'react';
 import { getLayers } from './data/layers';
 import { getToolsLayers } from './data/tools';
 import type { Component } from './data/layers';
 import type { PageId } from './i18n/types';
 import { useTheme } from './hooks/useTheme';
+import { usePageView, useTrackEvent } from './hooks/useAnalytics';
 import { I18nContext, translationsMap, getInitialLocale, persistLocale, updateDocumentMeta, useI18n } from './i18n';
 import type { Locale } from './i18n';
+import { AnalyticsProvider } from './analytics';
+import { LocaleContext, PageContext } from './contexts';
 import Header from './components/Header';
 import LayerSection from './components/LayerSection';
 import DetailPanel from './components/DetailPanel';
@@ -28,16 +31,6 @@ function persistPage(page: PageId) {
   window.history.replaceState({}, '', url.toString());
 }
 
-export const LocaleContext = createContext<{ locale: Locale; setLocale: (l: Locale) => void }>({
-  locale: 'en',
-  setLocale: () => {},
-});
-
-export const PageContext = createContext<{ page: PageId; setPage: (p: PageId) => void }>({
-  page: 'stack',
-  setPage: () => {},
-});
-
 function AppContent() {
   const { theme, toggleTheme } = useTheme();
   const t = useI18n();
@@ -48,6 +41,11 @@ function AppContent() {
   const exportRef = useRef<HTMLDivElement>(null);
   const [exporting, setExporting] = useState(false);
   const { page, setPage: handlePageChange } = React.useContext(PageContext);
+  const trackEvent = useTrackEvent();
+
+  // Track page views on page transitions
+  const pageContext = useMemo(() => ({ page }), [page]);
+  usePageView(pageContext);
 
   const resetViewState = useCallback(() => {
     setSelectedComponent(null);
@@ -59,6 +57,7 @@ function AppContent() {
   const handleExportPng = useCallback(async () => {
     if (!exportRef.current || exporting) return;
     setExporting(true);
+    trackEvent('analytics.click', { category: 'export', action: 'export_png', label: `page:${page}` });
     try {
       const { toCanvas } = await import('html-to-image');
       const container = exportRef.current;
@@ -119,7 +118,7 @@ function AppContent() {
     } finally {
       setExporting(false);
     }
-  }, [page, exporting]);
+  }, [page, exporting, trackEvent]);
 
   const onPageChange = useCallback((newPage: PageId) => {
     handlePageChange(newPage);
@@ -179,6 +178,7 @@ function AppContent() {
             <LayerSection
               layer={layer}
               onComponentClick={(comp) => {
+                trackEvent('analytics.click', { category: 'component', action: 'click', label: comp.id });
                 setSelectedComponent(comp);
                 setSelectedLayerColor(layer.color);
               }}
@@ -309,7 +309,12 @@ function AppContent() {
       <DetailPanel
         component={selectedComponent}
         layerColor={selectedLayerColor}
-        onClose={() => setSelectedComponent(null)}
+        onClose={() => {
+          if (selectedComponent) {
+            trackEvent('analytics.click', { category: 'component', action: 'close_detail', label: selectedComponent.id });
+          }
+          setSelectedComponent(null);
+        }}
       />
     </>
   );
@@ -335,13 +340,15 @@ function App() {
   }, [locale, page]);
 
   return (
-    <I18nContext.Provider value={translationsMap[locale]}>
-      <LocaleContext.Provider value={{ locale, setLocale: handleLocaleChange }}>
-        <PageContext.Provider value={{ page, setPage: handlePageChange }}>
-          <AppContent />
-        </PageContext.Provider>
-      </LocaleContext.Provider>
-    </I18nContext.Provider>
+    <AnalyticsProvider>
+      <I18nContext.Provider value={translationsMap[locale]}>
+        <LocaleContext.Provider value={{ locale, setLocale: handleLocaleChange }}>
+          <PageContext.Provider value={{ page, setPage: handlePageChange }}>
+            <AppContent />
+          </PageContext.Provider>
+        </LocaleContext.Provider>
+      </I18nContext.Provider>
+    </AnalyticsProvider>
   );
 }
 
