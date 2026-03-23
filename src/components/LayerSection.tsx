@@ -101,7 +101,7 @@ const LayerSection: React.FC<LayerSectionProps> = ({
           <span className="layer-num" aria-hidden="true">{layer.number}</span>
           <div className="layer-band-titles">
             <span className="layer-label">{t.ui.layerPrefix} {layer.number}</span>
-            <h2 className="layer-band-title">{layer.title}</h2>
+            <h2 className="layer-band-title" data-layer-num={layer.number}>{layer.title}</h2>
             <p className="layer-band-subtitle">{layer.subtitle}</p>
           </div>
           {!isFocused && (
