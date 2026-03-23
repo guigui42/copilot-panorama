@@ -252,7 +252,7 @@ export const fr: Translations = {
         'de manière itérative avec vous. Supporte le Plan Mode (Shift+Tab) pour une implémentation ' +
         'structurée, les serveurs MCP, les agents personnalisés, les skills, les hooks, et la ' +
         'compaction automatique du contexte pour des sessions infinies.',
-      useCases: ['Automatisation terminal', 'Génération de code', 'Opérations Git', 'Intégration GitHub', 'Gestion de PRs'],
+      useCases: ['Livraison Issue-to-PR', 'Modernisation de code legacy', 'Exécution parallèle Fleet', 'Tri & planification du backlog', 'Développement agnostique d\'éditeur', 'Automatisation'],
     },
     autocomplete: {
       name: 'Autocomplétion',

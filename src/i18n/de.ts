@@ -246,7 +246,7 @@ export const de: Translations = {
         'Issues verwalten, Workflows steuern) und iterativ mit dir zusammenarbeiten. Unterstützt Plan Mode ' +
         '(Shift+Tab) für strukturierte Implementierung, MCP-Server, Custom Agents, Skills, ' +
         'Hooks und automatische Kontextkomprimierung für unbegrenzte Sitzungen.',
-      useCases: ['Terminal-Automatisierung', 'Code-Generierung', 'Git-Operationen', 'GitHub-Integration', 'PR-Verwaltung'],
+      useCases: ['Issue-to-PR-Lieferung', 'Legacy-Code-Modernisierung', 'Parallele Fleet-Ausführung', 'Backlog-Triage & Planung', 'Editor-agnostische Entwicklung', 'Automatisierung'],
     },
     autocomplete: {
       name: 'Autocomplete',
