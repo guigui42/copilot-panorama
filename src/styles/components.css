@@ -10,7 +10,7 @@
   left: 16px;
   z-index: 10000;
   padding: 12px 24px;
-  background: var(--color-accent-blue);
+  background: var(--color-accent-primary-emphasis);
   color: #fff;
   font-weight: 600;
   font-size: 0.875rem;
@@ -30,7 +30,7 @@
   padding: 12px 24px 14px;
   text-align: center;
   background:
-    radial-gradient(ellipse at 50% 0%, rgba(88, 166, 255, 0.07) 0%, transparent 60%),
+    radial-gradient(ellipse at 50% 0%, var(--color-glow-hero) 0%, var(--color-glow-hero-purple) 45%, transparent 70%),
     var(--color-bg-primary);
   border-bottom: 1px solid var(--color-border-subtle);
   overflow: visible;
@@ -41,8 +41,8 @@
   position: absolute;
   inset: 0;
   background-image:
-    linear-gradient(rgba(88, 166, 255, 0.025) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(88, 166, 255, 0.025) 1px, transparent 1px);
+    linear-gradient(color-mix(in srgb, var(--color-accent-blue) 3%, transparent) 1px, transparent 1px),
+    linear-gradient(90deg, color-mix(in srgb, var(--color-accent-blue) 3%, transparent) 1px, transparent 1px);
   background-size: 48px 48px;
   pointer-events: none;
   mask-image: radial-gradient(ellipse at 50% 50%, black 30%, transparent 70%);
@@ -77,12 +77,12 @@
 }
 
 .hero-brand:hover {
-  background: color-mix(in srgb, var(--color-accent-blue) 8%, transparent);
+  background: color-mix(in srgb, var(--color-accent-primary) 8%, transparent);
 }
 
 .hero-brand-icon {
-  color: var(--color-accent-blue);
-  filter: drop-shadow(0 0 8px color-mix(in srgb, var(--color-accent-blue) 30%, transparent));
+  color: var(--color-accent-primary);
+  filter: drop-shadow(0 0 8px color-mix(in srgb, var(--color-accent-primary) 30%, transparent));
 }
 
 .hero-brand-name {
@@ -137,7 +137,7 @@
 }
 
 .hero-menu-toggle:hover {
-  border-color: var(--color-accent-blue);
+  border-color: var(--color-accent-primary);
   color: var(--color-text-primary);
   background: var(--color-bg-tertiary);
 }
@@ -211,9 +211,9 @@
 }
 
 .export-png-btn:hover {
-  border-color: var(--color-accent-blue);
-  color: var(--color-accent-blue);
-  background: color-mix(in srgb, var(--color-accent-blue) 8%, transparent);
+  border-color: var(--color-accent-primary);
+  color: var(--color-accent-primary);
+  background: color-mix(in srgb, var(--color-accent-primary) 8%, transparent);
 }
 
 .export-png-btn:disabled {
@@ -246,9 +246,9 @@
 }
 
 .share-link-btn:hover {
-  border-color: var(--color-accent-blue);
-  color: var(--color-accent-blue);
-  background: color-mix(in srgb, var(--color-accent-blue) 8%, transparent);
+  border-color: var(--color-accent-primary);
+  color: var(--color-accent-primary);
+  background: color-mix(in srgb, var(--color-accent-primary) 8%, transparent);
 }
 
 .share-link-btn--copied {
@@ -274,7 +274,7 @@
 .hero-page-subtitle code {
   font-family: var(--font-mono);
   font-weight: 600;
-  background: linear-gradient(135deg, var(--color-accent-blue), var(--color-accent-purple));
+  background: linear-gradient(135deg, var(--color-accent-primary), var(--color-accent-blue));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -282,7 +282,7 @@
 
 .hero-page-subtitle-accent {
   font-weight: 700;
-  background: linear-gradient(135deg, var(--color-accent-blue), var(--color-accent-purple));
+  background: linear-gradient(135deg, var(--color-accent-primary), var(--color-accent-blue));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -351,8 +351,8 @@
 }
 
 .lang-btn--active {
-  color: var(--color-accent-blue);
-  background: color-mix(in srgb, var(--color-accent-blue) 10%, var(--color-bg-secondary));
+  color: var(--color-accent-primary);
+  background: color-mix(in srgb, var(--color-accent-primary) 10%, var(--color-bg-secondary));
 }
 
 .lang-btn:focus-visible {
@@ -386,7 +386,7 @@
   display: block;
   font-size: 1.6rem;
   font-weight: 800;
-  color: var(--color-accent-blue);
+  color: var(--color-accent-primary);
   letter-spacing: -0.03em;
   margin-bottom: 4px;
 }
@@ -401,7 +401,7 @@
 .export-banner-page code {
   font-family: var(--font-mono);
   font-weight: 600;
-  background: linear-gradient(135deg, var(--color-accent-blue), var(--color-accent-purple));
+  background: linear-gradient(135deg, var(--color-accent-primary), var(--color-accent-purple));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -1272,7 +1272,7 @@ html[data-theme="light"] .viz-workflows-stack .viz-terminal:last-child {
   padding: 1px 5px;
   background: var(--color-bg-tertiary);
   border-radius: 3px;
-  color: var(--color-accent-blue);
+  color: var(--color-accent-primary);
 }
 
 .insight-icon {
@@ -1317,7 +1317,7 @@ html[data-theme="light"] .viz-workflows-stack .viz-terminal:last-child {
 }
 
 .footer a {
-  color: var(--color-accent-blue);
+  color: var(--color-accent-primary);
   text-decoration: none;
   font-weight: 500;
 }
@@ -1563,7 +1563,7 @@ body[data-layer-focused] .detail-panel {
   padding: var(--space-2) var(--space-4);
   font-size: var(--font-size-sm);
   font-weight: var(--font-weight-medium);
-  color: var(--color-accent-blue);
+  color: var(--color-accent-primary);
   background: var(--color-bg-secondary);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
@@ -1573,7 +1573,7 @@ body[data-layer-focused] .detail-panel {
 
 .detail-doc-link:hover {
   background: var(--color-bg-tertiary);
-  border-color: var(--color-accent-blue);
+  border-color: var(--color-accent-primary);
 }
 
 .detail-doc-link:focus-visible {
@@ -1844,19 +1844,19 @@ body[data-layer-focused] .detail-panel {
 }
 
 .page-switcher-btn:hover {
-  border-color: var(--color-accent-blue);
+  border-color: var(--color-accent-primary);
   color: var(--color-text-primary);
   background: var(--color-bg-tertiary);
 }
 
 .page-switcher-btn--active {
-  border-color: var(--color-accent-blue);
-  background: var(--color-accent-blue);
+  border-color: var(--color-accent-primary-emphasis);
+  background: var(--color-accent-primary-emphasis);
   color: #ffffff;
 }
 
 .page-switcher-btn--active:hover {
-  background: var(--color-accent-blue);
+  background: var(--color-accent-primary-emphasis);
   color: #ffffff;
 }
 
@@ -1973,8 +1973,8 @@ body[data-layer-focused] .detail-panel {
 }
 
 .session-option--active {
-  border-color: var(--color-accent-blue);
-  background: rgba(88, 166, 255, 0.08);
+  border-color: var(--color-accent-primary);
+  background: color-mix(in srgb, var(--color-accent-primary) 8%, transparent);
   color: var(--color-text-primary);
 }
 
