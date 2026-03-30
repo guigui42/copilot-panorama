@@ -129,11 +129,11 @@ export const de: Translations = {
     },
     'copilot-setup-steps': {
       name: 'Copilot Setup Steps',
-      description: 'GitHub Actions Workflow, der die Umgebung des Coding-Agenten vorkonfiguriert',
+      description: 'GitHub Actions Workflow, der die Umgebung des Cloud-Agenten vorkonfiguriert',
       details:
         'Copilot Setup Steps ist ein spezieller GitHub Actions Workflow unter ' +
         '`.github/workflows/copilot-setup-steps.yml`, der ausgeführt wird, bevor der ' +
-        'Coding-Agent mit der Arbeit beginnt. Verwende ihn, um Tools, Abhängigkeiten oder ' +
+        'Cloud-Agent mit der Arbeit beginnt. Verwende ihn, um Tools, Abhängigkeiten oder ' +
         'den Runner deterministisch zu installieren und zu konfigurieren — damit der Agent ' +
         'sofort bauen, testen und linten kann, ohne Trial-and-Error. Du kannst auch auf ' +
         'größere Runner upgraden, zu Windows wechseln, Git LFS aktivieren oder Umgebungsvariablen ' +
@@ -186,7 +186,7 @@ export const de: Translations = {
   /* ── Tools-Seite ── */
   toolsSeo: {
     title: 'Copilot Panorama — Copilot Everywhere',
-    description: 'Interaktiver visueller Leitfaden zu GitHub Copilot Tools auf drei Ebenen: Terminal (CLI), IDE (Autocomplete, Chat, Agent Mode, Drittanbieter-Agenten) und Cloud (Coding Agent, Review Agent, Drittanbieter-Agenten).',
+    description: 'Interaktiver visueller Leitfaden zu GitHub Copilot Tools auf drei Ebenen: Terminal (CLI), IDE (Autocomplete, Chat, Agent Mode, Drittanbieter-Agenten) und Cloud (Cloud Agent, Review Agent, Drittanbieter-Agenten).',
   },
   toolsUi: {
     heroTitle: 'Copilot Everywhere',
@@ -280,7 +280,7 @@ export const de: Translations = {
         'welche Dateien geändert werden, nimmt Änderungen über mehrere Dateien vor, schlägt Terminal-Befehle vor ' +
         'und führt sie aus, und iteriert zur Fehlerbehebung, bis die Aufgabe abgeschlossen ist. Unterstützt MCP-Server-' +
         'Integration, Subagenten für delegierte Teilaufgaben und Custom Agents. Nur deine Prompts ' +
-        'werden abgerechnet — Folge-Tool-Aufrufe sind kostenlos. Nicht zu verwechseln mit dem Copilot Coding Agent ' +
+        'werden abgerechnet — Folge-Tool-Aufrufe sind kostenlos. Nicht zu verwechseln mit dem Copilot Cloud Agent ' +
         '(Cloud-Ebene), der auf GitHub Actions läuft.',
       useCases: ['Komplexe Aufgaben', 'Mehrstufige Implementierung', 'Fehlerbehebung', 'Build-Automatisierung'],
     },
@@ -309,10 +309,10 @@ export const de: Translations = {
       useCases: ['Repo-Fragen', 'Issue-Analyse', 'PR-Verständnis', 'Websuche', 'Code-Generierung'],
     },
     'coding-agent': {
-      name: 'Coding Agent',
+      name: 'Cloud Agent',
       description: 'Autonomer Cloud-Agent — weise ein Issue zu und erhalte einen PR mit Sicherheitsprüfungen',
       details:
-        'Der Copilot Coding Agent arbeitet eigenständig in einer GitHub-Actions-Umgebung. ' +
+        'Der Copilot Cloud Agent arbeitet eigenständig in einer GitHub-Actions-Umgebung. ' +
         'Weise ein Issue an @copilot zu, erwähne ihn in einem PR oder starte aus dem Chat — er bewertet ' +
         'die Aufgabe, nimmt Änderungen vor, führt Tests und Linter aus, führt eine CodeQL-Sicherheitsanalyse durch, ' +
         'prüft auf Secrets und erstellt einen Draft-PR zur Überprüfung. Unterstützt Custom Instructions, ' +
@@ -336,11 +336,11 @@ export const de: Translations = {
       name: 'Drittanbieter-Agenten',
       description: 'Anthropic Claude und OpenAI Codex als Cloud-Coding-Agenten auf GitHub',
       details:
-        'Drittanbieter-Coding-Agenten arbeiten neben dem Copilot Coding Agent auf der GitHub-Plattform. ' +
+        'Drittanbieter-Coding-Agenten arbeiten neben dem Copilot Cloud Agent auf der GitHub-Plattform. ' +
         'Aktuell werden Anthropic Claude (Claude Agent SDK) und OpenAI Codex (Codex SDK) unterstützt. ' +
         'Weise Issues zu, starte Aufgaben über den Agents-Tab, erwähne @AGENT_NAME in PRs oder ' +
         'starte Sitzungen aus VS Code und GitHub Mobile. Unterliegt denselben Sicherheitsmechanismen ' +
-        'wie der Copilot Coding Agent. Jede Sitzung verbraucht eine Premium-Anfrage plus ' +
+        'wie der Copilot Cloud Agent. Jede Sitzung verbraucht eine Premium-Anfrage plus ' +
         'GitHub-Actions-Minuten. Derzeit in der öffentlichen Vorschau.',
       useCases: ['Multi-Agent-Workflows', 'Agenten-Vergleich', 'Spezialisierte Aufgaben', 'Parallele Entwicklung'],
     },
@@ -349,8 +349,8 @@ export const de: Translations = {
     {
       icon: '🔀',
       content:
-        '<strong>Agent Mode ≠ Coding Agent.</strong> Agent Mode läuft lokal in deiner IDE — ' +
-        'du bleibst im Loop. Der Coding Agent läuft auf GitHub Actions in der Cloud — er arbeitet ' +
+        '<strong>Agent Mode ≠ Cloud Agent.</strong> Agent Mode läuft lokal in deiner IDE — ' +
+        'du bleibst im Loop. Der Cloud Agent läuft auf GitHub Actions in der Cloud — er arbeitet ' +
         'eigenständig und erstellt einen PR, wenn er fertig ist.',
     },
     {
@@ -358,7 +358,7 @@ export const de: Translations = {
       content:
         '<strong>Drittanbieter-Agenten gibt es in IDE und Cloud.</strong> In VS Code nutzen Claude ' +
         'und Codex ihre nativen SDKs lokal. Auf GitHub laufen sie als Cloud-Agenten ' +
-        'neben dem Copilot Coding Agent.',
+        'neben dem Copilot Cloud Agent.',
     },
     {
       icon: '💬',
@@ -370,7 +370,7 @@ export const de: Translations = {
     {
       icon: '🔒',
       content:
-        '<strong>Cloud-Agenten haben eingebaute Sicherheit.</strong> Der Coding Agent führt CodeQL, ' +
+        '<strong>Cloud-Agenten haben eingebaute Sicherheit.</strong> Der Cloud Agent führt CodeQL, ' +
         'Secret-Scanning und Dependency-Checks automatisch durch. Er kann nur auf ' +
         '<code>copilot/</code>-Branches pushen und erstellt immer Draft-PRs.',
     },

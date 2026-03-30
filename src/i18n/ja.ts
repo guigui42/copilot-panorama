@@ -127,10 +127,10 @@ export const ja: Translations = {
     },
     'copilot-setup-steps': {
       name: 'Copilot Setup Steps',
-      description: 'コーディングエージェントの環境を事前設定する GitHub Actions ワークフロー',
+      description: 'クラウドエージェントの環境を事前設定する GitHub Actions ワークフロー',
       details:
         'Copilot Setup Steps は `.github/workflows/copilot-setup-steps.yml` にある特別な ' +
-        'GitHub Actions ワークフローで、コーディングエージェントが作業を開始する前に実行されます。' +
+        'GitHub Actions ワークフローで、クラウドエージェントが作業を開始する前に実行されます。' +
         'ツール、依存関係、ランナーの設定を決定論的にインストール・設定するために使用します — ' +
         'エージェントが試行錯誤なしですぐにビルド、テスト、リントできるようにします。' +
         'より大きなランナーへのアップグレード、Windows への切り替え、Git LFS の有効化、' +
@@ -183,7 +183,7 @@ export const ja: Translations = {
   /* ── Tools ページ ── */
   toolsSeo: {
     title: 'Copilot Panorama — Copilot Everywhere',
-    description: 'GitHub Copilot ツールのインタラクティブなビジュアルガイド — 3つのレイヤーを探索：ターミナル（CLI）、IDE（オートコンプリート、チャット、Agent Mode、サードパーティエージェント）、クラウド（Coding Agent、Review Agent、サードパーティエージェント）。',
+    description: 'GitHub Copilot ツールのインタラクティブなビジュアルガイド — 3つのレイヤーを探索：ターミナル（CLI）、IDE（オートコンプリート、チャット、Agent Mode、サードパーティエージェント）、クラウド（Cloud Agent、Review Agent、サードパーティエージェント）。',
   },
   toolsUi: {
     heroTitle: 'Copilot Everywhere',
@@ -305,10 +305,10 @@ export const ja: Translations = {
       useCases: ['リポジトリ Q&A', 'Issue 分析', 'PR の理解', 'ウェブ検索', 'コード生成'],
     },
     'coding-agent': {
-      name: 'Coding Agent',
+      name: 'Cloud Agent',
       description: '自律型クラウドエージェント — Issue をアサインすると、セキュリティチェック付きの PR を作成',
       details:
-        'Copilot coding agent は GitHub Actions 環境で独立して動作します。Issue を @copilot に' +
+        'Copilot cloud agent は GitHub Actions 環境で独立して動作します。Issue を @copilot に' +
         'アサインするか、PR でメンションするか、Chat から依頼すると、タスクを評価し、変更を行い、' +
         'テストとリンターを実行し、CodeQL セキュリティ分析を行い、シークレットをチェックし、' +
         'レビュー用のドラフト PR を作成します。カスタム Instructions、MCP サーバー、カスタム' +
@@ -332,11 +332,11 @@ export const ja: Translations = {
       name: 'サードパーティエージェント',
       description: 'GitHub 上のクラウドコーディングエージェントとしての Anthropic Claude と OpenAI Codex',
       details:
-        'サードパーティのコーディングエージェントは GitHub プラットフォーム上で Copilot coding ' +
+        'サードパーティのコーディングエージェントは GitHub プラットフォーム上で Copilot cloud ' +
         'agent と並んで動作します。現在 Anthropic Claude（Claude Agent SDK）と OpenAI Codex' +
         '（Codex SDK）をサポートしています。Issue のアサイン、Agents タブからのタスク開始、' +
         'PR での @AGENT_NAME メンション、VS Code や GitHub Mobile からのセッション開始が可能です。' +
-        'Copilot coding agent と同じセキュリティ保護が適用されます。各セッションは1つのプレミアム' +
+        'Copilot cloud agent と同じセキュリティ保護が適用されます。各セッションは1つのプレミアム' +
         'リクエストと GitHub Actions の分数を消費します。現在パブリックプレビュー中です。',
       useCases: ['マルチエージェントワークフロー', 'エージェント比較', '専門タスク', '並行開発'],
     },
@@ -345,8 +345,8 @@ export const ja: Translations = {
     {
       icon: '🔀',
       content:
-        '<strong>Agent Mode ≠ Coding Agent。</strong>Agent Mode は IDE 内でローカルに実行され、' +
-        'あなたが操作に関与し続けます。Coding Agent はクラウドの GitHub Actions で実行され、' +
+        '<strong>Agent Mode ≠ Cloud Agent。</strong>Agent Mode は IDE 内でローカルに実行され、' +
+        'あなたが操作に関与し続けます。Cloud Agent はクラウドの GitHub Actions で実行され、' +
         '独立して作業し、完了すると PR を作成します。',
     },
     {
@@ -354,7 +354,7 @@ export const ja: Translations = {
       content:
         '<strong>サードパーティエージェントは IDE とクラウドの両方に存在します。</strong>' +
         'VS Code では Claude と Codex がネイティブ SDK でローカルに動作します。GitHub 上では' +
-        'Copilot coding agent と並んでクラウドエージェントとして実行されます。',
+        'Copilot cloud agent と並んでクラウドエージェントとして実行されます。',
     },
     {
       icon: '💬',
@@ -366,7 +366,7 @@ export const ja: Translations = {
     {
       icon: '🔒',
       content:
-        '<strong>クラウドエージェントにはセキュリティが組み込まれています。</strong>Coding Agent は ' +
+        '<strong>クラウドエージェントにはセキュリティが組み込まれています。</strong>Cloud Agent は ' +
         'CodeQL、シークレットスキャン、依存関係チェックを自動的に実行します。' +
         '<code>copilot/</code> ブランチにのみプッシュでき、常にドラフト PR を作成します。',
     },

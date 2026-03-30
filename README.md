@@ -17,7 +17,7 @@ All the surfaces where Copilot meets you:
 
 1. **Terminal** — Copilot CLI for command-line assistance
 2. **IDE** — Autocomplete, Chat, Agent Mode, and 3rd-party agents
-3. **Cloud** — Coding Agent, Code Review, and 3rd-party agents on GitHub.com
+3. **Cloud** — Copilot Cloud Agent, Code Review, and 3rd-party agents on GitHub.com
 
 🌐 **Live site:** <https://guigui42.github.io/copilot-panorama/>
 
