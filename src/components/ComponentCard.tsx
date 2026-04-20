@@ -284,12 +284,12 @@ const ContextDisciplineViz: React.FC<{ v: Translations['tipsViz'] }> = ({ v }) =
 
 const QualityOverQuantityViz: React.FC<{ v: Translations['tipsViz'] }> = ({ v }) => (
   <div className="viz viz-before-after" aria-hidden="true">
-    <div className="ba-item ba-item--before"><span className="ba-label">✗ {v.before}</span><span className="ba-text">Long verbose instructions…</span></div>
-    <div className="ba-item ba-item--after"><span className="ba-label">✓ {v.after}</span><span className="ba-text">Scoped, precise context</span></div>
+    <div className="ba-item ba-item--before"><span className="ba-label">✗ {v.before}</span><span className="ba-text">{v.verboseInstructions}</span></div>
+    <div className="ba-item ba-item--after"><span className="ba-label">✓ {v.after}</span><span className="ba-text">{v.scopedContext}</span></div>
   </div>
 );
 
-const GuardrailsViz: React.FC = () => (
+const GuardrailsViz: React.FC<{ v: Translations['tipsViz'] }> = ({ v }) => (
   <div className="viz viz-terminal" aria-hidden="true">
     <div className="terminal-bar">
       <span className="terminal-dot terminal-dot--red" />
@@ -297,7 +297,7 @@ const GuardrailsViz: React.FC = () => (
       <span className="terminal-dot terminal-dot--green" />
     </div>
     <div className="terminal-line">
-      <span className="terminal-comment"># Stop after first passing test</span>
+      <span className="terminal-comment"># {v.stopAfterTest}</span>
     </div>
     <div className="terminal-line">
       <span className="terminal-keyword">max_attempts: </span>
@@ -306,17 +306,17 @@ const GuardrailsViz: React.FC = () => (
   </div>
 );
 
-const FreshThreadsViz: React.FC = () => (
+const FreshThreadsViz: React.FC<{ v: Translations['tipsViz'] }> = ({ v }) => (
   <div className="viz viz-thread-lifecycle" aria-hidden="true">
-    <span className="thread-step">💬 Chat</span>
+    <span className="thread-step">💬 {v.chat}</span>
     <span className="thread-arrow">→</span>
-    <span className="thread-step">📋 Ship to PR</span>
+    <span className="thread-step">📋 {v.shipToPr}</span>
     <span className="thread-arrow">→</span>
-    <span className="thread-step thread-step--fresh">🆕 Fresh thread</span>
+    <span className="thread-step thread-step--fresh">🆕 {v.freshThread}</span>
   </div>
 );
 
-const ConciseInstructionsViz: React.FC = () => (
+const ConciseInstructionsViz: React.FC<{ v: Translations['tipsViz'] }> = ({ v }) => (
   <div className="viz viz-terminal" aria-hidden="true">
     <div className="terminal-bar">
       <span className="terminal-dot terminal-dot--red" />
@@ -327,19 +327,19 @@ const ConciseInstructionsViz: React.FC = () => (
       <span className="terminal-comment"># copilot-instructions.md</span>
     </div>
     <div className="terminal-line">
-      <span className="terminal-cmd">Principles only. Brief.</span>
+      <span className="terminal-cmd">{v.principlesBrief}</span>
     </div>
   </div>
 );
 
-const StructureForReuseViz: React.FC = () => (
+const StructureForReuseViz: React.FC<{ v: Translations['tipsViz'] }> = ({ v }) => (
   <div className="viz viz-reuse-flow" aria-hidden="true">
-    <div className="reuse-item">📦 Heavy → <strong>Skills</strong></div>
-    <div className="reuse-item">🔁 Repetitive → <strong>Prompt Files</strong></div>
+    <div className="reuse-item">📦 {v.heavy} → <strong>{v.skills}</strong></div>
+    <div className="reuse-item">🔁 {v.repetitive} → <strong>{v.promptFiles}</strong></div>
   </div>
 );
 
-const ConciseAnswersViz: React.FC = () => (
+const ConciseAnswersViz: React.FC<{ v: Translations['tipsViz'] }> = ({ v }) => (
   <div className="viz viz-terminal" aria-hidden="true">
     <div className="terminal-bar">
       <span className="terminal-dot terminal-dot--red" />
@@ -347,7 +347,7 @@ const ConciseAnswersViz: React.FC = () => (
       <span className="terminal-dot terminal-dot--green" />
     </div>
     <div className="terminal-line">
-      <span className="terminal-cmd">"Minimal diff + 3 bullets"</span>
+      <span className="terminal-cmd">"{v.minimalDiff}"</span>
     </div>
   </div>
 );
@@ -359,10 +359,10 @@ const ScopeContextViz: React.FC<{ v: Translations['tipsViz'] }> = ({ v }) => (
   </div>
 );
 
-const ConditionalContextViz: React.FC = () => (
+const ConditionalContextViz: React.FC<{ v: Translations['tipsViz'] }> = ({ v }) => (
   <div className="viz viz-reuse-flow" aria-hidden="true">
-    <div className="reuse-item">🔴 Always-on → <strong>costly</strong></div>
-    <div className="reuse-item">🟢 On-demand → <strong>efficient</strong></div>
+    <div className="reuse-item">🔴 {v.alwaysOn} → <strong>{v.costly}</strong></div>
+    <div className="reuse-item">🟢 {v.onDemand} → <strong>{v.efficient}</strong></div>
   </div>
 );
 
@@ -388,15 +388,15 @@ const ApplyToPathsViz: React.FC = () => (
   </div>
 );
 
-const SkillsMcpViz: React.FC = () => (
+const SkillsMcpViz: React.FC<{ v: Translations['tipsViz'] }> = ({ v }) => (
   <div className="viz viz-progressive" aria-hidden="true">
     <div className="progressive-step">
       <span className="progressive-num">1</span>
-      <span className="progressive-text">Model reads <em>description</em></span>
+      <span className="progressive-text">{v.modelReads} <em>{v.descriptionLabel}</em></span>
     </div>
     <div className="progressive-step">
       <span className="progressive-num">2</span>
-      <span className="progressive-text">Loads full skill if relevant</span>
+      <span className="progressive-text">{v.loadsIfRelevant}</span>
     </div>
   </div>
 );
@@ -418,41 +418,41 @@ const ContextCommandViz: React.FC = () => (
   </div>
 );
 
-const ReuseContextViz: React.FC = () => (
+const ReuseContextViz: React.FC<{ v: Translations['tipsViz'] }> = ({ v }) => (
   <div className="viz viz-reuse-flow" aria-hidden="true">
-    <div className="reuse-item">📋 Load schema once</div>
-    <div className="reuse-item">♻️ Reference in subsequent queries</div>
+    <div className="reuse-item">📋 {v.loadOnce}</div>
+    <div className="reuse-item">♻️ {v.reuseInQueries}</div>
   </div>
 );
 
 const PrefixMatchingViz: React.FC<{ v: Translations['tipsViz'] }> = ({ v }) => (
   <div className="viz viz-cache-indicator" aria-hidden="true">
-    <div className="cache-row cache-row--hit"><span className="cache-icon">⚡</span> {v.cacheHit} <span className="cache-badge cache-badge--hit">≥1024 tokens match</span></div>
-    <div className="cache-row cache-row--miss"><span className="cache-icon">🔄</span> {v.cacheMiss} <span className="cache-badge cache-badge--miss">prefix differs</span></div>
+    <div className="cache-row cache-row--hit"><span className="cache-icon">⚡</span> {v.cacheHit} <span className="cache-badge cache-badge--hit">{v.tokenPrefixMatch}</span></div>
+    <div className="cache-row cache-row--miss"><span className="cache-icon">🔄</span> {v.cacheMiss} <span className="cache-badge cache-badge--miss">{v.prefixDiffers}</span></div>
   </div>
 );
 
 const ModelPickerViz: React.FC<{ v: Translations['tipsViz'] }> = ({ v }) => (
   <div className="viz viz-model-picker" aria-hidden="true">
     <div className="model-option model-option--premium">🧠 {v.high} <span className="model-cost">$$$</span></div>
-    <div className="model-option model-option--standard">⚙️ Standard <span className="model-cost">$$</span></div>
+    <div className="model-option model-option--standard">⚙️ {v.standard} <span className="model-cost">$$</span></div>
     <div className="model-option model-option--mini">⚡ {v.low} <span className="model-cost">$</span></div>
   </div>
 );
 
-const HighEffortViz: React.FC = () => (
+const HighEffortViz: React.FC<{ v: Translations['tipsViz'] }> = ({ v }) => (
   <div className="viz viz-chat-keywords" aria-hidden="true">
-    <span className="chat-keyword chat-keyword--participant">Architecture</span>
-    <span className="chat-keyword chat-keyword--command">Debugging</span>
-    <span className="chat-keyword chat-keyword--variable">Agentic</span>
+    <span className="chat-keyword chat-keyword--participant">{v.architecture}</span>
+    <span className="chat-keyword chat-keyword--command">{v.debugging}</span>
+    <span className="chat-keyword chat-keyword--variable">{v.agentic}</span>
   </div>
 );
 
-const LowEffortViz: React.FC = () => (
+const LowEffortViz: React.FC<{ v: Translations['tipsViz'] }> = ({ v }) => (
   <div className="viz viz-chat-keywords" aria-hidden="true">
-    <span className="chat-keyword chat-keyword--variable">Summarize</span>
-    <span className="chat-keyword chat-keyword--variable">Q&A</span>
-    <span className="chat-keyword chat-keyword--variable">Refactor</span>
+    <span className="chat-keyword chat-keyword--variable">{v.summarize}</span>
+    <span className="chat-keyword chat-keyword--variable">{v.qa}</span>
+    <span className="chat-keyword chat-keyword--variable">{v.refactorLabel}</span>
   </div>
 );
 
@@ -460,16 +460,16 @@ const AutoModeViz: React.FC<{ v: Translations['tipsViz'] }> = ({ v }) => (
   <div className="viz viz-auto-route" aria-hidden="true">
     <span className="auto-badge">{v.auto}</span>
     <span className="auto-arrow">→</span>
-    <span className="auto-target auto-target--simple">Simple → mini</span>
-    <span className="auto-target auto-target--complex">Complex → premium</span>
+    <span className="auto-target auto-target--simple">{v.simpleToMini}</span>
+    <span className="auto-target auto-target--complex">{v.complexToPremium}</span>
   </div>
 );
 
-const MonitorUsageViz: React.FC = () => (
+const MonitorUsageViz: React.FC<{ v: Translations['tipsViz'] }> = ({ v }) => (
   <div className="viz viz-budget-bars" aria-hidden="true">
-    <div className="budget-row"><span className="budget-label">IC eng</span><span className="budget-bar"><span className="budget-fill" style={{ width: '40%' }} /></span></div>
-    <div className="budget-row"><span className="budget-label">Power</span><span className="budget-bar"><span className="budget-fill" style={{ width: '75%' }} /></span></div>
-    <div className="budget-row"><span className="budget-label">CI agent</span><span className="budget-bar"><span className="budget-fill budget-fill--warn" style={{ width: '95%' }} /></span></div>
+    <div className="budget-row"><span className="budget-label">{v.icEng}</span><span className="budget-bar"><span className="budget-fill" style={{ width: '40%' }} /></span></div>
+    <div className="budget-row"><span className="budget-label">{v.powerUser}</span><span className="budget-bar"><span className="budget-fill" style={{ width: '75%' }} /></span></div>
+    <div className="budget-row"><span className="budget-label">{v.ciAgent}</span><span className="budget-bar"><span className="budget-fill budget-fill--warn" style={{ width: '95%' }} /></span></div>
   </div>
 );
 
@@ -524,24 +524,24 @@ const ComponentCard: React.FC<ComponentCardProps> = ({ component, layerColor, on
       case 'agentic-cost': return <AgenticCostViz v={tip} />;
       case 'context-discipline': return <ContextDisciplineViz v={tip} />;
       case 'quality-over-quantity': return <QualityOverQuantityViz v={tip} />;
-      case 'guardrails': return <GuardrailsViz />;
-      case 'fresh-threads': return <FreshThreadsViz />;
-      case 'concise-instructions': return <ConciseInstructionsViz />;
-      case 'structure-for-reuse': return <StructureForReuseViz />;
-      case 'concise-answers': return <ConciseAnswersViz />;
+      case 'guardrails': return <GuardrailsViz v={tip} />;
+      case 'fresh-threads': return <FreshThreadsViz v={tip} />;
+      case 'concise-instructions': return <ConciseInstructionsViz v={tip} />;
+      case 'structure-for-reuse': return <StructureForReuseViz v={tip} />;
+      case 'concise-answers': return <ConciseAnswersViz v={tip} />;
       case 'scope-context': return <ScopeContextViz v={tip} />;
-      case 'conditional-context': return <ConditionalContextViz />;
+      case 'conditional-context': return <ConditionalContextViz v={tip} />;
       case 'targeted-refs': return <TargetedRefsViz />;
       case 'apply-to-paths': return <ApplyToPathsViz />;
-      case 'skills-mcp': return <SkillsMcpViz />;
+      case 'skills-mcp': return <SkillsMcpViz v={tip} />;
       case 'context-command': return <ContextCommandViz />;
-      case 'reuse-context': return <ReuseContextViz />;
+      case 'reuse-context': return <ReuseContextViz v={tip} />;
       case 'prefix-matching': return <PrefixMatchingViz v={tip} />;
       case 'choose-right-model': return <ModelPickerViz v={tip} />;
-      case 'high-effort-tasks': return <HighEffortViz />;
-      case 'low-effort-tasks': return <LowEffortViz />;
+      case 'high-effort-tasks': return <HighEffortViz v={tip} />;
+      case 'low-effort-tasks': return <LowEffortViz v={tip} />;
       case 'auto-mode': return <AutoModeViz v={tip} />;
-      case 'monitor-usage': return <MonitorUsageViz />;
+      case 'monitor-usage': return <MonitorUsageViz v={tip} />;
       case 'chronicle-tips': return <ChronicleTipsViz />;
       default: return null;
     }

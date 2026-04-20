@@ -2464,6 +2464,10 @@ body[data-layer-focused] .detail-panel {
   color: var(--color-text-secondary);
 }
 
+.auto-target--simple {
+  color: var(--color-text-secondary);
+}
+
 .auto-target--complex {
   color: #d2a8ff;
 }
