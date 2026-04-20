@@ -79,6 +79,7 @@ const Header: React.FC<HeaderProps> = ({ theme, onToggleTheme, page, onPageChang
           >
             {t.ui.pageTools}
           </button>
+          {/* Tips tab hidden for now — page still accessible via ?page=tips direct link */}
         </nav>
 
         <div className="hero-menu-wrapper" ref={menuRef}>
@@ -154,6 +155,10 @@ const Header: React.FC<HeaderProps> = ({ theme, onToggleTheme, page, onPageChang
         {page === 'stack' ? (
           <>
             <code>.github/</code> {t.ui.heroTitle}
+          </>
+        ) : page === 'tips' ? (
+          <>
+            <span className="hero-page-subtitle-accent">Copilot</span> {t.tipsUi.heroTitle}
           </>
         ) : (
           <>

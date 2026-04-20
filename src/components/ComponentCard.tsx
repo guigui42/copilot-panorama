@@ -252,6 +252,245 @@ const CopilotChatCloudViz: React.FC<{ v: Translations['toolsViz'] }> = ({ v }) =
   </div>
 );
 
+/* ── Tips page visualizations ── */
+
+const TokenBillingViz: React.FC<{ v: Translations['tipsViz'] }> = ({ v }) => (
+  <div className="viz viz-token-meter" aria-hidden="true">
+    <div className="token-bar"><span className="token-bar-fill token-bar-fill--input" style={{ width: '70%' }} /><span className="token-bar-label">{v.inputTokens}</span></div>
+    <div className="token-bar"><span className="token-bar-fill token-bar-fill--output" style={{ width: '45%' }} /><span className="token-bar-label">{v.outputTokens}</span></div>
+    <div className="token-bar"><span className="token-bar-fill token-bar-fill--cached" style={{ width: '30%' }} /><span className="token-bar-label">{v.cachedTokens}</span></div>
+  </div>
+);
+
+const AgenticCostViz: React.FC<{ v: Translations['tipsViz'] }> = ({ v }) => (
+  <div className="viz viz-agent-chain" aria-hidden="true">
+    <span className="agent-chain-call">1</span>
+    <span className="agent-chain-arrow">→</span>
+    <span className="agent-chain-call">2</span>
+    <span className="agent-chain-arrow">→</span>
+    <span className="agent-chain-call">…</span>
+    <span className="agent-chain-arrow">→</span>
+    <span className="agent-chain-call agent-chain-call--many">N</span>
+    <span className="agent-chain-label">{v.modelCalls}</span>
+  </div>
+);
+
+const ContextDisciplineViz: React.FC<{ v: Translations['tipsViz'] }> = ({ v }) => (
+  <div className="viz viz-cost-compare" aria-hidden="true">
+    <div className="cost-item cost-item--expensive"><span className="cost-label">{v.broad}</span><span className="cost-bar" style={{ width: '90%' }} /></div>
+    <div className="cost-item cost-item--cheap"><span className="cost-label">{v.narrow}</span><span className="cost-bar" style={{ width: '25%' }} /></div>
+  </div>
+);
+
+const QualityOverQuantityViz: React.FC<{ v: Translations['tipsViz'] }> = ({ v }) => (
+  <div className="viz viz-before-after" aria-hidden="true">
+    <div className="ba-item ba-item--before"><span className="ba-label">✗ {v.before}</span><span className="ba-text">Long verbose instructions…</span></div>
+    <div className="ba-item ba-item--after"><span className="ba-label">✓ {v.after}</span><span className="ba-text">Scoped, precise context</span></div>
+  </div>
+);
+
+const GuardrailsViz: React.FC = () => (
+  <div className="viz viz-terminal" aria-hidden="true">
+    <div className="terminal-bar">
+      <span className="terminal-dot terminal-dot--red" />
+      <span className="terminal-dot terminal-dot--yellow" />
+      <span className="terminal-dot terminal-dot--green" />
+    </div>
+    <div className="terminal-line">
+      <span className="terminal-comment"># Stop after first passing test</span>
+    </div>
+    <div className="terminal-line">
+      <span className="terminal-keyword">max_attempts: </span>
+      <span className="terminal-cmd">2</span>
+    </div>
+  </div>
+);
+
+const FreshThreadsViz: React.FC = () => (
+  <div className="viz viz-thread-lifecycle" aria-hidden="true">
+    <span className="thread-step">💬 Chat</span>
+    <span className="thread-arrow">→</span>
+    <span className="thread-step">📋 Ship to PR</span>
+    <span className="thread-arrow">→</span>
+    <span className="thread-step thread-step--fresh">🆕 Fresh thread</span>
+  </div>
+);
+
+const ConciseInstructionsViz: React.FC = () => (
+  <div className="viz viz-terminal" aria-hidden="true">
+    <div className="terminal-bar">
+      <span className="terminal-dot terminal-dot--red" />
+      <span className="terminal-dot terminal-dot--yellow" />
+      <span className="terminal-dot terminal-dot--green" />
+    </div>
+    <div className="terminal-line">
+      <span className="terminal-comment"># copilot-instructions.md</span>
+    </div>
+    <div className="terminal-line">
+      <span className="terminal-cmd">Principles only. Brief.</span>
+    </div>
+  </div>
+);
+
+const StructureForReuseViz: React.FC = () => (
+  <div className="viz viz-reuse-flow" aria-hidden="true">
+    <div className="reuse-item">📦 Heavy → <strong>Skills</strong></div>
+    <div className="reuse-item">🔁 Repetitive → <strong>Prompt Files</strong></div>
+  </div>
+);
+
+const ConciseAnswersViz: React.FC = () => (
+  <div className="viz viz-terminal" aria-hidden="true">
+    <div className="terminal-bar">
+      <span className="terminal-dot terminal-dot--red" />
+      <span className="terminal-dot terminal-dot--yellow" />
+      <span className="terminal-dot terminal-dot--green" />
+    </div>
+    <div className="terminal-line">
+      <span className="terminal-cmd">"Minimal diff + 3 bullets"</span>
+    </div>
+  </div>
+);
+
+const ScopeContextViz: React.FC<{ v: Translations['tipsViz'] }> = ({ v }) => (
+  <div className="viz viz-scope-compare" aria-hidden="true">
+    <span className="scope-option scope-option--narrow">🔬 #file <span className="scope-badge">{v.narrow}</span></span>
+    <span className="scope-option scope-option--broad">🌐 #codebase <span className="scope-badge">{v.broad}</span></span>
+  </div>
+);
+
+const ConditionalContextViz: React.FC = () => (
+  <div className="viz viz-reuse-flow" aria-hidden="true">
+    <div className="reuse-item">🔴 Always-on → <strong>costly</strong></div>
+    <div className="reuse-item">🟢 On-demand → <strong>efficient</strong></div>
+  </div>
+);
+
+const TargetedRefsViz: React.FC = () => (
+  <div className="viz viz-chat-keywords" aria-hidden="true">
+    <span className="chat-keyword chat-keyword--variable">#file</span>
+    <span className="chat-keyword chat-keyword--variable">#selection</span>
+    <span className="chat-keyword chat-keyword--participant">#codebase</span>
+  </div>
+);
+
+const ApplyToPathsViz: React.FC = () => (
+  <div className="viz viz-terminal" aria-hidden="true">
+    <div className="terminal-bar">
+      <span className="terminal-dot terminal-dot--red" />
+      <span className="terminal-dot terminal-dot--yellow" />
+      <span className="terminal-dot terminal-dot--green" />
+    </div>
+    <div className="terminal-line">
+      <span className="terminal-keyword">applyTo: </span>
+      <span className="terminal-cmd">"**/*.test.ts"</span>
+    </div>
+  </div>
+);
+
+const SkillsMcpViz: React.FC = () => (
+  <div className="viz viz-progressive" aria-hidden="true">
+    <div className="progressive-step">
+      <span className="progressive-num">1</span>
+      <span className="progressive-text">Model reads <em>description</em></span>
+    </div>
+    <div className="progressive-step">
+      <span className="progressive-num">2</span>
+      <span className="progressive-text">Loads full skill if relevant</span>
+    </div>
+  </div>
+);
+
+const ContextCommandViz: React.FC = () => (
+  <div className="viz viz-terminal" aria-hidden="true">
+    <div className="terminal-bar">
+      <span className="terminal-dot terminal-dot--red" />
+      <span className="terminal-dot terminal-dot--yellow" />
+      <span className="terminal-dot terminal-dot--green" />
+    </div>
+    <div className="terminal-line">
+      <span className="terminal-prompt">$ </span>
+      <span className="terminal-cmd">/context</span>
+    </div>
+    <div className="terminal-line">
+      <span className="terminal-comment">█████████░ 72% used</span>
+    </div>
+  </div>
+);
+
+const ReuseContextViz: React.FC = () => (
+  <div className="viz viz-reuse-flow" aria-hidden="true">
+    <div className="reuse-item">📋 Load schema once</div>
+    <div className="reuse-item">♻️ Reference in subsequent queries</div>
+  </div>
+);
+
+const PrefixMatchingViz: React.FC<{ v: Translations['tipsViz'] }> = ({ v }) => (
+  <div className="viz viz-cache-indicator" aria-hidden="true">
+    <div className="cache-row cache-row--hit"><span className="cache-icon">⚡</span> {v.cacheHit} <span className="cache-badge cache-badge--hit">≥1024 tokens match</span></div>
+    <div className="cache-row cache-row--miss"><span className="cache-icon">🔄</span> {v.cacheMiss} <span className="cache-badge cache-badge--miss">prefix differs</span></div>
+  </div>
+);
+
+const ModelPickerViz: React.FC<{ v: Translations['tipsViz'] }> = ({ v }) => (
+  <div className="viz viz-model-picker" aria-hidden="true">
+    <div className="model-option model-option--premium">🧠 {v.high} <span className="model-cost">$$$</span></div>
+    <div className="model-option model-option--standard">⚙️ Standard <span className="model-cost">$$</span></div>
+    <div className="model-option model-option--mini">⚡ {v.low} <span className="model-cost">$</span></div>
+  </div>
+);
+
+const HighEffortViz: React.FC = () => (
+  <div className="viz viz-chat-keywords" aria-hidden="true">
+    <span className="chat-keyword chat-keyword--participant">Architecture</span>
+    <span className="chat-keyword chat-keyword--command">Debugging</span>
+    <span className="chat-keyword chat-keyword--variable">Agentic</span>
+  </div>
+);
+
+const LowEffortViz: React.FC = () => (
+  <div className="viz viz-chat-keywords" aria-hidden="true">
+    <span className="chat-keyword chat-keyword--variable">Summarize</span>
+    <span className="chat-keyword chat-keyword--variable">Q&A</span>
+    <span className="chat-keyword chat-keyword--variable">Refactor</span>
+  </div>
+);
+
+const AutoModeViz: React.FC<{ v: Translations['tipsViz'] }> = ({ v }) => (
+  <div className="viz viz-auto-route" aria-hidden="true">
+    <span className="auto-badge">{v.auto}</span>
+    <span className="auto-arrow">→</span>
+    <span className="auto-target auto-target--simple">Simple → mini</span>
+    <span className="auto-target auto-target--complex">Complex → premium</span>
+  </div>
+);
+
+const MonitorUsageViz: React.FC = () => (
+  <div className="viz viz-budget-bars" aria-hidden="true">
+    <div className="budget-row"><span className="budget-label">IC eng</span><span className="budget-bar"><span className="budget-fill" style={{ width: '40%' }} /></span></div>
+    <div className="budget-row"><span className="budget-label">Power</span><span className="budget-bar"><span className="budget-fill" style={{ width: '75%' }} /></span></div>
+    <div className="budget-row"><span className="budget-label">CI agent</span><span className="budget-bar"><span className="budget-fill budget-fill--warn" style={{ width: '95%' }} /></span></div>
+  </div>
+);
+
+const ChronicleTipsViz: React.FC = () => (
+  <div className="viz viz-terminal" aria-hidden="true">
+    <div className="terminal-bar">
+      <span className="terminal-dot terminal-dot--red" />
+      <span className="terminal-dot terminal-dot--yellow" />
+      <span className="terminal-dot terminal-dot--green" />
+    </div>
+    <div className="terminal-line">
+      <span className="terminal-prompt">$ </span>
+      <span className="terminal-cmd">/chronicle improve</span>
+    </div>
+    <div className="terminal-line">
+      <span className="terminal-prompt">$ </span>
+      <span className="terminal-cmd">/chronicle tips</span>
+    </div>
+  </div>
+);
+
 /* ── Card ── */
 
 const ComponentCard: React.FC<ComponentCardProps> = ({ component, layerColor, onClick }) => {
@@ -260,6 +499,7 @@ const ComponentCard: React.FC<ComponentCardProps> = ({ component, layerColor, on
 
   const renderViz = () => {
     const tv = t.toolsViz;
+    const tip = t.tipsViz;
     switch (component.id) {
       case 'instructions': return <InstructionsViz v={v} />;
       case 'prompt-files': return <PromptFilesViz />;
@@ -279,6 +519,30 @@ const ComponentCard: React.FC<ComponentCardProps> = ({ component, layerColor, on
       case 'review-agent': return <ReviewAgentViz v={tv} />;
       case 'third-party-agents-cloud': return <ThirdPartyAgentsCloudViz v={tv} />;
       case 'copilot-chat-cloud': return <CopilotChatCloudViz v={tv} />;
+      /* Tips page */
+      case 'token-billing': return <TokenBillingViz v={tip} />;
+      case 'agentic-cost': return <AgenticCostViz v={tip} />;
+      case 'context-discipline': return <ContextDisciplineViz v={tip} />;
+      case 'quality-over-quantity': return <QualityOverQuantityViz v={tip} />;
+      case 'guardrails': return <GuardrailsViz />;
+      case 'fresh-threads': return <FreshThreadsViz />;
+      case 'concise-instructions': return <ConciseInstructionsViz />;
+      case 'structure-for-reuse': return <StructureForReuseViz />;
+      case 'concise-answers': return <ConciseAnswersViz />;
+      case 'scope-context': return <ScopeContextViz v={tip} />;
+      case 'conditional-context': return <ConditionalContextViz />;
+      case 'targeted-refs': return <TargetedRefsViz />;
+      case 'apply-to-paths': return <ApplyToPathsViz />;
+      case 'skills-mcp': return <SkillsMcpViz />;
+      case 'context-command': return <ContextCommandViz />;
+      case 'reuse-context': return <ReuseContextViz />;
+      case 'prefix-matching': return <PrefixMatchingViz v={tip} />;
+      case 'choose-right-model': return <ModelPickerViz v={tip} />;
+      case 'high-effort-tasks': return <HighEffortViz />;
+      case 'low-effort-tasks': return <LowEffortViz />;
+      case 'auto-mode': return <AutoModeViz v={tip} />;
+      case 'monitor-usage': return <MonitorUsageViz />;
+      case 'chronicle-tips': return <ChronicleTipsViz />;
       default: return null;
     }
   };
