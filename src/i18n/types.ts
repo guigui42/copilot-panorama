@@ -22,7 +22,7 @@ export interface SeoMeta {
   description: string;
 }
 
-export type PageId = 'stack' | 'tools';
+export type PageId = 'stack' | 'tools' | 'tips';
 
 export interface Translations {
   locale: Locale;
@@ -99,4 +99,70 @@ export interface Translations {
   toolsLayers: Record<string, LayerI18n>;
   toolsComponents: Record<string, ComponentI18n>;
   toolsInsights: InsightI18n[];
+
+  /* ── Tips page ── */
+  tipsSeo: SeoMeta;
+  tipsUi: {
+    heroTitle: string;
+    insightsTitle: string;
+    insightsSubtitle: string;
+    footerBuiltFor: string;
+    footerDocsLink: string;
+    pageTips: string;
+  };
+  tipsViz: {
+    inputTokens: string;
+    outputTokens: string;
+    cachedTokens: string;
+    modelCalls: string;
+    before: string;
+    after: string;
+    expensive: string;
+    cheap: string;
+    high: string;
+    low: string;
+    auto: string;
+    cacheHit: string;
+    cacheMiss: string;
+    narrow: string;
+    broad: string;
+    verboseInstructions: string;
+    scopedContext: string;
+    chat: string;
+    shipToPr: string;
+    freshThread: string;
+    principlesBrief: string;
+    heavy: string;
+    skills: string;
+    repetitive: string;
+    promptFiles: string;
+    minimalDiff: string;
+    alwaysOn: string;
+    costly: string;
+    onDemand: string;
+    efficient: string;
+    modelReads: string;
+    descriptionLabel: string;
+    loadsIfRelevant: string;
+    loadOnce: string;
+    reuseInQueries: string;
+    tokenPrefixMatch: string;
+    prefixDiffers: string;
+    standard: string;
+    architecture: string;
+    debugging: string;
+    agentic: string;
+    summarize: string;
+    qa: string;
+    refactorLabel: string;
+    simpleToMini: string;
+    complexToPremium: string;
+    icEng: string;
+    powerUser: string;
+    ciAgent: string;
+    stopAfterTest: string;
+  };
+  tipsLayers: Record<string, LayerI18n>;
+  tipsComponents: Record<string, ComponentI18n>;
+  tipsInsights: InsightI18n[];
 }

@@ -43,7 +43,7 @@ export function persistLocale(locale: Locale) {
 
 /** Update document meta tags to match the current locale and page */
 export function updateDocumentMeta(translations: Translations, page: PageId = 'stack') {
-  const seo = page === 'tools' ? translations.toolsSeo : translations.seo;
+  const seo = page === 'tools' ? translations.toolsSeo : page === 'tips' ? translations.tipsSeo : translations.seo;
   document.title = seo.title;
 
   const setMeta = (attr: string, key: string, content: string) => {

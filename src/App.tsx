@@ -1,6 +1,7 @@
 import React, { useState, useMemo, useEffect, useCallback, useRef } from 'react';
 import { getLayers } from './data/layers';
 import { getToolsLayers } from './data/tools';
+import { getTipsLayers } from './data/tips';
 import type { Component } from './data/layers';
 import type { PageId } from './i18n/types';
 import { useTheme } from './hooks/useTheme';
@@ -18,6 +19,7 @@ function getInitialPage(): PageId {
   const urlParams = new URLSearchParams(window.location.search);
   const p = urlParams.get('page');
   if (p === 'tools') return 'tools';
+  if (p === 'tips') return 'tips';
   return 'stack';
 }
 
@@ -127,15 +129,18 @@ function AppContent() {
 
   const stackLayers = useMemo(() => getLayers(t), [t]);
   const toolsLayers = useMemo(() => getToolsLayers(t), [t]);
-  const layers = page === 'tools' ? toolsLayers : stackLayers;
+  const tipsLayers = useMemo(() => getTipsLayers(t), [t]);
+  const layers = page === 'tips' ? tipsLayers : page === 'tools' ? toolsLayers : stackLayers;
   const layerColors = layers.map((l) => l.color);
 
-  const currentInsights = page === 'tools' ? t.toolsInsights : t.insights;
-  const currentInsightsTitle = page === 'tools' ? t.toolsUi.insightsTitle : t.ui.insightsTitle;
-  const currentInsightsSubtitle = page === 'tools' ? t.toolsUi.insightsSubtitle : t.ui.insightsSubtitle;
-  const currentFooterBuiltFor = page === 'tools' ? t.toolsUi.footerBuiltFor : t.ui.footerBuiltFor;
-  const currentFooterDocsLink = page === 'tools' ? t.toolsUi.footerDocsLink : t.ui.footerDocsLink;
-  const footerDocsUrl = page === 'tools'
+  const currentInsights = page === 'tips' ? t.tipsInsights : page === 'tools' ? t.toolsInsights : t.insights;
+  const currentInsightsTitle = page === 'tips' ? t.tipsUi.insightsTitle : page === 'tools' ? t.toolsUi.insightsTitle : t.ui.insightsTitle;
+  const currentInsightsSubtitle = page === 'tips' ? t.tipsUi.insightsSubtitle : page === 'tools' ? t.toolsUi.insightsSubtitle : t.ui.insightsSubtitle;
+  const currentFooterBuiltFor = page === 'tips' ? t.tipsUi.footerBuiltFor : page === 'tools' ? t.toolsUi.footerBuiltFor : t.ui.footerBuiltFor;
+  const currentFooterDocsLink = page === 'tips' ? t.tipsUi.footerDocsLink : page === 'tools' ? t.toolsUi.footerDocsLink : t.ui.footerDocsLink;
+  const footerDocsUrl = page === 'tips'
+    ? 'https://docs.github.com/en/copilot/managing-copilot/managing-usage-and-billing-for-copilot'
+    : page === 'tools'
     ? 'https://docs.github.com/en/copilot/about-github-copilot/github-copilot-features'
     : 'https://docs.github.com/en/copilot/concepts/agents';
 
@@ -166,6 +171,8 @@ function AppContent() {
         <span className="export-banner-page">
           {page === 'stack' ? (
             <><code>.github/</code> {t.ui.heroTitle}</>
+          ) : page === 'tips' ? (
+            t.tipsUi.heroTitle
           ) : (
             t.toolsUi.heroTitle
           )}

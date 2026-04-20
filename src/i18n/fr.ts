@@ -389,4 +389,389 @@ export const fr: Translations = {
         'Il ne peut pousser que sur les branches <code>copilot/</code> et crée toujours des PRs brouillon.',
     },
   ],
+
+  /* ── Tips page ── */
+  tipsSeo: {
+    title: 'Copilot Panorama — Conseils d\'efficacité',
+    description: 'Guide pratique pour optimiser l\'utilisation de GitHub Copilot — gestion des tokens, conception de prompts, cadrage du contexte, sélection de modèles et gouvernance.',
+  },
+  tipsUi: {
+    heroTitle: 'Efficiency Tips',
+    insightsTitle: 'The efficiency mindset',
+    insightsSubtitle: 'Core principles for getting more value from every token',
+    footerBuiltFor: 'Built for GitHub Copilot users',
+    footerDocsLink: 'Full docs on Copilot billing',
+    pageTips: 'Efficiency Tips',
+  },
+  tipsViz: {
+    inputTokens: 'Input tokens',
+    outputTokens: 'Output tokens',
+    cachedTokens: 'Cached tokens',
+    modelCalls: 'model calls',
+    before: 'Before',
+    after: 'After',
+    expensive: 'Expensive',
+    cheap: 'Cheap',
+    high: 'High-effort',
+    low: 'Low-effort',
+    auto: 'Auto',
+    cacheHit: 'Cache hit',
+    cacheMiss: 'Cache miss',
+    narrow: 'Narrow',
+    broad: 'Broad',
+    verboseInstructions: 'Instructions longues et verbeuses…',
+    scopedContext: 'Contexte précis et ciblé',
+    chat: 'Chat',
+    shipToPr: 'Livrer dans la PR',
+    freshThread: 'Nouveau fil',
+    principlesBrief: 'Principes seulement. Bref.',
+    heavy: 'Lourd',
+    skills: 'Skills',
+    repetitive: 'Répétitif',
+    promptFiles: 'Fichiers Prompt',
+    minimalDiff: 'Diff minimal + 3 points',
+    alwaysOn: 'Toujours actif',
+    costly: 'coûteux',
+    onDemand: 'À la demande',
+    efficient: 'efficace',
+    modelReads: 'Le modèle lit',
+    descriptionLabel: 'la description',
+    loadsIfRelevant: 'Charge le skill complet si pertinent',
+    loadOnce: 'Charger le schéma une fois',
+    reuseInQueries: 'Réutiliser dans les requêtes suivantes',
+    tokenPrefixMatch: '≥1024 tokens identiques',
+    prefixDiffers: 'préfixe différent',
+    standard: 'Standard',
+    architecture: 'Architecture',
+    debugging: 'Débogage',
+    agentic: 'Agentique',
+    summarize: 'Résumer',
+    qa: 'Q&R',
+    refactorLabel: 'Refactoring',
+    simpleToMini: 'Simple → mini',
+    complexToPremium: 'Complexe → premium',
+    icEng: 'Ingénieur IC',
+    powerUser: 'Power user',
+    ciAgent: 'Agent CI',
+    stopAfterTest: 'Arrêter après le premier test réussi',
+  },
+  tipsLayers: {
+    mechanics: {
+      title: 'Mécanique des tokens',
+      subtitle: 'Comprendre les facteurs de coût derrière chaque interaction Copilot',
+    },
+    prompting: {
+      title: 'Prompting',
+      subtitle: 'Écrire des prompts qui produisent de meilleurs résultats avec moins de tokens',
+    },
+    context: {
+      title: 'Contexte',
+      subtitle: 'Fournir au modèle exactement ce dont il a besoin — ni plus, ni moins',
+    },
+    caching: {
+      title: 'Cache',
+      subtitle: 'Tirer parti du cache de prompts pour des interactions plus rapides et moins coûteuses',
+    },
+    models: {
+      title: 'Modèles',
+      subtitle: 'Adapter la capacité du modèle à la complexité de la tâche',
+    },
+    governance: {
+      title: 'Gouvernance',
+      subtitle: 'Surveiller la consommation et définir des garde-fous au niveau de l\'organisation',
+    },
+  },
+  tipsComponents: {
+    'token-billing': {
+      name: 'Facteurs de coût des tokens',
+      description: 'Les tokens d\'entrée, de sortie et de lecture en cache sont les trois dimensions de facturation',
+      details:
+        'Avec la facturation par token, chaque interaction comporte trois composants de coût : ' +
+        'les tokens d\'entrée/contexte (ce que vous envoyez), les tokens de sortie (ce que le ' +
+        'modèle génère) et les tokens de lecture en cache (moins chers mais toujours mesurés). ' +
+        'Les tokens d\'entrée incluent votre prompt, les instructions système, le contexte de ' +
+        'fichier et les sorties d\'outils. Les tokens de sortie sont la réponse du modèle. ' +
+        'Comprendre ces trois dimensions est la base de l\'optimisation des coûts.',
+      useCases: ['Toutes les interactions', 'Planification budgétaire', 'Analyse des coûts'],
+    },
+    'agentic-cost': {
+      name: 'Multiplicateur de coût agentique',
+      description: 'Une seule requête agentique peut déclencher des dizaines d\'appels au modèle',
+      details:
+        'Les expériences agentiques (Agent Mode, Cloud Agent, CLI) itèrent par conception : ' +
+        'planifier → éditer → exécuter des outils/tests → corriger → répéter. La même intention ' +
+        'utilisateur peut varier considérablement en consommation selon le workflow. Un simple ' +
+        '« corrige ce bug » peut nécessiter 2 ou plus de 20 appels selon la complexité, les ' +
+        'sorties d\'outils et les boucles de récupération d\'erreurs. C\'est pourquoi la ' +
+        'conception du workflow compte plus que la longueur du prompt.',
+      useCases: ['Agent Mode', 'Cloud Agent', 'CLI Agent'],
+    },
+    'context-discipline': {
+      name: 'Discipline de contexte',
+      description: 'L\'optimisation des coûts repose principalement sur la discipline de contexte et la conception du workflow',
+      details:
+        'Le plus grand levier de coût n\'est pas d\'écrire des prompts plus courts — c\'est de ' +
+        'gérer quel contexte alimente chaque appel au modèle. Chaque fichier joint, sortie ' +
+        'd\'outil et élément d\'historique de conversation ajoute des tokens d\'entrée. Une ' +
+        'gestion disciplinée du contexte (cadrer les fichiers, réduire les logs, démarrer de ' +
+        'nouveaux fils) a un impact bien plus important que la reformulation des prompts.',
+      useCases: ['Tous les workflows', 'Optimisation des coûts', 'Performance'],
+    },
+    'quality-over-quantity': {
+      name: 'Qualité plutôt que quantité',
+      description: 'Se concentrer sur un contexte de haute qualité, pas sur plus d\'instructions',
+      details:
+        'Plus d\'instructions ≠ meilleure sortie. Un guidage ciblé et de haute qualité réduit ' +
+        'les sorties verbeuses et dispersées. Au lieu de longues introductions, donnez au modèle ' +
+        'exactement le contexte nécessaire : le code pertinent, l\'exigence spécifique et des ' +
+        'contraintes claires. Des prompts plus ciblés réduisent aussi les sessions agentiques ' +
+        'incontrôlées où l\'agent continue d\'itérer sans converger.',
+      useCases: ['Chat', 'Agent Mode', 'Fichiers de prompt'],
+    },
+    guardrails: {
+      name: 'Définir des garde-fous',
+      description: 'Les flux agentiques itèrent jusqu\'à atteindre l\'objectif — définir des limites explicites',
+      details:
+        'Les agents itèrent par conception : planifier → éditer → exécuter des outils → ' +
+        'corriger → répéter. Sans limites, un agent continuera jusqu\'à réussir (ou épuiser ' +
+        'le contexte). Ajoutez des instructions déclaratives comme : « Proposer au maximum ' +
+        '2 solutions alternatives ; arrêter après le premier test réussi. » ou « Si la première ' +
+        'approche échoue, expliquer pourquoi et arrêter. » Cela empêche les sessions incontrôlées ' +
+        'qui consomment des tokens.',
+      useCases: ['Agent Mode', 'Cloud Agent', 'Agents personnalisés'],
+    },
+    'fresh-threads': {
+      name: 'Nouveaux fils de discussion',
+      description: 'Démarrer de nouvelles conversations une fois les décisions intégrées dans des artefacts durables',
+      details:
+        'Évitez les sessions longues où les sorties d\'outils s\'accumulent dans le contexte. ' +
+        'Chaque sortie d\'outil accumulée ajoute des tokens d\'entrée à chaque appel suivant. ' +
+        'Une fois la décision intégrée dans un artefact durable (issue, description de PR, ADR, ' +
+        'commit de code), démarrez un nouveau fil. Le nouveau fil commence avec un contexte ' +
+        'propre et ne paie pas pour l\'historique de conversation périmé.',
+      useCases: ['Chat', 'Agent Mode', 'Sessions CLI'],
+    },
+    'concise-instructions': {
+      name: 'Minifier les instructions',
+      description: 'Garder .github/copilot-instructions.md court, stable et basé sur des principes',
+      details:
+        'Les instructions se chargent dans chaque conversation automatiquement — c\'est du ' +
+        'contexte permanent. Gardez copilot-instructions.md court et stable : principes, ' +
+        'conventions, règles « ne pas faire ». Chaque ligne supplémentaire ajoute des tokens ' +
+        'd\'entrée à chaque interaction. Déplacez les guidages détaillés (playbooks, exemples, ' +
+        'règles de domaine) vers les Skills ou les fichiers de prompt où ils ne se chargent ' +
+        'que lorsque nécessaire.',
+      useCases: ['Instructions', 'Optimisation des coûts', 'Toutes les interactions'],
+    },
+    'structure-for-reuse': {
+      name: 'Structurer pour la réutilisation',
+      description: 'Utiliser les Skills pour les guidages lourds, les fichiers de prompt pour les workflows répétitifs',
+      details:
+        'Placez les guidages lourds (playbooks, exemples, règles de domaine, runbooks) dans ' +
+        'les Agent Skills pour qu\'ils ne se chargent que lorsque le prompt de l\'utilisateur ' +
+        'correspond. Placez les workflows répétitifs (ex. : « écrire des tests unitaires », ' +
+        '« créer un ADR », « générer un changelog ») dans les fichiers de prompt pour que les ' +
+        'utilisateurs ne collent pas d\'énormes instructions à chaque fois. Cela fait passer ' +
+        'le contexte de permanent (coûteux) à à la demande (efficace).',
+      useCases: ['Skills', 'Fichiers de prompt', 'Workflows d\'équipe'],
+    },
+    'concise-answers': {
+      name: 'Demander moins',
+      description: 'Demander la plus petite réponse utile pour minimiser les tokens de sortie',
+      details:
+        'Les tokens de sortie sont la dimension la plus coûteuse. Demandez la réponse minimale ' +
+        'utile : « Donne-moi le diff minimal + 3 points de justification » au lieu de ' +
+        '« explique tout ». « Lister uniquement les changements cassants ; omettre le contexte » ' +
+        'lors des mises à jour/migrations. Des sorties plus petites signifient aussi des réponses ' +
+        'plus rapides et moins de bruit à lire.',
+      useCases: ['Chat', 'Revue de code', 'Migrations'],
+    },
+    'scope-context': {
+      name: 'Cadrer le contexte intentionnellement',
+      description: 'Préférer un contexte ciblé (un fichier) plutôt que « tout le dépôt » sauf si vraiment nécessaire',
+      details:
+        'Utilisez un contexte ciblé : uniquement le fichier ou la fonction pertinente, pas tout ' +
+        'le dépôt. « Joindre uniquement la sortie du test échoué, pas les logs complets. » Le ' +
+        'contexte de tout le dépôt (#codebase) est puissant mais coûteux — ne l\'utilisez que ' +
+        'pour les changements transversaux qui nécessitent vraiment un raisonnement global. Pour ' +
+        'les questions ciblées, #file est presque toujours suffisant et bien moins cher.',
+      useCases: ['Chat', 'Agent Mode', 'CLI'],
+    },
+    'conditional-context': {
+      name: 'Conditionnel plutôt que permanent',
+      description: 'Préférer le contexte qui se charge uniquement lorsqu\'il est pertinent pour la tâche en cours',
+      details:
+        'Le contexte permanent (copilot-instructions.md) se charge dans chaque conversation et ' +
+        'coûte des tokens à chaque fois. Le contexte conditionnel (Skills, instructions avec ' +
+        'portée de chemin) ne se charge que lorsqu\'il est pertinent. Déplacez les guidages ' +
+        'spécialisés vers les Skills où le modèle décide quand les charger, ou utilisez les ' +
+        'globs applyTo pour que les instructions ne s\'appliquent qu\'aux fichiers correspondants.',
+      useCases: ['Instructions', 'Skills', 'Portée par chemin'],
+    },
+    'targeted-refs': {
+      name: 'Utiliser des références ciblées',
+      description: 'Utiliser #file pour les questions ciblées, #codebase uniquement pour les changements transversaux',
+      details:
+        'Les références de chat (#file, #selection, #codebase) contrôlent exactement le contexte ' +
+        'que le modèle voit. Utilisez #file pour des questions ciblées sur du code spécifique. ' +
+        'Utilisez #selection pour un scope encore plus étroit. Réservez #codebase aux changements ' +
+        'transversaux où le modèle a vraiment besoin de comprendre tout le projet. Joignez ' +
+        'uniquement la sortie du test échoué, pas les logs de toute la suite de tests.',
+      useCases: ['Chat', 'IDE', 'Compréhension du code'],
+    },
+    'apply-to-paths': {
+      name: 'Utiliser les chemins applyTo',
+      description: 'Limiter les instructions personnalisées à des patterns de fichiers spécifiques avec les globs applyTo',
+      details:
+        'Les instructions spécifiques à un chemin (dans .github/instructions/) supportent le ' +
+        'frontmatter glob applyTo. Cela signifie que l\'instruction ne se charge que lorsque le ' +
+        'modèle travaille sur des fichiers correspondants — ex. : applyTo: "**/*.test.ts" pour ' +
+        'les conventions de test. C\'est du contexte gratuit quand non pertinent et du contexte ' +
+        'précis quand nécessaire.',
+      useCases: ['Instructions', 'Règles de test', 'Spécifique au framework'],
+    },
+    'skills-mcp': {
+      name: 'Exploiter Skills & MCP',
+      description: 'Les Skills et outils MCP se chargent à la demande — laissez le modèle les découvrir',
+      details:
+        'Les Skills et outils de serveur MCP sont découverts par le modèle en fonction de leurs ' +
+        'descriptions. Ils ne se chargent dans le contexte que lorsqu\'ils sont pertinents pour ' +
+        'le prompt en cours. C\'est beaucoup plus efficace en tokens que de coller le même guidage ' +
+        'dans chaque conversation. Écrivez des descriptions de skills claires et concises pour que ' +
+        'le modèle puisse décider précisément quand les activer.',
+      useCases: ['Skills', 'Serveurs MCP', 'Agents personnalisés'],
+    },
+    'context-command': {
+      name: '/context dans le CLI',
+      description: 'Surveiller l\'accumulation de contexte dans Copilot CLI ; la compaction se déclenche à l\'approche de la capacité',
+      details:
+        'Dans Copilot CLI, utilisez la commande /context pour voir combien de votre fenêtre de ' +
+        'contexte est consommée. À mesure que le contexte grandit, le CLI compacte (résume) ' +
+        'automatiquement l\'historique de conversation le plus ancien à l\'approche de la capacité. ' +
+        'Être conscient de la consommation de contexte vous aide à décider quand démarrer un ' +
+        'nouveau fil ou continuer un existant.',
+      useCases: ['CLI', 'Sessions longues', 'Gestion du contexte'],
+    },
+    'reuse-context': {
+      name: 'Stocker et réutiliser le contexte',
+      description: 'Charger le contexte partagé tôt pour que les questions suivantes puissent le référencer à moindre coût',
+      details:
+        'Stockez et réutilisez le contexte dans vos prompts. Par exemple, chargez un schéma de ' +
+        'base de données tôt dans la conversation pour que le travail suivant puisse le réutiliser ' +
+        '— posez des questions ciblées référençant ce contexte au lieu de le recoller à chaque ' +
+        'fois. C\'est particulièrement efficace dans le CLI où les sessions peuvent être longues ' +
+        'et le préfixe partagé active le cache de prompts.',
+      useCases: ['Sessions CLI', 'Chat', 'Travail orienté schéma'],
+    },
+    'prefix-matching': {
+      name: 'Cache de préfixe de prompt',
+      description: 'Le cache LLM dépend de correspondances exactes de préfixe — structurez vos prompts en conséquence',
+      details:
+        'Le cache de prompt LLM (tous fournisseurs confondus) dépend généralement de ' +
+        'correspondances exactes de préfixe. Par exemple, le cache de prompt Azure OpenAI ' +
+        'nécessite des prompts ≥ 1 024 tokens et que les 1 024 premiers tokens soient identiques ' +
+        'pour réutiliser le cache. Cela signifie que des prompts système et instructions stables ' +
+        'au début de votre prompt ont plus de chances de toucher le cache. Varier les préambules ' +
+        'annule le cache.',
+      useCases: ['Toutes les interactions', 'Optimisation des coûts', 'Performance'],
+    },
+    'choose-right-model': {
+      name: 'Choisir le bon modèle',
+      description: 'Les modèles varient en multiplicateur de coût et en capacité — adapter à votre tâche',
+      details:
+        'Les différents modèles ont des multiplicateurs de coût et des niveaux de capacité ' +
+        'différents. Utiliser un modèle premium pour une tâche simple gaspille des tokens et ' +
+        'de l\'argent. Utiliser un modèle basique pour une architecture complexe gaspille du ' +
+        'temps et produit de mauvais résultats. La clé est d\'adapter la capacité du modèle à ' +
+        'la complexité de la tâche. Vérifiez vos modèles disponibles et leurs coûts relatifs.',
+      useCases: ['Toutes les interactions', 'Planification budgétaire', 'Routage des tâches'],
+    },
+    'high-effort-tasks': {
+      name: 'Premium pour le travail complexe',
+      description: 'Utiliser des modèles à effort élevé pour l\'architecture profonde, le débogage complexe, le travail agentique',
+      details:
+        'Réservez les modèles premium/à effort élevé (Claude Opus, GPT-4.1, o3) aux tâches qui ' +
+        'nécessitent vraiment un raisonnement profond : décisions architecturales complexes, ' +
+        'débogage multi-fichiers délicat, grands workflows agentiques et revue de code sensible ' +
+        'à la sécurité. Ces modèles sont plus chers par token mais font gagner du temps en ' +
+        'trouvant la bonne réponse du premier coup.',
+      useCases: ['Architecture', 'Débogage', 'Revue de sécurité', 'Agent Mode'],
+    },
+    'low-effort-tasks': {
+      name: 'Mini pour les tâches simples',
+      description: 'Utiliser par défaut des modèles efficaces pour la synthèse, les Q&A rapides, les petits refactorings',
+      details:
+        'Utilisez des modèles mini/efficaces (GPT-4.1 mini, Claude Haiku, Gemini Flash) par ' +
+        'défaut pour la synthèse, les Q&A rapides, les petits refactorings et la génération de ' +
+        'code standard. Ces modèles sont significativement moins chers par token et assez rapides ' +
+        'pour les tâches simples. Les économies s\'accumulent rapidement quand la plupart de vos ' +
+        'interactions sont simples.',
+      useCases: ['Synthèse', 'Q&A', 'Refactoring', 'Code standard'],
+    },
+    'auto-mode': {
+      name: 'Utiliser le mode Auto',
+      description: 'Auto sélectionne le meilleur modèle en fonction de votre prompt — bon défaut pour la plupart des workflows',
+      details:
+        'Quand vous ne savez pas quel modèle utiliser, sélectionnez « Auto ». Le mode Auto ' +
+        'analyse votre prompt et le route vers le modèle le plus approprié — les questions ' +
+        'simples vont aux modèles efficaces, les tâches complexes aux modèles puissants. C\'est ' +
+        'un bon défaut pour la plupart des workflows et évite à la fois les dépenses excessives ' +
+        'sur les tâches simples et le sous-dimensionnement des tâches complexes.',
+      useCases: ['Workflow par défaut', 'Tâches mixtes', 'Nouveaux utilisateurs'],
+    },
+    'monitor-usage': {
+      name: 'Définir des budgets utilisateur',
+      description: 'Définir des budgets par utilisateur avec des défauts adaptés par persona',
+      details:
+        'Définissez des budgets par utilisateur avec des défauts adaptés par persona : ingénieur ' +
+        'IC vs utilisateur avancé vs agent CI. Commencez avec des limites prudentes et ajustez en ' +
+        'fonction de la consommation observée. Surveillez les schémas de forte consommation — une ' +
+        'seule session agentique peut consommer plus de tokens qu\'une semaine d\'interactions chat. ' +
+        'Utilisez le tableau de bord administrateur pour identifier les valeurs aberrantes et ajuster.',
+      useCases: ['Admin', 'Contrôle budgétaire', 'Gouvernance d\'équipe'],
+    },
+    'chronicle-tips': {
+      name: 'Insights Chronicle',
+      description: 'Utiliser /chronicle improve et /chronicle tips pour améliorer les workflows',
+      details:
+        'Copilot CLI inclut la commande /chronicle pour l\'intelligence de workflow. Utilisez ' +
+        '/chronicle improve pour obtenir des suggestions d\'optimisation de votre workflow actuel, ' +
+        'et /chronicle tips pour des recommandations générales d\'efficacité basées sur vos ' +
+        'schémas d\'utilisation. Ces commandes analysent votre historique de session et fournissent ' +
+        'des conseils personnalisés.',
+      useCases: ['CLI', 'Optimisation du workflow', 'Auto-amélioration'],
+    },
+  },
+  tipsInsights: [
+    {
+      icon: '💰',
+      content:
+        '<strong>Le contexte > les prompts pour le coût.</strong> Gérer le contexte qui alimente ' +
+        'chaque appel au modèle a un impact de coût bien plus important que l\'optimisation de ' +
+        'la formulation des prompts. Réduisez les fichiers, démarrez de nouveaux fils et utilisez ' +
+        'le contexte conditionnel.',
+    },
+    {
+      icon: '🎯',
+      content:
+        '<strong>Adapter le modèle à la tâche.</strong> N\'utilisez pas un modèle premium pour ' +
+        'un simple Q&A, et n\'utilisez pas un modèle mini pour une architecture complexe. Utilisez ' +
+        'le mode Auto en cas de doute — il route automatiquement.',
+    },
+    {
+      icon: '🔄',
+      content:
+        '<strong>Les boucles agentiques multiplient le coût.</strong> Une seule requête agentique ' +
+        'peut déclencher des dizaines d\'appels au modèle. Définissez des limites explicites ' +
+        '(« arrêter après le premier test réussi ») pour éviter une consommation incontrôlée ' +
+        'de tokens.',
+    },
+    {
+      icon: '📦',
+      content:
+        '<strong>Passer du permanent à la demande.</strong> Gardez les instructions minimales. ' +
+        'Les guidages lourds appartiennent aux Skills (chargés par le modèle quand pertinent) et ' +
+        'aux fichiers de prompt (invoqués explicitement), pas dans copilot-instructions.md.',
+    },
+  ],
 };
