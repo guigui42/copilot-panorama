@@ -576,14 +576,16 @@ const ComponentCard: React.FC<ComponentCardProps> = ({ component, layerColor, on
         {renderViz()}
       </div>
 
-      <div className="usecases">
-        <span className="usecases-label">{t.ui.useCasesLabel}</span>
-        {component.useCases.map((uc) => (
-          <span key={uc} className="usecase">
-            {uc}
-          </span>
-        ))}
-      </div>
+      {component.useCases.length > 0 && (
+        <div className="usecases">
+          <span className="usecases-label">{t.ui.useCasesLabel}</span>
+          {component.useCases.map((uc) => (
+            <span key={uc} className="usecase">
+              {uc}
+            </span>
+          ))}
+        </div>
+      )}
 
       {component.awesomeUrl && (
         <a
