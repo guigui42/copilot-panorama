@@ -388,8 +388,8 @@ export const es: Translations = {
 
   /* ── Tips page ── */
   tipsSeo: {
-    title: 'Copilot Panorama — Efficiency Tips',
-    description: 'Practical guide to optimizing GitHub Copilot usage — token management, prompt design, context scoping, model selection, and governance.',
+    title: 'Copilot Panorama — Consejos de eficiencia',
+    description: 'Guía práctica para optimizar el uso de GitHub Copilot — gestión de tokens, diseño de prompts, alcance de contexto, selección de modelos y gobernanza.',
   },
   tipsUi: {
     heroTitle: 'Efficiency Tips',
@@ -453,309 +453,314 @@ export const es: Translations = {
   },
   tipsLayers: {
     mechanics: {
-      title: 'Token Mechanics',
-      subtitle: 'Understand the cost drivers behind every Copilot interaction',
+      title: 'Mecánica de tokens',
+      subtitle: 'Entender los factores de coste detrás de cada interacción con Copilot',
     },
     prompting: {
       title: 'Prompting',
-      subtitle: 'Write prompts that produce better output with fewer tokens',
+      subtitle: 'Escribir prompts que produzcan mejores resultados con menos tokens',
     },
     context: {
-      title: 'Context',
-      subtitle: 'Feed the model exactly what it needs — no more, no less',
+      title: 'Contexto',
+      subtitle: 'Alimentar al modelo con exactamente lo que necesita — ni más, ni menos',
     },
     caching: {
-      title: 'Caching',
-      subtitle: 'Leverage prompt caching for faster, cheaper interactions',
+      title: 'Caché',
+      subtitle: 'Aprovechar el caché de prompts para interacciones más rápidas y económicas',
     },
     models: {
-      title: 'Models',
-      subtitle: 'Match model capability to task complexity',
+      title: 'Modelos',
+      subtitle: 'Ajustar la capacidad del modelo a la complejidad de la tarea',
     },
     governance: {
-      title: 'Governance',
-      subtitle: 'Monitor consumption and set guardrails at the organization level',
+      title: 'Gobernanza',
+      subtitle: 'Supervisar el consumo y establecer límites a nivel de organización',
     },
   },
   tipsComponents: {
     'token-billing': {
-      name: 'Token Cost Drivers',
-      description: 'Input, output, and cached-read tokens are the three billing dimensions',
+      name: 'Factores de coste de tokens',
+      description: 'Los tokens de entrada, salida y lectura en caché son las tres dimensiones de facturación',
       details:
-        'Under token-based billing, every interaction has three cost components: ' +
-        'input/context tokens (what you send), output tokens (what the model generates), ' +
-        'and cached-read tokens (cheaper but still metered). Input tokens include your ' +
-        'prompt, system instructions, file context, and tool outputs. Output tokens are ' +
-        'the model\'s response. Understanding these three dimensions is the foundation of ' +
-        'cost optimization.',
-      useCases: ['All Interactions', 'Budget Planning', 'Cost Analysis'],
+        'Con la facturación basada en tokens, cada interacción tiene tres componentes de coste: ' +
+        'tokens de entrada/contexto (lo que envías), tokens de salida (lo que el modelo genera) ' +
+        'y tokens de lectura en caché (más baratos pero igualmente medidos). Los tokens de entrada ' +
+        'incluyen tu prompt, instrucciones del sistema, contexto de archivos y salidas de herramientas. ' +
+        'Los tokens de salida son la respuesta del modelo. Comprender estas tres dimensiones es la ' +
+        'base de la optimización de costes.',
+      useCases: ['Todas las interacciones', 'Planificación de presupuesto', 'Análisis de costes'],
     },
     'agentic-cost': {
-      name: 'Agentic Cost Multiplier',
-      description: 'A single agentic request can trigger dozens of model calls',
+      name: 'Multiplicador de coste agéntico',
+      description: 'Una sola solicitud agéntica puede desencadenar decenas de llamadas al modelo',
       details:
-        'Agentic experiences (Agent Mode, Cloud Agent, CLI) iterate by design: ' +
-        'plan → edit → run tools/tests → fix → repeat. The same user intent can vary ' +
-        'dramatically in consumption depending on the workflow. A simple "fix this bug" ' +
-        'might take 2 calls or 20+ calls depending on complexity, tool outputs, and ' +
-        'error recovery loops. This is why workflow design matters more than prompt length.',
+        'Las experiencias agénticas (Agent Mode, Cloud Agent, CLI) iteran por diseño: ' +
+        'planificar → editar → ejecutar herramientas/tests → corregir → repetir. La misma ' +
+        'intención del usuario puede variar drásticamente en consumo según el workflow. Un ' +
+        'simple « corrige este bug » puede requerir 2 o más de 20 llamadas dependiendo de la ' +
+        'complejidad, las salidas de herramientas y los bucles de recuperación de errores. Por ' +
+        'eso el diseño del workflow importa más que la longitud del prompt.',
       useCases: ['Agent Mode', 'Cloud Agent', 'CLI Agent'],
     },
     'context-discipline': {
-      name: 'Context Discipline',
-      description: 'Cost optimization is mostly context discipline + workflow design',
+      name: 'Disciplina de contexto',
+      description: 'La optimización de costes es principalmente disciplina de contexto + diseño de workflow',
       details:
-        'The biggest cost lever isn\'t writing shorter prompts — it\'s managing what ' +
-        'context flows into each model call. Every file attachment, tool output, and ' +
-        'conversation history item adds input tokens. Disciplined context management ' +
-        '(scoping files, trimming logs, starting fresh threads) has a much larger ' +
-        'impact than wordsmithing prompts.',
-      useCases: ['All Workflows', 'Cost Optimization', 'Performance'],
+        'La mayor palanca de coste no es escribir prompts más cortos — es gestionar qué contexto ' +
+        'alimenta cada llamada al modelo. Cada archivo adjunto, salida de herramienta y elemento ' +
+        'del historial de conversación añade tokens de entrada. La gestión disciplinada del contexto ' +
+        '(acotar archivos, recortar logs, iniciar nuevos hilos) tiene un impacto mucho mayor que ' +
+        'reformular prompts.',
+      useCases: ['Todos los workflows', 'Optimización de costes', 'Rendimiento'],
     },
     'quality-over-quantity': {
-      name: 'Quality Over Quantity',
-      description: 'Focus on high-quality context, not more instructions',
+      name: 'Calidad sobre cantidad',
+      description: 'Centrarse en contexto de alta calidad, no en más instrucciones',
       details:
-        'More instructions ≠ better output. Scoped, high-quality guidance reduces ' +
-        'verbose, sprawling outputs. Instead of long preambles, give the model exactly ' +
-        'the context it needs: the relevant code, the specific requirement, and clear ' +
-        'constraints. Smaller scoped prompts also reduce runaway agentic sessions ' +
-        'where the agent keeps iterating without converging.',
-      useCases: ['Chat', 'Agent Mode', 'Prompt Files'],
+        'Más instrucciones ≠ mejor salida. Una guía enfocada y de alta calidad reduce las salidas ' +
+        'verbosas y dispersas. En lugar de largos preámbulos, dale al modelo exactamente el contexto ' +
+        'que necesita: el código relevante, el requisito específico y restricciones claras. Los ' +
+        'prompts más acotados también reducen las sesiones agénticas descontroladas donde el agente ' +
+        'sigue iterando sin converger.',
+      useCases: ['Chat', 'Agent Mode', 'Archivos de prompt'],
     },
     guardrails: {
-      name: 'Set Guardrails',
-      description: 'Agentic flows iterate until goal is met — set explicit bounds',
+      name: 'Establecer límites',
+      description: 'Los flujos agénticos iteran hasta alcanzar el objetivo — establecer límites explícitos',
       details:
-        'Agents iterate by design: plan → edit → run tools → fix → repeat. Without ' +
-        'bounds, an agent will keep going until it succeeds (or exhausts context). ' +
-        'Add declarative instructions like: "Make at most 2 alternative solutions; ' +
-        'stop after first passing test." or "If the first approach fails, explain why ' +
-        'and stop." This prevents runaway sessions that burn through tokens.',
-      useCases: ['Agent Mode', 'Cloud Agent', 'Custom Agents'],
+        'Los agentes iteran por diseño: planificar → editar → ejecutar herramientas → corregir → ' +
+        'repetir. Sin límites, un agente seguirá hasta tener éxito (o agotar el contexto). Añade ' +
+        'instrucciones declarativas como: « Proponer como máximo 2 soluciones alternativas; ' +
+        'detenerse tras el primer test exitoso. » o « Si el primer enfoque falla, explicar por ' +
+        'qué y detenerse. » Esto evita sesiones descontroladas que consumen tokens.',
+      useCases: ['Agent Mode', 'Cloud Agent', 'Agentes personalizados'],
     },
     'fresh-threads': {
-      name: 'Fresh Threads',
-      description: 'Start new conversations once decisions are shipped to durable artifacts',
+      name: 'Nuevos hilos de conversación',
+      description: 'Iniciar nuevas conversaciones una vez que las decisiones se han integrado en artefactos duraderos',
       details:
-        'Avoid long-lived sessions where tool outputs pile up in context. Each ' +
-        'accumulated tool output adds input tokens to every subsequent call. Once ' +
-        'you\'ve shipped the decision into a durable artifact (issue, PR description, ' +
-        'ADR, code commit), start a fresh thread. The new thread starts with a clean ' +
-        'context window and doesn\'t pay for stale conversation history.',
-      useCases: ['Chat', 'Agent Mode', 'CLI Sessions'],
+        'Evita sesiones prolongadas donde las salidas de herramientas se acumulan en el contexto. ' +
+        'Cada salida de herramienta acumulada añade tokens de entrada a cada llamada posterior. ' +
+        'Una vez que la decisión se ha integrado en un artefacto duradero (issue, descripción de PR, ' +
+        'ADR, commit de código), inicia un nuevo hilo. El nuevo hilo comienza con un contexto ' +
+        'limpio y no paga por el historial de conversación obsoleto.',
+      useCases: ['Chat', 'Agent Mode', 'Sesiones CLI'],
     },
     'concise-instructions': {
-      name: 'Minify Instructions',
-      description: 'Keep .github/copilot-instructions.md short, stable, and principled',
+      name: 'Minificar instrucciones',
+      description: 'Mantener .github/copilot-instructions.md corto, estable y basado en principios',
       details:
-        'Instructions load into every conversation automatically — they\'re always-on ' +
-        'context. Keep copilot-instructions.md short and stable: principles, conventions, ' +
-        '"don\'t do" rules. Every extra line adds input tokens to every single interaction. ' +
-        'Move detailed guidance (playbooks, examples, domain rules) to Skills or Prompt ' +
-        'Files where they load only when needed.',
-      useCases: ['Instructions', 'Cost Optimization', 'All Interactions'],
+        'Las instrucciones se cargan en cada conversación automáticamente — son contexto ' +
+        'permanente. Mantén copilot-instructions.md corto y estable: principios, convenciones, ' +
+        'reglas de « no hacer ». Cada línea extra añade tokens de entrada a cada interacción. ' +
+        'Mueve las guías detalladas (playbooks, ejemplos, reglas de dominio) a Skills o archivos ' +
+        'de prompt donde solo se cargan cuando es necesario.',
+      useCases: ['Instrucciones', 'Optimización de costes', 'Todas las interacciones'],
     },
     'structure-for-reuse': {
-      name: 'Structure for Reuse',
-      description: 'Use Skills for heavy guidance, Prompt Files for repetitive workflows',
+      name: 'Estructurar para la reutilización',
+      description: 'Usar Skills para guías pesadas, archivos de prompt para workflows repetitivos',
       details:
-        'Put heavy guidance (playbooks, examples, domain rules, runbooks) into Agent ' +
-        'Skills so it loads only when the user\'s prompt matches. Put repetitive ' +
-        'workflows (e.g., "write unit tests," "create ADR," "generate changelog") into ' +
-        'Prompt Files so users don\'t paste huge instructions every time. This moves ' +
-        'context from always-on (expensive) to on-demand (efficient).',
-      useCases: ['Skills', 'Prompt Files', 'Team Workflows'],
+        'Coloca las guías pesadas (playbooks, ejemplos, reglas de dominio, runbooks) en Agent ' +
+        'Skills para que solo se carguen cuando el prompt del usuario coincida. Coloca los ' +
+        'workflows repetitivos (ej.: « escribir tests unitarios », « crear un ADR », « generar ' +
+        'un changelog ») en archivos de prompt para que los usuarios no peguen instrucciones ' +
+        'enormes cada vez. Esto mueve el contexto de permanente (costoso) a bajo demanda (eficiente).',
+      useCases: ['Skills', 'Archivos de prompt', 'Workflows de equipo'],
     },
     'concise-answers': {
-      name: 'Ask for Less',
-      description: 'Instruct for the smallest useful answer to minimize output tokens',
+      name: 'Pedir menos',
+      description: 'Solicitar la respuesta útil más pequeña para minimizar los tokens de salida',
       details:
-        'Output tokens are the most expensive dimension. Ask for the minimal useful ' +
-        'response: "Give me the minimal diff + 3 bullet justification" instead of ' +
-        '"explain everything." "List only breaking changes; omit background" when doing ' +
-        'upgrades/migrations. Smaller outputs also mean faster responses and less noise ' +
-        'to read through.',
-      useCases: ['Chat', 'Code Review', 'Migrations'],
+        'Los tokens de salida son la dimensión más costosa. Pide la respuesta mínima útil: ' +
+        '« Dame el diff mínimo + 3 puntos de justificación » en lugar de « explica todo ». ' +
+        '« Listar solo cambios que rompen compatibilidad; omitir contexto » al hacer ' +
+        'actualizaciones/migraciones. Salidas más pequeñas también significan respuestas más ' +
+        'rápidas y menos ruido que leer.',
+      useCases: ['Chat', 'Revisión de código', 'Migraciones'],
     },
     'scope-context': {
-      name: 'Scope Context Intentionally',
-      description: 'Prefer targeted context (one file) over "whole repo" unless truly needed',
+      name: 'Acotar el contexto intencionalmente',
+      description: 'Preferir contexto específico (un archivo) en lugar de « todo el repo » salvo que sea realmente necesario',
       details:
-        'Use targeted context: only the relevant file or function, not the whole repo. ' +
-        '"Attach only the failing test output, not the full logs." Whole-repo context ' +
-        '(#codebase) is powerful but expensive — use it only for cross-cutting changes ' +
-        'that genuinely need global reasoning. For narrow questions, #file is almost ' +
-        'always sufficient and much cheaper.',
+        'Usa contexto específico: solo el archivo o función relevante, no todo el repositorio. ' +
+        '« Adjuntar solo la salida del test fallido, no los logs completos. » El contexto de todo ' +
+        'el repositorio (#codebase) es potente pero costoso — úsalo solo para cambios transversales ' +
+        'que genuinamente necesiten razonamiento global. Para preguntas específicas, #file es casi ' +
+        'siempre suficiente y mucho más barato.',
       useCases: ['Chat', 'Agent Mode', 'CLI'],
     },
     'conditional-context': {
-      name: 'Conditional Over Always-On',
-      description: 'Prefer context that loads only when relevant to the current task',
+      name: 'Condicional en lugar de permanente',
+      description: 'Preferir contexto que se carga solo cuando es relevante para la tarea actual',
       details:
-        'Always-on context (copilot-instructions.md) loads in every conversation and ' +
-        'costs tokens every time. Conditional context (Skills, path-scoped instructions) ' +
-        'loads only when relevant. Move specialized guidance to Skills where the model ' +
-        'decides when to load them, or use applyTo globs so instructions only apply to ' +
-        'matching files.',
-      useCases: ['Instructions', 'Skills', 'Path Scoping'],
+        'El contexto permanente (copilot-instructions.md) se carga en cada conversación y cuesta ' +
+        'tokens cada vez. El contexto condicional (Skills, instrucciones con alcance de ruta) solo ' +
+        'se carga cuando es relevante. Mueve las guías especializadas a Skills donde el modelo ' +
+        'decide cuándo cargarlas, o usa globs applyTo para que las instrucciones solo se apliquen ' +
+        'a archivos coincidentes.',
+      useCases: ['Instrucciones', 'Skills', 'Alcance por ruta'],
     },
     'targeted-refs': {
-      name: 'Use Targeted References',
-      description: 'Use #file for narrow questions, #codebase only for cross-cutting changes',
+      name: 'Usar referencias específicas',
+      description: 'Usar #file para preguntas específicas, #codebase solo para cambios transversales',
       details:
-        'Chat references (#file, #selection, #codebase) control exactly what context ' +
-        'the model sees. Use #file for focused questions about specific code. Use ' +
-        '#selection for even narrower scope. Reserve #codebase for cross-cutting changes ' +
-        'where the model genuinely needs to understand the whole project. Attach only ' +
-        'the failing test output, not the full test suite logs.',
-      useCases: ['Chat', 'IDE', 'Code Understanding'],
+        'Las referencias de chat (#file, #selection, #codebase) controlan exactamente qué contexto ' +
+        've el modelo. Usa #file para preguntas enfocadas sobre código específico. Usa #selection ' +
+        'para un alcance aún más estrecho. Reserva #codebase para cambios transversales donde el ' +
+        'modelo genuinamente necesita entender todo el proyecto. Adjunta solo la salida del test ' +
+        'fallido, no los logs de toda la suite de tests.',
+      useCases: ['Chat', 'IDE', 'Comprensión de código'],
     },
     'apply-to-paths': {
-      name: 'Use applyTo Paths',
-      description: 'Scope custom instructions to specific file patterns with applyTo globs',
+      name: 'Usar rutas applyTo',
+      description: 'Limitar instrucciones personalizadas a patrones de archivos específicos con globs applyTo',
       details:
-        'Path-specific instructions (in .github/instructions/) support applyTo glob ' +
-        'frontmatter. This means the instruction only loads when the model is working ' +
-        'on matching files — e.g., applyTo: "**/*.test.ts" for testing conventions. ' +
-        'This is free context when not relevant and precise context when needed.',
-      useCases: ['Instructions', 'Testing Rules', 'Framework-Specific'],
+        'Las instrucciones específicas de ruta (en .github/instructions/) soportan frontmatter ' +
+        'glob applyTo. Esto significa que la instrucción solo se carga cuando el modelo trabaja ' +
+        'en archivos coincidentes — ej.: applyTo: "**/*.test.ts" para convenciones de testing. ' +
+        'Es contexto gratuito cuando no es relevante y contexto preciso cuando es necesario.',
+      useCases: ['Instrucciones', 'Reglas de testing', 'Específico del framework'],
     },
     'skills-mcp': {
-      name: 'Leverage Skills & MCP',
-      description: 'Skills and MCP tools load on demand — let the model discover them',
+      name: 'Aprovechar Skills & MCP',
+      description: 'Skills y herramientas MCP se cargan bajo demanda — deja que el modelo las descubra',
       details:
-        'Skills and MCP server tools are discovered by the model based on descriptions. ' +
-        'They load into context only when relevant to the current prompt. This is much ' +
-        'more token-efficient than pasting the same guidance into every conversation. ' +
-        'Write clear, concise skill descriptions so the model can accurately decide ' +
-        'when to activate them.',
-      useCases: ['Skills', 'MCP Servers', 'Custom Agents'],
+        'Skills y herramientas de servidor MCP son descubiertas por el modelo basándose en sus ' +
+        'descripciones. Solo se cargan en el contexto cuando son relevantes para el prompt actual. ' +
+        'Esto es mucho más eficiente en tokens que pegar la misma guía en cada conversación. ' +
+        'Escribe descripciones de skills claras y concisas para que el modelo pueda decidir con ' +
+        'precisión cuándo activarlas.',
+      useCases: ['Skills', 'Servidores MCP', 'Agentes personalizados'],
     },
     'context-command': {
-      name: '/context in CLI',
-      description: 'Watch context accumulation in Copilot CLI; compaction triggers near capacity',
+      name: '/context en CLI',
+      description: 'Monitorizar la acumulación de contexto en Copilot CLI; la compactación se activa cerca de la capacidad',
       details:
-        'In Copilot CLI, use the /context command to see how much of your context window ' +
-        'is consumed. As context grows, the CLI automatically compacts (summarizes) older ' +
-        'conversation history near capacity. Being aware of context consumption helps you ' +
-        'decide when to start a fresh thread vs. continue an existing one.',
-      useCases: ['CLI', 'Long Sessions', 'Context Management'],
+        'En Copilot CLI, usa el comando /context para ver cuánto de tu ventana de contexto está ' +
+        'consumida. A medida que el contexto crece, el CLI compacta (resume) automáticamente el ' +
+        'historial de conversación más antiguo al acercarse a la capacidad. Ser consciente del ' +
+        'consumo de contexto te ayuda a decidir cuándo iniciar un nuevo hilo o continuar uno ' +
+        'existente.',
+      useCases: ['CLI', 'Sesiones largas', 'Gestión de contexto'],
     },
     'reuse-context': {
-      name: 'Store & Reuse Context',
-      description: 'Load shared context early so subsequent questions can reference it cheaply',
+      name: 'Almacenar y reutilizar contexto',
+      description: 'Cargar contexto compartido temprano para que las preguntas posteriores puedan referenciarlo de forma económica',
       details:
-        'Store and reuse context within your prompts. For instance, load a database ' +
-        'schema early in the conversation so subsequent work can reuse it — ask targeted ' +
-        'questions referencing that context instead of re-pasting it each time. This is ' +
-        'especially effective in the CLI where sessions can be long-lived and the shared ' +
-        'prefix enables prompt caching.',
-      useCases: ['CLI Sessions', 'Chat', 'Schema-Heavy Work'],
+        'Almacena y reutiliza contexto dentro de tus prompts. Por ejemplo, carga un esquema de ' +
+        'base de datos temprano en la conversación para que el trabajo posterior pueda reutilizarlo ' +
+        '— haz preguntas específicas referenciando ese contexto en lugar de volver a pegarlo cada ' +
+        'vez. Esto es especialmente efectivo en el CLI donde las sesiones pueden ser prolongadas y ' +
+        'el prefijo compartido habilita el caché de prompts.',
+      useCases: ['Sesiones CLI', 'Chat', 'Trabajo con esquemas'],
     },
     'prefix-matching': {
-      name: 'Prompt Prefix Caching',
-      description: 'LLM caching depends on exact prefix matches — structure prompts accordingly',
+      name: 'Caché de prefijo de prompt',
+      description: 'El caché de LLM depende de coincidencias exactas de prefijo — estructura tus prompts en consecuencia',
       details:
-        'LLM prompt caching (across providers) generally depends on exact prefix matches. ' +
-        'For example, Azure OpenAI prompt caching requires prompts ≥ 1,024 tokens and the ' +
-        'first 1,024 tokens identical to get cache reuse. This means stable system prompts ' +
-        'and instructions at the start of your prompt are more likely to hit the cache. ' +
-        'Varying preambles defeat caching.',
-      useCases: ['All Interactions', 'Cost Optimization', 'Performance'],
+        'El caché de prompt de LLM (entre proveedores) generalmente depende de coincidencias ' +
+        'exactas de prefijo. Por ejemplo, el caché de prompt de Azure OpenAI requiere prompts ' +
+        '≥ 1.024 tokens y que los primeros 1.024 tokens sean idénticos para reutilizar el caché. ' +
+        'Esto significa que los prompts de sistema e instrucciones estables al inicio de tu prompt ' +
+        'tienen más probabilidad de acertar en el caché. Variar los preámbulos anula el caché.',
+      useCases: ['Todas las interacciones', 'Optimización de costes', 'Rendimiento'],
     },
     'choose-right-model': {
-      name: 'Choose the Right Model',
-      description: 'Models vary by cost multiplier and capability — match to your task',
+      name: 'Elegir el modelo adecuado',
+      description: 'Los modelos varían en multiplicador de coste y capacidad — ajustar a tu tarea',
       details:
-        'Different models have different cost multipliers and capability levels. Using a ' +
-        'premium model for a simple task wastes tokens and money. Using a basic model for ' +
-        'complex architecture wastes time and produces poor results. The key is matching ' +
-        'model capability to task complexity. Check your available models and their ' +
-        'relative costs.',
-      useCases: ['All Interactions', 'Budget Planning', 'Task Routing'],
+        'Los diferentes modelos tienen diferentes multiplicadores de coste y niveles de capacidad. ' +
+        'Usar un modelo premium para una tarea simple desperdicia tokens y dinero. Usar un modelo ' +
+        'básico para arquitectura compleja desperdicia tiempo y produce malos resultados. La clave ' +
+        'es ajustar la capacidad del modelo a la complejidad de la tarea. Verifica tus modelos ' +
+        'disponibles y sus costes relativos.',
+      useCases: ['Todas las interacciones', 'Planificación de presupuesto', 'Enrutamiento de tareas'],
     },
     'high-effort-tasks': {
-      name: 'Premium for Complex Work',
-      description: 'Use higher-effort models for deep architecture, tricky debugging, agentic work',
+      name: 'Premium para trabajo complejo',
+      description: 'Usar modelos de alto esfuerzo para arquitectura profunda, depuración compleja, trabajo agéntico',
       details:
-        'Reserve premium/high-effort models (Claude Opus, GPT-4.1, o3) for tasks that ' +
-        'genuinely need deep reasoning: complex architecture decisions, tricky multi-file ' +
-        'debugging, large agentic workflows, and security-sensitive code review. These ' +
-        'models are more expensive per token but save time by getting it right the first time.',
-      useCases: ['Architecture', 'Debugging', 'Security Review', 'Agent Mode'],
+        'Reserva los modelos premium/de alto esfuerzo (Claude Opus, GPT-4.1, o3) para tareas que ' +
+        'genuinamente necesiten razonamiento profundo: decisiones arquitectónicas complejas, ' +
+        'depuración multi-archivo difícil, grandes workflows agénticos y revisión de código ' +
+        'sensible a la seguridad. Estos modelos son más caros por token pero ahorran tiempo al ' +
+        'acertar a la primera.',
+      useCases: ['Arquitectura', 'Depuración', 'Revisión de seguridad', 'Agent Mode'],
     },
     'low-effort-tasks': {
-      name: 'Mini for Simple Tasks',
-      description: 'Default to efficient models for summarization, quick Q&A, small refactors',
+      name: 'Mini para tareas simples',
+      description: 'Usar por defecto modelos eficientes para resúmenes, Q&A rápido, pequeños refactors',
       details:
-        'Use mini/efficient models (GPT-4.1 mini, Claude Haiku, Gemini Flash) as your ' +
-        'default for summarization, quick Q&A, small refactors, and boilerplate generation. ' +
-        'These models are significantly cheaper per token and fast enough for simple tasks. ' +
-        'The cost savings compound quickly when most of your interactions are simple.',
-      useCases: ['Summarization', 'Q&A', 'Refactoring', 'Boilerplate'],
+        'Usa modelos mini/eficientes (GPT-4.1 mini, Claude Haiku, Gemini Flash) como tu opción ' +
+        'predeterminada para resúmenes, Q&A rápido, pequeños refactors y generación de código ' +
+        'estándar. Estos modelos son significativamente más baratos por token y suficientemente ' +
+        'rápidos para tareas simples. El ahorro se acumula rápidamente cuando la mayoría de tus ' +
+        'interacciones son simples.',
+      useCases: ['Resúmenes', 'Q&A', 'Refactoring', 'Código estándar'],
     },
     'auto-mode': {
-      name: 'Use Auto Mode',
-      description: 'Auto selects the best model based on your prompt — good default for most workflows',
+      name: 'Usar modo Auto',
+      description: 'Auto selecciona el mejor modelo según tu prompt — buen valor predeterminado para la mayoría de workflows',
       details:
-        'When unsure which model to use, select "Auto." Auto mode analyzes your prompt ' +
-        'and routes it to the most appropriate model — simple questions go to efficient ' +
-        'models, complex tasks go to capable ones. This is a good default for most ' +
-        'workflows and avoids both overspending on simple tasks and underpowering complex ones.',
-      useCases: ['Default Workflow', 'Mixed Tasks', 'New Users'],
+        'Cuando no sepas qué modelo usar, selecciona « Auto ». El modo Auto analiza tu prompt y ' +
+        'lo enruta al modelo más apropiado — las preguntas simples van a modelos eficientes, las ' +
+        'tareas complejas a modelos potentes. Es un buen valor predeterminado para la mayoría de ' +
+        'workflows y evita tanto el gasto excesivo en tareas simples como el subdimensionamiento ' +
+        'en tareas complejas.',
+      useCases: ['Workflow predeterminado', 'Tareas mixtas', 'Nuevos usuarios'],
     },
     'monitor-usage': {
-      name: 'Set User Budgets',
-      description: 'Set user-level budgets with sensible defaults by persona',
+      name: 'Definir presupuestos de usuario',
+      description: 'Definir presupuestos por usuario con valores predeterminados adecuados por persona',
       details:
-        'Set user-level budgets with sensible defaults by persona: IC engineer vs power ' +
-        'user vs CI agent. Start with conservative limits and tune based on observed ' +
-        'consumption. Monitor heavy usage patterns — a single agentic session can consume ' +
-        'more tokens than a week of chat interactions. Use the admin dashboard to identify ' +
-        'outliers and adjust.',
-      useCases: ['Admin', 'Budget Control', 'Team Governance'],
+        'Define presupuestos por usuario con valores predeterminados adecuados por persona: ' +
+        'ingeniero IC vs usuario avanzado vs agente CI. Comienza con límites conservadores y ' +
+        'ajusta según el consumo observado. Monitoriza patrones de alto consumo — una sola sesión ' +
+        'agéntica puede consumir más tokens que una semana de interacciones de chat. Usa el panel ' +
+        'de administración para identificar valores atípicos y ajustar.',
+      useCases: ['Admin', 'Control de presupuesto', 'Gobernanza de equipo'],
     },
     'chronicle-tips': {
-      name: 'Chronicle Insights',
-      description: 'Use /chronicle improve and /chronicle tips for workflow improvements',
+      name: 'Insights de Chronicle',
+      description: 'Usar /chronicle improve y /chronicle tips para mejorar los workflows',
       details:
-        'Copilot CLI includes the /chronicle command for workflow intelligence. Use ' +
-        '/chronicle improve to get suggestions for optimizing your current workflow, ' +
-        'and /chronicle tips for general efficiency recommendations based on your usage ' +
-        'patterns. These commands analyze your session history and provide personalized ' +
-        'guidance.',
-      useCases: ['CLI', 'Workflow Optimization', 'Self-Improvement'],
+        'Copilot CLI incluye el comando /chronicle para inteligencia de workflow. Usa ' +
+        '/chronicle improve para obtener sugerencias de optimización de tu workflow actual, ' +
+        'y /chronicle tips para recomendaciones generales de eficiencia basadas en tus patrones ' +
+        'de uso. Estos comandos analizan tu historial de sesión y proporcionan orientación ' +
+        'personalizada.',
+      useCases: ['CLI', 'Optimización de workflow', 'Auto-mejora'],
     },
   },
   tipsInsights: [
     {
       icon: '💰',
       content:
-        '<strong>Context > Prompts for cost.</strong> Managing what context flows into each ' +
-        'model call has a much larger cost impact than optimizing prompt wording. Trim files, ' +
-        'start fresh threads, and use conditional context.',
+        '<strong>El contexto > los prompts para el coste.</strong> Gestionar qué contexto alimenta ' +
+        'cada llamada al modelo tiene un impacto de coste mucho mayor que optimizar la redacción ' +
+        'del prompt. Recorta archivos, inicia nuevos hilos y usa contexto condicional.',
     },
     {
       icon: '🎯',
       content:
-        '<strong>Match model to task.</strong> Don\'t use a premium model for simple Q&A, and ' +
-        'don\'t use a mini model for complex architecture. Use Auto mode when unsure — it routes ' +
-        'automatically.',
+        '<strong>Ajustar el modelo a la tarea.</strong> No uses un modelo premium para un simple ' +
+        'Q&A, y no uses un modelo mini para arquitectura compleja. Usa el modo Auto en caso de ' +
+        'duda — enruta automáticamente.',
     },
     {
       icon: '🔄',
       content:
-        '<strong>Agentic loops multiply cost.</strong> A single agentic request can trigger ' +
-        'dozens of model calls. Set explicit bounds ("stop after first passing test") to ' +
-        'prevent runaway token consumption.',
+        '<strong>Los bucles agénticos multiplican el coste.</strong> Una sola solicitud agéntica ' +
+        'puede desencadenar decenas de llamadas al modelo. Establece límites explícitos ' +
+        '(« detenerse tras el primer test exitoso ») para evitar un consumo descontrolado de tokens.',
     },
     {
       icon: '📦',
       content:
-        '<strong>Move from always-on to on-demand.</strong> Keep instructions minimal. Heavy ' +
-        'guidance belongs in Skills (loaded by the model when relevant) and Prompt Files ' +
-        '(invoked explicitly), not in copilot-instructions.md.',
+        '<strong>Pasar de permanente a bajo demanda.</strong> Mantén las instrucciones mínimas. ' +
+        'Las guías pesadas pertenecen a Skills (cargadas por el modelo cuando es relevante) y ' +
+        'archivos de prompt (invocados explícitamente), no en copilot-instructions.md.',
     },
   ],
 };
