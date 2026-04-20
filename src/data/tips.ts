@@ -170,7 +170,7 @@ function buildTipComponent(id: string, t: Translations): Component {
     name: text.name,
     description: text.description,
     details: text.details,
-    useCases: text.useCases,
+    useCases: [],
   };
 }
 
