@@ -84,7 +84,7 @@ const Header: React.FC<HeaderProps> = ({ theme, onToggleTheme, page, onPageChang
             onClick={() => onPageChange('tips')}
             aria-current={page === 'tips' ? 'page' : undefined}
           >
-            {t.ui.pageTips}
+            {t.tipsUi.pageTips}
           </button>
         </nav>
 
