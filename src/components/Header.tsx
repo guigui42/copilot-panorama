@@ -79,7 +79,13 @@ const Header: React.FC<HeaderProps> = ({ theme, onToggleTheme, page, onPageChang
           >
             {t.ui.pageTools}
           </button>
-          {/* Tips tab hidden for now — page still accessible via ?page=tips direct link */}
+          <button
+            className={`page-switcher-btn ${page === 'tips' ? 'page-switcher-btn--active' : ''}`}
+            onClick={() => onPageChange('tips')}
+            aria-current={page === 'tips' ? 'page' : undefined}
+          >
+            {t.ui.pageTips}
+          </button>
         </nav>
 
         <div className="hero-menu-wrapper" ref={menuRef}>
