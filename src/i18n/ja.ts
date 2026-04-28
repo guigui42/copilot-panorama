@@ -436,6 +436,8 @@ export const ja: Translations = {
     powerUser: 'パワーユーザー',
     ciAgent: 'CIエージェント',
     stopAfterTest: '最初のテスト成功後に停止',
+    cavemanResponse: 'caveman mode → トークン約75%削減',
+    snipResponse: 'snip → 圧縮された指示',
   },
   tipsLayers: {
     mechanics: {
@@ -560,6 +562,28 @@ export const ja: Translations = {
         'マイグレーション時は「破壊的変更のみ列挙、背景は省略」。小さな出力はレスポンスが' +
         '速く、読み飛ばすノイズも少なくなります。',
       useCases: ['Chat', 'コードレビュー', 'マイグレーション'],
+    },
+    'caveman-skill': {
+      name: 'Caveman スキル',
+      description: '超圧縮レスポンスで出力トークンを約75%削減するコミュニティスキル',
+      details:
+        'Cavemanは、モデルに圧縮された電報スタイルで応答するよう指示するコミュニティAgent Skillです。' +
+        '冠詞、フィラーワード、ボイラープレートを省略しながら技術的な正確さを完全に維持します。' +
+        '出力トークンを約75%削減できます。スキルをインストールして「caveman mode」と言うだけで' +
+        'オンになります。liteからultraまで複数の強度レベルをサポート。ノイズのない簡潔な回答を' +
+        '求める経験豊富な開発者に最適です。',
+      useCases: ['Chat', 'CLI', 'コードレビュー'],
+    },
+    'snip-skill': {
+      name: 'Snip スキル',
+      description: '指示を圧縮しトークン使用量を削減してコンテキストを最適化するコミュニティスキル',
+      details:
+        'Snipは、指示を自動的に再構成・圧縮することでトークン使用量を最適化するコミュニティAgent ' +
+        'Skillです。長いプロンプトとコンテキストを意味を保持しながらよりコンパクトな形に書き換え、' +
+        '入出力両方のトークンを削減します。スキルをインストールするだけでCopilotのインタラクション' +
+        '全体に自動的に適用されます。大規模なコードベースや複雑なマルチファイルワークフローに' +
+        '特に有用です。',
+      useCases: ['Chat', 'エージェントモード', 'CLI'],
     },
     'scope-context': {
       name: 'コンテキストを意図的にスコープする',

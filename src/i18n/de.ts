@@ -440,6 +440,8 @@ export const de: Translations = {
     powerUser: 'Power-User',
     ciAgent: 'CI-Agent',
     stopAfterTest: 'Nach erstem bestandenem Test stoppen',
+    cavemanResponse: 'caveman mode → ~75% weniger Tokens',
+    snipResponse: 'snip → komprimierte Anweisungen',
   },
   tipsLayers: {
     mechanics: {
@@ -567,6 +569,28 @@ export const de: Translations = {
         'upgrades/migrations. Smaller outputs also mean faster responses and less noise ' +
         'to read through.',
       useCases: ['Chat', 'Code Review', 'Migrations'],
+    },
+    'caveman-skill': {
+      name: 'Caveman Skill',
+      description: 'Community skill that cuts ~75% of output tokens via ultra-compressed responses',
+      details:
+        'Caveman is a community Agent Skill that instructs the model to respond in compressed, ' +
+        'telegraphic style — dropping articles, filler words, and boilerplate while keeping full ' +
+        'technical accuracy. It can cut output tokens by ~75%. Install the skill and say ' +
+        '"caveman mode" to toggle it on. Supports multiple intensity levels from lite to ultra. ' +
+        'Great for experienced developers who want concise answers without noise.',
+      useCases: ['Chat', 'CLI', 'Code Review'],
+    },
+    'snip-skill': {
+      name: 'Snip Skill',
+      description: 'Community skill that optimizes context by compressing instructions and reducing token usage',
+      details:
+        'Snip is a community Agent Skill that optimizes token usage by restructuring and ' +
+        'compressing instructions automatically. It rewrites lengthy prompts and context into ' +
+        'a more compact form while preserving meaning, reducing both input and output tokens. ' +
+        'Install the skill to apply it automatically across your Copilot interactions. ' +
+        'Especially useful for large codebases and complex multi-file workflows.',
+      useCases: ['Chat', 'Agent Mode', 'CLI'],
     },
     'scope-context': {
       name: 'Scope Context Intentionally',

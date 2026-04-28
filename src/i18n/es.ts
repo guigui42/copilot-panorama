@@ -450,6 +450,8 @@ export const es: Translations = {
     powerUser: 'Power user',
     ciAgent: 'Agente CI',
     stopAfterTest: 'Parar tras el primer test exitoso',
+    cavemanResponse: 'caveman mode → ~75% menos tokens',
+    snipResponse: 'snip → instrucciones comprimidas',
   },
   tipsLayers: {
     mechanics: {
@@ -578,6 +580,29 @@ export const es: Translations = {
         'actualizaciones/migraciones. Salidas más pequeñas también significan respuestas más ' +
         'rápidas y menos ruido que leer.',
       useCases: ['Chat', 'Revisión de código', 'Migraciones'],
+    },
+    'caveman-skill': {
+      name: 'Skill Caveman',
+      description: 'Skill comunitario que reduce ~75% de tokens de salida con respuestas ultra-comprimidas',
+      details:
+        'Caveman es un Agent Skill comunitario que instruye al modelo a responder en estilo ' +
+        'comprimido y telegráfico — eliminando artículos, palabras de relleno y boilerplate ' +
+        'manteniendo la precisión técnica completa. Puede reducir los tokens de salida en ~75%. ' +
+        'Instala el skill y di « caveman mode » para activarlo. Soporta múltiples niveles de ' +
+        'intensidad desde lite hasta ultra. Ideal para desarrolladores experimentados que quieren ' +
+        'respuestas concisas sin ruido.',
+      useCases: ['Chat', 'CLI', 'Revisión de código'],
+    },
+    'snip-skill': {
+      name: 'Skill Snip',
+      description: 'Skill comunitario que optimiza el contexto comprimiendo instrucciones y reduciendo tokens',
+      details:
+        'Snip es un Agent Skill comunitario que optimiza el uso de tokens reestructurando y ' +
+        'comprimiendo instrucciones automáticamente. Reescribe prompts largos y contexto en una ' +
+        'forma más compacta preservando el significado, reduciendo tokens de entrada y salida. ' +
+        'Instala el skill para aplicarlo automáticamente en tus interacciones con Copilot. ' +
+        'Especialmente útil para grandes bases de código y workflows complejos de múltiples archivos.',
+      useCases: ['Chat', 'Modo Agente', 'CLI'],
     },
     'scope-context': {
       name: 'Acotar el contexto intencionalmente',
