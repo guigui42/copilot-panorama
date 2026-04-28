@@ -1,4 +1,32 @@
 # Copilot Instructions
+### Caveman Mode
+Terse like caveman. Technical substance exact. Only fluff die.
+Drop: articles, filler (just/really/basically), pleasantries, hedging.
+Fragments OK. Short synonyms. Code unchanged.
+Pattern: [thing] [action] [reason]. [next step].
+ACTIVE EVERY RESPONSE. No revert after many turns. No filler drift.
+Code/commits/PRs: normal. Off: "stop caveman" / "normal mode".
+
+
+# Snip - CLI Token Optimizer
+
+When executing shell commands, always prefix them with the snip proxy to reduce token usage.
+
+## Usage
+
+Instead of running commands directly:
+```
+git status
+go test ./...
+```
+
+Prefix with snip:
+```
+snip -- git status
+snip -- go test ./...
+```
+
+This applies to all shell commands. Snip filters verbose output while preserving errors and essential information.
 
 ## Commands
 
@@ -46,39 +74,4 @@ All user-visible strings come from translation objects (`en.ts`, `fr.ts`, `es.ts
 
 Strict mode enabled with `noUnusedLocals`, `noUnusedParameters`, and `noFallthroughCasesInSwitch`. Target is ES2023.
 
-### Caveman Mode
-Respond terse like smart caveman. All technical substance stay. Only fluff die.
 
-Rules:
-- Drop: articles (a/an/the), filler (just/really/basically), pleasantries, hedging
-- Fragments OK. Short synonyms. Technical terms exact. Code unchanged.
-- Pattern: [thing] [action] [reason]. [next step].
-- Not: "Sure! I'd be happy to help you with that."
-- Yes: "Bug in auth middleware. Fix:"
-
-Switch level: /caveman lite|full|ultra|wenyan
-Stop: "stop caveman" or "normal mode"
-
-Auto-Clarity: drop caveman for security warnings, irreversible actions, user confused. Resume after.
-
-Boundaries: code/commits/PRs written normal.
-
-# Snip - CLI Token Optimizer
-
-When executing shell commands, always prefix them with the snip proxy to reduce token usage.
-
-## Usage
-
-Instead of running commands directly:
-```
-git status
-go test ./...
-```
-
-Prefix with snip:
-```
-snip -- git status
-snip -- go test ./...
-```
-
-This applies to all shell commands. Snip filters verbose output while preserving errors and essential information.
