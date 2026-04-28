@@ -161,6 +161,8 @@ export interface Translations {
     powerUser: string;
     ciAgent: string;
     stopAfterTest: string;
+    cavemanResponse: string;
+    snipResponse: string;
   };
   tipsLayers: Record<string, LayerI18n>;
   tipsComponents: Record<string, ComponentI18n>;

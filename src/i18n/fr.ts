@@ -454,6 +454,8 @@ export const fr: Translations = {
     powerUser: 'Power user',
     ciAgent: 'Agent CI',
     stopAfterTest: 'Arrêter après le premier test réussi',
+    cavemanResponse: 'caveman mode → ~75% tokens en moins',
+    snipResponse: 'snip → instructions compressées',
   },
   tipsLayers: {
     mechanics: {
@@ -585,6 +587,29 @@ export const fr: Translations = {
         'lors des mises à jour/migrations. Des sorties plus petites signifient aussi des réponses ' +
         'plus rapides et moins de bruit à lire.',
       useCases: ['Chat', 'Revue de code', 'Migrations'],
+    },
+    'caveman-skill': {
+      name: 'Skill Caveman',
+      description: 'Skill communautaire qui réduit ~75% des tokens de sortie via des réponses ultra-compressées',
+      details:
+        'Caveman est un Agent Skill communautaire qui instruit le modèle à répondre dans un style ' +
+        'compressé et télégraphique — supprimant les articles, mots de remplissage et le boilerplate ' +
+        'tout en conservant la précision technique. Il peut réduire les tokens de sortie d\'environ 75%. ' +
+        'Installez le skill et dites « caveman mode » pour l\'activer. Supporte plusieurs niveaux ' +
+        'd\'intensité de lite à ultra. Idéal pour les développeurs expérimentés qui veulent des ' +
+        'réponses concises sans bruit.',
+      useCases: ['Chat', 'CLI', 'Revue de code'],
+    },
+    'snip-skill': {
+      name: 'Skill Snip',
+      description: 'Skill communautaire qui optimise le contexte en compressant les instructions et réduisant les tokens',
+      details:
+        'Snip est un Agent Skill communautaire qui optimise l\'utilisation des tokens en restructurant ' +
+        'et compressant automatiquement les instructions. Il réécrit les prompts longs et le contexte ' +
+        'sous une forme plus compacte tout en préservant le sens, réduisant les tokens d\'entrée et de ' +
+        'sortie. Installez le skill pour l\'appliquer automatiquement à vos interactions Copilot. ' +
+        'Particulièrement utile pour les grandes bases de code et les workflows multi-fichiers complexes.',
+      useCases: ['Chat', 'Mode Agent', 'CLI'],
     },
     'scope-context': {
       name: 'Cadrer le contexte intentionnellement',
