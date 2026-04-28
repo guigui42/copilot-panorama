@@ -77,8 +77,8 @@ go test ./...
 
 Prefix with snip:
 ```
-/opt/homebrew/Caskroom/snip/0.15.0/snip -- git status
-/opt/homebrew/Caskroom/snip/0.15.0/snip -- go test ./...
+snip -- git status
+snip -- go test ./...
 ```
 
 This applies to all shell commands. Snip filters verbose output while preserving errors and essential information.
