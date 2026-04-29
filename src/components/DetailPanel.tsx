@@ -85,6 +85,7 @@ const DetailPanel: React.FC<DetailPanelProps> = ({ component, layerColor, onClos
         </div>
 
         <div className="detail-section">
+          {component.docUrl && (
           <a
             className="detail-doc-link"
             href={component.docUrl}
@@ -93,6 +94,7 @@ const DetailPanel: React.FC<DetailPanelProps> = ({ component, layerColor, onClos
           >
             📖 {t.ui.documentationLabel}
           </a>
+          )}
           {component.altDocUrl && (
             <>
               {' '}

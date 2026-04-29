@@ -139,7 +139,7 @@ function AppContent() {
   const currentFooterBuiltFor = page === 'tips' ? t.tipsUi.footerBuiltFor : page === 'tools' ? t.toolsUi.footerBuiltFor : t.ui.footerBuiltFor;
   const currentFooterDocsLink = page === 'tips' ? t.tipsUi.footerDocsLink : page === 'tools' ? t.toolsUi.footerDocsLink : t.ui.footerDocsLink;
   const footerDocsUrl = page === 'tips'
-    ? 'https://docs.github.com/en/copilot/managing-copilot/managing-usage-and-billing-for-copilot'
+    ? ''
     : page === 'tools'
     ? 'https://docs.github.com/en/copilot/about-github-copilot/github-copilot-features'
     : 'https://docs.github.com/en/copilot/concepts/agents';
@@ -284,7 +284,8 @@ function AppContent() {
       <footer className="footer">
         <p>
           <GitHubMark size={18} className="footer-github-mark" />{' '}
-          {currentFooterBuiltFor} ·{' '}
+          {currentFooterBuiltFor}{footerDocsUrl && (<>
+          {' '}·{' '}
           <a
             href={footerDocsUrl}
             target="_blank"
@@ -292,6 +293,7 @@ function AppContent() {
           >
             {currentFooterDocsLink} ↗
           </a>
+          </>)}
         </p>
         {page === 'stack' && (
           <p className="footer-credit">
