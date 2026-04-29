@@ -16,19 +16,19 @@ const TIPS_COMPONENT_META: Record<string, ComponentMeta> = {
     id: 'token-billing',
     path: 'Cost Drivers',
     icon: '🪙',
-    docUrl: 'https://docs.github.com/en/copilot/managing-copilot/managing-usage-and-billing-for-copilot',
+    docUrl: '',
   },
   'agentic-cost': {
     id: 'agentic-cost',
     path: 'Agentic Workflows',
     icon: '🔗',
-    docUrl: 'https://docs.github.com/en/copilot/managing-copilot/managing-usage-and-billing-for-copilot',
+    docUrl: '',
   },
   'context-discipline': {
     id: 'context-discipline',
     path: 'Workflow Design',
     icon: '🎯',
-    docUrl: 'https://docs.github.com/en/copilot/managing-copilot/managing-usage-and-billing-for-copilot',
+    docUrl: '',
   },
 
   /* ── Prompting ── */
@@ -164,7 +164,7 @@ const TIPS_COMPONENT_META: Record<string, ComponentMeta> = {
     id: 'monitor-usage',
     path: 'Budget Controls',
     icon: '📊',
-    docUrl: 'https://docs.github.com/en/copilot/managing-copilot/managing-usage-and-billing-for-copilot',
+    docUrl: '',
   },
   'chronicle-tips': {
     id: 'chronicle-tips',
