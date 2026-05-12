@@ -300,6 +300,26 @@ function AppContent() {
             {currentFooterDocsLink} ↗
           </a>
           </>)}
+          {page === 'tips' && (<>
+          {' '}·{' '}
+          <a
+            href="https://copilot-academy.github.io/labs/context-engineering-lab"
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={() => trackEvent('analytics.click', { category: 'outbound', action: 'footer_context_lab', label: 'tips' })}
+          >
+            Context Engineering Lab ↗
+          </a>
+          {' '}·{' '}
+          <a
+            href="https://blog.cloud-eng.nl/context-engineering/"
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={() => trackEvent('analytics.click', { category: 'outbound', action: 'footer_context_blog', label: 'tips' })}
+          >
+            Context Engineering Blog ↗
+          </a>
+          </>)}
         </p>
         {page === 'stack' && (
           <p className="footer-credit">
