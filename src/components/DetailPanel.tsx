@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import type { Component } from '../data/layers';
 import { useI18n } from '../i18n';
 import { useFocusTrap } from '../hooks/useFocusTrap';
+import { useTrackEvent } from '../hooks/useAnalytics';
 
 interface DetailPanelProps {
   component: Component | null;
@@ -13,6 +14,7 @@ const DetailPanel: React.FC<DetailPanelProps> = ({ component, layerColor, onClos
   const closeBtnRef = useRef<HTMLButtonElement>(null);
   const trapRef = useFocusTrap(!!component);
   const t = useI18n();
+  const trackEvent = useTrackEvent();
 
   useEffect(() => {
     if (!component) return;
@@ -91,6 +93,7 @@ const DetailPanel: React.FC<DetailPanelProps> = ({ component, layerColor, onClos
             href={component.docUrl}
             target="_blank"
             rel="noopener noreferrer"
+            onClick={() => trackEvent('analytics.click', { category: 'outbound', action: 'doc_link', label: component.id })}
           >
             📖 {t.ui.documentationLabel}
           </a>
@@ -104,6 +107,7 @@ const DetailPanel: React.FC<DetailPanelProps> = ({ component, layerColor, onClos
                 target="_blank"
                 rel="noopener noreferrer"
                 style={{ marginLeft: 'var(--space-2)' }}
+                onClick={() => trackEvent('analytics.click', { category: 'outbound', action: 'alt_doc_link', label: component.id })}
               >
                 📖 {component.altDocLabel || t.ui.documentationLabel}
               </a>

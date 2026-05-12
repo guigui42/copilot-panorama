@@ -1,6 +1,7 @@
 import React from 'react';
 import type { Component } from '../data/layers';
 import { useI18n } from '../i18n';
+import { useTrackEvent } from '../hooks/useAnalytics';
 import type { Translations } from '../i18n';
 
 interface ComponentCardProps {
@@ -521,6 +522,7 @@ const ChronicleTipsViz: React.FC = () => (
 
 const ComponentCard: React.FC<ComponentCardProps> = ({ component, layerColor, onClick }) => {
   const t = useI18n();
+  const trackEvent = useTrackEvent();
   const v = t.viz;
 
   const renderViz = () => {
@@ -621,7 +623,7 @@ const ComponentCard: React.FC<ComponentCardProps> = ({ component, layerColor, on
           target="_blank"
           rel="noopener noreferrer"
           className="awesome-link"
-          onClick={(e) => e.stopPropagation()}
+          onClick={(e) => { e.stopPropagation(); trackEvent('analytics.click', { category: 'outbound', action: 'awesome_link', label: component.id }); }}
         >
           ✨ Browse community examples
           <svg width="11" height="11" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{ marginLeft: 2 }}>

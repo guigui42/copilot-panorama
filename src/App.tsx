@@ -123,9 +123,10 @@ function AppContent() {
   }, [page, exporting, trackEvent]);
 
   const onPageChange = useCallback((newPage: PageId) => {
+    trackEvent('analytics.click', { category: 'navigation', action: 'switch_page', label: newPage });
     handlePageChange(newPage);
     resetViewState();
-  }, [handlePageChange, resetViewState]);
+  }, [handlePageChange, resetViewState, trackEvent]);
 
   const stackLayers = useMemo(() => getLayers(t), [t]);
   const toolsLayers = useMemo(() => getToolsLayers(t), [t]);
@@ -213,7 +214,7 @@ function AppContent() {
       </main>
 
       {insightsFocused && (
-        <div className="layer-focus-overlay" onClick={() => setInsightsFocused(false)} aria-hidden="true" />
+        <div className="layer-focus-overlay" onClick={() => { trackEvent('analytics.click', { category: 'insights', action: 'collapse_insights', label: page }); setInsightsFocused(false); }} aria-hidden="true" />
       )}
       <section
         className={`insights ${insightsFocused ? 'insights-focused' : ''}`}
@@ -223,9 +224,11 @@ function AppContent() {
         onClick={(e) => {
           if (insightsFocused) {
             if (e.target === e.currentTarget) {
+              trackEvent('analytics.click', { category: 'insights', action: 'collapse_insights', label: page });
               setInsightsFocused(false);
             }
           } else if (!(e.target as HTMLElement).closest('.insight-card')) {
+            trackEvent('analytics.click', { category: 'insights', action: 'expand_insights', label: page });
             setInsightsFocused(true);
           }
         }}
@@ -244,6 +247,7 @@ function AppContent() {
             className="layer-focus-close"
             onClick={(e) => {
               e.stopPropagation();
+              trackEvent('analytics.click', { category: 'insights', action: 'collapse_insights', label: page });
               setInsightsFocused(false);
             }}
             aria-label="Exit fullscreen"
@@ -259,6 +263,7 @@ function AppContent() {
               className="layer-expand-btn insights-expand-btn"
               onClick={(e) => {
                 e.stopPropagation();
+                trackEvent('analytics.click', { category: 'insights', action: 'expand_insights', label: page });
                 setInsightsFocused(true);
               }}
               aria-label="Focus this section fullscreen"
@@ -290,6 +295,7 @@ function AppContent() {
             href={footerDocsUrl}
             target="_blank"
             rel="noopener noreferrer"
+            onClick={() => trackEvent('analytics.click', { category: 'outbound', action: 'footer_docs', label: footerDocsUrl })}
           >
             {currentFooterDocsLink} ↗
           </a>

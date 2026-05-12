@@ -3,6 +3,7 @@ import ThemeToggle from './ThemeToggle';
 import LanguageSwitcher from './LanguageSwitcher';
 import { CopilotIcon } from './GitHubIcons';
 import { useI18n } from '../i18n';
+import { useTrackEvent } from '../hooks/useAnalytics';
 import { LocaleContext } from '../contexts';
 import type { PageId } from '../i18n/types';
 
@@ -19,6 +20,7 @@ interface HeaderProps {
 
 const Header: React.FC<HeaderProps> = ({ theme, onToggleTheme, page, onPageChange, onExportPng, exporting }) => {
   const t = useI18n();
+  const trackEvent = useTrackEvent();
   const { locale, setLocale } = useContext(LocaleContext);
   const [menuOpen, setMenuOpen] = useState(false);
   const [copied, setCopied] = useState(false);
@@ -143,6 +145,7 @@ const Header: React.FC<HeaderProps> = ({ theme, onToggleTheme, page, onPageChang
                 target="_blank"
                 rel="noopener noreferrer"
                 className="hero-menu-link"
+                onClick={() => trackEvent('analytics.click', { category: 'outbound', action: 'awesome_copilot', label: 'header' })}
               >
                 ✨ Awesome Copilot
               </a>

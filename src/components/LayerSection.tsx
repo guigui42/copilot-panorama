@@ -2,6 +2,7 @@ import React, { useEffect, useCallback } from 'react';
 import type { Layer, Component } from '../data/layers';
 import { useIntersectionObserver } from '../hooks/useIntersectionObserver';
 import { useI18n } from '../i18n';
+import { useTrackEvent } from '../hooks/useAnalytics';
 import ComponentCard from './ComponentCard';
 
 interface LayerSectionProps {
@@ -21,6 +22,7 @@ const LayerSection: React.FC<LayerSectionProps> = ({
 }) => {
   const { ref, isVisible } = useIntersectionObserver({ threshold: 0.05 });
   const t = useI18n();
+  const trackEvent = useTrackEvent();
 
   const handleEscape = useCallback(
     (e: KeyboardEvent) => {
@@ -47,12 +49,14 @@ const LayerSection: React.FC<LayerSectionProps> = ({
   const handleHeaderClick = (e: React.MouseEvent) => {
     if ((e.target as HTMLElement).closest('.component-section')) return;
     if (isFocused) {
+      trackEvent('analytics.click', { category: 'layer', action: 'collapse_layer', label: layer.title });
       if (onDismissAll) {
         onDismissAll();
       } else {
         onToggleFocus?.();
       }
     } else {
+      trackEvent('analytics.click', { category: 'layer', action: 'expand_layer', label: layer.title });
       onToggleFocus?.();
     }
   };
@@ -109,6 +113,7 @@ const LayerSection: React.FC<LayerSectionProps> = ({
               className="layer-expand-btn"
               onClick={(e) => {
                 e.stopPropagation();
+                trackEvent('analytics.click', { category: 'layer', action: 'expand_layer', label: layer.title });
                 onToggleFocus?.();
               }}
               aria-label="Focus this layer fullscreen"
