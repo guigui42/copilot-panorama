@@ -186,7 +186,7 @@ export const en: Translations = {
   /* ── Tools page ── */
   toolsSeo: {
     title: 'Copilot Panorama — Copilot Everywhere',
-    description: 'Interactive visual guide to GitHub Copilot tools across three layers: Terminal (CLI), IDE (Autocomplete, Chat, Agent Mode, 3rd-Party Agents), and Cloud (Cloud Agent, Review Agent, 3rd-Party Agents).',
+    description: 'Interactive visual guide to GitHub Copilot tools across three layers: Standalone Apps (CLI, Copilot App), IDE (Autocomplete, Chat, Agent Mode, 3rd-Party Agents), and Cloud (Cloud Agent, Review Agent, 3rd-Party Agents).',
   },
   toolsUi: {
     heroTitle: 'Copilot Everywhere',
@@ -220,11 +220,14 @@ export const en: Translations = {
     askAnything: 'Ask anything',
     repoContext: 'Repo context',
     webSearch: 'Web search',
+    openSession: 'Open session',
+    reviewDiff: 'Review diff',
+    openPr: 'Open PR',
   },
   toolsLayers: {
-    terminal: {
-      title: 'Terminal',
-      subtitle: 'AI-powered coding agent right in your command line',
+    'standalone-apps': {
+      title: 'Standalone Apps',
+      subtitle: 'Dedicated desktop and terminal applications for agentic development',
     },
     ide: {
       title: 'IDE',
@@ -247,6 +250,18 @@ export const en: Translations = {
         '(Shift+Tab) for structured implementation, MCP servers, custom agents, skills, ' +
         'hooks, and automatic context compaction for infinite sessions.',
       useCases: ['Issue-to-PR Delivery', 'Legacy Code Modernization', 'Parallel Fleet Execution', 'Backlog Triage & Planning', 'Editor-Agnostic Development', 'Automation'],
+    },
+    'copilot-app': {
+      name: 'GitHub Copilot App',
+      description: 'A GitHub-native desktop experience for agentic development — sessions, diff review, and PR delivery',
+      details:
+        'The GitHub Copilot app is a standalone desktop application for starting agentic development ' +
+        'from the work already in front of you. Open a session from an issue, pull request, or prompt, ' +
+        'and keep each task isolated in its own branch with its own conversation and state. ' +
+        'Review the plan and diff, run commands, open previews, steer the agent, and open the pull ' +
+        'request — all in one place. Supports workflows for repeatable automation, Agent Merge for ' +
+        'follow-through on review comments, and multi-project parallel work. Currently in technical preview.',
+      useCases: ['Issue-to-PR Delivery', 'Interactive Agentic Sessions', 'Diff Review & Steering', 'Multi-Project Parallel Work', 'Repeatable Workflows', 'PR Lifecycle Management'],
     },
     autocomplete: {
       name: 'Autocomplete',

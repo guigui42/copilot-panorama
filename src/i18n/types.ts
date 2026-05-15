@@ -95,6 +95,9 @@ export interface Translations {
     askAnything: string;
     repoContext: string;
     webSearch: string;
+    openSession: string;
+    reviewDiff: string;
+    openPr: string;
   };
   toolsLayers: Record<string, LayerI18n>;
   toolsComponents: Record<string, ComponentI18n>;

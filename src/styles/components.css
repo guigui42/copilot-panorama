@@ -986,6 +986,35 @@ html[data-theme="light"] .viz-terminal {
   border-color: #313244;
 }
 
+.viz-copilot-app {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  line-height: 1.6;
+  background: #0d1117;
+  border-radius: 8px;
+  padding: 14px 16px;
+  border: 1px solid #30363d;
+}
+
+html[data-theme="light"] .viz-copilot-app {
+  background: #1e1e2e;
+  border-color: #313244;
+}
+
+.copilot-app-flow {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 4px 0;
+}
+
+.copilot-app-step {
+  color: #79c0ff;
+  white-space: nowrap;
+}
+
 .terminal-bar {
   display: flex;
   gap: 6px;

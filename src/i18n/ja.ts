@@ -183,7 +183,7 @@ export const ja: Translations = {
   /* ── Tools ページ ── */
   toolsSeo: {
     title: 'Copilot Panorama — Copilot Everywhere',
-    description: 'GitHub Copilot ツールのインタラクティブなビジュアルガイド — 3つのレイヤーを探索：ターミナル（CLI）、IDE（オートコンプリート、チャット、Agent Mode、サードパーティエージェント）、クラウド（Cloud Agent、Review Agent、サードパーティエージェント）。',
+    description: 'GitHub Copilot ツールのインタラクティブなビジュアルガイド — 3つのレイヤーを探索：スタンドアロンアプリ（CLI、Copilot App）、IDE（オートコンプリート、チャット、Agent Mode、サードパーティエージェント）、クラウド（Cloud Agent、Review Agent、サードパーティエージェント）。',
   },
   toolsUi: {
     heroTitle: 'Copilot Everywhere',
@@ -217,11 +217,14 @@ export const ja: Translations = {
     askAnything: '何でも質問',
     repoContext: 'リポジトリコンテキスト',
     webSearch: 'ウェブ検索',
+    openSession: 'セッション開始',
+    reviewDiff: 'Diff レビュー',
+    openPr: 'PR を開く',
   },
   toolsLayers: {
-    terminal: {
-      title: 'ターミナル',
-      subtitle: 'コマンドラインで動く AI コーディングエージェント',
+    'standalone-apps': {
+      title: 'スタンドアロンアプリ',
+      subtitle: 'エージェント開発のための専用デスクトップ・ターミナルアプリケーション',
     },
     ide: {
       title: 'IDE',
@@ -244,6 +247,17 @@ export const ja: Translations = {
         '（Shift+Tab）による構造化された実装、MCP サーバー、カスタムエージェント、' +
         'スキル、フック、無限セッションのための自動コンテキスト圧縮をサポートしています。',
       useCases: ['Issue から PR への配信', 'レガシーコードの近代化', '並列 Fleet 実行', 'バックログのトリアージと計画', 'エディタ非依存の開発', '自動化'],
+    },
+    'copilot-app': {
+      name: 'GitHub Copilot App',
+      description: 'エージェント開発のための GitHub ネイティブなデスクトップ体験 — セッション、diff レビュー、PR 配信',
+      details:
+        'GitHub Copilot App は、目の前の作業からエージェント開発を始めるための独立したデスクトップアプリケーションです。' +
+        'Issue、プルリクエスト、またはプロンプトからセッションを開始し、各タスクを独自のブランチ、会話、状態で分離します。' +
+        '計画と diff の確認、コマンドの実行、プレビューの表示、エージェントの操作、プルリクエストの作成を ' +
+        'すべて一箇所で行えます。反復可能な自動化のためのワークフロー、レビューコメントのフォローアップのための ' +
+        'Agent Merge、マルチプロジェクトの並列作業をサポートしています。現在テクニカルプレビュー中です。',
+      useCases: ['Issue から PR への配信', 'インタラクティブなエージェントセッション', 'Diff レビュー & 操作', 'マルチプロジェクト並列作業', '反復可能なワークフロー', 'PR ライフサイクル管理'],
     },
     autocomplete: {
       name: 'オートコンプリート',

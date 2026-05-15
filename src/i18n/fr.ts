@@ -191,7 +191,7 @@ export const fr: Translations = {
   /* ── Page Outils ── */
   toolsSeo: {
     title: 'Copilot Panorama — Copilot Everywhere',
-    description: 'Guide visuel interactif des outils GitHub Copilot sur trois couches : Terminal (CLI), IDE (Autocomplétion, Chat, Agent Mode, Agents tiers), et Cloud (Agent cloud, Agent de revue, Agents tiers).',
+    description: 'Guide visuel interactif des outils GitHub Copilot sur trois couches : Apps autonomes (CLI, Copilot App), IDE (Autocomplétion, Chat, Agent Mode, Agents tiers), et Cloud (Agent cloud, Agent de revue, Agents tiers).',
   },
   toolsUi: {
     heroTitle: 'Copilot Everywhere',
@@ -225,11 +225,14 @@ export const fr: Translations = {
     askAnything: 'Demandez n\'importe quoi',
     repoContext: 'Contexte du dépôt',
     webSearch: 'Recherche web',
+    openSession: 'Ouvrir session',
+    reviewDiff: 'Revoir le diff',
+    openPr: 'Ouvrir PR',
   },
   toolsLayers: {
-    terminal: {
-      title: 'Terminal',
-      subtitle: 'Agent de codage IA directement dans votre ligne de commande',
+    'standalone-apps': {
+      title: 'Apps autonomes',
+      subtitle: 'Applications bureau et terminal dédiées au développement agentique',
     },
     ide: {
       title: 'IDE',
@@ -253,6 +256,18 @@ export const fr: Translations = {
         'structurée, les serveurs MCP, les agents personnalisés, les skills, les hooks, et la ' +
         'compaction automatique du contexte pour des sessions infinies.',
       useCases: ['Livraison Issue-to-PR', 'Modernisation de code legacy', 'Exécution parallèle Fleet', 'Tri & planification du backlog', 'Développement agnostique d\'éditeur', 'Automatisation'],
+    },
+    'copilot-app': {
+      name: 'GitHub Copilot App',
+      description: 'Une expérience bureau native GitHub pour le développement agentique — sessions, revue de diff et livraison de PR',
+      details:
+        'L\'application GitHub Copilot est une application bureau autonome pour démarrer le développement ' +
+        'agentique à partir du travail déjà devant vous. Ouvrez une session depuis une issue, une pull request ' +
+        'ou un prompt, et gardez chaque tâche isolée dans sa propre branche avec sa propre conversation et son état. ' +
+        'Révisez le plan et le diff, exécutez des commandes, ouvrez des aperçus, guidez l\'agent et ouvrez la ' +
+        'pull request — le tout au même endroit. Supporte les workflows pour l\'automatisation répétable, ' +
+        'Agent Merge pour le suivi des commentaires de revue, et le travail parallèle multi-projets. Actuellement en aperçu technique.',
+      useCases: ['Livraison Issue-to-PR', 'Sessions agentiques interactives', 'Revue de diff & pilotage', 'Travail parallèle multi-projets', 'Workflows répétables', 'Gestion du cycle de vie PR'],
     },
     autocomplete: {
       name: 'Autocomplete',

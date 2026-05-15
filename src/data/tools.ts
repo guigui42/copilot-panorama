@@ -19,6 +19,14 @@ const TOOLS_COMPONENT_META: Record<string, ComponentMeta> = {
     altDocUrl: 'https://docs.github.com/en/copilot/using-github-copilot/using-github-copilot-in-the-command-line',
     altDocLabel: 'CLI How-To',
   },
+  'copilot-app': {
+    id: 'copilot-app',
+    path: 'GitHub Copilot App',
+    icon: '🖥️',
+    docUrl: 'https://docs.github.com/en/copilot/github-copilot-app',
+    altDocUrl: 'https://github.blog/changelog/2026-05-14-github-copilot-app-is-now-available-in-technical-preview/',
+    altDocLabel: 'Changelog',
+  },
   autocomplete: {
     id: 'autocomplete',
     path: 'IDE inline suggestions',
@@ -101,7 +109,7 @@ interface LayerDef {
 }
 
 const TOOLS_LAYER_DEFS: LayerDef[] = [
-  { id: 'terminal', number: 1, color: '#8b949e', componentIds: ['copilot-cli'] },
+  { id: 'standalone-apps', number: 1, color: '#8b949e', componentIds: ['copilot-cli', 'copilot-app'] },
   { id: 'ide', number: 2, color: '#3fb950', componentIds: ['autocomplete', 'ask', 'agent-mode', 'third-party-agents-ide'] },
   { id: 'cloud', number: 3, color: '#58a6ff', componentIds: ['copilot-chat-cloud', 'coding-agent', 'review-agent', 'third-party-agents-cloud'] },
 ];
