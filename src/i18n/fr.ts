@@ -228,6 +228,9 @@ export const fr: Translations = {
     openSession: 'Ouvrir session',
     reviewDiff: 'Revoir le diff',
     openPr: 'Ouvrir PR',
+    inbox: 'Boîte de réception',
+    agenticMerge: 'Agentic Merge',
+    savedWorkflows: 'Workflows',
   },
   toolsLayers: {
     'standalone-apps': {
@@ -259,15 +262,17 @@ export const fr: Translations = {
     },
     'copilot-app': {
       name: 'GitHub Copilot App',
-      description: 'Une expérience bureau native GitHub pour le développement agentique — sessions, revue de diff et livraison de PR',
+      description: 'Application bureau native pour le développement agentique — Inbox, Agentic Merge, sessions parallèles et Workflows',
       details:
-        'L\'application GitHub Copilot est une application bureau autonome pour démarrer le développement ' +
-        'agentique à partir du travail déjà devant vous. Ouvrez une session depuis une issue, une pull request ' +
-        'ou un prompt, et gardez chaque tâche isolée dans sa propre branche avec sa propre conversation et son état. ' +
-        'Révisez le plan et le diff, exécutez des commandes, ouvrez des aperçus, guidez l\'agent et ouvrez la ' +
-        'pull request — le tout au même endroit. Supporte les workflows pour l\'automatisation répétable, ' +
-        'Agent Merge pour le suivi des commentaires de revue, et le travail parallèle multi-projets. Actuellement en aperçu technique.',
-      useCases: ['Livraison Issue-to-PR', 'Sessions agentiques interactives', 'Revue de diff & pilotage', 'Travail parallèle multi-projets', 'Workflows répétables', 'Gestion du cycle de vie PR'],
+        'L\'application GitHub Copilot est une application bureau autonome (macOS, Windows, Linux) qui offre ' +
+        'aux développeurs et rôles adjacents (PMs, designers, QA) une expérience GitHub-first pour diriger, ' +
+        'surveiller, réviser et livrer du travail piloté par agents. L\'Inbox agentique affiche les issues, PRs ' +
+        'et sessions à travers tous vos dépôts. Agentic Merge gère le « dernier kilomètre » — résoudre les ' +
+        'commentaires de revue, corriger les CI en échec et gérer les conflits de merge à votre place. ' +
+        'Chaque session s\'exécute dans un worktree git isolé pour un vrai développement parallèle. Les Workflows ' +
+        'permettent de sauvegarder des prompts et de les exécuter à la demande ou selon un calendrier, ' +
+        'transformant les tâches récurrentes en patterns d\'automatisation réutilisables. Actuellement en aperçu technique.',
+      useCases: ['Inbox agentique & triage', 'Agentic Merge (dernier kilomètre)', 'Travail parallèle multi-sessions', 'Workflows répétables', 'Collaboration rôles adjacents', 'Orchestration multi-dépôts'],
     },
     autocomplete: {
       name: 'Autocomplete',

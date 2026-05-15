@@ -223,6 +223,9 @@ export const de: Translations = {
     openSession: 'Session öffnen',
     reviewDiff: 'Diff prüfen',
     openPr: 'PR öffnen',
+    inbox: 'Posteingang',
+    agenticMerge: 'Agentic Merge',
+    savedWorkflows: 'Workflows',
   },
   toolsLayers: {
     'standalone-apps': {
@@ -253,15 +256,17 @@ export const de: Translations = {
     },
     'copilot-app': {
       name: 'GitHub Copilot App',
-      description: 'Ein GitHub-natives Desktop-Erlebnis für agentische Entwicklung — Sessions, Diff-Review und PR-Lieferung',
+      description: 'Native Desktop-App für agentische Entwicklung — Inbox, Agentic Merge, parallele Sessions und Workflows',
       details:
-        'Die GitHub Copilot App ist eine eigenständige Desktop-Anwendung, um agentische Entwicklung ' +
-        'aus der bereits vorliegenden Arbeit zu starten. Öffne eine Session aus einem Issue, Pull Request oder Prompt ' +
-        'und halte jede Aufgabe in einem eigenen Branch mit eigener Konversation und eigenem Zustand isoliert. ' +
-        'Überprüfe den Plan und den Diff, führe Befehle aus, öffne Vorschauen, steuere den Agenten und öffne den ' +
-        'Pull Request — alles an einem Ort. Unterstützt Workflows für wiederholbare Automatisierung, ' +
-        'Agent Merge für die Nachverfolgung von Review-Kommentaren und paralleles Arbeiten an mehreren Projekten. Derzeit in technischer Vorschau.',
-      useCases: ['Issue-to-PR-Lieferung', 'Interaktive agentische Sessions', 'Diff-Review & Steuerung', 'Paralleles Multi-Projekt-Arbeiten', 'Wiederholbare Workflows', 'PR-Lifecycle-Management'],
+        'Die GitHub Copilot App ist eine eigenständige Desktop-Anwendung (macOS, Windows, Linux), die ' +
+        'Entwicklern und entwicklungsnahen Rollen (PMs, Designer, QA) ein GitHub-first-Erlebnis bietet, um ' +
+        'agentengesteuerte Arbeit zu dirigieren, überwachen, prüfen und auszuliefern. Der agentische Posteingang ' +
+        'zeigt Issues, PRs und Sessions über alle Repos an. Agentic Merge übernimmt die „letzte Meile" — ' +
+        'Review-Kommentare lösen, fehlgeschlagene CI reparieren und Merge-Konflikte in deinem Auftrag beheben. ' +
+        'Jede Session läuft in einem isolierten Git-Worktree für echte parallele Entwicklung. Workflows ' +
+        'ermöglichen das Speichern von Prompts und deren Ausführung bei Bedarf oder nach Zeitplan, um ' +
+        'wiederkehrende Aufgaben in wiederverwendbare Automatisierungsmuster zu verwandeln. Derzeit in technischer Vorschau.',
+      useCases: ['Agentischer Posteingang & Triage', 'Agentic Merge (letzte Meile)', 'Paralleles Multi-Session-Arbeiten', 'Wiederholbare Workflows', 'Zusammenarbeit entwicklungsnaher Rollen', 'Multi-Repo-Orchestrierung'],
     },
     autocomplete: {
       name: 'Autocomplete',

@@ -98,6 +98,9 @@ export interface Translations {
     openSession: string;
     reviewDiff: string;
     openPr: string;
+    inbox: string;
+    agenticMerge: string;
+    savedWorkflows: string;
   };
   toolsLayers: Record<string, LayerI18n>;
   toolsComponents: Record<string, ComponentI18n>;

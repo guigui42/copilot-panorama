@@ -1001,18 +1001,36 @@ html[data-theme="light"] .viz-copilot-app {
   border-color: #313244;
 }
 
-.copilot-app-flow {
+.copilot-app-features {
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 8px;
   flex-wrap: wrap;
   justify-content: center;
   padding: 4px 0;
 }
 
-.copilot-app-step {
-  color: #79c0ff;
+.copilot-app-pill {
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 0.7rem;
+  font-weight: 500;
   white-space: nowrap;
+}
+
+.copilot-app-pill--inbox {
+  background: rgba(88, 166, 255, 0.15);
+  color: #79c0ff;
+}
+
+.copilot-app-pill--merge {
+  background: rgba(63, 185, 80, 0.15);
+  color: #3fb950;
+}
+
+.copilot-app-pill--workflows {
+  background: rgba(210, 153, 34, 0.15);
+  color: #d29922;
 }
 
 .terminal-bar {

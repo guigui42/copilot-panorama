@@ -181,12 +181,10 @@ const CopilotAppViz: React.FC<{ v: Translations['toolsViz'] }> = ({ v }) => (
       <span className="terminal-dot terminal-dot--yellow" />
       <span className="terminal-dot terminal-dot--green" />
     </div>
-    <div className="copilot-app-flow">
-      <span className="copilot-app-step">📋 {v.openSession}</span>
-      <span className="agent-loop-arrow">→</span>
-      <span className="copilot-app-step">📝 {v.reviewDiff}</span>
-      <span className="agent-loop-arrow">→</span>
-      <span className="copilot-app-step">🚀 {v.openPr}</span>
+    <div className="copilot-app-features">
+      <span className="copilot-app-pill copilot-app-pill--inbox">📥 {v.inbox}</span>
+      <span className="copilot-app-pill copilot-app-pill--merge">🔀 {v.agenticMerge}</span>
+      <span className="copilot-app-pill copilot-app-pill--workflows">⚡ {v.savedWorkflows}</span>
     </div>
   </div>
 );

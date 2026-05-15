@@ -223,6 +223,9 @@ export const en: Translations = {
     openSession: 'Open session',
     reviewDiff: 'Review diff',
     openPr: 'Open PR',
+    inbox: 'Inbox',
+    agenticMerge: 'Agentic Merge',
+    savedWorkflows: 'Workflows',
   },
   toolsLayers: {
     'standalone-apps': {
@@ -253,15 +256,17 @@ export const en: Translations = {
     },
     'copilot-app': {
       name: 'GitHub Copilot App',
-      description: 'A GitHub-native desktop experience for agentic development — sessions, diff review, and PR delivery',
+      description: 'Native desktop app for agentic development — Inbox, Agentic Merge, parallel sessions, and Workflows',
       details:
-        'The GitHub Copilot app is a standalone desktop application for starting agentic development ' +
-        'from the work already in front of you. Open a session from an issue, pull request, or prompt, ' +
-        'and keep each task isolated in its own branch with its own conversation and state. ' +
-        'Review the plan and diff, run commands, open previews, steer the agent, and open the pull ' +
-        'request — all in one place. Supports workflows for repeatable automation, Agent Merge for ' +
-        'follow-through on review comments, and multi-project parallel work. Currently in technical preview.',
-      useCases: ['Issue-to-PR Delivery', 'Interactive Agentic Sessions', 'Diff Review & Steering', 'Multi-Project Parallel Work', 'Repeatable Workflows', 'PR Lifecycle Management'],
+        'The GitHub Copilot app is a standalone desktop application (macOS, Windows, Linux) that gives ' +
+        'developers and dev-adjacent roles (PMs, designers, QA) a GitHub-first experience to direct, ' +
+        'monitor, review, and ship agent-driven work. The agentic Inbox surfaces issues, PRs, and sessions ' +
+        'across all your repos so you stay on top of what needs attention. Agentic Merge handles the ' +
+        '"last mile" — resolving review comments, fixing failing CI, and handling merge conflicts on your ' +
+        'behalf. Each session runs in an isolated git worktree for true parallel development. Workflows ' +
+        'let you save prompts and run them on demand or on a schedule, turning recurring tasks into ' +
+        'reusable automation patterns. Currently in technical preview.',
+      useCases: ['Agentic Inbox & Triage', 'Agentic Merge (Last-Mile)', 'Parallel Multi-Session Work', 'Repeatable Workflows', 'Dev-Adjacent Collaboration', 'Cross-Repo Orchestration'],
     },
     autocomplete: {
       name: 'Autocomplete',

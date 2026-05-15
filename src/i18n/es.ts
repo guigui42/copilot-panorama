@@ -225,6 +225,9 @@ export const es: Translations = {
     openSession: 'Abrir sesión',
     reviewDiff: 'Revisar diff',
     openPr: 'Abrir PR',
+    inbox: 'Bandeja de entrada',
+    agenticMerge: 'Agentic Merge',
+    savedWorkflows: 'Workflows',
   },
   toolsLayers: {
     'standalone-apps': {
@@ -256,15 +259,16 @@ export const es: Translations = {
     },
     'copilot-app': {
       name: 'GitHub Copilot App',
-      description: 'Una experiencia de escritorio nativa de GitHub para desarrollo agéntico — sesiones, revisión de diff y entrega de PR',
+      description: 'App de escritorio nativa para desarrollo agéntico — Inbox, Agentic Merge, sesiones paralelas y Workflows',
       details:
-        'La aplicación GitHub Copilot es una aplicación de escritorio independiente para iniciar el desarrollo ' +
-        'agéntico desde el trabajo que ya tienes delante. Abre una sesión desde un issue, pull request o prompt, ' +
-        'y mantén cada tarea aislada en su propia rama con su propia conversación y estado. ' +
-        'Revisa el plan y el diff, ejecuta comandos, abre vistas previas, guía al agente y abre la ' +
-        'pull request — todo en un solo lugar. Soporta workflows para automatización repetible, ' +
-        'Agent Merge para el seguimiento de comentarios de revisión, y trabajo paralelo multi-proyecto. Actualmente en vista previa técnica.',
-      useCases: ['Entrega Issue-to-PR', 'Sesiones agénticas interactivas', 'Revisión de diff y dirección', 'Trabajo paralelo multi-proyecto', 'Workflows repetibles', 'Gestión del ciclo de vida PR'],
+        'La aplicación GitHub Copilot es una aplicación de escritorio independiente (macOS, Windows, Linux) que ofrece ' +
+        'a desarrolladores y roles adyacentes (PMs, diseñadores, QA) una experiencia GitHub-first para dirigir, ' +
+        'monitorear, revisar y enviar trabajo impulsado por agentes. El Inbox agéntico muestra issues, PRs y sesiones ' +
+        'en todos tus repos. Agentic Merge maneja la "última milla" — resolviendo comentarios de revisión, arreglando ' +
+        'CI fallidos y gestionando conflictos de merge en tu nombre. Cada sesión se ejecuta en un worktree git aislado ' +
+        'para verdadero desarrollo paralelo. Los Workflows permiten guardar prompts y ejecutarlos bajo demanda o ' +
+        'programados, convirtiendo tareas recurrentes en patrones de automatización reutilizables. Actualmente en vista previa técnica.',
+      useCases: ['Inbox agéntico y triaje', 'Agentic Merge (última milla)', 'Trabajo paralelo multi-sesión', 'Workflows repetibles', 'Colaboración roles adyacentes', 'Orquestación multi-repo'],
     },
     autocomplete: {
       name: 'Autocomplete',
