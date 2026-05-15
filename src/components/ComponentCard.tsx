@@ -174,6 +174,21 @@ const CopilotCliViz: React.FC<{ v: Translations['toolsViz'] }> = ({ v }) => (
   </div>
 );
 
+const CopilotAppViz: React.FC<{ v: Translations['toolsViz'] }> = ({ v }) => (
+  <div className="viz viz-copilot-app" aria-hidden="true">
+    <div className="terminal-bar">
+      <span className="terminal-dot terminal-dot--red" />
+      <span className="terminal-dot terminal-dot--yellow" />
+      <span className="terminal-dot terminal-dot--green" />
+    </div>
+    <div className="copilot-app-features">
+      <span className="copilot-app-pill copilot-app-pill--inbox">📥 {v.inbox}</span>
+      <span className="copilot-app-pill copilot-app-pill--merge">🔀 {v.agenticMerge}</span>
+      <span className="copilot-app-pill copilot-app-pill--workflows">⚡ {v.savedWorkflows}</span>
+    </div>
+  </div>
+);
+
 const AutocompleteViz: React.FC<{ v: Translations['toolsViz'] }> = ({ v }) => (
   <div className="viz viz-autocomplete" aria-hidden="true">
     <div className="autocomplete-line">
@@ -539,6 +554,7 @@ const ComponentCard: React.FC<ComponentCardProps> = ({ component, layerColor, on
       case 'plugins': return <PluginsViz v={v} />;
       /* Tools page */
       case 'copilot-cli': return <CopilotCliViz v={tv} />;
+      case 'copilot-app': return <CopilotAppViz v={tv} />;
       case 'autocomplete': return <AutocompleteViz v={tv} />;
       case 'ask': return <AskViz v={tv} />;
       case 'agent-mode': return <AgentModeViz v={tv} />;

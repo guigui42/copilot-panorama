@@ -188,7 +188,7 @@ export const es: Translations = {
   /* ── Tools page ── */
   toolsSeo: {
     title: 'Copilot Panorama — Copilot Everywhere',
-    description: 'Guía visual interactiva de las herramientas de GitHub Copilot en tres capas: Terminal (CLI), IDE (Autocompletado, Chat, Agent Mode, Agentes de terceros) y Nube (Agente cloud, Agente de revisión, Agentes de terceros).',
+    description: 'Guía visual interactiva de las herramientas de GitHub Copilot en tres capas: Apps independientes (CLI, Copilot App), IDE (Autocompletado, Chat, Agent Mode, Agentes de terceros) y Nube (Agente cloud, Agente de revisión, Agentes de terceros).',
   },
   toolsUi: {
     heroTitle: 'Copilot Everywhere',
@@ -222,11 +222,17 @@ export const es: Translations = {
     askAnything: 'Pregunta lo que sea',
     repoContext: 'Contexto del repositorio',
     webSearch: 'Búsqueda web',
+    openSession: 'Abrir sesión',
+    reviewDiff: 'Revisar diff',
+    openPr: 'Abrir PR',
+    inbox: 'Bandeja de entrada',
+    agenticMerge: 'Agentic Merge',
+    savedWorkflows: 'Workflows',
   },
   toolsLayers: {
-    terminal: {
-      title: 'Terminal',
-      subtitle: 'Agente de codificación con IA directamente en tu línea de comandos',
+    'standalone-apps': {
+      title: 'Apps independientes',
+      subtitle: 'Aplicaciones de escritorio y terminal dedicadas al desarrollo agéntico',
     },
     ide: {
       title: 'IDE',
@@ -250,6 +256,19 @@ export const es: Translations = {
         'agentes personalizados, skills, hooks y compactación automática de contexto para ' +
         'sesiones infinitas.',
       useCases: ['Entrega Issue-to-PR', 'Modernización de código legacy', 'Ejecución paralela Fleet', 'Triaje y planificación del backlog', 'Desarrollo agnóstico de editor', 'Automatización'],
+    },
+    'copilot-app': {
+      name: 'GitHub Copilot App',
+      description: 'App de escritorio nativa para desarrollo agéntico — Inbox, Agentic Merge, sesiones paralelas y Workflows',
+      details:
+        'La aplicación GitHub Copilot es una aplicación de escritorio independiente (macOS, Windows, Linux) que ofrece ' +
+        'a desarrolladores y roles adyacentes (PMs, diseñadores, QA) una experiencia GitHub-first para dirigir, ' +
+        'monitorear, revisar y enviar trabajo impulsado por agentes. El Inbox agéntico muestra issues, PRs y sesiones ' +
+        'en todos tus repos. Agentic Merge maneja la "última milla" — resolviendo comentarios de revisión, arreglando ' +
+        'CI fallidos y gestionando conflictos de merge en tu nombre. Cada sesión se ejecuta en un worktree git aislado ' +
+        'para verdadero desarrollo paralelo. Los Workflows permiten guardar prompts y ejecutarlos bajo demanda o ' +
+        'programados, convirtiendo tareas recurrentes en patrones de automatización reutilizables. Actualmente en vista previa técnica.',
+      useCases: ['Inbox agéntico y triaje', 'Agentic Merge (última milla)', 'Trabajo paralelo multi-sesión', 'Workflows repetibles', 'Colaboración roles adyacentes', 'Orquestación multi-repo'],
     },
     autocomplete: {
       name: 'Autocomplete',

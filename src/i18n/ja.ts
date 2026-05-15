@@ -183,7 +183,7 @@ export const ja: Translations = {
   /* ── Tools ページ ── */
   toolsSeo: {
     title: 'Copilot Panorama — Copilot Everywhere',
-    description: 'GitHub Copilot ツールのインタラクティブなビジュアルガイド — 3つのレイヤーを探索：ターミナル（CLI）、IDE（オートコンプリート、チャット、Agent Mode、サードパーティエージェント）、クラウド（Cloud Agent、Review Agent、サードパーティエージェント）。',
+    description: 'GitHub Copilot ツールのインタラクティブなビジュアルガイド — 3つのレイヤーを探索：スタンドアロンアプリ（CLI、Copilot App）、IDE（オートコンプリート、チャット、Agent Mode、サードパーティエージェント）、クラウド（Cloud Agent、Review Agent、サードパーティエージェント）。',
   },
   toolsUi: {
     heroTitle: 'Copilot Everywhere',
@@ -217,11 +217,17 @@ export const ja: Translations = {
     askAnything: '何でも質問',
     repoContext: 'リポジトリコンテキスト',
     webSearch: 'ウェブ検索',
+    openSession: 'セッション開始',
+    reviewDiff: 'Diff レビュー',
+    openPr: 'PR を開く',
+    inbox: '受信トレイ',
+    agenticMerge: 'Agentic Merge',
+    savedWorkflows: 'ワークフロー',
   },
   toolsLayers: {
-    terminal: {
-      title: 'ターミナル',
-      subtitle: 'コマンドラインで動く AI コーディングエージェント',
+    'standalone-apps': {
+      title: 'スタンドアロンアプリ',
+      subtitle: 'エージェント開発のための専用デスクトップ・ターミナルアプリケーション',
     },
     ide: {
       title: 'IDE',
@@ -244,6 +250,20 @@ export const ja: Translations = {
         '（Shift+Tab）による構造化された実装、MCP サーバー、カスタムエージェント、' +
         'スキル、フック、無限セッションのための自動コンテキスト圧縮をサポートしています。',
       useCases: ['Issue から PR への配信', 'レガシーコードの近代化', '並列 Fleet 実行', 'バックログのトリアージと計画', 'エディタ非依存の開発', '自動化'],
+    },
+    'copilot-app': {
+      name: 'GitHub Copilot App',
+      description: 'エージェント開発のためのネイティブデスクトップアプリ — Inbox、Agentic Merge、並列セッション、ワークフロー',
+      details:
+        'GitHub Copilot App は、macOS、Windows、Linux 対応のスタンドアロンデスクトップアプリケーションです。' +
+        '開発者および開発隣接ロール（PM、デザイナー、QA）に GitHub ファーストな体験を提供し、' +
+        'エージェント駆動の作業を指示、監視、レビュー、配信できます。エージェント Inbox が ' +
+        'すべてのリポジトリの Issue、PR、セッションを表示します。Agentic Merge が「ラストマイル」を' +
+        '担当 — レビューコメントの解決、失敗した CI の修正、マージコンフリクトの処理を代行します。' +
+        '各セッションは分離された git worktree で実行され、真の並列開発が可能です。ワークフローで ' +
+        'プロンプトを保存し、オンデマンドまたはスケジュールで実行して、繰り返しタスクを ' +
+        '再利用可能な自動化パターンに変換できます。現在テクニカルプレビュー中です。',
+      useCases: ['エージェント Inbox & トリアージ', 'Agentic Merge（ラストマイル）', '並列マルチセッション作業', '反復可能なワークフロー', '開発隣接ロールの協業', 'クロスリポジトリオーケストレーション'],
     },
     autocomplete: {
       name: 'オートコンプリート',

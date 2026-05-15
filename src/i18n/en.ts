@@ -186,7 +186,7 @@ export const en: Translations = {
   /* ── Tools page ── */
   toolsSeo: {
     title: 'Copilot Panorama — Copilot Everywhere',
-    description: 'Interactive visual guide to GitHub Copilot tools across three layers: Terminal (CLI), IDE (Autocomplete, Chat, Agent Mode, 3rd-Party Agents), and Cloud (Cloud Agent, Review Agent, 3rd-Party Agents).',
+    description: 'Interactive visual guide to GitHub Copilot tools across three layers: Standalone Apps (CLI, Copilot App), IDE (Autocomplete, Chat, Agent Mode, 3rd-Party Agents), and Cloud (Cloud Agent, Review Agent, 3rd-Party Agents).',
   },
   toolsUi: {
     heroTitle: 'Copilot Everywhere',
@@ -220,11 +220,17 @@ export const en: Translations = {
     askAnything: 'Ask anything',
     repoContext: 'Repo context',
     webSearch: 'Web search',
+    openSession: 'Open session',
+    reviewDiff: 'Review diff',
+    openPr: 'Open PR',
+    inbox: 'Inbox',
+    agenticMerge: 'Agentic Merge',
+    savedWorkflows: 'Workflows',
   },
   toolsLayers: {
-    terminal: {
-      title: 'Terminal',
-      subtitle: 'AI-powered coding agent right in your command line',
+    'standalone-apps': {
+      title: 'Standalone Apps',
+      subtitle: 'Dedicated desktop and terminal applications for agentic development',
     },
     ide: {
       title: 'IDE',
@@ -247,6 +253,20 @@ export const en: Translations = {
         '(Shift+Tab) for structured implementation, MCP servers, custom agents, skills, ' +
         'hooks, and automatic context compaction for infinite sessions.',
       useCases: ['Issue-to-PR Delivery', 'Legacy Code Modernization', 'Parallel Fleet Execution', 'Backlog Triage & Planning', 'Editor-Agnostic Development', 'Automation'],
+    },
+    'copilot-app': {
+      name: 'GitHub Copilot App',
+      description: 'Native desktop app for agentic development — Inbox, Agentic Merge, parallel sessions, and Workflows',
+      details:
+        'The GitHub Copilot app is a standalone desktop application (macOS, Windows, Linux) that gives ' +
+        'developers and dev-adjacent roles (PMs, designers, QA) a GitHub-first experience to direct, ' +
+        'monitor, review, and ship agent-driven work. The agentic Inbox surfaces issues, PRs, and sessions ' +
+        'across all your repos so you stay on top of what needs attention. Agentic Merge handles the ' +
+        '"last mile" — resolving review comments, fixing failing CI, and handling merge conflicts on your ' +
+        'behalf. Each session runs in an isolated git worktree for true parallel development. Workflows ' +
+        'let you save prompts and run them on demand or on a schedule, turning recurring tasks into ' +
+        'reusable automation patterns. Currently in technical preview.',
+      useCases: ['Agentic Inbox & Triage', 'Agentic Merge (Last-Mile)', 'Parallel Multi-Session Work', 'Repeatable Workflows', 'Dev-Adjacent Collaboration', 'Cross-Repo Orchestration'],
     },
     autocomplete: {
       name: 'Autocomplete',
