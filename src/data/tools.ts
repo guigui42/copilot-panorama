@@ -23,9 +23,9 @@ const TOOLS_COMPONENT_META: Record<string, ComponentMeta> = {
     id: 'copilot-app',
     path: 'GitHub Copilot App',
     icon: '🖥️',
-    docUrl: 'https://docs.github.com/en/copilot/github-copilot-app',
-    altDocUrl: 'https://github.blog/changelog/2026-05-14-github-copilot-app-is-now-available-in-technical-preview/',
-    altDocLabel: 'Changelog',
+    docUrl: 'https://docs.github.com/en/copilot/concepts/agents/github-copilot-app',
+    altDocUrl: 'https://github.com/github/app',
+    altDocLabel: 'App Repository',
   },
   autocomplete: {
     id: 'autocomplete',
