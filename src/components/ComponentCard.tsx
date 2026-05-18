@@ -351,32 +351,6 @@ const ConciseAnswersViz: React.FC<{ v: Translations['tipsViz'] }> = ({ v }) => (
   </div>
 );
 
-const CavemanSkillViz: React.FC<{ v: Translations['tipsViz'] }> = ({ v }) => (
-  <div className="viz viz-terminal" aria-hidden="true">
-    <div className="terminal-bar">
-      <span className="terminal-dot terminal-dot--red" />
-      <span className="terminal-dot terminal-dot--yellow" />
-      <span className="terminal-dot terminal-dot--green" />
-    </div>
-    <div className="terminal-line">
-      <span className="terminal-cmd">🦴 {v.cavemanResponse}</span>
-    </div>
-  </div>
-);
-
-const SnipSkillViz: React.FC<{ v: Translations['tipsViz'] }> = ({ v }) => (
-  <div className="viz viz-terminal" aria-hidden="true">
-    <div className="terminal-bar">
-      <span className="terminal-dot terminal-dot--red" />
-      <span className="terminal-dot terminal-dot--yellow" />
-      <span className="terminal-dot terminal-dot--green" />
-    </div>
-    <div className="terminal-line">
-      <span className="terminal-cmd">✂️ {v.snipResponse}</span>
-    </div>
-  </div>
-);
-
 const ScopeContextViz: React.FC<{ v: Translations['tipsViz'] }> = ({ v }) => (
   <div className="viz viz-scope-compare" aria-hidden="true">
     <span className="scope-option scope-option--narrow">🔬 #file <span className="scope-badge">{v.narrow}</span></span>
@@ -677,8 +651,6 @@ const ComponentCard: React.FC<ComponentCardProps> = ({ component, layerColor, on
       case 'concise-instructions': return <ConciseInstructionsViz v={tip} />;
       case 'structure-for-reuse': return <StructureForReuseViz v={tip} />;
       case 'concise-answers': return <ConciseAnswersViz v={tip} />;
-      case 'caveman-skill': return <CavemanSkillViz v={tip} />;
-      case 'snip-skill': return <SnipSkillViz v={tip} />;
       case 'scope-context': return <ScopeContextViz v={tip} />;
       case 'conditional-context': return <ConditionalContextViz v={tip} />;
       case 'targeted-refs': return <TargetedRefsViz />;

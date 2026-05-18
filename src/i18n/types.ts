@@ -167,8 +167,6 @@ export interface Translations {
     powerUser: string;
     ciAgent: string;
     stopAfterTest: string;
-    cavemanResponse: string;
-    snipResponse: string;
     /* compound errors */
     perStep: string;
     steps: string;

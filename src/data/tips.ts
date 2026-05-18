@@ -74,19 +74,6 @@ const TIPS_COMPONENT_META: Record<string, ComponentMeta> = {
     icon: '✂️',
     docUrl: 'https://docs.github.com/en/copilot/using-github-copilot/best-practices-for-using-github-copilot',
   },
-  'caveman-skill': {
-    id: 'caveman-skill',
-    path: 'Community Skill',
-    icon: '🦴',
-    docUrl: 'https://github.com/juliusbrussee/caveman',
-  },
-  'snip-skill': {
-    id: 'snip-skill',
-    path: 'Community Skill',
-    icon: '✂️',
-    docUrl: 'https://github.com/edouard-claude/snip',
-  },
-
   /* ── Context ── */
   'scope-context': {
     id: 'scope-context',
@@ -174,7 +161,7 @@ const TIPS_COMPONENT_META: Record<string, ComponentMeta> = {
     id: 'trim-shell-outputs',
     path: 'Shell Hygiene',
     icon: '🪒',
-    docUrl: 'https://github.com/rtk-ai/rtk',
+    docUrl: 'https://github.com/edouard-claude/snip',
   },
   'collapse-tool-calls': {
     id: 'collapse-tool-calls',
@@ -258,7 +245,7 @@ interface LayerDef {
 const TIPS_LAYER_DEFS: LayerDef[] = [
   { id: 'mechanics', number: 1, color: '#f0883e', componentIds: ['token-billing', 'agentic-cost', 'context-discipline'] },
   { id: 'pitfalls', number: 2, color: '#f85149', componentIds: ['compound-errors', 'context-rot', 'lost-in-middle'] },
-  { id: 'prompting', number: 3, color: '#3fb950', componentIds: ['quality-over-quantity', 'prompt-anatomy', 'fresh-threads', 'concise-instructions', 'structure-for-reuse', 'concise-answers', 'caveman-skill', 'snip-skill'] },
+  { id: 'prompting', number: 3, color: '#3fb950', componentIds: ['quality-over-quantity', 'prompt-anatomy', 'fresh-threads', 'concise-instructions', 'structure-for-reuse', 'concise-answers'] },
   { id: 'context', number: 4, color: '#58a6ff', componentIds: ['scope-context', 'conditional-context', 'targeted-refs', 'apply-to-paths', 'skills-mcp', 'context-command', 'think-in-code'] },
   { id: 'workflow-design', number: 5, color: '#a371f7', componentIds: ['research-plan-implement', 'deterministic-guardrails', 'apply-architecture', 'iterate-configs'] },
   { id: 'caching', number: 6, color: '#d2a8ff', componentIds: ['reuse-context', 'prefix-matching', 'trim-shell-outputs', 'collapse-tool-calls'] },

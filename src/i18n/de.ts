@@ -460,8 +460,6 @@ export const de: Translations = {
     powerUser: 'Power-User',
     ciAgent: 'CI-Agent',
     stopAfterTest: 'Nach erstem bestandenem Test stoppen',
-    cavemanResponse: 'caveman mode → ~75% weniger Tokens',
-    snipResponse: 'snip → komprimierte Anweisungen',
     perStep: 'pro Schritt',
     steps: 'Schritte',
     accuracy99: '99% pro Schritt',
@@ -621,28 +619,6 @@ export const de: Translations = {
         'upgrades/migrations. Smaller outputs also mean faster responses and less noise ' +
         'to read through.',
       useCases: ['Chat', 'Code Review', 'Migrations'],
-    },
-    'caveman-skill': {
-      name: 'Caveman Skill',
-      description: 'Community skill that cuts ~75% of output tokens via ultra-compressed responses',
-      details:
-        'Caveman is a community Agent Skill that instructs the model to respond in compressed, ' +
-        'telegraphic style — dropping articles, filler words, and boilerplate while keeping full ' +
-        'technical accuracy. It can cut output tokens by ~75%. Install the skill and say ' +
-        '"caveman mode" to toggle it on. Supports multiple intensity levels from lite to ultra. ' +
-        'Great for experienced developers who want concise answers without noise.',
-      useCases: ['Chat', 'CLI', 'Code Review'],
-    },
-    'snip-skill': {
-      name: 'Snip Skill',
-      description: 'Community skill that optimizes context by compressing instructions and reducing token usage',
-      details:
-        'Snip is a community Agent Skill that optimizes token usage by restructuring and ' +
-        'compressing instructions automatically. It rewrites lengthy prompts and context into ' +
-        'a more compact form while preserving meaning, reducing both input and output tokens. ' +
-        'Install the skill to apply it automatically across your Copilot interactions. ' +
-        'Especially useful for large codebases and complex multi-file workflows.',
-      useCases: ['Chat', 'Agent Mode', 'CLI'],
     },
     'scope-context': {
       name: 'Scope Context Intentionally',
@@ -886,11 +862,16 @@ export const de: Translations = {
       name: 'Trim Shell Outputs',
       description: 'A noisy `npm install` can drown out signal — wrap commands to keep only what matters',
       details:
-        'CLI tools love verbosity. A single `npm install` or `terraform plan` can ' +
-        'dump thousands of lines into the agent\'s context — most of it noise. Wrap ' +
-        'noisy commands with a trimmer (e.g. github.com/rtk-ai/rtk) so the agent only ' +
-        'sees the relevant tail: errors, warnings, the final summary. This dramatically ' +
-        'shrinks the cached input on the next loop and improves recall by reducing ' +
+        'CLI tools love verbosity. A single `npm install` or `terraform plan` can dump ' +
+        'thousands of lines into the agent\'s context — most of it noise. Wrap noisy ' +
+        'commands with a trimmer so the agent only sees the relevant tail: errors, ' +
+        'warnings, the final summary. Two community Agent Skills make this trivial: ' +
+        '**Snip** (github.com/edouard-claude/snip) wraps shell commands — prefix with ' +
+        '`snip -- npm install` to filter verbose output while preserving errors. ' +
+        '**Caveman** (github.com/juliusbrussee/caveman) goes further, instructing the ' +
+        'model to respond in compressed, telegraphic style — cutting output tokens by ' +
+        '~75% while preserving technical accuracy. Together they shrink both the cached ' +
+        'input on the next loop and the response itself, improving recall by reducing ' +
         '"lost in the middle" effects.',
       useCases: ['CLI Agent', 'Build Output', 'Test Runs'],
     },
