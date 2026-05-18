@@ -474,13 +474,49 @@ export const fr: Translations = {
     powerUser: 'Power user',
     ciAgent: 'Agent CI',
     stopAfterTest: 'Arrêter après le premier test réussi',
-    cavemanResponse: 'caveman mode → ~75% tokens en moins',
-    snipResponse: 'snip → instructions compressées',
+    perStep: 'par étape',
+    steps: 'étapes',
+    accuracy99: '99%',
+    accuracy95: '95%',
+    bePrecise: 'Être précis',
+    stopSignals: 'Ajouter des signaux d\'arrêt',
+    knownContext: 'Ajouter le contexte connu',
+    lostInMiddle: 'Perdu au milieu',
+    recencyBias: 'Biais de récence',
+    middleDecay: 'Les tokens du milieu se dégradent',
+    startStrong: '✓ Début : bonne mémoire',
+    middleLost: '✗ Milieu : dégradé',
+    endStrong: '✓ Fin : bonne mémoire',
+    rawFiles: 'Donner les fichiers bruts à l\'IA',
+    scriptOutput: 'Exécuter un script, donner la sortie',
+    research: '/research',
+    plan: '/plan',
+    implement: '/fleet',
+    withTests: 'Avec tests unitaires',
+    withoutTests: 'Sans tests unitaires',
+    buggyChange: 'Changement bogué',
+    silentMerge: 'Fusion silencieuse',
+    brokenMain: 'Main cassée',
+    failingTests: 'Tests en échec',
+    correction: 'Correction',
+    succeedingTests: 'Tests qui réussissent',
+    rawOutput: 'Sortie brute : 4 200 lignes',
+    trimmed: 'Réduit : 38 lignes',
+    multipleCalls: '5 appels d\'outils séquentiels',
+    batchedCall: '1 appel groupé',
+    cleanLayers: 'Domaine → Application → Infra',
+    agentMiss: 'Erreur de l\'agent',
+    chronicle: '/chronicle',
+    updateInstructions: 'Mettre à jour les instructions',
   },
   tipsLayers: {
     mechanics: {
       title: 'Mécanique des tokens',
       subtitle: 'Comprendre les facteurs de coût derrière chaque interaction Copilot',
+    },
+    pitfalls: {
+      title: 'Pièges',
+      subtitle: 'Modes d\'échec qui dégradent silencieusement la sortie et consomment des tokens',
     },
     prompting: {
       title: 'Prompting',
@@ -489,6 +525,10 @@ export const fr: Translations = {
     context: {
       title: 'Contexte',
       subtitle: 'Fournir au modèle exactement ce dont il a besoin — ni plus, ni moins',
+    },
+    'workflow-design': {
+      title: 'Conception de workflow',
+      subtitle: 'Structurer le travail pour que chaque étape soit fiable et reproductible',
     },
     caching: {
       title: 'Cache',
@@ -524,8 +564,9 @@ export const fr: Translations = {
         'planifier → éditer → exécuter des outils/tests → corriger → répéter. La même intention ' +
         'utilisateur peut varier considérablement en consommation selon le workflow. Un simple ' +
         '« corrige ce bug » peut nécessiter 2 ou plus de 20 appels selon la complexité, les ' +
-        'sorties d\'outils et les boucles de récupération d\'erreurs. C\'est pourquoi la ' +
-        'conception du workflow compte plus que la longueur du prompt.',
+        'sorties d\'outils et les boucles de récupération d\'erreurs. Pire, les erreurs se ' +
+        'cumulent : même à 99% par étape, un workflow de 50 étapes ne réussit qu\'à ~60%. ' +
+        'C\'est pourquoi la conception du workflow compte plus que la longueur du prompt.',
       useCases: ['Agent Mode', 'Cloud Agent', 'CLI Agent'],
     },
     'context-discipline': {
@@ -550,27 +591,16 @@ export const fr: Translations = {
         'incontrôlées où l\'agent continue d\'itérer sans converger.',
       useCases: ['Chat', 'Agent Mode', 'Fichiers de prompt'],
     },
-    guardrails: {
-      name: 'Définir des garde-fous',
-      description: 'Les flux agentiques itèrent jusqu\'à atteindre l\'objectif — définir des limites explicites',
-      details:
-        'Les agents itèrent par conception : planifier → éditer → exécuter des outils → ' +
-        'corriger → répéter. Sans limites, un agent continuera jusqu\'à réussir (ou épuiser ' +
-        'le contexte). Ajoutez des instructions déclaratives comme : « Proposer au maximum ' +
-        '2 solutions alternatives ; arrêter après le premier test réussi. » ou « Si la première ' +
-        'approche échoue, expliquer pourquoi et arrêter. » Cela empêche les sessions incontrôlées ' +
-        'qui consomment des tokens.',
-      useCases: ['Agent Mode', 'Cloud Agent', 'Agents personnalisés'],
-    },
     'fresh-threads': {
       name: 'Nouveaux fils de discussion',
-      description: 'Démarrer de nouvelles conversations une fois les décisions intégrées dans des artefacts durables',
+      description: 'Démarrer de nouvelles conversations dès qu\'une décision est livrée — éviter la dégradation du contexte',
       details:
         'Évitez les sessions longues où les sorties d\'outils s\'accumulent dans le contexte. ' +
-        'Chaque sortie d\'outil accumulée ajoute des tokens d\'entrée à chaque appel suivant. ' +
-        'Une fois la décision intégrée dans un artefact durable (issue, description de PR, ADR, ' +
-        'commit de code), démarrez un nouveau fil. Le nouveau fil commence avec un contexte ' +
-        'propre et ne paie pas pour l\'historique de conversation périmé.',
+        'Chaque sortie accumulée ajoute des tokens d\'entrée à chaque appel suivant, et ' +
+        'une fois la fenêtre remplie à plus de ~50% le modèle privilégie les tokens les plus ' +
+        'récents (biais de récence) et « perd » ceux du milieu. Dès qu\'une décision est ' +
+        'intégrée dans un artefact durable (issue, PR, ADR, commit), démarrez un nouveau ' +
+        'fil avec un contexte propre.',
       useCases: ['Chat', 'Agent Mode', 'Sessions CLI'],
     },
     'concise-instructions': {
@@ -608,38 +638,19 @@ export const fr: Translations = {
         'plus rapides et moins de bruit à lire.',
       useCases: ['Chat', 'Revue de code', 'Migrations'],
     },
-    'caveman-skill': {
-      name: 'Skill Caveman',
-      description: 'Skill communautaire qui réduit ~75% des tokens de sortie via des réponses ultra-compressées',
-      details:
-        'Caveman est un Agent Skill communautaire qui instruit le modèle à répondre dans un style ' +
-        'compressé et télégraphique — supprimant les articles, mots de remplissage et le boilerplate ' +
-        'tout en conservant la précision technique. Il peut réduire les tokens de sortie d\'environ 75%. ' +
-        'Installez le skill et dites « caveman mode » pour l\'activer. Supporte plusieurs niveaux ' +
-        'd\'intensité de lite à ultra. Idéal pour les développeurs expérimentés qui veulent des ' +
-        'réponses concises sans bruit.',
-      useCases: ['Chat', 'CLI', 'Revue de code'],
-    },
-    'snip-skill': {
-      name: 'Skill Snip',
-      description: 'Skill communautaire qui optimise le contexte en compressant les instructions et réduisant les tokens',
-      details:
-        'Snip est un Agent Skill communautaire qui optimise l\'utilisation des tokens en restructurant ' +
-        'et compressant automatiquement les instructions. Il réécrit les prompts longs et le contexte ' +
-        'sous une forme plus compacte tout en préservant le sens, réduisant les tokens d\'entrée et de ' +
-        'sortie. Installez le skill pour l\'appliquer automatiquement à vos interactions Copilot. ' +
-        'Particulièrement utile pour les grandes bases de code et les workflows multi-fichiers complexes.',
-      useCases: ['Chat', 'Mode Agent', 'CLI'],
-    },
     'scope-context': {
       name: 'Cadrer le contexte intentionnellement',
-      description: 'Préférer un contexte ciblé (un fichier) plutôt que « tout le dépôt » sauf si vraiment nécessaire',
+      description: 'Utilisez #file ou #selection pour les questions ciblées, #codebase uniquement pour les changements transversaux',
       details:
-        'Utilisez un contexte ciblé : uniquement le fichier ou la fonction pertinente, pas tout ' +
-        'le dépôt. « Joindre uniquement la sortie du test échoué, pas les logs complets. » Le ' +
-        'contexte de tout le dépôt (#codebase) est puissant mais coûteux — ne l\'utilisez que ' +
-        'pour les changements transversaux qui nécessitent vraiment un raisonnement global. Pour ' +
-        'les questions ciblées, #file est presque toujours suffisant et bien moins cher.',
+        'Les références de chat (#file, #selection, #codebase) contrôlent exactement ce ' +
+        'que le modèle voit — et ce que vous payez. Utilisez #file pour des questions ' +
+        'ciblées sur un fichier spécifique, #selection pour une portée encore plus étroite ' +
+        '(uniquement les lignes surlignées). Réservez #codebase pour les changements ' +
+        'transversaux où le modèle a vraiment besoin de raisonner sur tout le projet. ' +
+        'Même principe pour la sortie d\'outils : joignez uniquement la sortie du test ' +
+        'échoué, pas les logs complets. Un contexte ciblé est moins cher, plus rapide, ' +
+        'et produit généralement de meilleures réponses car le modèle n\'est pas distrait ' +
+        'par du code non pertinent.',
       useCases: ['Chat', 'Agent Mode', 'CLI'],
     },
     'conditional-context': {
@@ -652,17 +663,6 @@ export const fr: Translations = {
         'spécialisés vers les Skills où le modèle décide quand les charger, ou utilisez les ' +
         'globs applyTo pour que les instructions ne s\'appliquent qu\'aux fichiers correspondants.',
       useCases: ['Instructions', 'Skills', 'Portée par chemin'],
-    },
-    'targeted-refs': {
-      name: 'Utiliser des références ciblées',
-      description: 'Utiliser #file pour les questions ciblées, #codebase uniquement pour les changements transversaux',
-      details:
-        'Les références de chat (#file, #selection, #codebase) contrôlent exactement le contexte ' +
-        'que le modèle voit. Utilisez #file pour des questions ciblées sur du code spécifique. ' +
-        'Utilisez #selection pour un scope encore plus étroit. Réservez #codebase aux changements ' +
-        'transversaux où le modèle a vraiment besoin de comprendre tout le projet. Joignez ' +
-        'uniquement la sortie du test échoué, pas les logs de toute la suite de tests.',
-      useCases: ['Chat', 'IDE', 'Compréhension du code'],
     },
     'apply-to-paths': {
       name: 'Utiliser les chemins applyTo',
@@ -677,13 +677,15 @@ export const fr: Translations = {
     },
     'skills-mcp': {
       name: 'Exploiter Skills & MCP',
-      description: 'Les Skills et outils MCP se chargent à la demande — laissez le modèle les découvrir',
+      description: 'Les Skills se chargent à la demande — mais les schémas MCP coûtent à chaque boucle',
       details:
-        'Les Skills et outils de serveur MCP sont découverts par le modèle en fonction de leurs ' +
-        'descriptions. Ils ne se chargent dans le contexte que lorsqu\'ils sont pertinents pour ' +
-        'le prompt en cours. C\'est beaucoup plus efficace en tokens que de coller le même guidage ' +
-        'dans chaque conversation. Écrivez des descriptions de skills claires et concises pour que ' +
-        'le modèle puisse décider précisément quand les activer.',
+        'Les Skills sont découverts par le modèle d\'après leurs descriptions et chargent le ' +
+        'guidage complet dans le contexte uniquement quand c\'est pertinent. Les schémas ' +
+        'd\'outils des serveurs MCP, en revanche, sont chargés comme tokens statiques à ' +
+        'chaque boucle — utiles, mais cela s\'accumule. Pour certains workflows, une simple ' +
+        'commande CLI peut coûter moins cher que l\'outil MCP équivalent. Écrivez des ' +
+        'descriptions de skills claires et préférez Skills/CLI aux MCP lourds quand le ' +
+        'compromis est favorable.',
       useCases: ['Skills', 'Serveurs MCP', 'Agents personnalisés'],
     },
     'context-command': {
@@ -775,48 +777,190 @@ export const fr: Translations = {
         'Utilisez le tableau de bord administrateur pour identifier les valeurs aberrantes et ajuster.',
       useCases: ['Admin', 'Contrôle budgétaire', 'Gouvernance d\'équipe'],
     },
-    'chronicle-tips': {
-      name: 'Insights Chronicle',
-      description: 'Utiliser /chronicle improve et /chronicle tips pour améliorer les workflows',
+    'compound-errors': {
+      name: 'Erreurs qui s\'accumulent',
+      description: 'Même à 99% par étape, un workflow de 50 étapes ne réussit qu\'à ~60%',
       details:
-        'Copilot CLI inclut la commande /chronicle pour l\'intelligence de workflow. Utilisez ' +
-        '/chronicle improve pour obtenir des suggestions d\'optimisation de votre workflow actuel, ' +
-        'et /chronicle tips pour des recommandations générales d\'efficacité basées sur vos ' +
-        'schémas d\'utilisation. Ces commandes analysent votre historique de session et fournissent ' +
-        'des conseils personnalisés.',
-      useCases: ['CLI', 'Optimisation du workflow', 'Auto-amélioration'],
+        'La fiabilité par étape se multiplie tout au long d\'une boucle agentique. À 99% par ' +
+        'étape, un workflow de 50 étapes finit à 0,99⁵⁰ ≈ 60%. Tombez à 95% et ce même workflow ' +
+        'n\'a que ~8% de chances de réussir de bout en bout. C\'est pourquoi le « pari agentique » ' +
+        '— espérer qu\'une sortie de faible qualité s\'arrange — ne passe pas à l\'échelle. ' +
+        'Chaque amélioration par étape (meilleurs prompts, portée réduite, vérifications ' +
+        'déterministes) se multiplie sur tout le workflow.',
+      useCases: ['Agent Mode', 'Cloud Agent', 'Workflows orchestrés'],
+    },
+    'prompt-anatomy': {
+      name: 'Anatomie du prompt',
+      description: 'Soyez précis · ajoutez des signaux d\'arrêt · ajoutez le contexte connu',
+      details:
+        'Les agents itèrent par conception : planifier → éditer → exécuter des outils → ' +
+        'corriger → répéter. Sans limites, ils continueront jusqu\'à réussir (ou épuiser le ' +
+        'contexte). Trois ingrédients fiables d\'un prompt efficace les gardent sur la route : ' +
+        '(1) Être précis — décrivez le changement en termes simples et sans ambiguïté, avec ' +
+        'le résultat attendu. (2) Ajouter des signaux d\'arrêt — « s\'arrêter au premier test ' +
+        'réussi », « proposer au plus 2 alternatives », « ne pas refactoriser le code non lié ». ' +
+        '(3) Ajouter le contexte connu en amont — nommez les fichiers, dossiers ou docs ' +
+        'pertinents pour que l\'agent ne perde pas de tokens à chercher. Combinés à des ' +
+        'garde-fous déterministes (tests, linters), cela empêche les sessions incontrôlées.',
+      useCases: ['Chat', 'Agent Mode', 'CLI'],
+    },
+    'context-rot': {
+      name: 'Dégradation du contexte',
+      description: 'Les longues sessions se dégradent — les sorties d\'outils accumulées polluent chaque appel suivant',
+      details:
+        'Chaque sortie d\'outil, pièce jointe et tour de conversation s\'accumule dans le ' +
+        'contexte. Au-delà de ~50% de remplissage, deux choses arrivent : les coûts d\'entrée ' +
+        'explosent (chaque appel suivant ré-envoie tout l\'historique) et le modèle s\'appuie ' +
+        'fortement sur les tokens les plus récents (biais de récence), perdant les décisions ' +
+        'prises plus tôt. Mitigations : couper les sorties d\'outils verbeuses, transférer les ' +
+        'décisions intermédiaires dans des artefacts durables (issues, PRs, ADRs), et démarrer ' +
+        'de nouveaux fils avant que la dégradation ne s\'installe.',
+      useCases: ['Longues sessions', 'Agent Mode', 'Sessions CLI'],
+    },
+    'lost-in-middle': {
+      name: 'Perdu au milieu',
+      description: 'Les tokens au milieu d\'un long contexte sont moins bien restitués',
+      details:
+        'Un mode d\'échec documenté : quand le contexte est long, les modèles restituent ' +
+        'fidèlement les tokens du début et de la fin, mais se dégradent sur ceux du milieu. ' +
+        'Même avec une fenêtre de 200k, enfouir une instruction critique à la ligne 4 000 sur ' +
+        '8 000 la rend effectivement invisible. Mitigations : prompts courts, instructions ' +
+        'critiques au tout début ou à la toute fin, et découper les longs inputs en morceaux ' +
+        'focalisés plutôt qu\'un seul méga-document.',
+      useCases: ['Gros prompts', 'Longs documents', 'Revues multi-fichiers'],
+    },
+    'think-in-code': {
+      name: 'Penser en code',
+      description: 'Préférer des scripts plutôt que de donner les fichiers bruts',
+      details:
+        'Pour comprendre 10 000 lignes de logs ou un gros JSON, ne collez pas tout. ' +
+        'Écrivez (ou demandez à l\'agent d\'écrire) un petit script qui extrait juste ' +
+        'l\'essentiel — comptes, erreurs, la tranche utile — et donnez la sortie du script ' +
+        'à l\'agent. Cela transforme des milliers de tokens d\'entrée en dizaines et garde ' +
+        'le modèle concentré sur la vraie question. Marche aussi bien avec grep, jq, awk ' +
+        'ou un script Python de 20 lignes.',
+      useCases: ['Analyse de logs', 'Exploration de données', 'Gros fichiers'],
+    },
+    'research-plan-implement': {
+      name: 'Recherche → Plan → Implémentation',
+      description: 'Trois étapes ciblées avec le bon modèle pour chacune',
+      details:
+        'Découpez un changement non trivial en trois passages au lieu d\'un méga-prompt. ' +
+        '(1) Recherche : un modèle rapide et large (Gemini 2.5 Pro) explore le code et ' +
+        'identifie les fichiers pertinents. (2) Plan : un modèle de raisonnement profond ' +
+        '(Opus) transforme cette recherche en spécification précise. (3) Implémentation : ' +
+        'un modèle efficace (GPT-5.4 / Sonnet) applique la spec au code. Chaque étape ' +
+        'reçoit juste le contexte nécessaire, et les erreurs par étape ne s\'accumulent ' +
+        'pas en une boucle incontrôlée. Dans Copilot CLI, cela correspond à /research → ' +
+        '/plan → /fleet.',
+      useCases: ['Refactors complexes', 'Changements transverses', 'Éditions multi-fichiers'],
+    },
+    'deterministic-guardrails': {
+      name: 'Garde-fous déterministes',
+      description: 'Tests unitaires, linters et scans empêchent les mauvais changements de s\'accumuler',
+      details:
+        'Les LLM sont probabilistes — mais les tests, linters et type-checkers ne le sont ' +
+        'pas. Avec des tests en place, un changement bogué produit des tests en échec que ' +
+        'l\'agent voit et corrige à la boucle suivante. Sans tests, l\'agent empile les ' +
+        'bugs sur plusieurs changements avant que quelqu\'un ne s\'en aperçoive — minutes ' +
+        'CI gâchées, revues gâchées, debug humain. Tests + linters + scans de secrets sont ' +
+        'le moyen le moins cher de donner à l\'agent un retour fiable.',
+      useCases: ['Agent Mode', 'TDD', 'Pipelines CI'],
+    },
+    'trim-shell-outputs': {
+      name: 'Réduire les sorties shell',
+      description: 'Un `npm install` bruyant noie le signal — encapsulez pour ne garder que l\'essentiel',
+      details:
+        'Les CLI adorent être verbeux. Un seul `npm install` ou `terraform plan` peut ' +
+        'déverser des milliers de lignes dans le contexte de l\'agent — la plupart du bruit. ' +
+        'Encapsulez les commandes bruyantes avec un trimmer pour que l\'agent ne voie que ' +
+        'la fin pertinente : erreurs, warnings, résumé final. Deux Agent Skills communautaires ' +
+        'le rendent trivial : **Snip** (github.com/edouard-claude/snip) encapsule les ' +
+        'commandes shell — préfixez `snip -- npm install` pour filtrer la sortie verbeuse ' +
+        'en préservant les erreurs. **Caveman** (github.com/juliusbrussee/caveman) va plus ' +
+        'loin, instruisant le modèle à répondre dans un style compressé et télégraphique — ' +
+        'réduisant les tokens de sortie d\'environ 75% tout en conservant la précision ' +
+        'technique. Ensemble, ils réduisent à la fois l\'entrée mise en cache à la boucle ' +
+        'suivante et la réponse elle-même, améliorant le rappel en limitant le « lost in the middle ».',
+      useCases: ['Agent CLI', 'Sortie de build', 'Tests'],
+    },
+    'collapse-tool-calls': {
+      name: 'Regrouper les appels d\'outils',
+      description: 'Plusieurs invocations en une seule — moins d\'aller-retours, moins de tokens',
+      details:
+        'Chaque appel d\'outil ajoute un aller-retour complet : tokens d\'entrée pour la ' +
+        'requête, tokens de sortie pour le résultat, plus le prompt système rejoué à ' +
+        'chaque fois. Des plugins comme jsturtevant/copilot-codeact-plugin permettent à ' +
+        'l\'agent d\'exprimer plusieurs invocations en un bloc « code-act » exécuté ' +
+        'd\'un coup. Cinq petits appels deviennent un appel groupé — même résultat, ' +
+        'bien moins de tokens et plus rapide.',
+      useCases: ['Agent Mode', 'CLI', 'Tâches multi-étapes'],
+    },
+    'apply-architecture': {
+      name: 'Appliquer une bonne architecture',
+      description: 'DDD, hexagonale, CQRS — des frontières propres aident l\'agent à s\'y retrouver',
+      details:
+        'Un code en désordre force l\'agent à charger bien plus de contexte pour faire ' +
+        'un changement sûr. Les patterns d\'architecture propre (DDD, hexagonal/ports-' +
+        'and-adapters, CQRS, événementiel) donnent à l\'agent de solides garde-fous : il ' +
+        'trouve le bon module par son nom, le change en isolation, évite de toucher au ' +
+        'code non lié. Résultat : sessions plus courtes, diffs plus petites, moins ' +
+        'd\'erreurs cumulées — les mêmes choses qui aident les humains.',
+      useCases: ['Nouveaux projets', 'Refactoring', 'Codebases d\'équipe'],
+    },
+    'iterate-configs': {
+      name: 'Traiter les erreurs de l\'agent comme des incidents',
+      description: 'Quand l\'agent se trompe, corrigez la config — pas juste la sortie',
+      details:
+        'Un agent qui dérive est un signal, pas un simple incident isolé. Traitez chaque ' +
+        'erreur significative comme un petit incident : qu\'est-ce qui manquait — une ' +
+        'instruction, un skill, le bon modèle ? Mettez à jour copilot-instructions.md, ' +
+        'le skill concerné ou votre template de prompt pour que la même erreur ne se ' +
+        'reproduise pas. Le CLI Copilot fournit deux commandes pour cela : ' +
+        '`/chronicle improve` analyse votre session courante et suggère des correctifs ' +
+        'de workflow ; `/chronicle tips` fait émerger des motifs depuis votre historique. ' +
+        'Lancez-les régulièrement — avec le temps, l\'agent devient nettement plus ' +
+        'fiable sans plus de travail par tâche.',
+      useCases: ['Workflows d\'équipe', 'Utilisateurs avancés CLI', 'Repos long terme'],
     },
   },
   tipsInsights: [
     {
+      icon: '📉',
+      content:
+        '<strong>La qualité se cumule.</strong> Même à 99% par étape, un workflow ' +
+        'agentique de 50 étapes ne réussit qu\'à ~60%. À 95% par étape c\'est 8%. Les ' +
+        'gains par étape se multiplient — faites compter chaque token.',
+    },
+    {
       icon: '💰',
       content:
-        '<strong>Le contexte > les prompts pour le coût.</strong> Gérer le contexte qui alimente ' +
-        'chaque appel au modèle a un impact de coût bien plus important que l\'optimisation de ' +
-        'la formulation des prompts. Réduisez les fichiers, démarrez de nouveaux fils et utilisez ' +
-        'le contexte conditionnel.',
+        '<strong>Le contexte &gt; les prompts pour le coût.</strong> Gérer le contexte qui ' +
+        'alimente chaque appel au modèle a un impact bien plus grand que la formulation des ' +
+        'prompts. Réduisez les fichiers, démarrez de nouveaux fils, utilisez le contexte ' +
+        'conditionnel.',
     },
     {
       icon: '🎯',
       content:
         '<strong>Adapter le modèle à la tâche.</strong> N\'utilisez pas un modèle premium pour ' +
-        'un simple Q&A, et n\'utilisez pas un modèle mini pour une architecture complexe. Utilisez ' +
-        'le mode Auto en cas de doute — il route automatiquement.',
+        'un simple Q&A, ni un modèle mini pour de l\'architecture complexe. Le mode Auto route ' +
+        'automatiquement en cas de doute.',
     },
     {
       icon: '🔄',
       content:
-        '<strong>Les boucles agentiques multiplient le coût.</strong> Une seule requête agentique ' +
-        'peut déclencher des dizaines d\'appels au modèle. Définissez des limites explicites ' +
-        '(« arrêter après le premier test réussi ») pour éviter une consommation incontrôlée ' +
-        'de tokens.',
+        '<strong>Les boucles agentiques multiplient le coût.</strong> Une seule requête ' +
+        'agentique peut déclencher des dizaines d\'appels. Ajoutez des signaux d\'arrêt ' +
+        'explicites (« arrêter au premier test réussi ») pour éviter la consommation ' +
+        'incontrôlée.',
     },
     {
       icon: '📦',
       content:
         '<strong>Passer du permanent à la demande.</strong> Gardez les instructions minimales. ' +
-        'Les guidages lourds appartiennent aux Skills (chargés par le modèle quand pertinent) et ' +
-        'aux fichiers de prompt (invoqués explicitement), pas dans copilot-instructions.md.',
+        'Le guidage lourd appartient aux Skills (chargés par le modèle quand pertinent) et aux ' +
+        'fichiers de prompt (invoqués explicitement), pas dans copilot-instructions.md.',
     },
   ],
 };

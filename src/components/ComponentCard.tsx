@@ -305,23 +305,6 @@ const QualityOverQuantityViz: React.FC<{ v: Translations['tipsViz'] }> = ({ v })
   </div>
 );
 
-const GuardrailsViz: React.FC<{ v: Translations['tipsViz'] }> = ({ v }) => (
-  <div className="viz viz-terminal" aria-hidden="true">
-    <div className="terminal-bar">
-      <span className="terminal-dot terminal-dot--red" />
-      <span className="terminal-dot terminal-dot--yellow" />
-      <span className="terminal-dot terminal-dot--green" />
-    </div>
-    <div className="terminal-line">
-      <span className="terminal-comment"># {v.stopAfterTest}</span>
-    </div>
-    <div className="terminal-line">
-      <span className="terminal-keyword">max_attempts: </span>
-      <span className="terminal-cmd">2</span>
-    </div>
-  </div>
-);
-
 const FreshThreadsViz: React.FC<{ v: Translations['tipsViz'] }> = ({ v }) => (
   <div className="viz viz-thread-lifecycle" aria-hidden="true">
     <span className="thread-step">💬 {v.chat}</span>
@@ -368,35 +351,10 @@ const ConciseAnswersViz: React.FC<{ v: Translations['tipsViz'] }> = ({ v }) => (
   </div>
 );
 
-const CavemanSkillViz: React.FC<{ v: Translations['tipsViz'] }> = ({ v }) => (
-  <div className="viz viz-terminal" aria-hidden="true">
-    <div className="terminal-bar">
-      <span className="terminal-dot terminal-dot--red" />
-      <span className="terminal-dot terminal-dot--yellow" />
-      <span className="terminal-dot terminal-dot--green" />
-    </div>
-    <div className="terminal-line">
-      <span className="terminal-cmd">🦴 {v.cavemanResponse}</span>
-    </div>
-  </div>
-);
-
-const SnipSkillViz: React.FC<{ v: Translations['tipsViz'] }> = ({ v }) => (
-  <div className="viz viz-terminal" aria-hidden="true">
-    <div className="terminal-bar">
-      <span className="terminal-dot terminal-dot--red" />
-      <span className="terminal-dot terminal-dot--yellow" />
-      <span className="terminal-dot terminal-dot--green" />
-    </div>
-    <div className="terminal-line">
-      <span className="terminal-cmd">✂️ {v.snipResponse}</span>
-    </div>
-  </div>
-);
-
 const ScopeContextViz: React.FC<{ v: Translations['tipsViz'] }> = ({ v }) => (
   <div className="viz viz-scope-compare" aria-hidden="true">
     <span className="scope-option scope-option--narrow">🔬 #file <span className="scope-badge">{v.narrow}</span></span>
+    <span className="scope-option scope-option--narrow">🎯 #selection <span className="scope-badge">{v.narrow}</span></span>
     <span className="scope-option scope-option--broad">🌐 #codebase <span className="scope-badge">{v.broad}</span></span>
   </div>
 );
@@ -405,14 +363,6 @@ const ConditionalContextViz: React.FC<{ v: Translations['tipsViz'] }> = ({ v }) 
   <div className="viz viz-reuse-flow" aria-hidden="true">
     <div className="reuse-item">🔴 {v.alwaysOn} → <strong>{v.costly}</strong></div>
     <div className="reuse-item">🟢 {v.onDemand} → <strong>{v.efficient}</strong></div>
-  </div>
-);
-
-const TargetedRefsViz: React.FC = () => (
-  <div className="viz viz-chat-keywords" aria-hidden="true">
-    <span className="chat-keyword chat-keyword--variable">#file</span>
-    <span className="chat-keyword chat-keyword--variable">#selection</span>
-    <span className="chat-keyword chat-keyword--participant">#codebase</span>
   </div>
 );
 
@@ -515,21 +465,125 @@ const MonitorUsageViz: React.FC<{ v: Translations['tipsViz'] }> = ({ v }) => (
   </div>
 );
 
-const ChronicleTipsViz: React.FC = () => (
-  <div className="viz viz-terminal" aria-hidden="true">
-    <div className="terminal-bar">
-      <span className="terminal-dot terminal-dot--red" />
-      <span className="terminal-dot terminal-dot--yellow" />
-      <span className="terminal-dot terminal-dot--green" />
+const CompoundErrorsViz: React.FC<{ v: Translations['tipsViz'] }> = ({ v }) => (
+  <div className="viz viz-cost-compare" aria-hidden="true">
+    <div className="cost-item cost-item--cheap">
+      <span className="cost-label">{v.accuracy99} · 50 {v.steps}</span>
+      <span className="cost-bar" style={{ width: '60%' }} />
+      <span className="cost-meta">→ 60%</span>
     </div>
-    <div className="terminal-line">
-      <span className="terminal-prompt">$ </span>
-      <span className="terminal-cmd">/chronicle improve</span>
+    <div className="cost-item cost-item--expensive">
+      <span className="cost-label">{v.accuracy95} · 50 {v.steps}</span>
+      <span className="cost-bar" style={{ width: '8%' }} />
+      <span className="cost-meta">→ 8%</span>
     </div>
-    <div className="terminal-line">
-      <span className="terminal-prompt">$ </span>
-      <span className="terminal-cmd">/chronicle tips</span>
+  </div>
+);
+
+const PromptAnatomyViz: React.FC<{ v: Translations['tipsViz'] }> = ({ v }) => (
+  <div className="viz viz-prompt-anatomy" aria-hidden="true">
+    <div className="viz-checklist">
+      <div className="checklist-row"><span className="checklist-mark">✓</span><span>{v.bePrecise}</span></div>
+      <div className="checklist-row"><span className="checklist-mark">✓</span><span>{v.stopSignals}</span></div>
+      <div className="checklist-row"><span className="checklist-mark">✓</span><span>{v.knownContext}</span></div>
     </div>
+    <div className="prompt-anatomy-terminal">
+      <span className="terminal-comment"># {v.stopAfterTest}</span>
+      <span className="terminal-keyword">max_attempts: <span className="terminal-cmd">2</span></span>
+    </div>
+  </div>
+);
+
+const ContextRotViz: React.FC<{ v: Translations['tipsViz'] }> = ({ v }) => (
+  <div className="viz viz-token-meter" aria-hidden="true">
+    <div className="token-bar">
+      <span className="token-bar-fill token-bar-fill--rot" style={{ width: '100%' }} />
+      <span className="token-bar-label">{v.middleDecay}</span>
+    </div>
+    <div className="rot-legend">
+      <span className="rot-tag">↦ {v.knownContext}</span>
+      <span className="rot-tag">↤ {v.recencyBias}</span>
+    </div>
+  </div>
+);
+
+const LostInMiddleViz: React.FC<{ v: Translations['tipsViz'] }> = ({ v }) => (
+  <div className="viz viz-lost-middle" aria-hidden="true">
+    <div className="lost-middle-track">
+      <span className="lost-middle-zone lost-middle-zone--start">{v.startStrong}</span>
+      <span className="lost-middle-zone lost-middle-zone--mid">{v.middleLost}</span>
+      <span className="lost-middle-zone lost-middle-zone--end">{v.endStrong}</span>
+    </div>
+    <div className="lost-middle-hint">⬇ {v.middleDecay}</div>
+  </div>
+);
+
+const ThinkInCodeViz: React.FC<{ v: Translations['tipsViz'] }> = ({ v }) => (
+  <div className="viz viz-before-after" aria-hidden="true">
+    <div className="ba-item ba-item--before"><span className="ba-label">✗ {v.before}</span><span className="ba-text">{v.rawFiles}</span></div>
+    <div className="ba-item ba-item--after"><span className="ba-label">✓ {v.after}</span><span className="ba-text">{v.scriptOutput}</span></div>
+  </div>
+);
+
+const ResearchPlanImplementViz: React.FC<{ v: Translations['tipsViz'] }> = ({ v }) => (
+  <div className="viz viz-thread-lifecycle" aria-hidden="true">
+    <span className="thread-step">🔍 {v.research}</span>
+    <span className="thread-arrow">→</span>
+    <span className="thread-step">📐 {v.plan}</span>
+    <span className="thread-arrow">→</span>
+    <span className="thread-step thread-step--fresh">⚙️ {v.implement}</span>
+  </div>
+);
+
+const DeterministicGuardrailsViz: React.FC<{ v: Translations['tipsViz'] }> = ({ v }) => (
+  <div className="viz viz-before-after" aria-hidden="true">
+    <div className="ba-item ba-item--before">
+      <span className="ba-label">✗ {v.withoutTests}</span>
+      <span className="ba-text">{v.buggyChange} → {v.silentMerge} → {v.brokenMain}</span>
+    </div>
+    <div className="ba-item ba-item--after">
+      <span className="ba-label">✓ {v.withTests}</span>
+      <span className="ba-text">{v.buggyChange} → {v.failingTests} → {v.correction} → {v.succeedingTests}</span>
+    </div>
+  </div>
+);
+
+const TrimShellOutputsViz: React.FC<{ v: Translations['tipsViz'] }> = ({ v }) => (
+  <div className="viz viz-before-after" aria-hidden="true">
+    <div className="ba-item ba-item--before"><span className="ba-label">✗ {v.before}</span><span className="ba-text">{v.rawOutput}</span></div>
+    <div className="ba-item ba-item--after"><span className="ba-label">✓ {v.after}</span><span className="ba-text">{v.trimmed}</span></div>
+  </div>
+);
+
+const CollapseToolCallsViz: React.FC<{ v: Translations['tipsViz'] }> = ({ v }) => (
+  <div className="viz viz-agent-chain" aria-hidden="true">
+    <span className="agent-chain-call">1</span>
+    <span className="agent-chain-arrow">→</span>
+    <span className="agent-chain-call">2</span>
+    <span className="agent-chain-arrow">→</span>
+    <span className="agent-chain-call">3</span>
+    <span className="agent-chain-arrow">⇒</span>
+    <span className="agent-chain-call agent-chain-call--many">1</span>
+    <span className="agent-chain-label">{v.multipleCalls} → {v.batchedCall}</span>
+  </div>
+);
+
+const ApplyArchitectureViz: React.FC<{ v: Translations['tipsViz'] }> = ({ v }) => (
+  <div className="viz viz-arch-stack" aria-hidden="true">
+    <div className="arch-layer arch-layer--top">Domain</div>
+    <div className="arch-layer arch-layer--mid">Application</div>
+    <div className="arch-layer arch-layer--base">Infrastructure</div>
+    <span className="arch-caption">{v.cleanLayers}</span>
+  </div>
+);
+
+const IterateConfigsViz: React.FC<{ v: Translations['tipsViz'] }> = ({ v }) => (
+  <div className="viz viz-thread-lifecycle" aria-hidden="true">
+    <span className="thread-step">⚠️ {v.agentMiss}</span>
+    <span className="thread-arrow">→</span>
+    <span className="thread-step">📓 {v.chronicle}</span>
+    <span className="thread-arrow">→</span>
+    <span className="thread-step thread-step--fresh">📝 {v.updateInstructions}</span>
   </div>
 );
 
@@ -568,16 +622,12 @@ const ComponentCard: React.FC<ComponentCardProps> = ({ component, layerColor, on
       case 'agentic-cost': return <AgenticCostViz v={tip} />;
       case 'context-discipline': return <ContextDisciplineViz v={tip} />;
       case 'quality-over-quantity': return <QualityOverQuantityViz v={tip} />;
-      case 'guardrails': return <GuardrailsViz v={tip} />;
       case 'fresh-threads': return <FreshThreadsViz v={tip} />;
       case 'concise-instructions': return <ConciseInstructionsViz v={tip} />;
       case 'structure-for-reuse': return <StructureForReuseViz v={tip} />;
       case 'concise-answers': return <ConciseAnswersViz v={tip} />;
-      case 'caveman-skill': return <CavemanSkillViz v={tip} />;
-      case 'snip-skill': return <SnipSkillViz v={tip} />;
       case 'scope-context': return <ScopeContextViz v={tip} />;
       case 'conditional-context': return <ConditionalContextViz v={tip} />;
-      case 'targeted-refs': return <TargetedRefsViz />;
       case 'apply-to-paths': return <ApplyToPathsViz />;
       case 'skills-mcp': return <SkillsMcpViz v={tip} />;
       case 'context-command': return <ContextCommandViz />;
@@ -588,7 +638,17 @@ const ComponentCard: React.FC<ComponentCardProps> = ({ component, layerColor, on
       case 'low-effort-tasks': return <LowEffortViz v={tip} />;
       case 'auto-mode': return <AutoModeViz v={tip} />;
       case 'monitor-usage': return <MonitorUsageViz v={tip} />;
-      case 'chronicle-tips': return <ChronicleTipsViz />;
+      case 'compound-errors': return <CompoundErrorsViz v={tip} />;
+      case 'prompt-anatomy': return <PromptAnatomyViz v={tip} />;
+      case 'context-rot': return <ContextRotViz v={tip} />;
+      case 'lost-in-middle': return <LostInMiddleViz v={tip} />;
+      case 'think-in-code': return <ThinkInCodeViz v={tip} />;
+      case 'research-plan-implement': return <ResearchPlanImplementViz v={tip} />;
+      case 'deterministic-guardrails': return <DeterministicGuardrailsViz v={tip} />;
+      case 'trim-shell-outputs': return <TrimShellOutputsViz v={tip} />;
+      case 'collapse-tool-calls': return <CollapseToolCallsViz v={tip} />;
+      case 'apply-architecture': return <ApplyArchitectureViz v={tip} />;
+      case 'iterate-configs': return <IterateConfigsViz v={tip} />;
       default: return null;
     }
   };

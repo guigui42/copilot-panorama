@@ -460,13 +460,49 @@ export const de: Translations = {
     powerUser: 'Power-User',
     ciAgent: 'CI-Agent',
     stopAfterTest: 'Nach erstem bestandenem Test stoppen',
-    cavemanResponse: 'caveman mode → ~75% weniger Tokens',
-    snipResponse: 'snip → komprimierte Anweisungen',
+    perStep: 'pro Schritt',
+    steps: 'Schritte',
+    accuracy99: '99%',
+    accuracy95: '95%',
+    bePrecise: 'Sei präzise',
+    stopSignals: 'Stop-Signale hinzufügen',
+    knownContext: 'Bekannten Kontext mitgeben',
+    lostInMiddle: 'In der Mitte verloren',
+    recencyBias: 'Recency Bias',
+    middleDecay: 'Mittlere Tokens verblassen',
+    startStrong: '✓ Anfang: starker Recall',
+    middleLost: '✗ Mitte: degradiert',
+    endStrong: '✓ Ende: starker Recall',
+    rawFiles: 'Rohe Dateien an die KI geben',
+    scriptOutput: 'Skript ausführen, Ausgabe übergeben',
+    research: '/research',
+    plan: '/plan',
+    implement: '/fleet',
+    withTests: 'Mit Unit-Tests',
+    withoutTests: 'Ohne Unit-Tests',
+    buggyChange: 'Fehlerhafte Änderung',
+    silentMerge: 'Stiller Merge',
+    brokenMain: 'Kaputter main-Branch',
+    failingTests: 'Fehlschlagende Tests',
+    correction: 'Korrektur',
+    succeedingTests: 'Bestandene Tests',
+    rawOutput: 'Rohausgabe: 4.200 Zeilen',
+    trimmed: 'Gekürzt: 38 Zeilen',
+    multipleCalls: '5 sequentielle Tool-Aufrufe',
+    batchedCall: '1 gebündelter Aufruf',
+    cleanLayers: 'Domain → Application → Infra',
+    agentMiss: 'Agent-Fehler',
+    chronicle: '/chronicle',
+    updateInstructions: 'Anweisungen aktualisieren',
   },
   tipsLayers: {
     mechanics: {
       title: 'Token Mechanics',
       subtitle: 'Understand the cost drivers behind every Copilot interaction',
+    },
+    pitfalls: {
+      title: 'Pitfalls',
+      subtitle: 'Failure modes that quietly degrade output and burn tokens',
     },
     prompting: {
       title: 'Prompting',
@@ -475,6 +511,10 @@ export const de: Translations = {
     context: {
       title: 'Context',
       subtitle: 'Feed the model exactly what it needs — no more, no less',
+    },
+    'workflow-design': {
+      title: 'Workflow Design',
+      subtitle: 'Structure work so each step is reliable and repeatable',
     },
     caching: {
       title: 'Caching',
@@ -510,7 +550,9 @@ export const de: Translations = {
         'plan → edit → run tools/tests → fix → repeat. The same user intent can vary ' +
         'dramatically in consumption depending on the workflow. A simple "fix this bug" ' +
         'might take 2 calls or 20+ calls depending on complexity, tool outputs, and ' +
-        'error recovery loops. This is why workflow design matters more than prompt length.',
+        'error recovery loops. Worse, errors compound: even at 99% accuracy per step, ' +
+        'a 50-step workflow only lands at ~60%. This is why workflow design matters ' +
+        'more than prompt length.',
       useCases: ['Agent Mode', 'Cloud Agent', 'CLI Agent'],
     },
     'context-discipline': {
@@ -535,26 +577,16 @@ export const de: Translations = {
         'where the agent keeps iterating without converging.',
       useCases: ['Chat', 'Agent Mode', 'Prompt Files'],
     },
-    guardrails: {
-      name: 'Set Guardrails',
-      description: 'Agentic flows iterate until goal is met — set explicit bounds',
-      details:
-        'Agents iterate by design: plan → edit → run tools → fix → repeat. Without ' +
-        'bounds, an agent will keep going until it succeeds (or exhausts context). ' +
-        'Add declarative instructions like: "Make at most 2 alternative solutions; ' +
-        'stop after first passing test." or "If the first approach fails, explain why ' +
-        'and stop." This prevents runaway sessions that burn through tokens.',
-      useCases: ['Agent Mode', 'Cloud Agent', 'Custom Agents'],
-    },
     'fresh-threads': {
       name: 'Fresh Threads',
-      description: 'Start new conversations once decisions are shipped to durable artifacts',
+      description: 'Start new conversations once decisions are shipped — avoid context rot',
       details:
         'Avoid long-lived sessions where tool outputs pile up in context. Each ' +
-        'accumulated tool output adds input tokens to every subsequent call. Once ' +
-        'you\'ve shipped the decision into a durable artifact (issue, PR description, ' +
-        'ADR, code commit), start a fresh thread. The new thread starts with a clean ' +
-        'context window and doesn\'t pay for stale conversation history.',
+        'accumulated tool output adds input tokens to every subsequent call, and once ' +
+        'the context window fills past ~50% models bias toward the most recent tokens ' +
+        '(recency bias) and "lose" what was in the middle. Once you\'ve shipped the ' +
+        'decision into a durable artifact (issue, PR description, ADR, code commit), ' +
+        'start a fresh thread with a clean context window.',
       useCases: ['Chat', 'Agent Mode', 'CLI Sessions'],
     },
     'concise-instructions': {
@@ -590,37 +622,18 @@ export const de: Translations = {
         'to read through.',
       useCases: ['Chat', 'Code Review', 'Migrations'],
     },
-    'caveman-skill': {
-      name: 'Caveman Skill',
-      description: 'Community skill that cuts ~75% of output tokens via ultra-compressed responses',
-      details:
-        'Caveman is a community Agent Skill that instructs the model to respond in compressed, ' +
-        'telegraphic style — dropping articles, filler words, and boilerplate while keeping full ' +
-        'technical accuracy. It can cut output tokens by ~75%. Install the skill and say ' +
-        '"caveman mode" to toggle it on. Supports multiple intensity levels from lite to ultra. ' +
-        'Great for experienced developers who want concise answers without noise.',
-      useCases: ['Chat', 'CLI', 'Code Review'],
-    },
-    'snip-skill': {
-      name: 'Snip Skill',
-      description: 'Community skill that optimizes context by compressing instructions and reducing token usage',
-      details:
-        'Snip is a community Agent Skill that optimizes token usage by restructuring and ' +
-        'compressing instructions automatically. It rewrites lengthy prompts and context into ' +
-        'a more compact form while preserving meaning, reducing both input and output tokens. ' +
-        'Install the skill to apply it automatically across your Copilot interactions. ' +
-        'Especially useful for large codebases and complex multi-file workflows.',
-      useCases: ['Chat', 'Agent Mode', 'CLI'],
-    },
     'scope-context': {
       name: 'Scope Context Intentionally',
-      description: 'Prefer targeted context (one file) over "whole repo" unless truly needed',
+      description: 'Use #file or #selection for narrow questions, #codebase only for cross-cutting changes',
       details:
-        'Use targeted context: only the relevant file or function, not the whole repo. ' +
-        '"Attach only the failing test output, not the full logs." Whole-repo context ' +
-        '(#codebase) is powerful but expensive — use it only for cross-cutting changes ' +
-        'that genuinely need global reasoning. For narrow questions, #file is almost ' +
-        'always sufficient and much cheaper.',
+        'Chat references (#file, #selection, #codebase) control exactly what context the ' +
+        'model sees — and what you pay for. Use #file for focused questions about a ' +
+        'specific file, #selection for even narrower scope (the highlighted lines only). ' +
+        'Reserve #codebase for cross-cutting changes where the model genuinely needs to ' +
+        'reason about the whole project. Same idea applies to tool output: attach only ' +
+        'the failing test output, not the full test suite logs. Targeted context is ' +
+        'cheaper, faster, and usually produces better answers because the model isn\'t ' +
+        'distracted by irrelevant code.',
       useCases: ['Chat', 'Agent Mode', 'CLI'],
     },
     'conditional-context': {
@@ -634,17 +647,6 @@ export const de: Translations = {
         'matching files.',
       useCases: ['Instructions', 'Skills', 'Path Scoping'],
     },
-    'targeted-refs': {
-      name: 'Use Targeted References',
-      description: 'Use #file for narrow questions, #codebase only for cross-cutting changes',
-      details:
-        'Chat references (#file, #selection, #codebase) control exactly what context ' +
-        'the model sees. Use #file for focused questions about specific code. Use ' +
-        '#selection for even narrower scope. Reserve #codebase for cross-cutting changes ' +
-        'where the model genuinely needs to understand the whole project. Attach only ' +
-        'the failing test output, not the full test suite logs.',
-      useCases: ['Chat', 'IDE', 'Code Understanding'],
-    },
     'apply-to-paths': {
       name: 'Use applyTo Paths',
       description: 'Scope custom instructions to specific file patterns with applyTo globs',
@@ -657,13 +659,14 @@ export const de: Translations = {
     },
     'skills-mcp': {
       name: 'Leverage Skills & MCP',
-      description: 'Skills and MCP tools load on demand — let the model discover them',
+      description: 'Skills load on demand — but MCP tool schemas hit every loop',
       details:
-        'Skills and MCP server tools are discovered by the model based on descriptions. ' +
-        'They load into context only when relevant to the current prompt. This is much ' +
-        'more token-efficient than pasting the same guidance into every conversation. ' +
-        'Write clear, concise skill descriptions so the model can accurately decide ' +
-        'when to activate them.',
+        'Skills are discovered by the model from their descriptions and load full ' +
+        'guidance into context only when relevant. MCP server tool schemas, by contrast, ' +
+        'are loaded as static tokens on every loop — useful, but they add up. For some ' +
+        'workflows a plain CLI command can be cheaper than the equivalent MCP tool. ' +
+        'Write clear, concise skill descriptions and prefer skills/CLIs over heavyweight ' +
+        'MCPs when the trade-off makes sense.',
       useCases: ['Skills', 'MCP Servers', 'Custom Agents'],
     },
     'context-command': {
@@ -750,23 +753,161 @@ export const de: Translations = {
         'outliers and adjust.',
       useCases: ['Admin', 'Budget Control', 'Team Governance'],
     },
-    'chronicle-tips': {
-      name: 'Chronicle Insights',
-      description: 'Use /chronicle improve and /chronicle tips for workflow improvements',
+    'compound-errors': {
+      name: 'Compound Error Problem',
+      description: 'Even at 99% per step, a 50-step workflow lands at only ~60%',
       details:
-        'Copilot CLI includes the /chronicle command for workflow intelligence. Use ' +
-        '/chronicle improve to get suggestions for optimizing your current workflow, ' +
-        'and /chronicle tips for general efficiency recommendations based on your usage ' +
-        'patterns. These commands analyze your session history and provide personalized ' +
-        'guidance.',
-      useCases: ['CLI', 'Workflow Optimization', 'Self-Improvement'],
+        'Per-step accuracy compounds multiplicatively across an agentic loop. At 99% ' +
+        'reliability per step, a 50-step workflow finishes at 0.99⁵⁰ ≈ 60%. Drop to ' +
+        '95% per step and a 50-step run is only ~8% likely to succeed end-to-end. This ' +
+        'is why "agent gambling" — hoping low-quality output works out — stops scaling. ' +
+        'Every improvement to per-step quality (better prompts, smaller scope, deterministic ' +
+        'checks) multiplies across the entire workflow.',
+      useCases: ['Agent Mode', 'Cloud Agent', 'Orchestrated Workflows'],
+    },
+    'prompt-anatomy': {
+      name: 'Prompt Anatomy',
+      description: 'Be precise · add stop signals · add known context beforehand',
+      details:
+        'Agents iterate by design: plan → edit → run tools → fix → repeat. Without ' +
+        'bounds, they keep going until they succeed (or exhaust context). Three reliable ' +
+        'ingredients of an effective prompt keep them on the road: (1) Be precise — ' +
+        'describe the change in plain, unambiguous terms, including the desired outcome. ' +
+        '(2) Add stop signals — "stop after first passing test", "make at most 2 alternative ' +
+        'solutions", "do not refactor unrelated code". (3) Add known context beforehand — ' +
+        'name the relevant files, folders, or docs so the agent doesn\'t waste tokens ' +
+        'searching. Combined with deterministic guardrails (tests, linters), this prevents ' +
+        'runaway sessions that burn through tokens.',
+      useCases: ['Chat', 'Agent Mode', 'CLI'],
+    },
+    'context-rot': {
+      name: 'Context Rot',
+      description: 'Long sessions degrade — accumulated tool outputs poison every subsequent call',
+      details:
+        'Each tool output, file attachment, and conversation turn pile up in the context. ' +
+        'Once the window crosses ~50% full, two things happen: input costs explode (every ' +
+        'subsequent call re-sends the entire history) and the model leans heavily on the most ' +
+        'recent tokens (recency bias), losing track of decisions made earlier in the session. ' +
+        'Mitigations: trim verbose tool outputs, ship intermediate decisions into durable ' +
+        'artifacts (issues, PRs, ADRs), and start fresh threads before decay sets in.',
+      useCases: ['Long Sessions', 'Agent Mode', 'CLI Sessions'],
+    },
+    'lost-in-middle': {
+      name: 'Lost in the Middle',
+      description: 'Tokens placed in the middle of a long context are recalled less reliably',
+      details:
+        'A documented failure mode: when context is long, models recall tokens at the start ' +
+        'and end of the window with high fidelity but degrade on tokens in the middle. ' +
+        'Even with a 200k window, burying a critical instruction in line 4,000 of 8,000 ' +
+        'means it may be effectively invisible. Mitigations: keep prompts short, put the ' +
+        'most important instructions at the very start or very end of the prompt, and split ' +
+        'long inputs into focused chunks rather than one mega-document.',
+      useCases: ['Large Prompts', 'Long Documents', 'Multi-File Reviews'],
+    },
+    'think-in-code': {
+      name: 'Think in Code',
+      description: 'Prefer scripts over feeding raw files — analyze, then hand the model a summary',
+      details:
+        'When you need to understand 10,000 lines of logs or a large JSON dump, don\'t ' +
+        'paste it all in. Write (or have the agent write) a small script that extracts ' +
+        'just what matters — counts, errors, the relevant slice — and feed the agent ' +
+        'the script\'s output instead. This collapses thousands of input tokens into ' +
+        'dozens and keeps the model focused on the actual question. Works equally well ' +
+        'for grep, jq, awk, or a 20-line Python script.',
+      useCases: ['Log Analysis', 'Data Exploration', 'Large Files'],
+    },
+    'research-plan-implement': {
+      name: 'Research → Plan → Implement',
+      description: 'Chain three focused stages with the right model for each',
+      details:
+        'Divide a non-trivial change into three handoffs instead of one mega-prompt. ' +
+        '(1) Research: a fast, broad model (e.g. Gemini 2.5 Pro) explores the codebase ' +
+        'and identifies the relevant files. (2) Plan: a deep-reasoning model (e.g. Opus) ' +
+        'turns that research into a precise spec. (3) Implement: an efficient model ' +
+        '(e.g. GPT-5.4 / Sonnet) applies the spec to code. Each stage gets only the ' +
+        'context it needs, and per-stage errors don\'t compound into one runaway loop. ' +
+        'In Copilot CLI this maps to /research → /plan → /fleet style flows.',
+      useCases: ['Complex Refactors', 'Cross-Cutting Changes', 'Multi-File Edits'],
+    },
+    'deterministic-guardrails': {
+      name: 'Deterministic Guardrails',
+      description: 'Unit tests, linters, and security scans stop bad changes from compounding',
+      details:
+        'LLMs are probabilistic — but tests, linters, and type-checkers are not. With ' +
+        'unit tests in place, a buggy change produces failing tests, which the agent sees ' +
+        'and corrects in the next loop. Without tests, the agent compounds bugs across ' +
+        'multiple changes before anyone notices — wasted CI/CD minutes, wasted review ' +
+        'cycles, wasted human time debugging. Tests + linters + secret scans are the ' +
+        'cheapest way to give an agent a reliable feedback signal.',
+      useCases: ['Agent Mode', 'TDD', 'CI Pipelines'],
+    },
+    'trim-shell-outputs': {
+      name: 'Trim Shell Outputs',
+      description: 'A noisy `npm install` can drown out signal — wrap commands to keep only what matters',
+      details:
+        'CLI tools love verbosity. A single `npm install` or `terraform plan` can dump ' +
+        'thousands of lines into the agent\'s context — most of it noise. Wrap noisy ' +
+        'commands with a trimmer so the agent only sees the relevant tail: errors, ' +
+        'warnings, the final summary. Two community Agent Skills make this trivial: ' +
+        '**Snip** (github.com/edouard-claude/snip) wraps shell commands — prefix with ' +
+        '`snip -- npm install` to filter verbose output while preserving errors. ' +
+        '**Caveman** (github.com/juliusbrussee/caveman) goes further, instructing the ' +
+        'model to respond in compressed, telegraphic style — cutting output tokens by ' +
+        '~75% while preserving technical accuracy. Together they shrink both the cached ' +
+        'input on the next loop and the response itself, improving recall by reducing ' +
+        '"lost in the middle" effects.',
+      useCases: ['CLI Agent', 'Build Output', 'Test Runs'],
+    },
+    'collapse-tool-calls': {
+      name: 'Collapse Tool Calls',
+      description: 'Batch multiple tool invocations into one — fewer round-trips, fewer tokens',
+      details:
+        'Each tool call adds a full round-trip: input tokens for the request, output ' +
+        'tokens for the result, plus the system prompt replayed each time. Plugins like ' +
+        'jsturtevant/copilot-codeact-plugin let the agent express several tool ' +
+        'invocations as one code-act block, executed together. Five small calls become ' +
+        'one batched call — same outcome, far fewer tokens and faster wall-clock.',
+      useCases: ['Agent Mode', 'CLI', 'Multi-Step Tasks'],
+    },
+    'apply-architecture': {
+      name: 'Apply Good Architecture',
+      description: 'DDD, hexagonal, CQRS — clean boundaries help the agent find its way',
+      details:
+        'A messy codebase forces the agent to load far more context to make a change ' +
+        'safely. Clean architecture patterns (Domain-Driven Design, hexagonal/ports-and-' +
+        'adapters, CQRS, event-driven) give the agent strong guardrails: it can find the ' +
+        'right module by name, change it in isolation, and avoid touching unrelated code. ' +
+        'The result is shorter sessions, smaller diffs, and fewer compounding errors — ' +
+        'the same things that help humans.',
+      useCases: ['New Projects', 'Refactoring', 'Team Codebases'],
+    },
+    'iterate-configs': {
+      name: 'Treat Agent Misses as Incidents',
+      description: 'When the agent gets it wrong, fix the config — not just the output',
+      details:
+        'A misbehaving agent is a signal, not just a one-off. Treat each significant ' +
+        'miss like a small incident: what was missing — an instruction, a skill, the ' +
+        'right model? Update copilot-instructions.md, the relevant skill, or your ' +
+        'prompt template so the same miss doesn\'t happen twice. The Copilot CLI ships ' +
+        'two commands for this: `/chronicle improve` analyzes your current session and ' +
+        'suggests workflow fixes; `/chronicle tips` surfaces patterns from your usage ' +
+        'history. Run them regularly — over time the agent gets noticeably more ' +
+        'reliable without you doing more work per task.',
+      useCases: ['Team Workflows', 'CLI Power Users', 'Long-Lived Repos'],
     },
   },
   tipsInsights: [
     {
+      icon: '📉',
+      content:
+        '<strong>Quality compounds.</strong> Even at 99% per step, a 50-step agentic ' +
+        'workflow only lands at ~60%. At 95% per step it\'s 8%. Per-step improvements ' +
+        'multiply — make every token count.',
+    },
+    {
       icon: '💰',
       content:
-        '<strong>Context > Prompts for cost.</strong> Managing what context flows into each ' +
+        '<strong>Context &gt; prompts for cost.</strong> Managing what context flows into each ' +
         'model call has a much larger cost impact than optimizing prompt wording. Trim files, ' +
         'start fresh threads, and use conditional context.',
     },
@@ -781,7 +922,7 @@ export const de: Translations = {
       icon: '🔄',
       content:
         '<strong>Agentic loops multiply cost.</strong> A single agentic request can trigger ' +
-        'dozens of model calls. Set explicit bounds ("stop after first passing test") to ' +
+        'dozens of model calls. Set explicit stop signals ("stop after first passing test") to ' +
         'prevent runaway token consumption.',
     },
     {

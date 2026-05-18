@@ -6,6 +6,7 @@ interface ComponentMeta {
   path: string;
   icon: string;
   docUrl: string;
+  docLabel?: string;
   altDocUrl?: string;
   altDocLabel?: string;
 }
@@ -30,6 +31,12 @@ const TIPS_COMPONENT_META: Record<string, ComponentMeta> = {
     icon: '🎯',
     docUrl: '',
   },
+  'compound-errors': {
+    id: 'compound-errors',
+    path: 'Quality Math',
+    icon: '📉',
+    docUrl: '',
+  },
 
   /* ── Prompting ── */
   'quality-over-quantity': {
@@ -38,16 +45,16 @@ const TIPS_COMPONENT_META: Record<string, ComponentMeta> = {
     icon: '✨',
     docUrl: 'https://docs.github.com/en/copilot/using-github-copilot/best-practices-for-using-github-copilot',
   },
-  guardrails: {
-    id: 'guardrails',
-    path: 'Agentic Bounds',
-    icon: '🛡️',
-    docUrl: 'https://docs.github.com/en/copilot/using-github-copilot/best-practices-for-using-github-copilot',
-  },
   'fresh-threads': {
     id: 'fresh-threads',
     path: 'Session Hygiene',
     icon: '🧹',
+    docUrl: 'https://docs.github.com/en/copilot/using-github-copilot/best-practices-for-using-github-copilot',
+  },
+  'prompt-anatomy': {
+    id: 'prompt-anatomy',
+    path: 'Prompt Anatomy',
+    icon: '🎯',
     docUrl: 'https://docs.github.com/en/copilot/using-github-copilot/best-practices-for-using-github-copilot',
   },
   'concise-instructions': {
@@ -68,19 +75,6 @@ const TIPS_COMPONENT_META: Record<string, ComponentMeta> = {
     icon: '✂️',
     docUrl: 'https://docs.github.com/en/copilot/using-github-copilot/best-practices-for-using-github-copilot',
   },
-  'caveman-skill': {
-    id: 'caveman-skill',
-    path: 'Community Skill',
-    icon: '🦴',
-    docUrl: 'https://github.com/juliusbrussee/caveman',
-  },
-  'snip-skill': {
-    id: 'snip-skill',
-    path: 'Community Skill',
-    icon: '✂️',
-    docUrl: 'https://github.com/edouard-claude/snip',
-  },
-
   /* ── Context ── */
   'scope-context': {
     id: 'scope-context',
@@ -93,12 +87,6 @@ const TIPS_COMPONENT_META: Record<string, ComponentMeta> = {
     path: 'Conditional Loading',
     icon: '🔀',
     docUrl: 'https://docs.github.com/en/copilot/how-tos/configure-custom-instructions/add-repository-instructions',
-  },
-  'targeted-refs': {
-    id: 'targeted-refs',
-    path: 'Chat References',
-    icon: '📌',
-    docUrl: 'https://docs.github.com/en/copilot/using-github-copilot/asking-github-copilot-questions-in-your-ide',
   },
   'apply-to-paths': {
     id: 'apply-to-paths',
@@ -118,6 +106,40 @@ const TIPS_COMPONENT_META: Record<string, ComponentMeta> = {
     icon: '💻',
     docUrl: 'https://docs.github.com/en/copilot/concepts/agents/about-copilot-cli',
   },
+  'context-rot': {
+    id: 'context-rot',
+    path: 'Context Decay',
+    icon: '🥀',
+    docUrl: 'https://www.producttalk.org/context-rot/',
+    docLabel: 'Product Talk article',
+  },
+  'lost-in-middle': {
+    id: 'lost-in-middle',
+    path: 'Position Bias',
+    icon: '🕳️',
+    docUrl: 'https://arxiv.org/abs/2307.03172',
+    docLabel: 'arXiv paper',
+  },
+  'think-in-code': {
+    id: 'think-in-code',
+    path: 'Scripts Over AI',
+    icon: '🔧',
+    docUrl: '',
+  },
+
+  /* ── Workflow Design ── */
+  'research-plan-implement': {
+    id: 'research-plan-implement',
+    path: 'Divide & Conquer',
+    icon: '🗺️',
+    docUrl: 'https://docs.github.com/en/copilot/concepts/agents/about-copilot-cli',
+  },
+  'deterministic-guardrails': {
+    id: 'deterministic-guardrails',
+    path: 'Test-Driven Loops',
+    icon: '✅',
+    docUrl: '',
+  },
 
   /* ── Caching ── */
   'reuse-context': {
@@ -131,6 +153,22 @@ const TIPS_COMPONENT_META: Record<string, ComponentMeta> = {
     path: 'Prompt Caching',
     icon: '⚡',
     docUrl: 'https://docs.github.com/en/copilot/using-github-copilot/best-practices-for-using-github-copilot',
+  },
+  'trim-shell-outputs': {
+    id: 'trim-shell-outputs',
+    path: 'Shell Hygiene',
+    icon: '🪒',
+    docUrl: 'https://github.com/edouard-claude/snip',
+    docLabel: 'Snip',
+    altDocUrl: 'https://github.com/juliusbrussee/caveman',
+    altDocLabel: 'Caveman skill',
+  },
+  'collapse-tool-calls': {
+    id: 'collapse-tool-calls',
+    path: 'Batched Tools',
+    icon: '🧺',
+    docUrl: 'https://github.com/jsturtevant/copilot-codeact-plugin',
+    docLabel: 'CodeAct plugin',
   },
 
   /* ── Models ── */
@@ -166,11 +204,17 @@ const TIPS_COMPONENT_META: Record<string, ComponentMeta> = {
     icon: '📊',
     docUrl: '',
   },
-  'chronicle-tips': {
-    id: 'chronicle-tips',
-    path: 'Workflow Insights',
-    icon: '📈',
-    docUrl: 'https://docs.github.com/en/copilot/concepts/agents/about-copilot-cli',
+  'apply-architecture': {
+    id: 'apply-architecture',
+    path: 'Agent-Friendly Code',
+    icon: '🏛️',
+    docUrl: '',
+  },
+  'iterate-configs': {
+    id: 'iterate-configs',
+    path: 'Misses → Incidents',
+    icon: '🔁',
+    docUrl: 'https://docs.github.com/en/copilot/how-tos/configure-custom-instructions/add-repository-instructions',
   },
 };
 
@@ -195,11 +239,13 @@ interface LayerDef {
 
 const TIPS_LAYER_DEFS: LayerDef[] = [
   { id: 'mechanics', number: 1, color: '#f0883e', componentIds: ['token-billing', 'agentic-cost', 'context-discipline'] },
-  { id: 'prompting', number: 2, color: '#3fb950', componentIds: ['quality-over-quantity', 'guardrails', 'fresh-threads', 'concise-instructions', 'structure-for-reuse', 'concise-answers', 'caveman-skill', 'snip-skill'] },
-  { id: 'context', number: 3, color: '#58a6ff', componentIds: ['scope-context', 'conditional-context', 'targeted-refs', 'apply-to-paths', 'skills-mcp', 'context-command'] },
-  { id: 'caching', number: 4, color: '#d2a8ff', componentIds: ['reuse-context', 'prefix-matching'] },
-  { id: 'models', number: 5, color: '#f778ba', componentIds: ['choose-right-model', 'high-effort-tasks', 'low-effort-tasks', 'auto-mode'] },
-  { id: 'governance', number: 6, color: '#8b949e', componentIds: ['monitor-usage', 'chronicle-tips'] },
+  { id: 'pitfalls', number: 2, color: '#f85149', componentIds: ['compound-errors', 'context-rot', 'lost-in-middle'] },
+  { id: 'prompting', number: 3, color: '#3fb950', componentIds: ['quality-over-quantity', 'prompt-anatomy', 'fresh-threads', 'concise-instructions', 'structure-for-reuse', 'concise-answers'] },
+  { id: 'context', number: 4, color: '#58a6ff', componentIds: ['scope-context', 'conditional-context', 'apply-to-paths', 'skills-mcp', 'context-command', 'trim-shell-outputs', 'think-in-code'] },
+  { id: 'workflow-design', number: 5, color: '#a371f7', componentIds: ['research-plan-implement', 'deterministic-guardrails', 'apply-architecture', 'iterate-configs'] },
+  { id: 'caching', number: 6, color: '#d2a8ff', componentIds: ['reuse-context', 'prefix-matching', 'collapse-tool-calls'] },
+  { id: 'models', number: 7, color: '#f778ba', componentIds: ['choose-right-model', 'high-effort-tasks', 'low-effort-tasks', 'auto-mode'] },
+  { id: 'governance', number: 8, color: '#8b949e', componentIds: ['monitor-usage'] },
 ];
 
 export function getTipsLayers(t: Translations): Layer[] {
