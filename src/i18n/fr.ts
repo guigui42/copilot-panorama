@@ -486,6 +486,9 @@ export const fr: Translations = {
     lostInMiddle: 'Perdu au milieu',
     recencyBias: 'Biais de récence',
     middleDecay: 'Les tokens du milieu se dégradent',
+    startStrong: '✓ Début : bonne mémoire',
+    middleLost: '✗ Milieu : dégradé',
+    endStrong: '✓ Fin : bonne mémoire',
     rawFiles: 'Donner les fichiers bruts à l\'IA',
     scriptOutput: 'Exécuter un script, donner la sortie',
     research: '/research',
@@ -510,6 +513,10 @@ export const fr: Translations = {
     mechanics: {
       title: 'Mécanique des tokens',
       subtitle: 'Comprendre les facteurs de coût derrière chaque interaction Copilot',
+    },
+    pitfalls: {
+      title: 'Pièges',
+      subtitle: 'Modes d\'échec qui dégradent silencieusement la sortie et consomment des tokens',
     },
     prompting: {
       title: 'Prompting',
@@ -840,16 +847,28 @@ export const fr: Translations = {
     },
     'context-rot': {
       name: 'Dégradation du contexte',
-      description: 'Les grandes fenêtres de contexte se dégradent — le milieu se perd, la fin domine',
+      description: 'Les longues sessions se dégradent — les sorties d\'outils accumulées polluent chaque appel suivant',
       details:
-        'Un modèle avec une fenêtre de 200k ne veut pas dire qu\'il faut la remplir. Deux ' +
-        'modes d\'échec documentés : « Lost in the Middle » — les tokens placés au milieu ' +
-        'd\'un long contexte sont moins bien restitués que ceux au début ou à la fin. ' +
-        '« Biais de récence » — au-delà de ~50% de remplissage, le modèle s\'appuie ' +
-        'fortement sur les tokens les plus récents. Mitigations : prompts courts, ' +
-        'instructions importantes au début ou à la fin, et nouveaux fils avant que la ' +
-        'dégradation ne s\'installe.',
-      useCases: ['Longues sessions', 'Gros codebases', 'Édition multi-fichiers'],
+        'Chaque sortie d\'outil, pièce jointe et tour de conversation s\'accumule dans le ' +
+        'contexte. Au-delà de ~50% de remplissage, deux choses arrivent : les coûts d\'entrée ' +
+        'explosent (chaque appel suivant ré-envoie tout l\'historique) et le modèle s\'appuie ' +
+        'fortement sur les tokens les plus récents (biais de récence), perdant les décisions ' +
+        'prises plus tôt. Mitigations : couper les sorties d\'outils verbeuses, transférer les ' +
+        'décisions intermédiaires dans des artefacts durables (issues, PRs, ADRs), et démarrer ' +
+        'de nouveaux fils avant que la dégradation ne s\'installe.',
+      useCases: ['Longues sessions', 'Agent Mode', 'Sessions CLI'],
+    },
+    'lost-in-middle': {
+      name: 'Perdu au milieu',
+      description: 'Les tokens au milieu d\'un long contexte sont moins bien restitués',
+      details:
+        'Un mode d\'échec documenté : quand le contexte est long, les modèles restituent ' +
+        'fidèlement les tokens du début et de la fin, mais se dégradent sur ceux du milieu. ' +
+        'Même avec une fenêtre de 200k, enfouir une instruction critique à la ligne 4 000 sur ' +
+        '8 000 la rend effectivement invisible. Mitigations : prompts courts, instructions ' +
+        'critiques au tout début ou à la toute fin, et découper les longs inputs en morceaux ' +
+        'focalisés plutôt qu\'un seul méga-document.',
+      useCases: ['Gros prompts', 'Longs documents', 'Revues multi-fichiers'],
     },
     'think-in-code': {
       name: 'Penser en code',

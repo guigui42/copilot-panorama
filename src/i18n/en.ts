@@ -472,6 +472,9 @@ export const en: Translations = {
     lostInMiddle: 'Lost in the middle',
     recencyBias: 'Recency bias',
     middleDecay: 'Middle tokens decay',
+    startStrong: '✓ Start: strong recall',
+    middleLost: '✗ Middle: degraded',
+    endStrong: '✓ End: strong recall',
     rawFiles: 'Feed raw files to AI',
     scriptOutput: 'Run script, feed output',
     research: '/research',
@@ -496,6 +499,10 @@ export const en: Translations = {
     mechanics: {
       title: 'Token Mechanics',
       subtitle: 'Understand the cost drivers behind every Copilot interaction',
+    },
+    pitfalls: {
+      title: 'Pitfalls',
+      subtitle: 'Failure modes that quietly degrade output and burn tokens',
     },
     prompting: {
       title: 'Prompting',
@@ -816,15 +823,27 @@ export const en: Translations = {
     },
     'context-rot': {
       name: 'Context Rot',
-      description: 'Big context windows still degrade — middle tokens get lost, recent ones dominate',
+      description: 'Long sessions degrade — accumulated tool outputs poison every subsequent call',
       details:
-        'Just because a model has a 200k window doesn\'t mean you should fill it. Two ' +
-        'documented failure modes: "Lost in the Middle" — tokens placed in the middle of ' +
-        'a long context are recalled less reliably than tokens at the beginning or end. ' +
-        '"Recency Bias" — once the window crosses ~50% full, the model leans heavily on ' +
-        'the most recent tokens. Mitigations: keep prompts short, put the most important ' +
-        'instructions at the start or end, and start fresh threads before decay sets in.',
-      useCases: ['Long Sessions', 'Large Codebases', 'Multi-File Edits'],
+        'Each tool output, file attachment, and conversation turn pile up in the context. ' +
+        'Once the window crosses ~50% full, two things happen: input costs explode (every ' +
+        'subsequent call re-sends the entire history) and the model leans heavily on the most ' +
+        'recent tokens (recency bias), losing track of decisions made earlier in the session. ' +
+        'Mitigations: trim verbose tool outputs, ship intermediate decisions into durable ' +
+        'artifacts (issues, PRs, ADRs), and start fresh threads before decay sets in.',
+      useCases: ['Long Sessions', 'Agent Mode', 'CLI Sessions'],
+    },
+    'lost-in-middle': {
+      name: 'Lost in the Middle',
+      description: 'Tokens placed in the middle of a long context are recalled less reliably',
+      details:
+        'A documented failure mode: when context is long, models recall tokens at the start ' +
+        'and end of the window with high fidelity but degrade on tokens in the middle. ' +
+        'Even with a 200k window, burying a critical instruction in line 4,000 of 8,000 ' +
+        'means it may be effectively invisible. Mitigations: keep prompts short, put the ' +
+        'most important instructions at the very start or very end of the prompt, and split ' +
+        'long inputs into focused chunks rather than one mega-document.',
+      useCases: ['Large Prompts', 'Long Documents', 'Multi-File Reviews'],
     },
     'think-in-code': {
       name: 'Think in Code',

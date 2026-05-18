@@ -182,6 +182,10 @@ export interface Translations {
     lostInMiddle: string;
     recencyBias: string;
     middleDecay: string;
+    /* lost in middle */
+    startStrong: string;
+    middleLost: string;
+    endStrong: string;
     /* think in code */
     rawFiles: string;
     scriptOutput: string;

@@ -553,9 +553,19 @@ const ContextRotViz: React.FC<{ v: Translations['tipsViz'] }> = ({ v }) => (
     </div>
     <div className="rot-legend">
       <span className="rot-tag rot-tag--start">↦ {v.knownContext}</span>
-      <span className="rot-tag rot-tag--mid">⋯ {v.lostInMiddle}</span>
       <span className="rot-tag rot-tag--end">↤ {v.recencyBias}</span>
     </div>
+  </div>
+);
+
+const LostInMiddleViz: React.FC<{ v: Translations['tipsViz'] }> = ({ v }) => (
+  <div className="viz viz-lost-middle" aria-hidden="true">
+    <div className="lost-middle-track">
+      <span className="lost-middle-zone lost-middle-zone--start">{v.startStrong}</span>
+      <span className="lost-middle-zone lost-middle-zone--mid">{v.middleLost}</span>
+      <span className="lost-middle-zone lost-middle-zone--end">{v.endStrong}</span>
+    </div>
+    <div className="lost-middle-hint">⬇ {v.middleDecay}</div>
   </div>
 );
 
@@ -686,6 +696,7 @@ const ComponentCard: React.FC<ComponentCardProps> = ({ component, layerColor, on
       case 'compound-errors': return <CompoundErrorsViz v={tip} />;
       case 'prompt-anatomy': return <PromptAnatomyViz v={tip} />;
       case 'context-rot': return <ContextRotViz v={tip} />;
+      case 'lost-in-middle': return <LostInMiddleViz v={tip} />;
       case 'think-in-code': return <ThinkInCodeViz v={tip} />;
       case 'research-plan-implement': return <ResearchPlanImplementViz v={tip} />;
       case 'deterministic-guardrails': return <DeterministicGuardrailsViz v={tip} />;

@@ -130,6 +130,12 @@ const TIPS_COMPONENT_META: Record<string, ComponentMeta> = {
     icon: '🥀',
     docUrl: 'https://www.producttalk.org/context-rot/',
   },
+  'lost-in-middle': {
+    id: 'lost-in-middle',
+    path: 'Position Bias',
+    icon: '🕳️',
+    docUrl: 'https://arxiv.org/abs/2307.03172',
+  },
   'think-in-code': {
     id: 'think-in-code',
     path: 'Scripts Over AI',
@@ -250,13 +256,14 @@ interface LayerDef {
 }
 
 const TIPS_LAYER_DEFS: LayerDef[] = [
-  { id: 'mechanics', number: 1, color: '#f0883e', componentIds: ['token-billing', 'agentic-cost', 'compound-errors', 'context-discipline'] },
-  { id: 'prompting', number: 2, color: '#3fb950', componentIds: ['quality-over-quantity', 'prompt-anatomy', 'fresh-threads', 'concise-instructions', 'structure-for-reuse', 'concise-answers', 'caveman-skill', 'snip-skill'] },
-  { id: 'context', number: 3, color: '#58a6ff', componentIds: ['scope-context', 'conditional-context', 'context-rot', 'targeted-refs', 'apply-to-paths', 'skills-mcp', 'context-command', 'think-in-code'] },
-  { id: 'workflow-design', number: 4, color: '#a371f7', componentIds: ['research-plan-implement', 'deterministic-guardrails', 'apply-architecture', 'iterate-configs'] },
-  { id: 'caching', number: 5, color: '#d2a8ff', componentIds: ['reuse-context', 'prefix-matching', 'trim-shell-outputs', 'collapse-tool-calls'] },
-  { id: 'models', number: 6, color: '#f778ba', componentIds: ['choose-right-model', 'high-effort-tasks', 'low-effort-tasks', 'auto-mode'] },
-  { id: 'governance', number: 7, color: '#8b949e', componentIds: ['monitor-usage', 'chronicle-tips'] },
+  { id: 'mechanics', number: 1, color: '#f0883e', componentIds: ['token-billing', 'agentic-cost', 'context-discipline'] },
+  { id: 'pitfalls', number: 2, color: '#f85149', componentIds: ['compound-errors', 'context-rot', 'lost-in-middle'] },
+  { id: 'prompting', number: 3, color: '#3fb950', componentIds: ['quality-over-quantity', 'prompt-anatomy', 'fresh-threads', 'concise-instructions', 'structure-for-reuse', 'concise-answers', 'caveman-skill', 'snip-skill'] },
+  { id: 'context', number: 4, color: '#58a6ff', componentIds: ['scope-context', 'conditional-context', 'targeted-refs', 'apply-to-paths', 'skills-mcp', 'context-command', 'think-in-code'] },
+  { id: 'workflow-design', number: 5, color: '#a371f7', componentIds: ['research-plan-implement', 'deterministic-guardrails', 'apply-architecture', 'iterate-configs'] },
+  { id: 'caching', number: 6, color: '#d2a8ff', componentIds: ['reuse-context', 'prefix-matching', 'trim-shell-outputs', 'collapse-tool-calls'] },
+  { id: 'models', number: 7, color: '#f778ba', componentIds: ['choose-right-model', 'high-effort-tasks', 'low-effort-tasks', 'auto-mode'] },
+  { id: 'governance', number: 8, color: '#8b949e', componentIds: ['monitor-usage', 'chronicle-tips'] },
 ];
 
 export function getTipsLayers(t: Translations): Layer[] {

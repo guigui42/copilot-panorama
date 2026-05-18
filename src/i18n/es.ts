@@ -481,6 +481,9 @@ export const es: Translations = {
     lostInMiddle: 'Perdido en el medio',
     recencyBias: 'Sesgo de recencia',
     middleDecay: 'Los tokens del medio se degradan',
+    startStrong: '✓ Inicio: buen recuerdo',
+    middleLost: '✗ Medio: degradado',
+    endStrong: '✓ Final: buen recuerdo',
     rawFiles: 'Pasar archivos en bruto a la IA',
     scriptOutput: 'Ejecutar script, pasar la salida',
     research: '/research',
@@ -505,6 +508,10 @@ export const es: Translations = {
     mechanics: {
       title: 'Mecánica de tokens',
       subtitle: 'Entender los factores de coste detrás de cada interacción con Copilot',
+    },
+    pitfalls: {
+      title: 'Trampas',
+      subtitle: 'Modos de fallo que degradan silenciosamente la salida y consumen tokens',
     },
     prompting: {
       title: 'Prompting',
@@ -830,15 +837,28 @@ export const es: Translations = {
     },
     'context-rot': {
       name: 'Degradación del contexto',
-      description: 'Ventanas grandes igual se degradan — los tokens del medio se pierden, los recientes dominan',
+      description: 'Las sesiones largas se degradan — las salidas acumuladas envenenan cada llamada posterior',
       details:
-        'Que un modelo tenga una ventana de 200k no significa que debas llenarla. Dos ' +
-        'modos de fallo documentados: «Lost in the Middle» — los tokens en el medio de un ' +
-        'contexto largo se recuerdan peor que los del principio o el final. «Sesgo de ' +
-        'recencia» — al pasar del ~50% de llenado, el modelo se apoya fuertemente en los ' +
-        'tokens más recientes. Mitigaciones: prompts cortos, instrucciones importantes al ' +
-        'principio o al final, e iniciar hilos nuevos antes de que la degradación se instale.',
-      useCases: ['Sesiones largas', 'Bases de código grandes', 'Edición multi-archivo'],
+        'Cada salida de herramienta, archivo adjunto y turno de conversación se acumula en ' +
+        'el contexto. Al pasar del ~50% de llenado, ocurren dos cosas: los costes de entrada ' +
+        'se disparan (cada llamada posterior reenvía todo el historial) y el modelo se apoya ' +
+        'fuertemente en los tokens más recientes (sesgo de recencia), perdiendo las decisiones ' +
+        'tomadas antes. Mitigaciones: recortar salidas verbosas, transferir decisiones ' +
+        'intermedias a artefactos duraderos (issues, PRs, ADRs), e iniciar hilos nuevos antes ' +
+        'de que la degradación se instale.',
+      useCases: ['Sesiones largas', 'Agent Mode', 'Sesiones CLI'],
+    },
+    'lost-in-middle': {
+      name: 'Perdido en el medio',
+      description: 'Los tokens en el medio de un contexto largo se recuerdan peor',
+      details:
+        'Un modo de fallo documentado: cuando el contexto es largo, los modelos recuerdan ' +
+        'fielmente los tokens del principio y del final, pero se degradan en los del medio. ' +
+        'Incluso con una ventana de 200k, enterrar una instrucción crítica en la línea 4.000 ' +
+        'de 8.000 la vuelve efectivamente invisible. Mitigaciones: prompts cortos, instrucciones ' +
+        'críticas al principio o al final, y dividir los inputs largos en bloques focalizados ' +
+        'en vez de un solo mega-documento.',
+      useCases: ['Prompts grandes', 'Documentos largos', 'Revisiones multi-archivo'],
     },
     'think-in-code': {
       name: 'Pensar en código',

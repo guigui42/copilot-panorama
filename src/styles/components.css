@@ -2322,6 +2322,45 @@ body[data-layer-focused] .detail-panel {
   opacity: 0.5;
 }
 
+.viz-lost-middle {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.lost-middle-track {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 4px;
+}
+
+.lost-middle-zone {
+  padding: 6px 8px;
+  border-radius: 4px;
+  font-size: 0.68rem;
+  font-weight: 600;
+  text-align: center;
+}
+
+.lost-middle-zone--start,
+.lost-middle-zone--end {
+  background: rgba(63, 185, 80, 0.18);
+  color: #3fb950;
+}
+
+.lost-middle-zone--mid {
+  background: rgba(248, 81, 73, 0.18);
+  color: #f85149;
+  opacity: 0.6;
+}
+
+.lost-middle-hint {
+  font-size: 0.65rem;
+  color: var(--color-text-tertiary);
+  text-align: center;
+  font-style: italic;
+}
+
 .viz-checklist {
   display: flex;
   flex-direction: column;
