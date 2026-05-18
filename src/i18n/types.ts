@@ -195,6 +195,8 @@ export interface Translations {
     withTests: string;
     withoutTests: string;
     buggyChange: string;
+    silentMerge: string;
+    brokenMain: string;
     failingTests: string;
     correction: string;
     succeedingTests: string;

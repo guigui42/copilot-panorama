@@ -501,8 +501,8 @@ const ContextRotViz: React.FC<{ v: Translations['tipsViz'] }> = ({ v }) => (
       <span className="token-bar-label">{v.middleDecay}</span>
     </div>
     <div className="rot-legend">
-      <span className="rot-tag rot-tag--start">↦ {v.knownContext}</span>
-      <span className="rot-tag rot-tag--end">↤ {v.recencyBias}</span>
+      <span className="rot-tag">↦ {v.knownContext}</span>
+      <span className="rot-tag">↤ {v.recencyBias}</span>
     </div>
   </div>
 );
@@ -539,7 +539,7 @@ const DeterministicGuardrailsViz: React.FC<{ v: Translations['tipsViz'] }> = ({ 
   <div className="viz viz-before-after" aria-hidden="true">
     <div className="ba-item ba-item--before">
       <span className="ba-label">✗ {v.withoutTests}</span>
-      <span className="ba-text">{v.buggyChange} → {v.buggyChange} → {v.buggyChange}</span>
+      <span className="ba-text">{v.buggyChange} → {v.silentMerge} → {v.brokenMain}</span>
     </div>
     <div className="ba-item ba-item--after">
       <span className="ba-label">✓ {v.withTests}</span>
@@ -627,8 +627,6 @@ const ComponentCard: React.FC<ComponentCardProps> = ({ component, layerColor, on
       case 'structure-for-reuse': return <StructureForReuseViz v={tip} />;
       case 'concise-answers': return <ConciseAnswersViz v={tip} />;
       case 'scope-context': return <ScopeContextViz v={tip} />;
-      // targeted-refs merged into scope-context
-
       case 'conditional-context': return <ConditionalContextViz v={tip} />;
       case 'apply-to-paths': return <ApplyToPathsViz />;
       case 'skills-mcp': return <SkillsMcpViz v={tip} />;
