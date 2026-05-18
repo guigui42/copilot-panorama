@@ -305,23 +305,6 @@ const QualityOverQuantityViz: React.FC<{ v: Translations['tipsViz'] }> = ({ v })
   </div>
 );
 
-const GuardrailsViz: React.FC<{ v: Translations['tipsViz'] }> = ({ v }) => (
-  <div className="viz viz-terminal" aria-hidden="true">
-    <div className="terminal-bar">
-      <span className="terminal-dot terminal-dot--red" />
-      <span className="terminal-dot terminal-dot--yellow" />
-      <span className="terminal-dot terminal-dot--green" />
-    </div>
-    <div className="terminal-line">
-      <span className="terminal-comment"># {v.stopAfterTest}</span>
-    </div>
-    <div className="terminal-line">
-      <span className="terminal-keyword">max_attempts: </span>
-      <span className="terminal-cmd">2</span>
-    </div>
-  </div>
-);
-
 const FreshThreadsViz: React.FC<{ v: Translations['tipsViz'] }> = ({ v }) => (
   <div className="viz viz-thread-lifecycle" aria-hidden="true">
     <span className="thread-step">💬 {v.chat}</span>
@@ -549,10 +532,16 @@ const CompoundErrorsViz: React.FC<{ v: Translations['tipsViz'] }> = ({ v }) => (
 );
 
 const PromptAnatomyViz: React.FC<{ v: Translations['tipsViz'] }> = ({ v }) => (
-  <div className="viz viz-checklist" aria-hidden="true">
-    <div className="checklist-row"><span className="checklist-mark">✓</span><span>{v.bePrecise}</span></div>
-    <div className="checklist-row"><span className="checklist-mark">✓</span><span>{v.stopSignals}</span></div>
-    <div className="checklist-row"><span className="checklist-mark">✓</span><span>{v.knownContext}</span></div>
+  <div className="viz viz-prompt-anatomy" aria-hidden="true">
+    <div className="viz-checklist">
+      <div className="checklist-row"><span className="checklist-mark">✓</span><span>{v.bePrecise}</span></div>
+      <div className="checklist-row"><span className="checklist-mark">✓</span><span>{v.stopSignals}</span></div>
+      <div className="checklist-row"><span className="checklist-mark">✓</span><span>{v.knownContext}</span></div>
+    </div>
+    <div className="prompt-anatomy-terminal">
+      <span className="terminal-comment"># {v.stopAfterTest}</span>
+      <span className="terminal-keyword">max_attempts: <span className="terminal-cmd">2</span></span>
+    </div>
   </div>
 );
 
@@ -674,7 +663,6 @@ const ComponentCard: React.FC<ComponentCardProps> = ({ component, layerColor, on
       case 'agentic-cost': return <AgenticCostViz v={tip} />;
       case 'context-discipline': return <ContextDisciplineViz v={tip} />;
       case 'quality-over-quantity': return <QualityOverQuantityViz v={tip} />;
-      case 'guardrails': return <GuardrailsViz v={tip} />;
       case 'fresh-threads': return <FreshThreadsViz v={tip} />;
       case 'concise-instructions': return <ConciseInstructionsViz v={tip} />;
       case 'structure-for-reuse': return <StructureForReuseViz v={tip} />;

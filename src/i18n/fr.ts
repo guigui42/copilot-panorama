@@ -584,18 +584,6 @@ export const fr: Translations = {
         'incontrôlées où l\'agent continue d\'itérer sans converger.',
       useCases: ['Chat', 'Agent Mode', 'Fichiers de prompt'],
     },
-    guardrails: {
-      name: 'Définir des garde-fous',
-      description: 'Les flux agentiques itèrent jusqu\'à atteindre l\'objectif — ajoutez des signaux d\'arrêt',
-      details:
-        'Les agents itèrent par conception : planifier → éditer → exécuter des outils → ' +
-        'corriger → répéter. Sans limites, un agent continuera jusqu\'à réussir (ou épuiser ' +
-        'le contexte). Ajoutez des signaux d\'arrêt explicites : « S\'arrêter au premier test ' +
-        'réussi. » « Proposer au plus 2 solutions alternatives. » « Si la première approche ' +
-        'échoue, expliquer pourquoi et s\'arrêter. » Combinés à des garde-fous déterministes ' +
-        '(tests, linters), cela empêche les sessions incontrôlées.',
-      useCases: ['Agent Mode', 'Cloud Agent', 'Agents personnalisés'],
-    },
     'fresh-threads': {
       name: 'Nouveaux fils de discussion',
       description: 'Démarrer de nouvelles conversations dès qu\'une décision est livrée — éviter la dégradation du contexte',
@@ -839,12 +827,15 @@ export const fr: Translations = {
       name: 'Anatomie du prompt',
       description: 'Soyez précis · ajoutez des signaux d\'arrêt · ajoutez le contexte connu',
       details:
-        'Trois ingrédients fiables d\'un prompt efficace : (1) Être précis — décrivez le ' +
-        'changement en termes simples et sans ambiguïté, avec le résultat attendu. (2) Ajouter ' +
-        'des signaux d\'arrêt — « s\'arrêter au premier test réussi », « ne pas refactoriser ' +
-        'le code non lié ». (3) Ajouter le contexte connu en amont — nommez les fichiers, ' +
-        'dossiers ou docs pertinents pour que l\'agent ne perde pas de tokens à chercher. ' +
-        'Le prompt est le volant ; ces trois ingrédients gardent l\'agent sur la route.',
+        'Les agents itèrent par conception : planifier → éditer → exécuter des outils → ' +
+        'corriger → répéter. Sans limites, ils continueront jusqu\'à réussir (ou épuiser le ' +
+        'contexte). Trois ingrédients fiables d\'un prompt efficace les gardent sur la route : ' +
+        '(1) Être précis — décrivez le changement en termes simples et sans ambiguïté, avec ' +
+        'le résultat attendu. (2) Ajouter des signaux d\'arrêt — « s\'arrêter au premier test ' +
+        'réussi », « proposer au plus 2 alternatives », « ne pas refactoriser le code non lié ». ' +
+        '(3) Ajouter le contexte connu en amont — nommez les fichiers, dossiers ou docs ' +
+        'pertinents pour que l\'agent ne perde pas de tokens à chercher. Combinés à des ' +
+        'garde-fous déterministes (tests, linters), cela empêche les sessions incontrôlées.',
       useCases: ['Chat', 'Agent Mode', 'CLI'],
     },
     'context-rot': {

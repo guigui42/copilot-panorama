@@ -579,18 +579,6 @@ export const es: Translations = {
         'sigue iterando sin converger.',
       useCases: ['Chat', 'Agent Mode', 'Archivos de prompt'],
     },
-    guardrails: {
-      name: 'Establecer límites',
-      description: 'Los flujos agénticos iteran hasta alcanzar el objetivo — añade señales de parada',
-      details:
-        'Los agentes iteran por diseño: planificar → editar → ejecutar herramientas → corregir → ' +
-        'repetir. Sin límites, un agente seguirá hasta tener éxito (o agotar el contexto). ' +
-        'Añade señales de parada explícitas: «detente tras el primer test exitoso». «Propón ' +
-        'como máximo 2 soluciones alternativas». «Si el primer enfoque falla, explica por qué ' +
-        'y detente». Combinado con barreras deterministas (tests, linters), esto evita sesiones ' +
-        'descontroladas que consumen tokens.',
-      useCases: ['Agent Mode', 'Cloud Agent', 'Agentes personalizados'],
-    },
     'fresh-threads': {
       name: 'Nuevos hilos de conversación',
       description: 'Inicia nuevas conversaciones cuando una decisión se ha entregado — evita la degradación del contexto',
@@ -829,13 +817,15 @@ export const es: Translations = {
       name: 'Anatomía del prompt',
       description: 'Sé preciso · añade señales de parada · añade contexto conocido',
       details:
-        'Tres ingredientes fiables de un prompt efectivo: (1) Sé preciso — describe el ' +
+        'Los agentes iteran por diseño: planificar → editar → ejecutar herramientas → corregir → ' +
+        'repetir. Sin límites, seguirán hasta tener éxito (o agotar el contexto). Tres ingredientes ' +
+        'fiables de un prompt efectivo los mantienen en la carretera: (1) Sé preciso — describe el ' +
         'cambio en términos claros y sin ambigüedad, incluyendo el resultado esperado. ' +
-        '(2) Añade señales de parada — «detente tras el primer test exitoso», «no ' +
-        'refactorices código no relacionado». (3) Añade el contexto conocido por adelantado ' +
-        '— nombra los archivos, carpetas o docs relevantes para que el agente no gaste ' +
-        'tokens buscando. El prompt es el volante; estos tres ingredientes mantienen al ' +
-        'agente en la carretera.',
+        '(2) Añade señales de parada — «detente tras el primer test exitoso», «propón como máximo ' +
+        '2 alternativas», «no refactorices código no relacionado». (3) Añade el contexto conocido ' +
+        'por adelantado — nombra los archivos, carpetas o docs relevantes para que el agente no ' +
+        'gaste tokens buscando. Combinado con barreras deterministas (tests, linters), esto evita ' +
+        'sesiones descontroladas.',
       useCases: ['Chat', 'Agent Mode', 'CLI'],
     },
     'context-rot': {

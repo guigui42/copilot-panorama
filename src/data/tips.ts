@@ -44,12 +44,6 @@ const TIPS_COMPONENT_META: Record<string, ComponentMeta> = {
     icon: '✨',
     docUrl: 'https://docs.github.com/en/copilot/using-github-copilot/best-practices-for-using-github-copilot',
   },
-  guardrails: {
-    id: 'guardrails',
-    path: 'Agentic Bounds',
-    icon: '🛡️',
-    docUrl: 'https://docs.github.com/en/copilot/using-github-copilot/best-practices-for-using-github-copilot',
-  },
   'fresh-threads': {
     id: 'fresh-threads',
     path: 'Session Hygiene',
@@ -257,7 +251,7 @@ interface LayerDef {
 
 const TIPS_LAYER_DEFS: LayerDef[] = [
   { id: 'mechanics', number: 1, color: '#f0883e', componentIds: ['token-billing', 'agentic-cost', 'compound-errors', 'context-discipline'] },
-  { id: 'prompting', number: 2, color: '#3fb950', componentIds: ['quality-over-quantity', 'prompt-anatomy', 'guardrails', 'fresh-threads', 'concise-instructions', 'structure-for-reuse', 'concise-answers', 'caveman-skill', 'snip-skill'] },
+  { id: 'prompting', number: 2, color: '#3fb950', componentIds: ['quality-over-quantity', 'prompt-anatomy', 'fresh-threads', 'concise-instructions', 'structure-for-reuse', 'concise-answers', 'caveman-skill', 'snip-skill'] },
   { id: 'context', number: 3, color: '#58a6ff', componentIds: ['scope-context', 'conditional-context', 'context-rot', 'targeted-refs', 'apply-to-paths', 'skills-mcp', 'context-command', 'think-in-code'] },
   { id: 'workflow-design', number: 4, color: '#a371f7', componentIds: ['research-plan-implement', 'deterministic-guardrails'] },
   { id: 'caching', number: 5, color: '#d2a8ff', componentIds: ['reuse-context', 'prefix-matching', 'trim-shell-outputs', 'collapse-tool-calls'] },

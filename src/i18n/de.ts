@@ -570,18 +570,6 @@ export const de: Translations = {
         'where the agent keeps iterating without converging.',
       useCases: ['Chat', 'Agent Mode', 'Prompt Files'],
     },
-    guardrails: {
-      name: 'Set Guardrails',
-      description: 'Agentic flows iterate until goal is met — add stop signals to bound the loop',
-      details:
-        'Agents iterate by design: plan → edit → run tools → fix → repeat. Without ' +
-        'bounds, an agent will keep going until it succeeds (or exhausts context). ' +
-        'Add explicit stop signals in your prompt: "Stop after the first passing test." ' +
-        '"Make at most 2 alternative solutions." "If the first approach fails, explain ' +
-        'why and stop." Combined with deterministic guardrails (tests, linters), this ' +
-        'prevents runaway sessions that burn through tokens.',
-      useCases: ['Agent Mode', 'Cloud Agent', 'Custom Agents'],
-    },
     'fresh-threads': {
       name: 'Fresh Threads',
       description: 'Start new conversations once decisions are shipped — avoid context rot',
@@ -815,12 +803,15 @@ export const de: Translations = {
       name: 'Prompt Anatomy',
       description: 'Be precise · add stop signals · add known context beforehand',
       details:
-        'Three reliable ingredients of an effective prompt: (1) Be precise — describe ' +
-        'the change in plain, unambiguous terms, including the desired outcome. ' +
-        '(2) Add stop signals — "stop after first passing test", "do not refactor unrelated ' +
-        'code". (3) Add known context beforehand — name the relevant files, folders, or ' +
-        'docs so the agent doesn\'t waste tokens searching. The prompt is the steering ' +
-        'wheel; these three ingredients keep the agent on the road.',
+        'Agents iterate by design: plan → edit → run tools → fix → repeat. Without ' +
+        'bounds, they keep going until they succeed (or exhaust context). Three reliable ' +
+        'ingredients of an effective prompt keep them on the road: (1) Be precise — ' +
+        'describe the change in plain, unambiguous terms, including the desired outcome. ' +
+        '(2) Add stop signals — "stop after first passing test", "make at most 2 alternative ' +
+        'solutions", "do not refactor unrelated code". (3) Add known context beforehand — ' +
+        'name the relevant files, folders, or docs so the agent doesn\'t waste tokens ' +
+        'searching. Combined with deterministic guardrails (tests, linters), this prevents ' +
+        'runaway sessions that burn through tokens.',
       useCases: ['Chat', 'Agent Mode', 'CLI'],
     },
     'context-rot': {
