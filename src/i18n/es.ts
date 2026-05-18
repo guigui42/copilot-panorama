@@ -471,6 +471,35 @@ export const es: Translations = {
     stopAfterTest: 'Parar tras el primer test exitoso',
     cavemanResponse: 'caveman mode → ~75% menos tokens',
     snipResponse: 'snip → instrucciones comprimidas',
+    perStep: 'por paso',
+    steps: 'pasos',
+    accuracy99: '99% por paso',
+    accuracy95: '95% por paso',
+    bePrecise: 'Sé preciso',
+    stopSignals: 'Añade señales de parada',
+    knownContext: 'Añade contexto conocido',
+    lostInMiddle: 'Perdido en el medio',
+    recencyBias: 'Sesgo de recencia',
+    middleDecay: 'Los tokens del medio se degradan',
+    rawFiles: 'Pasar archivos en bruto a la IA',
+    scriptOutput: 'Ejecutar script, pasar la salida',
+    research: '/research',
+    plan: '/plan',
+    implement: '/fleet',
+    withTests: 'Con tests unitarios',
+    withoutTests: 'Sin tests unitarios',
+    buggyChange: 'Cambio con bugs',
+    failingTests: 'Tests fallando',
+    correction: 'Corrección',
+    succeedingTests: 'Tests pasando',
+    rawOutput: 'Salida cruda: 4.200 líneas',
+    trimmed: 'Recortada: 38 líneas',
+    multipleCalls: '5 llamadas secuenciales',
+    batchedCall: '1 llamada agrupada',
+    cleanLayers: 'Dominio → Aplicación → Infra',
+    agentMiss: 'Fallo del agente',
+    chronicle: '/chronicle',
+    updateInstructions: 'Actualizar instrucciones',
   },
   tipsLayers: {
     mechanics: {
@@ -484,6 +513,10 @@ export const es: Translations = {
     context: {
       title: 'Contexto',
       subtitle: 'Alimentar al modelo con exactamente lo que necesita — ni más, ni menos',
+    },
+    'workflow-design': {
+      title: 'Diseño de workflow',
+      subtitle: 'Estructurar el trabajo para que cada paso sea fiable y reproducible',
     },
     caching: {
       title: 'Caché',
@@ -519,8 +552,9 @@ export const es: Translations = {
         'planificar → editar → ejecutar herramientas/tests → corregir → repetir. La misma ' +
         'intención del usuario puede variar drásticamente en consumo según el workflow. Un ' +
         'simple « corrige este bug » puede requerir 2 o más de 20 llamadas dependiendo de la ' +
-        'complejidad, las salidas de herramientas y los bucles de recuperación de errores. Por ' +
-        'eso el diseño del workflow importa más que la longitud del prompt.',
+        'complejidad, las salidas de herramientas y los bucles de recuperación de errores. ' +
+        'Peor: los errores se acumulan — incluso al 99% por paso, un workflow de 50 pasos ' +
+        'solo llega al ~60%. Por eso el diseño del workflow importa más que la longitud del prompt.',
       useCases: ['Agent Mode', 'Cloud Agent', 'CLI Agent'],
     },
     'context-discipline': {
@@ -547,24 +581,26 @@ export const es: Translations = {
     },
     guardrails: {
       name: 'Establecer límites',
-      description: 'Los flujos agénticos iteran hasta alcanzar el objetivo — establecer límites explícitos',
+      description: 'Los flujos agénticos iteran hasta alcanzar el objetivo — añade señales de parada',
       details:
         'Los agentes iteran por diseño: planificar → editar → ejecutar herramientas → corregir → ' +
-        'repetir. Sin límites, un agente seguirá hasta tener éxito (o agotar el contexto). Añade ' +
-        'instrucciones declarativas como: « Proponer como máximo 2 soluciones alternativas; ' +
-        'detenerse tras el primer test exitoso. » o « Si el primer enfoque falla, explicar por ' +
-        'qué y detenerse. » Esto evita sesiones descontroladas que consumen tokens.',
+        'repetir. Sin límites, un agente seguirá hasta tener éxito (o agotar el contexto). ' +
+        'Añade señales de parada explícitas: «detente tras el primer test exitoso». «Propón ' +
+        'como máximo 2 soluciones alternativas». «Si el primer enfoque falla, explica por qué ' +
+        'y detente». Combinado con barreras deterministas (tests, linters), esto evita sesiones ' +
+        'descontroladas que consumen tokens.',
       useCases: ['Agent Mode', 'Cloud Agent', 'Agentes personalizados'],
     },
     'fresh-threads': {
       name: 'Nuevos hilos de conversación',
-      description: 'Iniciar nuevas conversaciones una vez que las decisiones se han integrado en artefactos duraderos',
+      description: 'Inicia nuevas conversaciones cuando una decisión se ha entregado — evita la degradación del contexto',
       details:
         'Evita sesiones prolongadas donde las salidas de herramientas se acumulan en el contexto. ' +
-        'Cada salida de herramienta acumulada añade tokens de entrada a cada llamada posterior. ' +
-        'Una vez que la decisión se ha integrado en un artefacto duradero (issue, descripción de PR, ' +
-        'ADR, commit de código), inicia un nuevo hilo. El nuevo hilo comienza con un contexto ' +
-        'limpio y no paga por el historial de conversación obsoleto.',
+        'Cada salida acumulada añade tokens de entrada a cada llamada posterior, y una vez que ' +
+        'la ventana supera el ~50% de llenado, el modelo se inclina hacia los tokens más ' +
+        'recientes (sesgo de recencia) y «pierde» los del medio. Una vez la decisión está ' +
+        'integrada en un artefacto duradero (issue, PR, ADR, commit), inicia un nuevo hilo con ' +
+        'contexto limpio.',
       useCases: ['Chat', 'Agent Mode', 'Sesiones CLI'],
     },
     'concise-instructions': {
@@ -668,13 +704,14 @@ export const es: Translations = {
     },
     'skills-mcp': {
       name: 'Aprovechar Skills & MCP',
-      description: 'Skills y herramientas MCP se cargan bajo demanda — deja que el modelo las descubra',
+      description: 'Los Skills se cargan bajo demanda — pero los esquemas MCP cuestan en cada bucle',
       details:
-        'Skills y herramientas de servidor MCP son descubiertas por el modelo basándose en sus ' +
-        'descripciones. Solo se cargan en el contexto cuando son relevantes para el prompt actual. ' +
-        'Esto es mucho más eficiente en tokens que pegar la misma guía en cada conversación. ' +
-        'Escribe descripciones de skills claras y concisas para que el modelo pueda decidir con ' +
-        'precisión cuándo activarlas.',
+        'Los Skills son descubiertos por el modelo según sus descripciones y cargan la guía ' +
+        'completa en el contexto solo cuando es relevante. Los esquemas de herramientas de los ' +
+        'servidores MCP, en cambio, se cargan como tokens estáticos en cada bucle — útiles, ' +
+        'pero se acumulan. Para ciertos workflows, un simple comando CLI puede costar menos que ' +
+        'la herramienta MCP equivalente. Escribe descripciones de skills claras y prefiere ' +
+        'Skills/CLI a MCP pesados cuando el compromiso lo justifique.',
       useCases: ['Skills', 'Servidores MCP', 'Agentes personalizados'],
     },
     'context-command': {
@@ -776,35 +813,165 @@ export const es: Translations = {
         'personalizada.',
       useCases: ['CLI', 'Optimización de workflow', 'Auto-mejora'],
     },
+    'compound-errors': {
+      name: 'Errores que se acumulan',
+      description: 'Incluso al 99% por paso, un workflow de 50 pasos solo llega al ~60%',
+      details:
+        'La fiabilidad por paso se multiplica a lo largo de un bucle agéntico. Al 99% por ' +
+        'paso, un workflow de 50 pasos termina en 0,99⁵⁰ ≈ 60%. Bájalo al 95% y el mismo ' +
+        'workflow solo tiene ~8% de probabilidad de éxito de principio a fin. Por eso la ' +
+        '«apuesta agéntica» — esperar que una salida de baja calidad acabe funcionando — ' +
+        'no escala. Cada mejora en la calidad por paso (mejores prompts, menor alcance, ' +
+        'verificaciones deterministas) se multiplica a lo largo de todo el workflow.',
+      useCases: ['Agent Mode', 'Cloud Agent', 'Workflows orquestados'],
+    },
+    'prompt-anatomy': {
+      name: 'Anatomía del prompt',
+      description: 'Sé preciso · añade señales de parada · añade contexto conocido',
+      details:
+        'Tres ingredientes fiables de un prompt efectivo: (1) Sé preciso — describe el ' +
+        'cambio en términos claros y sin ambigüedad, incluyendo el resultado esperado. ' +
+        '(2) Añade señales de parada — «detente tras el primer test exitoso», «no ' +
+        'refactorices código no relacionado». (3) Añade el contexto conocido por adelantado ' +
+        '— nombra los archivos, carpetas o docs relevantes para que el agente no gaste ' +
+        'tokens buscando. El prompt es el volante; estos tres ingredientes mantienen al ' +
+        'agente en la carretera.',
+      useCases: ['Chat', 'Agent Mode', 'CLI'],
+    },
+    'context-rot': {
+      name: 'Degradación del contexto',
+      description: 'Ventanas grandes igual se degradan — los tokens del medio se pierden, los recientes dominan',
+      details:
+        'Que un modelo tenga una ventana de 200k no significa que debas llenarla. Dos ' +
+        'modos de fallo documentados: «Lost in the Middle» — los tokens en el medio de un ' +
+        'contexto largo se recuerdan peor que los del principio o el final. «Sesgo de ' +
+        'recencia» — al pasar del ~50% de llenado, el modelo se apoya fuertemente en los ' +
+        'tokens más recientes. Mitigaciones: prompts cortos, instrucciones importantes al ' +
+        'principio o al final, e iniciar hilos nuevos antes de que la degradación se instale.',
+      useCases: ['Sesiones largas', 'Bases de código grandes', 'Edición multi-archivo'],
+    },
+    'think-in-code': {
+      name: 'Pensar en código',
+      description: 'Prefiere scripts antes que pasar archivos en bruto',
+      details:
+        'Cuando necesites entender 10.000 líneas de logs o un JSON enorme, no lo pegues ' +
+        'todo. Escribe (o pide al agente que escriba) un pequeño script que extraiga solo ' +
+        'lo importante — recuentos, errores, el fragmento relevante — y pásale al agente la ' +
+        'salida del script. Esto colapsa miles de tokens de entrada en docenas y mantiene ' +
+        'al modelo enfocado en la pregunta real. Funciona igual con grep, jq, awk o un ' +
+        'script Python de 20 líneas.',
+      useCases: ['Análisis de logs', 'Exploración de datos', 'Archivos grandes'],
+    },
+    'research-plan-implement': {
+      name: 'Investigar → Planificar → Implementar',
+      description: 'Encadena tres etapas enfocadas con el modelo adecuado para cada una',
+      details:
+        'Divide un cambio no trivial en tres relevos en lugar de un mega-prompt. ' +
+        '(1) Investigar: un modelo rápido y amplio (Gemini 2.5 Pro) explora el código e ' +
+        'identifica los archivos relevantes. (2) Planificar: un modelo de razonamiento ' +
+        'profundo (Opus) convierte esa investigación en una especificación precisa. ' +
+        '(3) Implementar: un modelo eficiente (GPT-5.4 / Sonnet) aplica la spec al código. ' +
+        'Cada etapa recibe solo el contexto necesario, y los errores por etapa no se ' +
+        'acumulan en un bucle descontrolado. En Copilot CLI esto se mapea a /research → ' +
+        '/plan → /fleet.',
+      useCases: ['Refactors complejos', 'Cambios transversales', 'Edición multi-archivo'],
+    },
+    'deterministic-guardrails': {
+      name: 'Barreras deterministas',
+      description: 'Tests unitarios, linters y escaneos evitan que los malos cambios se acumulen',
+      details:
+        'Los LLM son probabilísticos — pero los tests, linters y type-checkers no. Con ' +
+        'tests en su sitio, un cambio con bugs produce tests que fallan, que el agente ve ' +
+        'y corrige en el siguiente bucle. Sin tests, el agente acumula bugs en varios ' +
+        'cambios antes de que nadie se dé cuenta — minutos de CI perdidos, ciclos de ' +
+        'revisión perdidos, debug humano perdido. Tests + linters + escaneo de secretos ' +
+        'es la forma más barata de dar al agente una señal de retorno fiable.',
+      useCases: ['Agent Mode', 'TDD', 'Pipelines CI'],
+    },
+    'trim-shell-outputs': {
+      name: 'Recortar salidas de shell',
+      description: 'Un `npm install` ruidoso ahoga la señal — envuelve los comandos para quedarte con lo importante',
+      details:
+        'Las CLI adoran ser verbosas. Un solo `npm install` o `terraform plan` puede ' +
+        'volcar miles de líneas al contexto del agente — la mayoría ruido. Envuelve los ' +
+        'comandos ruidosos con un recortador (p. ej. github.com/rtk-ai/rtk) para que el ' +
+        'agente solo vea la cola relevante: errores, warnings, el resumen final. Esto ' +
+        'reduce drásticamente la entrada cacheada en el siguiente bucle y mejora el ' +
+        'recall al limitar el «lost in the middle».',
+      useCases: ['Agente CLI', 'Salida de build', 'Test runs'],
+    },
+    'collapse-tool-calls': {
+      name: 'Agrupar llamadas de herramientas',
+      description: 'Múltiples invocaciones en una — menos ida y vuelta, menos tokens',
+      details:
+        'Cada llamada de herramienta añade un round-trip completo: tokens de entrada para ' +
+        'la petición, tokens de salida para el resultado, más el prompt del sistema que se ' +
+        'reproduce cada vez. Plugins como jsturtevant/copilot-codeact-plugin permiten al ' +
+        'agente expresar varias invocaciones en un único bloque «code-act» ejecutado de ' +
+        'una vez. Cinco llamadas pequeñas se convierten en una agrupada — mismo resultado, ' +
+        'muchos menos tokens y más rápido.',
+      useCases: ['Agent Mode', 'CLI', 'Tareas multi-paso'],
+    },
+    'apply-architecture': {
+      name: 'Aplicar buena arquitectura',
+      description: 'DDD, hexagonal, CQRS — fronteras claras ayudan al agente a orientarse',
+      details:
+        'Una base de código desordenada obliga al agente a cargar mucho más contexto para ' +
+        'hacer un cambio seguro. Los patrones de arquitectura limpia (DDD, hexagonal/ports-' +
+        'and-adapters, CQRS, event-driven) le dan al agente buenas barreras: encuentra el ' +
+        'módulo correcto por nombre, lo cambia aislado, evita tocar código no relacionado. ' +
+        'El resultado: sesiones más cortas, diffs más pequeños, menos errores acumulados — ' +
+        'las mismas cosas que ayudan a los humanos.',
+      useCases: ['Proyectos nuevos', 'Refactorización', 'Bases de código de equipo'],
+    },
+    'iterate-configs': {
+      name: 'Tratar los fallos del agente como incidentes',
+      description: 'Cuando el agente se equivoca, arregla la config — no solo la salida',
+      details:
+        'Un agente que se desvía es una señal, no solo un incidente aislado. Trata cada ' +
+        'fallo significativo como un pequeño incidente: ¿qué faltaba — una instrucción, un ' +
+        'skill, el modelo adecuado? Actualiza copilot-instructions.md, el skill relevante ' +
+        'o tu plantilla de prompt para que el mismo fallo no vuelva a ocurrir. Ejecuta ' +
+        '/chronicle regularmente para hacer emerger patrones. Con el tiempo, el agente se ' +
+        'vuelve notablemente más fiable sin que tú hagas más trabajo por tarea.',
+      useCases: ['Workflows de equipo', 'Usuarios avanzados de CLI', 'Repos a largo plazo'],
+    },
   },
   tipsInsights: [
     {
+      icon: '📉',
+      content:
+        '<strong>La calidad se acumula.</strong> Incluso al 99% por paso, un workflow ' +
+        'agéntico de 50 pasos solo llega al ~60%. Al 95% por paso es el 8%. Las mejoras ' +
+        'por paso se multiplican — haz que cada token cuente.',
+    },
+    {
       icon: '💰',
       content:
-        '<strong>El contexto > los prompts para el coste.</strong> Gestionar qué contexto alimenta ' +
-        'cada llamada al modelo tiene un impacto de coste mucho mayor que optimizar la redacción ' +
-        'del prompt. Recorta archivos, inicia nuevos hilos y usa contexto condicional.',
+        '<strong>Contexto &gt; prompts para el coste.</strong> Gestionar qué contexto alimenta ' +
+        'cada llamada al modelo tiene un impacto mucho mayor que optimizar la redacción del ' +
+        'prompt. Recorta archivos, inicia nuevos hilos, usa contexto condicional.',
     },
     {
       icon: '🎯',
       content:
         '<strong>Ajustar el modelo a la tarea.</strong> No uses un modelo premium para un simple ' +
-        'Q&A, y no uses un modelo mini para arquitectura compleja. Usa el modo Auto en caso de ' +
-        'duda — enruta automáticamente.',
+        'Q&A, ni un modelo mini para arquitectura compleja. Usa Auto en caso de duda — enruta ' +
+        'automáticamente.',
     },
     {
       icon: '🔄',
       content:
         '<strong>Los bucles agénticos multiplican el coste.</strong> Una sola solicitud agéntica ' +
-        'puede desencadenar decenas de llamadas al modelo. Establece límites explícitos ' +
-        '(« detenerse tras el primer test exitoso ») para evitar un consumo descontrolado de tokens.',
+        'puede desencadenar decenas de llamadas. Añade señales de parada explícitas ' +
+        '(«detenerse tras el primer test exitoso») para evitar el consumo descontrolado.',
     },
     {
       icon: '📦',
       content:
-        '<strong>Pasar de permanente a bajo demanda.</strong> Mantén las instrucciones mínimas. ' +
-        'Las guías pesadas pertenecen a Skills (cargadas por el modelo cuando es relevante) y ' +
-        'archivos de prompt (invocados explícitamente), no en copilot-instructions.md.',
+        '<strong>De permanente a bajo demanda.</strong> Mantén las instrucciones mínimas. Las ' +
+        'guías pesadas pertenecen a Skills (cargadas por el modelo cuando es relevante) y a ' +
+        'archivos de prompt (invocados explícitamente), no a copilot-instructions.md.',
     },
   ],
 };

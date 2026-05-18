@@ -169,6 +169,45 @@ export interface Translations {
     stopAfterTest: string;
     cavemanResponse: string;
     snipResponse: string;
+    /* compound errors */
+    perStep: string;
+    steps: string;
+    accuracy99: string;
+    accuracy95: string;
+    /* prompt anatomy */
+    bePrecise: string;
+    stopSignals: string;
+    knownContext: string;
+    /* context rot */
+    lostInMiddle: string;
+    recencyBias: string;
+    middleDecay: string;
+    /* think in code */
+    rawFiles: string;
+    scriptOutput: string;
+    /* research-plan-implement */
+    research: string;
+    plan: string;
+    implement: string;
+    /* deterministic guardrails */
+    withTests: string;
+    withoutTests: string;
+    buggyChange: string;
+    failingTests: string;
+    correction: string;
+    succeedingTests: string;
+    /* trim shell */
+    rawOutput: string;
+    trimmed: string;
+    /* collapse tool calls */
+    multipleCalls: string;
+    batchedCall: string;
+    /* apply architecture */
+    cleanLayers: string;
+    /* iterate configs */
+    agentMiss: string;
+    chronicle: string;
+    updateInstructions: string;
   };
   tipsLayers: Record<string, LayerI18n>;
   tipsComponents: Record<string, ComponentI18n>;
