@@ -75,16 +75,18 @@ const DetailPanel: React.FC<DetailPanelProps> = ({ component, layerColor, onClos
           <p className="detail-section-text">{component.details}</p>
         </div>
 
-        <div className="detail-section">
-          <h3 className="detail-section-title">{t.ui.useCasesLabel}</h3>
-          <div className="usecases">
-            {component.useCases.map((useCase) => (
-              <span key={useCase} className="usecase">
-                {useCase}
-              </span>
-            ))}
+        {component.useCases.length > 0 && (
+          <div className="detail-section">
+            <h3 className="detail-section-title">{t.ui.useCasesLabel}</h3>
+            <div className="usecases">
+              {component.useCases.map((useCase) => (
+                <span key={useCase} className="usecase">
+                  {useCase}
+                </span>
+              ))}
+            </div>
           </div>
-        </div>
+        )}
 
         <div className="detail-section">
           {component.docUrl && (
