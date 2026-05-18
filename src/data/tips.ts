@@ -253,10 +253,10 @@ const TIPS_LAYER_DEFS: LayerDef[] = [
   { id: 'mechanics', number: 1, color: '#f0883e', componentIds: ['token-billing', 'agentic-cost', 'compound-errors', 'context-discipline'] },
   { id: 'prompting', number: 2, color: '#3fb950', componentIds: ['quality-over-quantity', 'prompt-anatomy', 'fresh-threads', 'concise-instructions', 'structure-for-reuse', 'concise-answers', 'caveman-skill', 'snip-skill'] },
   { id: 'context', number: 3, color: '#58a6ff', componentIds: ['scope-context', 'conditional-context', 'context-rot', 'targeted-refs', 'apply-to-paths', 'skills-mcp', 'context-command', 'think-in-code'] },
-  { id: 'workflow-design', number: 4, color: '#a371f7', componentIds: ['research-plan-implement', 'deterministic-guardrails'] },
+  { id: 'workflow-design', number: 4, color: '#a371f7', componentIds: ['research-plan-implement', 'deterministic-guardrails', 'apply-architecture', 'iterate-configs'] },
   { id: 'caching', number: 5, color: '#d2a8ff', componentIds: ['reuse-context', 'prefix-matching', 'trim-shell-outputs', 'collapse-tool-calls'] },
   { id: 'models', number: 6, color: '#f778ba', componentIds: ['choose-right-model', 'high-effort-tasks', 'low-effort-tasks', 'auto-mode'] },
-  { id: 'governance', number: 7, color: '#8b949e', componentIds: ['monitor-usage', 'chronicle-tips', 'apply-architecture', 'iterate-configs'] },
+  { id: 'governance', number: 7, color: '#8b949e', componentIds: ['monitor-usage', 'chronicle-tips'] },
 ];
 
 export function getTipsLayers(t: Translations): Layer[] {
