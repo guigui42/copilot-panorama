@@ -78,6 +78,7 @@ const COMPONENT_META: Record<string, ComponentMeta> = {
     path: '.github/workflows/<name>.md',
     icon: '⚙️',
     docUrl: 'https://github.github.com/gh-aw/',
+    docLabel: 'gh-aw docs',
     awesomeUrl: 'https://awesome-copilot.github.com/workflows/',
   },
   'copilot-setup-steps': {

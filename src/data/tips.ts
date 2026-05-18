@@ -117,12 +117,14 @@ const TIPS_COMPONENT_META: Record<string, ComponentMeta> = {
     path: 'Context Decay',
     icon: '🥀',
     docUrl: 'https://www.producttalk.org/context-rot/',
+    docLabel: 'Product Talk article',
   },
   'lost-in-middle': {
     id: 'lost-in-middle',
     path: 'Position Bias',
     icon: '🕳️',
     docUrl: 'https://arxiv.org/abs/2307.03172',
+    docLabel: 'arXiv paper',
   },
   'think-in-code': {
     id: 'think-in-code',
@@ -172,6 +174,7 @@ const TIPS_COMPONENT_META: Record<string, ComponentMeta> = {
     path: 'Batched Tools',
     icon: '🧺',
     docUrl: 'https://github.com/jsturtevant/copilot-codeact-plugin',
+    docLabel: 'CodeAct plugin',
   },
 
   /* ── Models ── */
