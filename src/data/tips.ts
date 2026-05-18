@@ -162,6 +162,8 @@ const TIPS_COMPONENT_META: Record<string, ComponentMeta> = {
     path: 'Shell Hygiene',
     icon: '🪒',
     docUrl: 'https://github.com/edouard-claude/snip',
+    altDocUrl: 'https://github.com/juliusbrussee/caveman',
+    altDocLabel: 'Caveman skill',
   },
   'collapse-tool-calls': {
     id: 'collapse-tool-calls',
