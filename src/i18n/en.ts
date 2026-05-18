@@ -759,17 +759,6 @@ export const en: Translations = {
         'outliers and adjust.',
       useCases: ['Admin', 'Budget Control', 'Team Governance'],
     },
-    'chronicle-tips': {
-      name: 'Chronicle Insights',
-      description: 'Use /chronicle improve and /chronicle tips for workflow improvements',
-      details:
-        'Copilot CLI includes the /chronicle command for workflow intelligence. Use ' +
-        '/chronicle improve to get suggestions for optimizing your current workflow, ' +
-        'and /chronicle tips for general efficiency recommendations based on your usage ' +
-        'patterns. These commands analyze your session history and provide personalized ' +
-        'guidance.',
-      useCases: ['CLI', 'Workflow Optimization', 'Self-Improvement'],
-    },
     'compound-errors': {
       name: 'Compound Error Problem',
       description: 'Even at 99% per step, a 50-step workflow lands at only ~60%',
@@ -905,8 +894,10 @@ export const en: Translations = {
         'A misbehaving agent is a signal, not just a one-off. Treat each significant ' +
         'miss like a small incident: what was missing — an instruction, a skill, the ' +
         'right model? Update copilot-instructions.md, the relevant skill, or your ' +
-        'prompt template so the same miss doesn\'t happen twice. Run /chronicle ' +
-        'regularly to surface patterns. Over time, the agent gets noticeably more ' +
+        'prompt template so the same miss doesn\'t happen twice. The Copilot CLI ships ' +
+        'two commands for this: `/chronicle improve` analyzes your current session and ' +
+        'suggests workflow fixes; `/chronicle tips` surfaces patterns from your usage ' +
+        'history. Run them regularly — over time the agent gets noticeably more ' +
         'reliable without you doing more work per task.',
       useCases: ['Team Workflows', 'CLI Power Users', 'Long-Lived Repos'],
     },

@@ -782,17 +782,6 @@ export const fr: Translations = {
         'Utilisez le tableau de bord administrateur pour identifier les valeurs aberrantes et ajuster.',
       useCases: ['Admin', 'Contrôle budgétaire', 'Gouvernance d\'équipe'],
     },
-    'chronicle-tips': {
-      name: 'Insights Chronicle',
-      description: 'Utiliser /chronicle improve et /chronicle tips pour améliorer les workflows',
-      details:
-        'Copilot CLI inclut la commande /chronicle pour l\'intelligence de workflow. Utilisez ' +
-        '/chronicle improve pour obtenir des suggestions d\'optimisation de votre workflow actuel, ' +
-        'et /chronicle tips pour des recommandations générales d\'efficacité basées sur vos ' +
-        'schémas d\'utilisation. Ces commandes analysent votre historique de session et fournissent ' +
-        'des conseils personnalisés.',
-      useCases: ['CLI', 'Optimisation du workflow', 'Auto-amélioration'],
-    },
     'compound-errors': {
       name: 'Erreurs qui s\'accumulent',
       description: 'Même à 99% par étape, un workflow de 50 étapes ne réussit qu\'à ~60%',
@@ -932,9 +921,11 @@ export const fr: Translations = {
         'erreur significative comme un petit incident : qu\'est-ce qui manquait — une ' +
         'instruction, un skill, le bon modèle ? Mettez à jour copilot-instructions.md, ' +
         'le skill concerné ou votre template de prompt pour que la même erreur ne se ' +
-        'reproduise pas. Lancez /chronicle régulièrement pour faire émerger les motifs. ' +
-        'Avec le temps, l\'agent devient nettement plus fiable sans plus de travail ' +
-        'par tâche.',
+        'reproduise pas. Le CLI Copilot fournit deux commandes pour cela : ' +
+        '`/chronicle improve` analyse votre session courante et suggère des correctifs ' +
+        'de workflow ; `/chronicle tips` fait émerger des motifs depuis votre historique. ' +
+        'Lancez-les régulièrement — avec le temps, l\'agent devient nettement plus ' +
+        'fiable sans plus de travail par tâche.',
       useCases: ['Workflows d\'équipe', 'Utilisateurs avancés CLI', 'Repos long terme'],
     },
   },

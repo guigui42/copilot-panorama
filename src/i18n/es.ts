@@ -772,17 +772,6 @@ export const es: Translations = {
         'de administración para identificar valores atípicos y ajustar.',
       useCases: ['Admin', 'Control de presupuesto', 'Gobernanza de equipo'],
     },
-    'chronicle-tips': {
-      name: 'Insights de Chronicle',
-      description: 'Usar /chronicle improve y /chronicle tips para mejorar los workflows',
-      details:
-        'Copilot CLI incluye el comando /chronicle para inteligencia de workflow. Usa ' +
-        '/chronicle improve para obtener sugerencias de optimización de tu workflow actual, ' +
-        'y /chronicle tips para recomendaciones generales de eficiencia basadas en tus patrones ' +
-        'de uso. Estos comandos analizan tu historial de sesión y proporcionan orientación ' +
-        'personalizada.',
-      useCases: ['CLI', 'Optimización de workflow', 'Auto-mejora'],
-    },
     'compound-errors': {
       name: 'Errores que se acumulan',
       description: 'Incluso al 99% por paso, un workflow de 50 pasos solo llega al ~60%',
@@ -920,9 +909,11 @@ export const es: Translations = {
         'Un agente que se desvía es una señal, no solo un incidente aislado. Trata cada ' +
         'fallo significativo como un pequeño incidente: ¿qué faltaba — una instrucción, un ' +
         'skill, el modelo adecuado? Actualiza copilot-instructions.md, el skill relevante ' +
-        'o tu plantilla de prompt para que el mismo fallo no vuelva a ocurrir. Ejecuta ' +
-        '/chronicle regularmente para hacer emerger patrones. Con el tiempo, el agente se ' +
-        'vuelve notablemente más fiable sin que tú hagas más trabajo por tarea.',
+        'o tu plantilla de prompt para que el mismo fallo no vuelva a ocurrir. El CLI ' +
+        'de Copilot incluye dos comandos para esto: `/chronicle improve` analiza tu ' +
+        'sesión actual y sugiere mejoras de workflow; `/chronicle tips` saca a la luz ' +
+        'patrones de tu historial. Ejecútalos regularmente — con el tiempo, el agente ' +
+        'se vuelve notablemente más fiable sin más trabajo por tarea.',
       useCases: ['Workflows de equipo', 'Usuarios avanzados de CLI', 'Repos a largo plazo'],
     },
   },

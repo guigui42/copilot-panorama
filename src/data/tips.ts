@@ -210,12 +210,6 @@ const TIPS_COMPONENT_META: Record<string, ComponentMeta> = {
     icon: '📊',
     docUrl: '',
   },
-  'chronicle-tips': {
-    id: 'chronicle-tips',
-    path: 'Workflow Insights',
-    icon: '📈',
-    docUrl: 'https://docs.github.com/en/copilot/concepts/agents/about-copilot-cli',
-  },
   'apply-architecture': {
     id: 'apply-architecture',
     path: 'Agent-Friendly Code',
@@ -257,7 +251,7 @@ const TIPS_LAYER_DEFS: LayerDef[] = [
   { id: 'workflow-design', number: 5, color: '#a371f7', componentIds: ['research-plan-implement', 'deterministic-guardrails', 'apply-architecture', 'iterate-configs'] },
   { id: 'caching', number: 6, color: '#d2a8ff', componentIds: ['reuse-context', 'prefix-matching', 'collapse-tool-calls'] },
   { id: 'models', number: 7, color: '#f778ba', componentIds: ['choose-right-model', 'high-effort-tasks', 'low-effort-tasks', 'auto-mode'] },
-  { id: 'governance', number: 8, color: '#8b949e', componentIds: ['monitor-usage', 'chronicle-tips'] },
+  { id: 'governance', number: 8, color: '#8b949e', componentIds: ['monitor-usage'] },
 ];
 
 export function getTipsLayers(t: Translations): Layer[] {

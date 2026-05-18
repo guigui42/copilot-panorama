@@ -472,24 +472,6 @@ const MonitorUsageViz: React.FC<{ v: Translations['tipsViz'] }> = ({ v }) => (
   </div>
 );
 
-const ChronicleTipsViz: React.FC = () => (
-  <div className="viz viz-terminal" aria-hidden="true">
-    <div className="terminal-bar">
-      <span className="terminal-dot terminal-dot--red" />
-      <span className="terminal-dot terminal-dot--yellow" />
-      <span className="terminal-dot terminal-dot--green" />
-    </div>
-    <div className="terminal-line">
-      <span className="terminal-prompt">$ </span>
-      <span className="terminal-cmd">/chronicle improve</span>
-    </div>
-    <div className="terminal-line">
-      <span className="terminal-prompt">$ </span>
-      <span className="terminal-cmd">/chronicle tips</span>
-    </div>
-  </div>
-);
-
 const CompoundErrorsViz: React.FC<{ v: Translations['tipsViz'] }> = ({ v }) => (
   <div className="viz viz-cost-compare" aria-hidden="true">
     <div className="cost-item cost-item--cheap">
@@ -664,7 +646,6 @@ const ComponentCard: React.FC<ComponentCardProps> = ({ component, layerColor, on
       case 'low-effort-tasks': return <LowEffortViz v={tip} />;
       case 'auto-mode': return <AutoModeViz v={tip} />;
       case 'monitor-usage': return <MonitorUsageViz v={tip} />;
-      case 'chronicle-tips': return <ChronicleTipsViz />;
       case 'compound-errors': return <CompoundErrorsViz v={tip} />;
       case 'prompt-anatomy': return <PromptAnatomyViz v={tip} />;
       case 'context-rot': return <ContextRotViz v={tip} />;
