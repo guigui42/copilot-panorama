@@ -638,13 +638,17 @@ export const fr: Translations = {
     },
     'scope-context': {
       name: 'Cadrer le contexte intentionnellement',
-      description: 'Préférer un contexte ciblé (un fichier) plutôt que « tout le dépôt » sauf si vraiment nécessaire',
+      description: 'Utilisez #file ou #selection pour les questions ciblées, #codebase uniquement pour les changements transversaux',
       details:
-        'Utilisez un contexte ciblé : uniquement le fichier ou la fonction pertinente, pas tout ' +
-        'le dépôt. « Joindre uniquement la sortie du test échoué, pas les logs complets. » Le ' +
-        'contexte de tout le dépôt (#codebase) est puissant mais coûteux — ne l\'utilisez que ' +
-        'pour les changements transversaux qui nécessitent vraiment un raisonnement global. Pour ' +
-        'les questions ciblées, #file est presque toujours suffisant et bien moins cher.',
+        'Les références de chat (#file, #selection, #codebase) contrôlent exactement ce ' +
+        'que le modèle voit — et ce que vous payez. Utilisez #file pour des questions ' +
+        'ciblées sur un fichier spécifique, #selection pour une portée encore plus étroite ' +
+        '(uniquement les lignes surlignées). Réservez #codebase pour les changements ' +
+        'transversaux où le modèle a vraiment besoin de raisonner sur tout le projet. ' +
+        'Même principe pour la sortie d\'outils : joignez uniquement la sortie du test ' +
+        'échoué, pas les logs complets. Un contexte ciblé est moins cher, plus rapide, ' +
+        'et produit généralement de meilleures réponses car le modèle n\'est pas distrait ' +
+        'par du code non pertinent.',
       useCases: ['Chat', 'Agent Mode', 'CLI'],
     },
     'conditional-context': {
@@ -657,17 +661,6 @@ export const fr: Translations = {
         'spécialisés vers les Skills où le modèle décide quand les charger, ou utilisez les ' +
         'globs applyTo pour que les instructions ne s\'appliquent qu\'aux fichiers correspondants.',
       useCases: ['Instructions', 'Skills', 'Portée par chemin'],
-    },
-    'targeted-refs': {
-      name: 'Utiliser des références ciblées',
-      description: 'Utiliser #file pour les questions ciblées, #codebase uniquement pour les changements transversaux',
-      details:
-        'Les références de chat (#file, #selection, #codebase) contrôlent exactement le contexte ' +
-        'que le modèle voit. Utilisez #file pour des questions ciblées sur du code spécifique. ' +
-        'Utilisez #selection pour un scope encore plus étroit. Réservez #codebase aux changements ' +
-        'transversaux où le modèle a vraiment besoin de comprendre tout le projet. Joignez ' +
-        'uniquement la sortie du test échoué, pas les logs de toute la suite de tests.',
-      useCases: ['Chat', 'IDE', 'Compréhension du code'],
     },
     'apply-to-paths': {
       name: 'Utiliser les chemins applyTo',

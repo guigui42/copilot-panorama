@@ -354,6 +354,7 @@ const ConciseAnswersViz: React.FC<{ v: Translations['tipsViz'] }> = ({ v }) => (
 const ScopeContextViz: React.FC<{ v: Translations['tipsViz'] }> = ({ v }) => (
   <div className="viz viz-scope-compare" aria-hidden="true">
     <span className="scope-option scope-option--narrow">🔬 #file <span className="scope-badge">{v.narrow}</span></span>
+    <span className="scope-option scope-option--narrow">🎯 #selection <span className="scope-badge">{v.narrow}</span></span>
     <span className="scope-option scope-option--broad">🌐 #codebase <span className="scope-badge">{v.broad}</span></span>
   </div>
 );
@@ -362,14 +363,6 @@ const ConditionalContextViz: React.FC<{ v: Translations['tipsViz'] }> = ({ v }) 
   <div className="viz viz-reuse-flow" aria-hidden="true">
     <div className="reuse-item">🔴 {v.alwaysOn} → <strong>{v.costly}</strong></div>
     <div className="reuse-item">🟢 {v.onDemand} → <strong>{v.efficient}</strong></div>
-  </div>
-);
-
-const TargetedRefsViz: React.FC = () => (
-  <div className="viz viz-chat-keywords" aria-hidden="true">
-    <span className="chat-keyword chat-keyword--variable">#file</span>
-    <span className="chat-keyword chat-keyword--variable">#selection</span>
-    <span className="chat-keyword chat-keyword--participant">#codebase</span>
   </div>
 );
 
@@ -634,8 +627,9 @@ const ComponentCard: React.FC<ComponentCardProps> = ({ component, layerColor, on
       case 'structure-for-reuse': return <StructureForReuseViz v={tip} />;
       case 'concise-answers': return <ConciseAnswersViz v={tip} />;
       case 'scope-context': return <ScopeContextViz v={tip} />;
+      // targeted-refs merged into scope-context
+
       case 'conditional-context': return <ConditionalContextViz v={tip} />;
-      case 'targeted-refs': return <TargetedRefsViz />;
       case 'apply-to-paths': return <ApplyToPathsViz />;
       case 'skills-mcp': return <SkillsMcpViz v={tip} />;
       case 'context-command': return <ContextCommandViz />;

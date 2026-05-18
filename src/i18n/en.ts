@@ -622,13 +622,16 @@ export const en: Translations = {
     },
     'scope-context': {
       name: 'Scope Context Intentionally',
-      description: 'Prefer targeted context (one file) over "whole repo" unless truly needed',
+      description: 'Use #file or #selection for narrow questions, #codebase only for cross-cutting changes',
       details:
-        'Use targeted context: only the relevant file or function, not the whole repo. ' +
-        '"Attach only the failing test output, not the full logs." Whole-repo context ' +
-        '(#codebase) is powerful but expensive — use it only for cross-cutting changes ' +
-        'that genuinely need global reasoning. For narrow questions, #file is almost ' +
-        'always sufficient and much cheaper.',
+        'Chat references (#file, #selection, #codebase) control exactly what context the ' +
+        'model sees — and what you pay for. Use #file for focused questions about a ' +
+        'specific file, #selection for even narrower scope (the highlighted lines only). ' +
+        'Reserve #codebase for cross-cutting changes where the model genuinely needs to ' +
+        'reason about the whole project. Same idea applies to tool output: attach only ' +
+        'the failing test output, not the full test suite logs. Targeted context is ' +
+        'cheaper, faster, and usually produces better answers because the model isn\'t ' +
+        'distracted by irrelevant code.',
       useCases: ['Chat', 'Agent Mode', 'CLI'],
     },
     'conditional-context': {
@@ -641,17 +644,6 @@ export const en: Translations = {
         'decides when to load them, or use applyTo globs so instructions only apply to ' +
         'matching files.',
       useCases: ['Instructions', 'Skills', 'Path Scoping'],
-    },
-    'targeted-refs': {
-      name: 'Use Targeted References',
-      description: 'Use #file for narrow questions, #codebase only for cross-cutting changes',
-      details:
-        'Chat references (#file, #selection, #codebase) control exactly what context ' +
-        'the model sees. Use #file for focused questions about specific code. Use ' +
-        '#selection for even narrower scope. Reserve #codebase for cross-cutting changes ' +
-        'where the model genuinely needs to understand the whole project. Attach only ' +
-        'the failing test output, not the full test suite logs.',
-      useCases: ['Chat', 'IDE', 'Code Understanding'],
     },
     'apply-to-paths': {
       name: 'Use applyTo Paths',

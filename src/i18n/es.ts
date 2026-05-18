@@ -631,13 +631,16 @@ export const es: Translations = {
     },
     'scope-context': {
       name: 'Acotar el contexto intencionalmente',
-      description: 'Preferir contexto específico (un archivo) en lugar de « todo el repo » salvo que sea realmente necesario',
+      description: 'Usa #file o #selection para preguntas específicas, #codebase solo para cambios transversales',
       details:
-        'Usa contexto específico: solo el archivo o función relevante, no todo el repositorio. ' +
-        '« Adjuntar solo la salida del test fallido, no los logs completos. » El contexto de todo ' +
-        'el repositorio (#codebase) es potente pero costoso — úsalo solo para cambios transversales ' +
-        'que genuinamente necesiten razonamiento global. Para preguntas específicas, #file es casi ' +
-        'siempre suficiente y mucho más barato.',
+        'Las referencias de chat (#file, #selection, #codebase) controlan exactamente lo ' +
+        'que ve el modelo — y lo que pagas. Usa #file para preguntas específicas sobre un ' +
+        'archivo concreto, #selection para un alcance aún más estrecho (solo las líneas ' +
+        'resaltadas). Reserva #codebase para cambios transversales donde el modelo ' +
+        'realmente necesita razonar sobre todo el proyecto. Lo mismo aplica a la salida ' +
+        'de herramientas: adjunta solo la salida del test fallido, no los logs completos. ' +
+        'El contexto específico es más barato, más rápido y suele producir mejores ' +
+        'respuestas porque el modelo no se distrae con código irrelevante.',
       useCases: ['Chat', 'Agent Mode', 'CLI'],
     },
     'conditional-context': {
@@ -650,17 +653,6 @@ export const es: Translations = {
         'decide cuándo cargarlas, o usa globs applyTo para que las instrucciones solo se apliquen ' +
         'a archivos coincidentes.',
       useCases: ['Instrucciones', 'Skills', 'Alcance por ruta'],
-    },
-    'targeted-refs': {
-      name: 'Usar referencias específicas',
-      description: 'Usar #file para preguntas específicas, #codebase solo para cambios transversales',
-      details:
-        'Las referencias de chat (#file, #selection, #codebase) controlan exactamente qué contexto ' +
-        've el modelo. Usa #file para preguntas enfocadas sobre código específico. Usa #selection ' +
-        'para un alcance aún más estrecho. Reserva #codebase para cambios transversales donde el ' +
-        'modelo genuinamente necesita entender todo el proyecto. Adjunta solo la salida del test ' +
-        'fallido, no los logs de toda la suite de tests.',
-      useCases: ['Chat', 'IDE', 'Comprensión de código'],
     },
     'apply-to-paths': {
       name: 'Usar rutas applyTo',
