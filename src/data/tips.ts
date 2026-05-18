@@ -6,6 +6,7 @@ interface ComponentMeta {
   path: string;
   icon: string;
   docUrl: string;
+  docLabel?: string;
   altDocUrl?: string;
   altDocLabel?: string;
 }
@@ -162,6 +163,7 @@ const TIPS_COMPONENT_META: Record<string, ComponentMeta> = {
     path: 'Shell Hygiene',
     icon: '🪒',
     docUrl: 'https://github.com/edouard-claude/snip',
+    docLabel: 'Snip',
     altDocUrl: 'https://github.com/juliusbrussee/caveman',
     altDocLabel: 'Caveman skill',
   },

@@ -95,7 +95,7 @@ const DetailPanel: React.FC<DetailPanelProps> = ({ component, layerColor, onClos
             rel="noopener noreferrer"
             onClick={() => trackEvent('analytics.click', { category: 'outbound', action: 'doc_link', label: component.id })}
           >
-            📖 {t.ui.documentationLabel}
+            📖 {component.docLabel || t.ui.documentationLabel}
           </a>
           )}
           {component.altDocUrl && (

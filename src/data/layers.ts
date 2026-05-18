@@ -9,6 +9,7 @@ export interface Component {
   details: string;
   useCases: string[];
   docUrl: string;
+  docLabel?: string;
   altDocUrl?: string;
   altDocLabel?: string;
   awesomeUrl?: string;
@@ -28,6 +29,7 @@ interface ComponentMeta {
   path: string;
   icon: string;
   docUrl: string;
+  docLabel?: string;
   altDocUrl?: string;
   altDocLabel?: string;
   awesomeUrl?: string;

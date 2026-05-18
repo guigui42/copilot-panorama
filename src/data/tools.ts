@@ -6,6 +6,7 @@ interface ComponentMeta {
   path: string;
   icon: string;
   docUrl: string;
+  docLabel?: string;
   altDocUrl?: string;
   altDocLabel?: string;
 }
