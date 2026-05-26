@@ -191,7 +191,7 @@ export const fr: Translations = {
   /* ── Page Outils ── */
   toolsSeo: {
     title: 'Copilot Panorama — Copilot Everywhere',
-    description: 'Guide visuel interactif des outils GitHub Copilot sur trois couches : Apps autonomes (CLI, Copilot App), IDE (Autocomplétion, Chat, Agent Mode, Agents tiers), et Cloud (Agent cloud, Agent de revue, Agents tiers).',
+    description: 'Guide visuel interactif des outils GitHub Copilot sur trois couches : IDE (Autocomplétion, Chat, Agent Mode, Agents tiers), Apps autonomes (CLI, Copilot App), et Cloud (Agent cloud, Agent de revue, Agents tiers).',
   },
   toolsUi: {
     heroTitle: 'Copilot Everywhere',
