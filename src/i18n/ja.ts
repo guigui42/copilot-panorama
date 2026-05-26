@@ -183,7 +183,7 @@ export const ja: Translations = {
   /* ── Tools ページ ── */
   toolsSeo: {
     title: 'Copilot Panorama — Copilot Everywhere',
-    description: 'GitHub Copilot ツールのインタラクティブなビジュアルガイド — 3つのレイヤーを探索：スタンドアロンアプリ（CLI、Copilot App）、IDE（オートコンプリート、チャット、Agent Mode、サードパーティエージェント）、クラウド（Cloud Agent、Review Agent、サードパーティエージェント）。',
+    description: 'GitHub Copilot ツールのインタラクティブなビジュアルガイド — 3つのレイヤーを探索：IDE（オートコンプリート、チャット、Agent Mode、サードパーティエージェント）、スタンドアロンアプリ（CLI、Copilot App）、クラウド（Cloud Agent、Review Agent、サードパーティエージェント）。',
   },
   toolsUi: {
     heroTitle: 'Copilot Everywhere',

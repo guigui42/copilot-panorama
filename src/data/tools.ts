@@ -110,8 +110,8 @@ interface LayerDef {
 }
 
 const TOOLS_LAYER_DEFS: LayerDef[] = [
-  { id: 'standalone-apps', number: 1, color: '#8b949e', componentIds: ['copilot-cli', 'copilot-app'] },
-  { id: 'ide', number: 2, color: '#3fb950', componentIds: ['autocomplete', 'ask', 'agent-mode', 'third-party-agents-ide'] },
+  { id: 'ide', number: 1, color: '#3fb950', componentIds: ['autocomplete', 'ask', 'agent-mode', 'third-party-agents-ide'] },
+  { id: 'standalone-apps', number: 2, color: '#8b949e', componentIds: ['copilot-cli', 'copilot-app'] },
   { id: 'cloud', number: 3, color: '#58a6ff', componentIds: ['copilot-chat-cloud', 'coding-agent', 'review-agent', 'third-party-agents-cloud'] },
 ];
 
