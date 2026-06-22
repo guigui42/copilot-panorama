@@ -664,7 +664,7 @@ export const ja: Translations = {
       useCases: ['Skills', 'MCPサーバー', 'カスタムエージェント'],
     },
     'context-command': {
-      name: '/context in CLI',
+      name: 'CLI の /context',
       description: '/contextでコンテキストを監視し、長いセッションは最初からやり直さず/compactで圧縮する',
       details:
         'Copilot CLIでは、`/context`を使ってコンテキストウィンドウの消費量を確認できます。' +

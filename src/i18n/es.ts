@@ -682,7 +682,7 @@ export const es: Translations = {
       useCases: ['Skills', 'Servidores MCP', 'Agentes personalizados'],
     },
     'context-command': {
-      name: '/context in CLI',
+      name: '/context en el CLI',
       description: 'Vigila el contexto con /context; compacta sesiones largas con /compact en lugar de empezar de cero',
       details:
         'En Copilot CLI, usa `/context` para ver cuánto de tu ventana de contexto está consumido. ' +
