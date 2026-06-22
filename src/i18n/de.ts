@@ -534,12 +534,14 @@ export const de: Translations = {
       name: 'Token Cost Drivers',
       description: 'Input, output, and cached-read tokens are the three billing dimensions',
       details:
-        'Under token-based billing, every interaction has three cost components: ' +
-        'input/context tokens (what you send), output tokens (what the model generates), ' +
-        'and cached-read tokens (cheaper but still metered). Input tokens include your ' +
-        'prompt, system instructions, file context, and tool outputs. Output tokens are ' +
-        'the model\'s response. Understanding these three dimensions is the foundation of ' +
-        'cost optimization.',
+        'Bei tokenbasierter Abrechnung hat jede Interaktion drei Kostenkomponenten: ' +
+        'Input-/Kontext-Tokens (was du sendest), Output-Tokens (was das Modell generiert) ' +
+        'und Cached-Read-Tokens (günstiger, aber weiterhin gemessen). Input-Tokens umfassen ' +
+        'deinen Prompt, Systemanweisungen, Dateikontext und Tool-Ausgaben. Output-Tokens ' +
+        'sind die Antwort des Modells. Cached-Read-Tokens sind die günstigste Dimension — ' +
+        'typischerweise mit ~10% des normalen Input-Preises abgerechnet — deshalb ist es ' +
+        'wichtig, den Cache über Turns hinweg zu erhalten. Diese drei Dimensionen zu ' +
+        'verstehen ist die Grundlage der Kostenoptimierung.',
       useCases: ['All Interactions', 'Budget Planning', 'Cost Analysis'],
     },
     'agentic-cost': {
@@ -581,12 +583,14 @@ export const de: Translations = {
       name: 'Fresh Threads',
       description: 'Start new conversations once decisions are shipped — avoid context rot',
       details:
-        'Avoid long-lived sessions where tool outputs pile up in context. Each ' +
-        'accumulated tool output adds input tokens to every subsequent call, and once ' +
-        'the context window fills past ~50% models bias toward the most recent tokens ' +
-        '(recency bias) and "lose" what was in the middle. Once you\'ve shipped the ' +
-        'decision into a durable artifact (issue, PR description, ADR, code commit), ' +
-        'start a fresh thread with a clean context window.',
+        'Vermeide langlebige Sessions, in denen sich Tool-Ausgaben im Kontext stapeln. ' +
+        'Jede angesammelte Tool-Ausgabe fügt jedem folgenden Aufruf Input-Tokens hinzu, ' +
+        'und sobald das Kontextfenster zu mehr als ~50% gefüllt ist, gewichten Modelle ' +
+        'die neuesten Tokens stärker (Recency Bias) und "verlieren", was in der Mitte ' +
+        'stand. Sobald du die Entscheidung in ein dauerhaftes Artefakt übertragen hast ' +
+        '(Issue, PR-Beschreibung, ADR, Code-Commit), starte einen frischen Thread mit ' +
+        'einem sauberen Kontextfenster. In Copilot CLI startet `/new` (oder `/clear`) ' +
+        'eine frische Konversation; in Chat öffnest du eine neue Chat-Session.',
       useCases: ['Chat', 'Agent Mode', 'CLI Sessions'],
     },
     'concise-instructions': {
@@ -671,12 +675,15 @@ export const de: Translations = {
     },
     'context-command': {
       name: '/context in CLI',
-      description: 'Watch context accumulation in Copilot CLI; compaction triggers near capacity',
+      description: 'Beobachte den Kontext mit /context; komprimiere lange Sessions mit /compact statt neu zu starten',
       details:
-        'In Copilot CLI, use the /context command to see how much of your context window ' +
-        'is consumed. As context grows, the CLI automatically compacts (summarizes) older ' +
-        'conversation history near capacity. Being aware of context consumption helps you ' +
-        'decide when to start a fresh thread vs. continue an existing one.',
+        'Verwende in Copilot CLI `/context`, um zu sehen, wie viel deines Kontextfensters ' +
+        'belegt ist. Wenn eine Session groß wird, du aber weitermachen möchtest, führe ' +
+        '`/compact` aus, um die Historie zusammenzufassen und das Fenster zu verkleinern — ' +
+        'optional mit Fokus, z.\u00A0B. `/compact focus on the auth module`. Wenn du zu einem ' +
+        'unabhängigen Problem wechselst, starte stattdessen sauber mit `/new` oder `/clear`. ' +
+        'Das Bewusstsein für Kontextverbrauch hilft dir zu entscheiden, wann du komprimierst, ' +
+        'frisch startest oder weitermachst.',
       useCases: ['CLI', 'Long Sessions', 'Context Management'],
     },
     'reuse-context': {
@@ -703,13 +710,17 @@ export const de: Translations = {
     },
     'choose-right-model': {
       name: 'Choose the Right Model',
-      description: 'Models vary by cost multiplier and capability — match to your task',
+      description: 'Passe die Fähigkeit an die Aufgabe an: Reasoning-, Mid-Tier- oder leichtere Modelle',
       details:
-        'Different models have different cost multipliers and capability levels. Using a ' +
-        'premium model for a simple task wastes tokens and money. Using a basic model for ' +
-        'complex architecture wastes time and produces poor results. The key is matching ' +
-        'model capability to task complexity. Check your available models and their ' +
-        'relative costs.',
+        'Die Modellwahl ist einer der schnellsten Wege, Kosten zu kontrollieren — nutze so ' +
+        'viel Fähigkeit, wie die Aufgabe erfordert, und so wenig wie nötig. Denke in drei ' +
+        'Stufen: Reasoning-Modelle für Architekturentscheidungen, komplexes Debugging und ' +
+        'Systemdesign; Mid-Tier-Modelle, wenn der Plan klar ist und der Agent nur ausführen ' +
+        'muss; leichtere Modelle für Refactoring, Formatierung, Dokumentation und andere ' +
+        'routinemäßige, klar abgegrenzte Änderungen. Standardmäßig das leistungsfähigste ' +
+        'Modell für alles zu verwenden, erhöht den Token-Verbrauch ohne bessere Ergebnisse — ' +
+        'und Reasoning-Modelle zu oft einzusetzen kann die Qualität sogar senken, weil sie ' +
+        'die Aufgabe überdenken.',
       useCases: ['All Interactions', 'Budget Planning', 'Task Routing'],
     },
     'high-effort-tasks': {
@@ -734,12 +745,15 @@ export const de: Translations = {
     },
     'auto-mode': {
       name: 'Use Auto Mode',
-      description: 'Auto selects the best model based on your prompt — good default for most workflows',
+      description: 'Auto routet jeden Prompt an ein effizientes Modell, schützt deinen Cache und bringt 10% Rabatt',
       details:
-        'When unsure which model to use, select "Auto." Auto mode analyzes your prompt ' +
-        'and routes it to the most appropriate model — simple questions go to efficient ' +
-        'models, complex tasks go to capable ones. This is a good default for most ' +
-        'workflows and avoids both overspending on simple tasks and underpowering complex ones.',
+        'Wenn du unsicher bist, welches Modell du verwenden sollst, wähle "Auto." Ein kleiner ' +
+        'Router analysiert deinen Prompt und sendet ihn an das Modell, das ihn am effizientesten ' +
+        'bearbeiten kann — teure Reasoning-Modelle bleiben wirklich komplexen Problemen ' +
+        'vorbehalten. Auto schützt auch deinen Cache: Es wechselt Modelle nur an natürlichen ' +
+        'Grenzen (neue Session oder nach `/compact`), nie mitten in einer Aufgabe. In bezahlten ' +
+        'Copilot-Plänen bringt automatische Modellauswahl 10% Rabatt auf Modellkosten in Chat, ' +
+        'CLI und Cloud-Agent. Ein guter Standard für die meisten Workflows.',
       useCases: ['Default Workflow', 'Mixed Tasks', 'New Users'],
     },
     'monitor-usage': {
@@ -820,13 +834,16 @@ export const de: Translations = {
       name: 'Research → Plan → Implement',
       description: 'Chain three focused stages with the right model for each',
       details:
-        'Divide a non-trivial change into three handoffs instead of one mega-prompt. ' +
-        '(1) Research: a fast, broad model (e.g. Gemini 2.5 Pro) explores the codebase ' +
-        'and identifies the relevant files. (2) Plan: a deep-reasoning model (e.g. Opus) ' +
-        'turns that research into a precise spec. (3) Implement: an efficient model ' +
-        '(e.g. GPT-5.4 / Sonnet) applies the spec to code. Each stage gets only the ' +
-        'context it needs, and per-stage errors don\'t compound into one runaway loop. ' +
-        'In Copilot CLI this maps to /research → /plan → /fleet style flows.',
+        'Teile eine nicht triviale Änderung in drei Übergaben statt in einen Mega-Prompt. ' +
+        '(1) Research: Ein schnelles, breites Modell (z.\u00A0B. Gemini 2.5 Pro) erkundet die ' +
+        'Codebasis und identifiziert die relevanten Dateien. (2) Plan: Ein Deep-Reasoning-' +
+        'Modell (z.\u00A0B. Opus) macht daraus eine präzise Spezifikation. (3) Implement: Ein ' +
+        'effizientes Modell (z.\u00A0B. GPT-5.4 / Sonnet) wendet die Spezifikation auf Code an. ' +
+        'Jede Stufe bekommt nur den Kontext, den sie braucht, und Fehler pro Stufe stapeln ' +
+        'sich nicht zu einer ausufernden Schleife. In Copilot CLI entspricht das `/research` ' +
+        '→ `/plan` → implementieren; plane immer mit einem starken Reasoning-Modell und ' +
+        'implementiere dann mit einem günstigeren, wobei du zwischen den Phasen eine neue ' +
+        'Session startest, damit unnötiger Kontext nicht mitgeschleppt wird.',
       useCases: ['Complex Refactors', 'Cross-Cutting Changes', 'Multi-File Edits'],
     },
     'deterministic-guardrails': {
@@ -842,20 +859,25 @@ export const de: Translations = {
       useCases: ['Agent Mode', 'TDD', 'CI Pipelines'],
     },
     'trim-shell-outputs': {
-      name: 'Trim Shell Outputs',
-      description: 'A noisy `npm install` can drown out signal — wrap commands to keep only what matters',
+      name: 'Shell-Ausgaben vorsichtig kürzen',
+      description: 'Entferne bekannten Lärm aus ausführlichen Befehlen — pauschale Kompression geht aber oft nach hinten los',
       details:
-        'CLI tools love verbosity. A single `npm install` or `terraform plan` can dump ' +
-        'thousands of lines into the agent\'s context — most of it noise. Wrap noisy ' +
-        'commands with a trimmer so the agent only sees the relevant tail: errors, ' +
-        'warnings, the final summary. Two community Agent Skills make this trivial: ' +
-        '**Snip** (github.com/edouard-claude/snip) wraps shell commands — prefix with ' +
-        '`snip -- npm install` to filter verbose output while preserving errors. ' +
-        '**Caveman** (github.com/juliusbrussee/caveman) goes further, instructing the ' +
-        'model to respond in compressed, telegraphic style — cutting output tokens by ' +
-        '~75% while preserving technical accuracy. Together they shrink both the cached ' +
-        'input on the next loop and the response itself, improving recall by reducing ' +
-        '"lost in the middle" effects.',
+        'CLI-Tools lieben Ausführlichkeit. Ein einzelnes `npm install` oder `terraform plan` ' +
+        'kann tausende Zeilen in den Kontext des Agenten kippen — das meiste davon Rauschen. ' +
+        'Einen lauten Befehl so zu wrappen, dass der Agent nur den relevanten Tail sieht ' +
+        '(Fehler, Warnungen, die finale Zusammenfassung), kann helfen. Zwei Community Agent ' +
+        'Skills tun das: **Snip** (github.com/edouard-claude/snip) stellt Shell-Befehlen ' +
+        'ein Präfix voran — `snip -- npm install` — um ausführliche Ausgabe zu filtern und ' +
+        'Fehler zu erhalten. **Caveman** (github.com/juliusbrussee/caveman) weist das Modell ' +
+        'an, in einem komprimierten, telegrammartigen Stil zu antworten. ⚠️ Behandle aggressive ' +
+        'Kompression aber skeptisch: Practitioner-Evals (einschließlich Copilot-interner Tests ' +
+        'von RTK / "Headroom"-artiger Kontextkompression) waren bestenfalls neutral und erhöhten ' +
+        'häufig den gesamten Token-Verbrauch. Kompression entfernt Informationen, die der Agent ' +
+        'später wieder braucht; das löst ein erneutes Lesen aus — am Ende kostet es mehr Tokens ' +
+        'und Latenz, nicht weniger. Bevorzuge enges, deterministisches Trimming (nur bekannte ' +
+        'Rauschzeilen entfernen, Fehler und Zusammenfassung immer behalten) statt pauschaler ' +
+        '"alles schrumpfen"-Ansätze, und miss die echte Token-Nutzung, bevor du ein Tool ' +
+        'übernimmst — wenn es zu gut klingt, um wahr zu sein, ist es das meistens auch.',
       useCases: ['CLI Agent', 'Build Output', 'Test Runs'],
     },
     'collapse-tool-calls': {
@@ -894,6 +916,59 @@ export const de: Translations = {
         'history. Run them regularly — over time the agent gets noticeably more ' +
         'reliable without you doing more work per task.',
       useCases: ['Team Workflows', 'CLI Power Users', 'Long-Lived Repos'],
+    },
+    'project-map': {
+      name: 'Gib Copilot eine Projektkarte',
+      description: 'Eine gepflegte AGENTS.md / copilot-instructions.md erspart dem Agenten das Lesen dutzender Dateien',
+      details:
+        'Ohne strukturellen Überblick liest der Agent viele Dateien nur, um sich zu ' +
+        'orientieren — jede davon kostet Input-Tokens. Eine gut gepflegte Karte, etwa ' +
+        '`AGENTS.md` oder `.github/copilot-instructions.md`, gibt ihm das Layout vorab: ' +
+        'wo Dinge liegen, wie Module zusammenhängen, Build-/Test-/Lint-Befehle und wichtige ' +
+        'Konventionen. Der Agent verwendet sein Budget für die eigentliche Änderung statt ' +
+        'für Exploration und erzeugt kürzere Sessions und kleinere Diffs.',
+      useCases: ['Onboarding', 'Große Repos', 'Alle Interaktionen'],
+    },
+    'preserve-cache': {
+      name: 'Cache bewahren',
+      description: 'Wechsle Modell, Reasoning-Level oder Toolset nicht mitten in der Session — das invalidiert den Cache',
+      details:
+        'Caching verwendet den großen, wiederholten Kontext (Systemprompt, Dateiinhalte, ' +
+        'Tool-Definitionen) über Turns hinweg erneut; gecachte Tokens werden mit ~10% des ' +
+        'normalen Inputs abgerechnet. Drei Dinge werfen das weg und berechnen den vollständigen ' +
+        'Kontext wieder als frischen Input: Modelle mitten in der Session wechseln (ein Modell ' +
+        'kann den Cache eines anderen nicht wiederverwenden), Reasoning-Level / Kontextgröße / ' +
+        'aktivierte Tools mitten in der Session ändern und nach Ablauf des Caches zu einer alten ' +
+        'Session zurückkehren (24h bei OpenAI-Modellen, ~1h bei den meisten anderen). Wähle ' +
+        'Modell und Einstellungen vor dem Start, halte sie stabil und starte bei einer veralteten ' +
+        'Session neu oder nutze `/compact`, damit nur eine kurze Zusammenfassung neu aufgebaut ' +
+        'wird, nicht die ganze Historie.',
+      useCases: ['Lange Sessions', 'CLI', 'Kostenoptimierung'],
+    },
+    'cheaper-subagents': {
+      name: 'Günstigere Modelle für Subagents',
+      description: 'Lasse Subagents auf leichteren Modellen laufen — fokussierter Kontext braucht selten ein Premium-Modell',
+      details:
+        'Subagents laufen in ihrer eigenen Session und erben die Gesprächshistorie des ' +
+        'Hauptagenten nicht. Weil ihr Kontext auf eine einzelne fokussierte Aufgabe begrenzt ' +
+        'ist, reicht ein leichteres Modell meist aus, um gute Arbeit zu leisten. Einem Subagent ' +
+        'ein solches Modell zuzuweisen berührt außerdem nicht den Cache des Hauptagenten wie ' +
+        'ein Modellwechsel mitten in der Session — du sparst also bei der Subagent-Arbeit, ohne ' +
+        'im Hauptthread eine Cache-Neuaufbau-Strafe zu zahlen.',
+      useCases: ['Subagents', 'Orchestrierte Workflows', 'Kostenoptimierung'],
+    },
+    'chronicle-insights': {
+      name: 'Sessions mit /chronicle auswerten',
+      description: 'Nutze /chronicle tips und /chronicle cost-tips, um Session-Historie in Einsparungen zu verwandeln',
+      details:
+        'Deine Session-Historie ist eine kostenlose Quelle für Effizienz-Einblicke. In Copilot ' +
+        'CLI analysiert `/chronicle tips` aktuelle Sessions und zeigt Wege, Copilot effizienter ' +
+        'zu nutzen, während `/chronicle cost-tips` deine Token-Nutzungsmuster und die Verteilung ' +
+        'der Credits untersucht. Wenn es ein wiederkehrendes Muster meldet — ein übernutztes ' +
+        'Tool, einen Prompt, der immer wieder falsch verstanden wird — kodiere diese Beobachtung ' +
+        'direkt in `copilot-instructions.md`, damit ein einmaliger Einblick zu dauerhafter ' +
+        'Leitlinie für jede künftige Session wird.',
+      useCases: ['CLI', 'Team-Governance', 'Kontinuierliche Verbesserung'],
     },
   },
   tipsInsights: [

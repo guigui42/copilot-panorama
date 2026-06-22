@@ -11,31 +11,38 @@ interface ComponentMeta {
   altDocLabel?: string;
 }
 
+const OPT = 'https://docs.github.com/en/enterprise-cloud@latest/copilot/tutorials/optimize-ai-usage';
+const OPT_LABEL = 'Optimize AI usage';
+
 const TIPS_COMPONENT_META: Record<string, ComponentMeta> = {
   /* ── Mechanics ── */
   'token-billing': {
     id: 'token-billing',
     path: 'Cost Drivers',
     icon: '🪙',
-    docUrl: '',
+    docUrl: `${OPT}#4-preserve-the-cache`,
+    docLabel: OPT_LABEL,
   },
   'agentic-cost': {
     id: 'agentic-cost',
     path: 'Agentic Workflows',
     icon: '🔗',
-    docUrl: '',
+    docUrl: `${OPT}#5-research-plan-then-implement`,
+    docLabel: OPT_LABEL,
   },
   'context-discipline': {
     id: 'context-discipline',
     path: 'Workflow Design',
     icon: '🎯',
-    docUrl: '',
+    docUrl: `${OPT}#3-keep-your-context-lean`,
+    docLabel: OPT_LABEL,
   },
   'compound-errors': {
     id: 'compound-errors',
     path: 'Quality Math',
     icon: '📉',
-    docUrl: '',
+    docUrl: `${OPT}#7-add-deterministic-guardrails`,
+    docLabel: OPT_LABEL,
   },
 
   /* ── Prompting ── */
@@ -43,25 +50,29 @@ const TIPS_COMPONENT_META: Record<string, ComponentMeta> = {
     id: 'quality-over-quantity',
     path: 'Prompt Design',
     icon: '✨',
-    docUrl: 'https://docs.github.com/en/copilot/using-github-copilot/best-practices-for-using-github-copilot',
+    docUrl: `${OPT}#2-provide-clear-guidance-in-your-prompts`,
+    docLabel: OPT_LABEL,
   },
   'fresh-threads': {
     id: 'fresh-threads',
     path: 'Session Hygiene',
     icon: '🧹',
-    docUrl: 'https://docs.github.com/en/copilot/using-github-copilot/best-practices-for-using-github-copilot',
+    docUrl: `${OPT}#start-a-new-conversation-when-you-switch-problems`,
+    docLabel: OPT_LABEL,
   },
   'prompt-anatomy': {
     id: 'prompt-anatomy',
     path: 'Prompt Anatomy',
     icon: '🎯',
-    docUrl: 'https://docs.github.com/en/copilot/using-github-copilot/best-practices-for-using-github-copilot',
+    docUrl: `${OPT}#2-provide-clear-guidance-in-your-prompts`,
+    docLabel: OPT_LABEL,
   },
   'concise-instructions': {
     id: 'concise-instructions',
     path: 'Instructions',
     icon: '📝',
-    docUrl: 'https://docs.github.com/en/copilot/how-tos/configure-custom-instructions/add-repository-instructions',
+    docUrl: `${OPT}#keep-the-copilot-instructionsmd-file-specific-and-grounded`,
+    docLabel: OPT_LABEL,
   },
   'structure-for-reuse': {
     id: 'structure-for-reuse',
@@ -73,14 +84,16 @@ const TIPS_COMPONENT_META: Record<string, ComponentMeta> = {
     id: 'concise-answers',
     path: 'Output Control',
     icon: '✂️',
-    docUrl: 'https://docs.github.com/en/copilot/using-github-copilot/best-practices-for-using-github-copilot',
+    docUrl: `${OPT}#2-provide-clear-guidance-in-your-prompts`,
+    docLabel: OPT_LABEL,
   },
   /* ── Context ── */
   'scope-context': {
     id: 'scope-context',
     path: 'Context Strategy',
     icon: '🔬',
-    docUrl: 'https://docs.github.com/en/copilot/using-github-copilot/best-practices-for-using-github-copilot',
+    docUrl: `${OPT}#3-keep-your-context-lean`,
+    docLabel: OPT_LABEL,
   },
   'conditional-context': {
     id: 'conditional-context',
@@ -98,13 +111,22 @@ const TIPS_COMPONENT_META: Record<string, ComponentMeta> = {
     id: 'skills-mcp',
     path: 'On-Demand Tools',
     icon: '🧩',
-    docUrl: 'https://docs.github.com/en/copilot/concepts/agents/about-agent-skills',
+    docUrl: `${OPT}#bring-in-only-the-tools-you-need`,
+    docLabel: OPT_LABEL,
   },
   'context-command': {
     id: 'context-command',
     path: 'CLI Context',
     icon: '💻',
-    docUrl: 'https://docs.github.com/en/copilot/concepts/agents/about-copilot-cli',
+    docUrl: `${OPT}#compact-long-copilot-cli-sessions-that-you-want-to-continue`,
+    docLabel: OPT_LABEL,
+  },
+  'project-map': {
+    id: 'project-map',
+    path: 'Project Map',
+    icon: '🗺️',
+    docUrl: `${OPT}#give-copilot-a-map-of-your-project`,
+    docLabel: OPT_LABEL,
   },
   'context-rot': {
     id: 'context-rot',
@@ -132,13 +154,15 @@ const TIPS_COMPONENT_META: Record<string, ComponentMeta> = {
     id: 'research-plan-implement',
     path: 'Divide & Conquer',
     icon: '🗺️',
-    docUrl: 'https://docs.github.com/en/copilot/concepts/agents/about-copilot-cli',
+    docUrl: `${OPT}#5-research-plan-then-implement`,
+    docLabel: OPT_LABEL,
   },
   'deterministic-guardrails': {
     id: 'deterministic-guardrails',
     path: 'Test-Driven Loops',
     icon: '✅',
-    docUrl: '',
+    docUrl: `${OPT}#7-add-deterministic-guardrails`,
+    docLabel: OPT_LABEL,
   },
 
   /* ── Caching ── */
@@ -146,13 +170,22 @@ const TIPS_COMPONENT_META: Record<string, ComponentMeta> = {
     id: 'reuse-context',
     path: 'Context Reuse',
     icon: '♻️',
-    docUrl: 'https://docs.github.com/en/copilot/using-github-copilot/best-practices-for-using-github-copilot',
+    docUrl: `${OPT}#4-preserve-the-cache`,
+    docLabel: OPT_LABEL,
   },
   'prefix-matching': {
     id: 'prefix-matching',
     path: 'Prompt Caching',
     icon: '⚡',
-    docUrl: 'https://docs.github.com/en/copilot/using-github-copilot/best-practices-for-using-github-copilot',
+    docUrl: `${OPT}#4-preserve-the-cache`,
+    docLabel: OPT_LABEL,
+  },
+  'preserve-cache': {
+    id: 'preserve-cache',
+    path: 'Cache Invalidation',
+    icon: '🧊',
+    docUrl: `${OPT}#4-preserve-the-cache`,
+    docLabel: OPT_LABEL,
   },
   'trim-shell-outputs': {
     id: 'trim-shell-outputs',
@@ -176,25 +209,36 @@ const TIPS_COMPONENT_META: Record<string, ComponentMeta> = {
     id: 'choose-right-model',
     path: 'Model Selection',
     icon: '🎛️',
-    docUrl: 'https://docs.github.com/en/copilot/using-github-copilot/asking-github-copilot-questions-in-your-ide#changing-your-ai-model',
+    docUrl: `${OPT}#select-the-right-model`,
+    docLabel: OPT_LABEL,
   },
   'high-effort-tasks': {
     id: 'high-effort-tasks',
     path: 'Complex Reasoning',
     icon: '🧠',
-    docUrl: 'https://docs.github.com/en/copilot/using-github-copilot/asking-github-copilot-questions-in-your-ide#changing-your-ai-model',
+    docUrl: `${OPT}#configure-the-reasoning-level-of-the-model`,
+    docLabel: OPT_LABEL,
   },
   'low-effort-tasks': {
     id: 'low-effort-tasks',
     path: 'Quick Tasks',
     icon: '⚡',
-    docUrl: 'https://docs.github.com/en/copilot/using-github-copilot/asking-github-copilot-questions-in-your-ide#changing-your-ai-model',
+    docUrl: `${OPT}#select-the-right-model`,
+    docLabel: OPT_LABEL,
   },
   'auto-mode': {
     id: 'auto-mode',
     path: 'Auto Selection',
     icon: '🤖',
-    docUrl: 'https://docs.github.com/en/copilot/using-github-copilot/asking-github-copilot-questions-in-your-ide#changing-your-ai-model',
+    docUrl: `${OPT}#use-copilot-auto-model-selection-as-your-default`,
+    docLabel: OPT_LABEL,
+  },
+  'cheaper-subagents': {
+    id: 'cheaper-subagents',
+    path: 'Subagent Models',
+    icon: '🐝',
+    docUrl: `${OPT}#use-cheaper-models-for-subagents`,
+    docLabel: OPT_LABEL,
   },
 
   /* ── Governance ── */
@@ -202,7 +246,15 @@ const TIPS_COMPONENT_META: Record<string, ComponentMeta> = {
     id: 'monitor-usage',
     path: 'Budget Controls',
     icon: '📊',
-    docUrl: '',
+    docUrl: 'https://docs.github.com/en/enterprise-cloud@latest/copilot/how-tos/manage-and-track-spending/monitor-ai-usage',
+    docLabel: 'AI usage dashboard',
+  },
+  'chronicle-insights': {
+    id: 'chronicle-insights',
+    path: 'Learn From Sessions',
+    icon: '📓',
+    docUrl: `${OPT}#6-utilize-learnings-to-be-more-efficient-at-every-turn`,
+    docLabel: OPT_LABEL,
   },
   'apply-architecture': {
     id: 'apply-architecture',
@@ -214,7 +266,8 @@ const TIPS_COMPONENT_META: Record<string, ComponentMeta> = {
     id: 'iterate-configs',
     path: 'Misses → Incidents',
     icon: '🔁',
-    docUrl: 'https://docs.github.com/en/copilot/how-tos/configure-custom-instructions/add-repository-instructions',
+    docUrl: `${OPT}#6-utilize-learnings-to-be-more-efficient-at-every-turn`,
+    docLabel: OPT_LABEL,
   },
 };
 
@@ -241,11 +294,11 @@ const TIPS_LAYER_DEFS: LayerDef[] = [
   { id: 'mechanics', number: 1, color: '#f0883e', componentIds: ['token-billing', 'agentic-cost', 'context-discipline'] },
   { id: 'pitfalls', number: 2, color: '#f85149', componentIds: ['compound-errors', 'context-rot', 'lost-in-middle'] },
   { id: 'prompting', number: 3, color: '#3fb950', componentIds: ['quality-over-quantity', 'prompt-anatomy', 'fresh-threads', 'concise-instructions', 'structure-for-reuse', 'concise-answers'] },
-  { id: 'context', number: 4, color: '#58a6ff', componentIds: ['scope-context', 'conditional-context', 'apply-to-paths', 'skills-mcp', 'context-command', 'trim-shell-outputs', 'think-in-code'] },
+  { id: 'context', number: 4, color: '#58a6ff', componentIds: ['scope-context', 'conditional-context', 'apply-to-paths', 'skills-mcp', 'context-command', 'project-map', 'trim-shell-outputs', 'think-in-code'] },
   { id: 'workflow-design', number: 5, color: '#a371f7', componentIds: ['research-plan-implement', 'deterministic-guardrails', 'apply-architecture', 'iterate-configs'] },
-  { id: 'caching', number: 6, color: '#d2a8ff', componentIds: ['reuse-context', 'prefix-matching', 'collapse-tool-calls'] },
-  { id: 'models', number: 7, color: '#f778ba', componentIds: ['choose-right-model', 'high-effort-tasks', 'low-effort-tasks', 'auto-mode'] },
-  { id: 'governance', number: 8, color: '#8b949e', componentIds: ['monitor-usage'] },
+  { id: 'caching', number: 6, color: '#d2a8ff', componentIds: ['reuse-context', 'prefix-matching', 'preserve-cache', 'collapse-tool-calls'] },
+  { id: 'models', number: 7, color: '#f778ba', componentIds: ['choose-right-model', 'high-effort-tasks', 'low-effort-tasks', 'auto-mode', 'cheaper-subagents'] },
+  { id: 'governance', number: 8, color: '#8b949e', componentIds: ['monitor-usage', 'chronicle-insights'] },
 ];
 
 export function getTipsLayers(t: Translations): Layer[] {
