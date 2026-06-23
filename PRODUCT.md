@@ -10,7 +10,7 @@ Developers, team leads, and decision-makers evaluating or adopting GitHub Copilo
 
 ## Product Purpose
 
-An interactive visual guide that maps *everything GitHub Copilot can do* across two views — the `.github/` composable stack and "Copilot Everywhere" surfaces. It exists to turn a sprawling, fast-moving product into one legible picture. Success is the "now I get it" moment: a visitor leaves with an accurate mental model of the layers and where to go next, in multiple languages.
+An interactive visual guide that maps *everything GitHub Copilot can do* across three views — the `.github/` composable stack, "Copilot Everywhere" surfaces, and efficiency tips. It exists to turn a sprawling, fast-moving product into one legible picture. Success is the "now I get it" moment: a visitor leaves with an accurate mental model of the layers and where to go next, in multiple languages.
 
 ## Brand Personality
 

@@ -1995,6 +1995,12 @@ body[data-layer-focused] .detail-panel {
   color: var(--color-text-primary);
 }
 
+.page-switcher-btn:focus-visible {
+  outline: 2px solid var(--color-accent-blue);
+  outline-offset: 2px;
+  border-radius: 999px;
+}
+
 .page-switcher-btn--active,
 .page-switcher-btn--active:hover {
   color: #ffffff;
