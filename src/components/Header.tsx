@@ -9,6 +9,39 @@ import type { PageId } from '../i18n/types';
 
 const SHARE_URL = 'https://gh.io/copilot-panorama';
 
+const PageIcon: React.FC<{ page: PageId }> = ({ page }) => {
+  const common = {
+    width: 15,
+    height: 15,
+    viewBox: '0 0 16 16',
+    fill: 'currentColor',
+    'aria-hidden': true,
+    className: 'page-switcher-icon',
+  } as const;
+  if (page === 'stack') {
+    // Stacked layers
+    return (
+      <svg {...common}>
+        <path d="M8 0.5 14.5 4 8 7.5 1.5 4 8 0.5Zm5.6 5.2 1.4.8L8 10.5 1 6.5l1.4-.8L8 8.9l5.6-3.2Zm0 3 1.4.8L8 13.5 1 9.5l1.4-.8L8 11.9l5.6-3.2Z" />
+      </svg>
+    );
+  }
+  if (page === 'tips') {
+    // Lightning bolt
+    return (
+      <svg {...common}>
+        <path d="M9.2 1 3 9h3.6l-1 6L13 6.5H9.1L9.2 1Z" />
+      </svg>
+    );
+  }
+  // tools / everywhere — grid of surfaces
+  return (
+    <svg {...common}>
+      <path d="M2 2h5v5H2V2Zm7 0h5v5H9V2ZM2 9h5v5H2V9Zm7 0h5v5H9V9Z" />
+    </svg>
+  );
+};
+
 interface HeaderProps {
   theme: 'dark' | 'light';
   onToggleTheme: () => void;
@@ -66,27 +99,35 @@ const Header: React.FC<HeaderProps> = ({ theme, onToggleTheme, page, onPageChang
           {copied && <span className="hero-brand-copied">{t.ui.shareCopied}</span>}
         </button>
 
-        <nav className="page-switcher" aria-label={`${t.ui.pageStack} / ${t.ui.pageTools}`}>
+        <nav
+          className="page-switcher"
+          data-page={page}
+          aria-label={`${t.ui.pageStack} / ${t.ui.pageTools} / ${t.tipsUi.pageTips}`}
+        >
+          <span className="page-switcher-thumb" aria-hidden="true" />
           <button
             className={`page-switcher-btn ${page === 'stack' ? 'page-switcher-btn--active' : ''}`}
             onClick={() => onPageChange('stack')}
             aria-current={page === 'stack' ? 'page' : undefined}
           >
-            {t.ui.pageStack}
+            <PageIcon page="stack" />
+            <span className="page-switcher-label">{t.ui.pageStack}</span>
           </button>
           <button
             className={`page-switcher-btn ${page === 'tools' ? 'page-switcher-btn--active' : ''}`}
             onClick={() => onPageChange('tools')}
             aria-current={page === 'tools' ? 'page' : undefined}
           >
-            {t.ui.pageTools}
+            <PageIcon page="tools" />
+            <span className="page-switcher-label">{t.ui.pageTools}</span>
           </button>
           <button
             className={`page-switcher-btn ${page === 'tips' ? 'page-switcher-btn--active' : ''}`}
             onClick={() => onPageChange('tips')}
             aria-current={page === 'tips' ? 'page' : undefined}
           >
-            {t.tipsUi.pageTips}
+            <PageIcon page="tips" />
+            <span className="page-switcher-label">{t.tipsUi.pageTips}</span>
           </button>
         </nav>
 
