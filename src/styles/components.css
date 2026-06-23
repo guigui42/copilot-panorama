@@ -284,20 +284,12 @@
 .hero-page-subtitle code {
   font-family: var(--font-mono);
   font-weight: 700;
-  background: linear-gradient(135deg, var(--color-accent-primary), var(--color-accent-blue));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  filter: brightness(1.1);
+  color: var(--color-accent-primary);
 }
 
 .hero-page-subtitle-accent {
   font-weight: 800;
-  background: linear-gradient(135deg, var(--color-accent-primary), var(--color-accent-blue));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  filter: brightness(1.1);
+  color: var(--color-accent-primary);
 }
 
 /* === Awesome Copilot Link === */
@@ -413,10 +405,7 @@
 .export-banner-page code {
   font-family: var(--font-mono);
   font-weight: 600;
-  background: linear-gradient(135deg, var(--color-accent-primary), var(--color-accent-purple));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: var(--color-accent-primary);
 }
 
 .export-banner-url {
@@ -448,7 +437,6 @@
   background:
     linear-gradient(135deg, color-mix(in srgb, var(--layer-color) 4%, var(--color-bg-secondary)) 0%, var(--color-bg-secondary) 100%);
   border: 1px solid var(--color-border);
-  border-left: 4px solid var(--layer-color);
   border-radius: 12px;
   padding: 28px 32px;
   transition: box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1), transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease;
@@ -487,7 +475,6 @@
   inset: 0;
   z-index: 910;
   border-radius: 0;
-  border-left-width: 6px;
   padding: 40px 48px;
   overflow-y: auto;
   animation: layerFocusIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) both;
@@ -1316,10 +1303,6 @@ html[data-theme="light"] .viz-workflows-stack .viz-terminal:last-child {
   font-weight: 700;
   color: var(--color-text-primary);
   letter-spacing: -0.02em;
-  background: linear-gradient(135deg, var(--color-text-primary), var(--color-text-secondary));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
 }
 
 .insights-subtitle {
@@ -1338,7 +1321,6 @@ html[data-theme="light"] .viz-workflows-stack .viz-terminal:last-child {
   padding: 18px 20px;
   background: var(--color-bg-secondary);
   border: 1px solid var(--color-border);
-  border-left: 3px solid var(--color-accent-primary);
   border-radius: 10px;
   font-size: 0.8125rem;
   color: var(--color-text-secondary);
@@ -1629,8 +1611,7 @@ body[data-layer-focused] .detail-panel {
   font-weight: var(--font-weight-semibold);
   color: var(--color-text-primary);
   margin-bottom: var(--space-2);
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.01em;
 }
 
 .detail-section-text {
@@ -2186,7 +2167,8 @@ body[data-layer-focused] .detail-panel {
   display: block;
   height: 100%;
   border-radius: 4px;
-  transition: width 0.6s ease;
+  transform-origin: left center;
+  animation: growBarX 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
 .token-bar-fill--input {
@@ -2274,7 +2256,8 @@ body[data-layer-focused] .detail-panel {
 .cost-bar {
   height: 14px;
   border-radius: 3px;
-  transition: width 0.6s ease;
+  transform-origin: left center;
+  animation: growBarX 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
 .cost-item--expensive .cost-bar {
@@ -2730,7 +2713,8 @@ body[data-layer-focused] .detail-panel {
   height: 100%;
   border-radius: 3px;
   background: linear-gradient(90deg, #3fb950, #56d364);
-  transition: width 0.6s ease;
+  transform-origin: left center;
+  animation: growBarX 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
 .budget-fill--warn {

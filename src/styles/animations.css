@@ -20,6 +20,15 @@
   }
 }
 
+@keyframes growBarX {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
 @keyframes slideInRight {
   from {
     transform: translateX(100%);
