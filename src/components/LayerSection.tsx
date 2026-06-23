@@ -102,9 +102,8 @@ const LayerSection: React.FC<LayerSectionProps> = ({
         )}
 
         <div className="layer-band-header">
-          <span className="layer-num" aria-hidden="true">{layer.number}</span>
+          <span className="layer-num" role="img" aria-label={`${t.ui.layerPrefix} ${layer.number}`}>{layer.number}</span>
           <div className="layer-band-titles">
-            <span className="layer-label">{t.ui.layerPrefix} {layer.number}</span>
             <h2 className="layer-band-title" data-layer-num={layer.number}>{layer.title}</h2>
             <p className="layer-band-subtitle">{layer.subtitle}</p>
           </div>

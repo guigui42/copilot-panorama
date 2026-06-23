@@ -513,10 +513,6 @@
   text-align: center;
 }
 
-.layer-band.layer-focused .layer-label {
-  display: none;
-}
-
 .layer-band.layer-focused .layer-band-title {
   font-size: 2rem;
   line-height: 1;
@@ -659,16 +655,6 @@
 
 .layer-band-titles {
   flex: 1;
-}
-
-.layer-label {
-  display: block;
-  font-size: 0.6875rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  color: var(--layer-color);
-  margin-bottom: 2px;
 }
 
 .layer-band-title {
