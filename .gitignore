@@ -22,3 +22,6 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# impeccable hook cache
+.impeccable/hook.cache.json
