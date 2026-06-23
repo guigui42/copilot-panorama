@@ -1805,6 +1805,12 @@ body[data-layer-focused] .detail-panel {
     justify-content: center;
   }
 
+  .page-switcher-btn {
+    padding: var(--space-2) var(--space-2);
+    font-size: var(--font-size-xs);
+    gap: var(--space-1);
+  }
+
   .hero-page-subtitle {
     font-size: 0.95rem;
   }
@@ -1935,29 +1941,63 @@ body[data-layer-focused] .detail-panel {
 /* ── Page Switcher ── */
 
 .page-switcher {
-  display: flex;
-  gap: var(--space-2);
-  justify-content: center;
+  position: relative;
+  display: inline-flex;
+  gap: 0;
+  padding: 4px;
+  background: var(--color-bg-tertiary);
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  box-shadow: inset 0 1px 2px color-mix(in srgb, var(--color-shadow) 60%, transparent);
+}
+
+.page-switcher-thumb {
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  bottom: 4px;
+  width: calc((100% - 8px) / 3);
+  border-radius: 999px;
+  background: var(--color-accent-primary-emphasis);
+  box-shadow: 0 0 12px color-mix(in srgb, var(--color-accent-primary) 35%, transparent),
+              0 2px 8px color-mix(in srgb, var(--color-accent-primary) 20%, transparent);
+  transform: translateX(0);
+  transition: transform var(--transition-slow);
+  pointer-events: none;
+}
+
+.page-switcher[data-page='tools'] .page-switcher-thumb {
+  transform: translateX(100%);
+}
+
+.page-switcher[data-page='tips'] .page-switcher-thumb {
+  transform: translateX(200%);
 }
 
 .page-switcher-btn {
+  position: relative;
+  z-index: 1;
+  flex: 1 1 0;
+  min-width: 0;
   display: inline-flex;
   align-items: center;
-  gap: var(--space-1);
+  justify-content: center;
+  gap: var(--space-2);
   padding: var(--space-2) var(--space-4);
-  border: 1px solid var(--color-border);
-  border-radius: 999px;
-  background: var(--color-bg-tertiary);
-  color: var(--color-text-primary);
+  border: none;
+  background: transparent;
+  color: var(--color-text-secondary);
   font-family: var(--font-family);
   font-size: var(--font-size-sm);
   font-weight: 500;
   cursor: pointer;
-  transition: background-color var(--transition-fast) ease,
-              border-color var(--transition-fast) ease,
-              color var(--transition-fast) ease,
-              box-shadow var(--transition-fast) ease;
+  transition: color var(--transition-normal) ease;
   white-space: nowrap;
+}
+
+.page-switcher-icon {
+  flex-shrink: 0;
+  opacity: 0.8;
 }
 
 .page-switcher-btn code {
@@ -1966,24 +2006,17 @@ body[data-layer-focused] .detail-panel {
 }
 
 .page-switcher-btn:hover {
-  border-color: var(--color-accent-primary);
   color: var(--color-text-primary);
-  background: var(--color-bg-tertiary);
 }
 
-.page-switcher-btn--active {
-  border-color: var(--color-accent-primary-emphasis);
-  background: var(--color-accent-primary-emphasis);
-  color: #ffffff;
-  box-shadow: 0 0 12px color-mix(in srgb, var(--color-accent-primary) 35%, transparent),
-              0 2px 8px color-mix(in srgb, var(--color-accent-primary) 20%, transparent);
-}
-
+.page-switcher-btn--active,
 .page-switcher-btn--active:hover {
-  background: var(--color-accent-primary-emphasis);
   color: #ffffff;
-  box-shadow: 0 0 16px color-mix(in srgb, var(--color-accent-primary) 45%, transparent),
-              0 2px 12px color-mix(in srgb, var(--color-accent-primary) 25%, transparent);
+  font-weight: 600;
+}
+
+.page-switcher-btn--active .page-switcher-icon {
+  opacity: 1;
 }
 
 /* ── Tools viz: Autocomplete ── */
