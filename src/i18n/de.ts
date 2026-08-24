@@ -14,6 +14,7 @@ export const de: Translations = {
     detailsLabel: 'Details',
     useCasesLabel: 'Anwendungsfälle',
     documentationLabel: 'Dokumentation',
+    communityExamplesLabel: 'Community-Beispiele ansehen',
     footerBuiltFor: 'Erstellt für GitHub-Copilot-Nutzer',
     footerDocsLink: 'Vollständige Dokumentation zum komponierbaren System',
     pageStack: '.github/ Stack',

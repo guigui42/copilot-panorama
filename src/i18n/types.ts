@@ -38,6 +38,7 @@ export interface Translations {
     detailsLabel: string;
     useCasesLabel: string;
     documentationLabel: string;
+    communityExamplesLabel: string;
     footerBuiltFor: string;
     footerDocsLink: string;
     pageStack: string;

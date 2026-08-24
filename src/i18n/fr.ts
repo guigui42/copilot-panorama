@@ -14,6 +14,7 @@ export const fr: Translations = {
     detailsLabel: 'Détails',
     useCasesLabel: 'Cas d\'usage',
     documentationLabel: 'Documentation',
+    communityExamplesLabel: 'Voir des exemples de la communauté',
     footerBuiltFor: 'Conçu pour les utilisateurs de GitHub Copilot',
     footerDocsLink: 'Documentation complète sur le système composable',
     pageStack: '.github/ Stack',

@@ -14,6 +14,7 @@ export const ja: Translations = {
     detailsLabel: '詳細',
     useCasesLabel: 'ユースケース',
     documentationLabel: 'ドキュメント',
+    communityExamplesLabel: 'コミュニティの例を見る',
     footerBuiltFor: 'GitHub Copilot ユーザーのために作成',
     footerDocsLink: 'コンポーザブルシステムの完全なドキュメント',
     pageStack: '.github/ Stack',

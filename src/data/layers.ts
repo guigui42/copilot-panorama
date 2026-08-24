@@ -85,6 +85,7 @@ const COMPONENT_META: Record<string, ComponentMeta> = {
     docUrl: 'https://docs.github.com/en/enterprise-cloud@latest/copilot/how-tos/copilot-on-github/customize-copilot/configure-mcp-servers',
     altDocUrl: 'https://docs.github.com/en/enterprise-cloud@latest/copilot/concepts/context/mcp',
     altDocLabel: 'About MCP',
+    awesomeUrl: 'https://github.com/mcp',
   },
   plugins: {
     id: 'plugins',
