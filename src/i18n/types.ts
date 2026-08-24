@@ -2,6 +2,7 @@ export type Locale = 'en' | 'fr' | 'es' | 'de' | 'ja';
 
 export interface ComponentI18n {
   name: string;
+  path?: string;
   description: string;
   details: string;
   useCases: string[];
@@ -55,9 +56,13 @@ export interface Translations {
     approveDeny: string;
 
     pluginJson: string;
+    agentsDir: string;
     skillsDir: string;
+    hooksJson: string;
     mcpJson: string;
-    copilotNamespace: string;
+    lspJson: string;
+    repositorySettings: string;
+    ideConfig: string;
     vsCode: string;
     copilotCli: string;
     copilotApp: string;
@@ -109,6 +114,9 @@ export interface Translations {
     inbox: string;
     agenticMerge: string;
     savedWorkflows: string;
+    slack: string;
+    teams: string;
+    sharedSession: string;
   };
   toolsLayers: Record<string, LayerI18n>;
   toolsComponents: Record<string, ComponentI18n>;
@@ -148,16 +156,15 @@ export interface Translations {
     principlesBrief: string;
     heavy: string;
     skills: string;
-    repetitive: string;
-    promptFiles: string;
+    customAgents: string;
     minimalDiff: string;
     alwaysOn: string;
     costly: string;
     onDemand: string;
     efficient: string;
-    modelReads: string;
-    descriptionLabel: string;
-    loadsIfRelevant: string;
+    enabledTools: string;
+    disabledTools: string;
+    taskScoped: string;
     loadOnce: string;
     reuseInQueries: string;
     tokenPrefixMatch: string;
@@ -218,8 +225,8 @@ export interface Translations {
     cleanLayers: string;
     /* iterate configs */
     agentMiss: string;
-    chronicle: string;
-    updateInstructions: string;
+    rootCause: string;
+    durableFix: string;
     enterpriseDefault: string;
     overridableKeys: string;
     teamSpecialization: string;

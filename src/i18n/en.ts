@@ -22,19 +22,23 @@ export const en: Translations = {
     shareCopied: 'Copied!',
   },
   viz: {
-    alwaysActive: 'Always active',
-    loadsAutomatically: '— loads into every conversation automatically',
+    alwaysActive: 'Applies automatically',
+    loadsAutomatically: 'within its supported scope',
     planning: 'Planning',
     implementation: 'Implementation',
     review: 'Review',
-    descriptionRead: 'description read from SKILL.md frontmatter',
-    fullSkillInjected: 'Full SKILL.md injected into context when relevant',
-    approveDeny: 'approve / deny',
+    descriptionRead: 'skill metadata identifies relevant expertise',
+    fullSkillInjected: 'Instructions and resources load when the skill is selected',
+    approveDeny: 'allow / deny / modify',
 
     pluginJson: 'plugin.json',
+    agentsDir: 'agents/',
     skillsDir: 'skills/',
-    mcpJson: 'mcp.json',
-    copilotNamespace: 'com.github.copilot/',
+    hooksJson: 'hooks.json',
+    mcpJson: '.mcp.json',
+    lspJson: 'lsp.json',
+    repositorySettings: 'Repository MCP settings',
+    ideConfig: 'IDE mcp.json',
     vsCode: 'VS Code',
     copilotCli: 'Copilot CLI',
     copilotApp: 'Copilot app',
@@ -45,7 +49,7 @@ export const en: Translations = {
   layers: {
     'always-on-context': {
       title: 'Always-On Context',
-      subtitle: 'Passive memory loaded into every conversation automatically',
+      subtitle: 'Repository guidance applied automatically within its supported scope',
     },
     'on-demand-capabilities': {
       title: 'On-Demand Capabilities',
@@ -63,61 +67,59 @@ export const en: Translations = {
   components: {
     instructions: {
       name: 'Instructions',
-      description: 'Passive memory that automatically applies to every prompt',
+      description: 'Scoped guidance that automatically shapes Copilot responses',
       details:
-        'Instructions are the foundation of Copilot customization. They load FIRST ' +
-        'and are always-on passive memory. Place repo-wide conventions in ' +
-        '`.github/copilot-instructions.md` and path-specific instructions in ' +
-        '`.github/instructions/NAME.instructions.md` (with `applyTo` glob frontmatter). ' +
-        'These are advisory — they guide the model but don\'t enforce behavior ' +
-        'deterministically.',
+        'Use `.github/copilot-instructions.md` for repository-wide guidance and ' +
+        '`.github/instructions/NAME.instructions.md` with `applyTo` globs for matching paths. ' +
+        'Agents can also use the nearest `AGENTS.md`, while root `CLAUDE.md` and `GEMINI.md` ' +
+        'are supported on specific surfaces. Personal and organization instructions provide ' +
+        'broader defaults outside repository files. Support varies by Copilot surface, and ' +
+        'instructions guide behavior rather than enforce it.',
       useCases: ['Coding Standards', 'Framework Rules', 'Repo Conventions'],
-    },
-    'prompt-files': {
-      name: 'Prompt Files',
-      description: 'Manually invoked via slash commands',
-      details:
-        'Prompt files are reusable prompt templates invoked with slash commands ' +
-        '(e.g., `/security-review`, `/release-notes`). They let teams standardize ' +
-        'common prompts so every developer gets consistent, high-quality outputs ' +
-        'for recurring tasks.',
-      useCases: ['API Review', 'Perf Audit', 'Onboarding Guide'],
     },
     'custom-agents': {
       name: 'Custom Agents',
-      description: 'Specialist personas with their own tools and MCP servers',
+      description: 'Specialists with focused instructions, tools, and isolated context',
       details:
-        'Custom agents are specialist personas defined in Markdown with YAML ' +
-        'frontmatter. Each profile specifies a `description`, `tools` list, ' +
-        'optional `mcp-servers`, and a `model` preference. Agents can be chained ' +
-        'via the `handoffs` property — e.g., a planning agent hands off to an ' +
-        'implementation agent, which hands off to a review agent. The LLM reads ' +
-        'agent descriptions to decide which to activate.',
+        'Define repository agents in `.github/agents/AGENT-NAME.md`. Each agent can carry ' +
+        'specialized instructions, tool restrictions, and MCP context. Organization and ' +
+        'enterprise agents can be distributed from `.github` or `.github-private` repositories. ' +
+        'Copilot can also delegate focused work to subagents with isolated context. Fields such ' +
+        'as models and handoffs vary by surface, so check the current feature matrix.',
       useCases: ['Security Auditor', 'Database Specialist', 'API Designer'],
     },
     skills: {
       name: 'Skills',
-      description: 'Self-contained folders of instructions, scripts & resources — automatically loaded by the LLM when relevant',
+      description: 'Reusable instructions, scripts, and resources loaded when relevant',
       details:
-        'Unlike other on-demand features that are invoked by the user, skills are ' +
-        'autonomously selected by the LLM. Each skill is a folder with a `SKILL.md` ' +
-        'file (name + description in YAML frontmatter, instructions in Markdown body) ' +
-        'plus optional scripts and resources. The model reads skill descriptions to ' +
-        'decide which ones to activate — only then is the full `SKILL.md` injected ' +
-        'into context. No user action required. Store project skills in ' +
-        '`.github/skills/<name>/` and personal skills in `~/.copilot/skills/<name>/`.',
+        'Each skill is a folder containing `SKILL.md` plus optional scripts and resources. ' +
+        'Copilot selects skills when their expertise matches the task. Store project skills ' +
+        'under `.github/skills/`, `.agents/skills/`, or `.claude/skills/`; personal skills can ' +
+        'live under `~/.copilot/skills/` or `~/.agents/skills/`. Surface support varies.',
       useCases: ['Terraform Modules', 'K8s Manifests', 'Observability Stack'],
+    },
+    mcp: {
+      name: 'MCP Servers',
+      description: 'External tools and live data connected through Model Context Protocol',
+      details:
+        'Configure repository MCP servers in repository settings on GitHub for Copilot cloud ' +
+        'agent and Copilot code review. IDE clients use their own `mcp.json` configuration, ' +
+        'while CLI and the Copilot app expose client settings. MCP support, policies, and ' +
+        'configuration locations vary by surface, so enable only the servers and toolsets a ' +
+        'workflow needs.',
+      useCases: ['Issue & PR Automation', 'Browser Testing', 'Internal Data'],
+      docLabel: 'Configure repository MCP servers',
+      altDocLabel: 'About MCP',
     },
     hooks: {
       name: 'Hooks',
-      description: 'Deterministic shell commands at 6 lifecycle events',
+      description: 'Commands executed at documented agent lifecycle points',
       details:
-        'Hooks are the ONLY deterministic primitive in the Copilot system. They ' +
-        'fire at six lifecycle points: `sessionStart`, `sessionEnd`, ' +
-        '`userPromptSubmitted`, `preToolUse`, `postToolUse`, and `errorOccurred`. ' +
-        'The `preToolUse` hook can approve or deny tool executions before they ' +
-        'happen. Define hooks in a JSON file in `.github/hooks/` with `version: 1`. ' +
-        'Unlike instructions (which are advisory), hooks are enforcement.',
+        'Define repository hooks in `.github/hooks/NAME.json` with `version: 1`. Events span ' +
+        'sessions, prompts, tools, permissions, compaction, subagents, and agent stops. ' +
+        '`preToolUse` can allow, deny, or modify a tool call. Event support differs between ' +
+        'Copilot CLI and cloud agent. Hook failures generally continue execution; `preToolUse` ' +
+        'errors fail closed, while timeouts remain fail open.',
       useCases: ['Policy Gates', 'File Access Controls', 'Audit Logging'],
     },
     'agentic-workflows': {
@@ -148,55 +150,50 @@ export const en: Translations = {
       useCases: ['Preinstall Dependencies', 'Larger Runners', 'Environment Variables'],
     },
     plugins: {
-      name: 'Agent Plugins 1.0',
-      description: 'One portable package for skills and MCP servers across compatible agent clients',
+      name: 'GitHub Copilot Plugins',
+      description: 'Installable packages for agents, skills, hooks, MCP, and LSP integrations',
       details:
-        'Agent Plugins 1.0 is an open standard for portable agent packages. A root ' +
-        '`plugin.json` declares the 1.0 schema, while portable skills live in `skills/` ' +
-        'and MCP configuration lives in `mcp.json`. Copilot-specific agents, commands, ' +
-        'rules, hooks, and extensions belong under `com.github.copilot/`, which other ' +
-        'clients ignore. The same package works across compatible clients including VS Code, ' +
-        'Copilot CLI, the Copilot SDK, and the Copilot app. Existing Copilot plugins remain ' +
-        'supported without migration.',
-      useCases: ['Cross-Client Portability', 'Reusable Skills + MCP', 'Marketplace Distribution'],
-      docLabel: 'Agent Plugins 1.0 specification',
-      altDocLabel: 'Build an Agent Plugin',
+        'A native Copilot plugin starts with `plugin.json` and can include `agents/`, ' +
+        '`skills/`, `hooks.json`, `.mcp.json`, and `lsp.json`. Plugins bundle capabilities ' +
+        'for installation through Copilot clients and marketplaces. Separately, Agent Plugins ' +
+        '1.0 defines a cross-client open standard for portable packages; it complements, but ' +
+        'does not replace, GitHub\'s native plugin structure.',
+      useCases: ['Reusable Agent Packs', 'Team Standardization', 'Marketplace Distribution'],
+      docLabel: 'About Copilot plugins',
+      altDocLabel: 'Agent Plugins 1.0 standard',
     },
   },
   insights: [
     {
       icon: '🧠',
       content:
-        '<strong>Instructions load FIRST</strong> — they\'re always-on passive memory. ' +
-        'Every prompt sees them before anything else fires.',
+        '<strong>Instructions apply automatically within their scope.</strong> Repository-wide, ' +
+        'path-specific, agent-specific, personal, and organization guidance serve different boundaries.',
     },
     {
       icon: '🧩',
       content:
-        '<strong>Skills are loaded on demand</strong> — Copilot reads only the <code>description</code> in ' +
-        'SKILL.md frontmatter first. The full file is injected into the agent\'s context only when ' +
-        'the model decides the skill is relevant to your prompt.',
+        '<strong>Skills provide on-demand expertise.</strong> Copilot can select a skill when its ' +
+        'instructions and resources match the current task.',
     },
     {
       icon: '🔒',
       content:
-        '<strong>Hooks are the only deterministic primitive.</strong> Instructions are ' +
-        'advisory. Hooks are enforcement — 6 lifecycle events including <code>preToolUse</code> which ' +
-        'can approve or deny tool executions before they happen.',
+        '<strong>Hooks execute commands at lifecycle points.</strong> <code>preToolUse</code> can ' +
+        'allow, deny, or modify a tool call. Supported events and failure behavior vary by surface.',
     },
     {
       icon: '🔀',
       content:
-        '<strong>The LLM is the router.</strong> There\'s no separate orchestrator — the ' +
-        'model reads indexed agent descriptions and skill frontmatter to decide what to ' +
-        'activate. That\'s why writing good descriptions matters.',
+        '<strong>Copilot can select relevant capabilities.</strong> Clear agent, skill, and tool ' +
+        'descriptions help Copilot choose the right expertise for a task.',
     },
   ],
 
   /* ── Tools page ── */
   toolsSeo: {
     title: 'Copilot Panorama — Copilot Everywhere',
-    description: 'Interactive visual guide to GitHub Copilot tools across three layers: IDE (Autocomplete, Chat, Agent Mode, 3rd-Party Agents), Standalone Apps (CLI, Copilot App), and Cloud (Cloud Agent, Review Agent, 3rd-Party Agents).',
+    description: 'Interactive visual guide to GitHub Copilot across IDEs, standalone apps, and GitHub Cloud, including Copilot CLI, cloud agent, code review, third-party agents, Slack, and Teams.',
   },
   toolsUi: {
     heroTitle: 'Copilot Everywhere',
@@ -210,9 +207,9 @@ export const en: Translations = {
     programmatic: 'Programmatic',
     ghostText: 'ghost text',
     tabToAccept: 'Tab to accept',
-    chatParticipants: '@workspace',
-    slashCommands: '/fix',
-    chatVariables: '#file',
+    chatParticipants: 'Relevant files',
+    slashCommands: 'Current selection',
+    chatVariables: 'Supported tools',
     analyze: 'Analyze',
     edit: 'Edit',
     run: 'Run',
@@ -236,6 +233,9 @@ export const en: Translations = {
     inbox: 'Inbox',
     agenticMerge: 'Agentic Merge',
     savedWorkflows: 'Workflows',
+    slack: 'Slack',
+    teams: 'Teams',
+    sharedSession: 'Shared agent session',
   },
   toolsLayers: {
     'standalone-apps': {
@@ -254,155 +254,158 @@ export const en: Translations = {
   toolsComponents: {
     'copilot-cli': {
       name: 'GitHub Copilot CLI',
-      description: 'A full AI agent in your terminal — interactive sessions, file editing, and GitHub integration',
+      path: 'Terminal agent',
+      description: 'An agent in your terminal for code, shell, and GitHub workflows',
       details:
-        'GitHub Copilot CLI lets you use Copilot directly from your terminal. Start an ' +
-        'interactive session with `copilot` or pass a single prompt with `copilot -p "..."`. ' +
-        'It can edit local files, run shell commands, interact with GitHub.com (create PRs, ' +
-        'issues, manage workflows), and work iteratively with you. Supports Plan Mode ' +
-        '(Shift+Tab) for structured implementation, MCP servers, custom agents, skills, ' +
-        'hooks, and automatic context compaction for infinite sessions.',
+        'Start an interactive session with `copilot` or pass one prompt with `copilot -p`. ' +
+        'The CLI can edit files, run approved shell commands, and work with GitHub issues, ' +
+        'pull requests, and Actions. Plan mode scopes work before edits. `/context`, `/compact`, ' +
+        'and automatic compaction manage long sessions. Local and cloud sandboxes are in public ' +
+        'preview. The CLI supports instructions, agents, skills, hooks, MCP, plugins, and ' +
+        'Copilot Memory in public preview.',
       useCases: ['Issue-to-PR Delivery', 'Legacy Code Modernization', 'Parallel Fleet Execution', 'Backlog Triage & Planning', 'Editor-Agnostic Development', 'Automation'],
     },
     'copilot-app': {
       name: 'GitHub Copilot App',
-      description: 'Native desktop app for agentic development — Inbox, Agentic Merge, parallel sessions, and Workflows',
+      path: 'Desktop agent workspace',
+      description: 'Desktop workspace for parallel agent sessions and recurring automations',
       details:
-        'The GitHub Copilot app is a standalone desktop application (macOS, Windows, Linux) that gives ' +
-        'developers and dev-adjacent roles (PMs, designers, QA) a GitHub-first experience to direct, ' +
-        'monitor, review, and ship agent-driven work. The agentic Inbox surfaces issues, PRs, and sessions ' +
-        'across all your repos so you stay on top of what needs attention. Agentic Merge handles the ' +
-        '"last mile" — resolving review comments, fixing failing CI, and handling merge conflicts on your ' +
-        'behalf. Each session runs in an isolated git worktree for true parallel development. Workflows ' +
-        'let you save prompts and run them on demand or on a schedule, turning recurring tasks into ' +
-        'reusable automation patterns. Currently in technical preview.',
+        'Run multiple isolated agent sessions across repositories, manage issues and pull requests, ' +
+        'and save automations that run on demand or on a schedule. Repository sessions use dedicated ' +
+        'worktrees; cloud workspaces are in public preview. The app supports instructions, skills, MCP ' +
+        'servers, custom agents, plugins, and canvas extensions. Enterprise-managed settings can govern ' +
+        'supported actions and integrations.',
       useCases: ['Agentic Inbox & Triage', 'Agentic Merge (Last-Mile)', 'Parallel Multi-Session Work', 'Repeatable Workflows', 'Dev-Adjacent Collaboration', 'Cross-Repo Orchestration'],
     },
     autocomplete: {
-      name: 'Autocomplete',
+      name: 'Inline Suggestions',
+      path: 'IDE inline suggestions',
       description: 'Ghost-text code suggestions that appear inline as you type',
       details:
-        'Copilot offers autocomplete-style suggestions as you type — full function bodies, ' +
-        'loops, conditionals, and more based on your code context. Browse alternatives with ' +
-        'Alt+] / Alt+[, accept word-by-word with Ctrl+→, or accept full suggestions with Tab. ' +
-        'Next Edit Suggestions (NES) predict the location of your next edit and suggest ' +
-        'completions for it. Available in VS Code, Visual Studio, JetBrains IDEs, Azure Data ' +
-        'Studio, Xcode, Vim/Neovim, and Eclipse.',
+        'Copilot proposes code from the current editor context as you type. Suggestions can range ' +
+        'from a line to a complete function. Next Edit Suggestions predict the next edit location ' +
+        'on supported editors. Keyboard shortcuts and feature availability vary by IDE.',
       useCases: ['Code Completion', 'Boilerplate Generation', 'Pattern Completion', 'Comment-to-Code'],
     },
     ask: {
       name: 'Ask (Copilot Chat)',
+      path: 'IDE chat',
       description: 'Conversational AI chat for code questions, explanations, and generation',
       details:
-        'Copilot Chat provides a conversational interface for asking coding questions. Use ' +
-        'chat participants (@workspace, @github, @terminal), slash commands (/fix, /explain, ' +
-        '/tests, /doc), and chat variables (#file, #selection, #web) for precise context. ' +
-        'The @github participant enables web search, issue lookup, and PR analysis. Supports ' +
-        'multiple AI models — switch mid-conversation via the model picker. Available in ' +
-        'VS Code, Visual Studio, JetBrains, Eclipse, Xcode, GitHub.com, and GitHub Mobile.',
+        'Copilot Chat answers questions, explains code, proposes changes, and helps debug. Add ' +
+        'relevant files, selections, repository context, or supported tools to focus a request. ' +
+        'Keywords, commands, models, and MCP support vary by IDE, so use the current feature matrix ' +
+        'for the editor you run.',
       useCases: ['Code Explanation', 'Debugging', 'Test Generation', 'Code Refactoring', 'Learning'],
     },
     'agent-mode': {
       name: 'Agent Mode',
+      path: 'IDE agent mode',
       description: 'Autonomous local coding — Copilot determines files, makes edits, runs commands, and iterates',
       details:
         'Agent Mode lets Copilot autonomously edit your code within the IDE. It determines ' +
-        'which files to change, makes multi-file edits, suggests and runs terminal commands, ' +
-        'and iterates to fix errors until the task is complete. Supports MCP server ' +
-        'integration, subagents for delegated subtasks, and custom agents. Only your prompts ' +
-        'are billed — follow-up tool calls are free. Distinct from Copilot cloud agent ' +
-        '(Cloud layer), which runs on GitHub Actions.',
+        'which files to change, makes multi-file edits, proposes terminal commands for approval, ' +
+        'and iterates against errors. Supported IDEs can add MCP servers, subagents, and custom ' +
+        'agents. Unlike Copilot cloud agent, agent mode works inside your local editor session. ' +
+        'AI-credit consumption depends on the selected model and the work performed.',
       useCases: ['Complex Tasks', 'Multi-Step Implementation', 'Error Resolution', 'Build Automation'],
     },
     'third-party-agents-ide': {
-      name: '3rd-Party Agents',
-      description: 'Claude and Codex agents running in VS Code with their native SDKs',
+      name: 'Third-Party Agent Harnesses',
+      path: 'VS Code agent harnesses',
+      description: 'Claude and Codex harnesses available inside VS Code',
       details:
-        'Third-party agents by Anthropic (Claude) and OpenAI (Codex) run directly in VS Code ' +
-        'using each provider\'s native SDK and agent harness. Choose between local sessions ' +
-        '(running in your workspace) or cloud sessions (remote environment). Claude supports ' +
-        'slash commands (/agents, /hooks, /memory, /review, /security-review), permission ' +
-        'modes (edit automatically, request approval, plan), and persistent context via ' +
-        'CLAUDE.md. All billed through your Copilot subscription — no separate provider setup.',
+        'VS Code can run supported third-party harnesses such as Anthropic Claude and OpenAI ' +
+        'Codex. Each harness keeps its provider-specific workflow and capabilities inside the ' +
+        'editor. Availability, execution location, permissions, and billing can change, so use ' +
+        'the current VS Code agent-harness documentation.',
       useCases: ['Autonomous Coding', 'Security Review', 'Provider-Specific Features', 'Background Tasks'],
     },
     'copilot-chat-cloud': {
       name: 'Copilot Chat',
+      path: 'GitHub.com & Mobile',
       description: 'Conversational AI on GitHub.com — ask about repos, issues, PRs, and the web',
       details:
         'Copilot Chat on GitHub.com lets you ask questions from any page — about a repo, ' +
-        'an issue, a PR, or general software topics. It uses skills to fetch context from ' +
-        'GitHub (code search, commit history, issue details) and optionally Bing web search ' +
-        'for up-to-date information. Supports multi-model selection, subthreads for branching ' +
-        'conversations, file generation with preview, and conversation history (up to 100 ' +
-        'threads, 28-day retention). Also available on GitHub Mobile.',
+        'an issue, a pull request, or general software topics. It can use repository and web ' +
+        'context, selected models, and agent-session information. Chat and Copilot cloud agent ' +
+        'can pass context within the active workflow. GitHub Mobile provides access to supported ' +
+        'Chat and agent-session experiences.',
       useCases: ['Repo Q&A', 'Issue Analysis', 'PR Understanding', 'Web Search', 'Code Generation'],
     },
     'coding-agent': {
-      name: 'Cloud Agent',
-      description: 'Autonomous cloud agent — assign an issue, get a PR with security checks',
+      name: 'Copilot Cloud Agent',
+      path: 'GitHub cloud agent',
+      description: 'Autonomous repository work in a GitHub-hosted environment',
       details:
-        'Copilot cloud agent works independently in a GitHub Actions-powered environment. ' +
-        'Assign an issue to @copilot, mention it on a PR, or ask from Chat — it evaluates ' +
-        'the task, makes changes, runs tests and linters, performs CodeQL security analysis, ' +
-        'checks for secrets, and creates a draft PR for review. Supports custom instructions, ' +
-        'MCP servers, custom agents, hooks, skills, and Copilot Memory. Only pushes to ' +
-        '`copilot/` branches. Available on Pro, Pro+, Business, Enterprise.',
+        'Delegate work from issues, pull requests, Chat, or the Agents view. Copilot researches ' +
+        'the repository, plans, changes code on a branch, validates the result, and opens a pull ' +
+        'request for human review. Instructions, MCP, agents, hooks, skills, and Copilot Memory ' +
+        '(public preview) can customize the session. Code scanning, secret scanning, dependency ' +
+        'checks, and firewall rules are configurable protections, not universal guarantees.',
       useCases: ['Bug Fixes', 'Feature Implementation', 'Test Coverage', 'Technical Debt', 'Security Campaigns'],
     },
     'review-agent': {
-      name: 'Review Agent',
+      name: 'Copilot Code Review',
+      path: 'Pull request review',
       description: 'AI code reviewer with full project context and suggested fixes',
       details:
-        'Copilot code review analyzes pull requests and provides feedback with suggested ' +
-        'changes you can apply with a click. Uses agentic capabilities for full project ' +
-        'context gathering — it analyzes your entire repository to understand code changes. ' +
-        'Can be configured for automatic reviews on all PRs. Supports custom instructions ' +
-        'via .github/copilot-instructions.md and path-specific rules. Available on GitHub.com, ' +
-        'GitHub Mobile, VS Code, Visual Studio, Xcode, and JetBrains.',
+        'Copilot code review analyzes changes, gathers relevant repository context, and provides ' +
+        'comments with suggested fixes. Teams can request reviews manually or configure automatic ' +
+        'reviews. Repository instructions, agent skills, and MCP servers are supported; Copilot ' +
+        'Memory is in public preview. Availability differs across GitHub and supported IDEs.',
       useCases: ['Code Quality', 'Security Review', 'Best Practices', 'PR Workflow', 'Team Governance'],
     },
     'third-party-agents-cloud': {
-      name: '3rd-Party Agents',
-      description: 'Anthropic Claude and OpenAI Codex as cloud coding agents on GitHub',
+      name: 'Third-Party Coding Agents',
+      path: 'GitHub third-party agents',
+      description: 'Partner coding agents that run alongside Copilot on GitHub',
       details:
-        'Third-party coding agents work alongside Copilot cloud agent on the GitHub platform. ' +
-        'Currently supports Anthropic Claude (Claude Agent SDK) and OpenAI Codex (Codex SDK). ' +
-        'Assign issues, kick off tasks from the Agents tab, mention @AGENT_NAME on PRs, or ' +
-        'start sessions from VS Code and GitHub Mobile. Subject to the same security ' +
-        'protections as Copilot cloud agent. Each session consumes one premium request plus ' +
-        'GitHub Actions minutes. Currently in public preview.',
+        'Third-party coding agents such as Anthropic Claude and OpenAI Codex can work on GitHub ' +
+        'alongside Copilot cloud agent. Start supported sessions from GitHub surfaces and review ' +
+        'their changes through pull requests. The feature is in public preview and uses cloud-agent ' +
+        'security boundaries, with capabilities and billing defined by current product documentation.',
       useCases: ['Multi-Agent Workflows', 'Agent Comparison', 'Specialized Tasks', 'Parallel Development'],
+    },
+    'slack-teams': {
+      name: 'Slack & Teams Collaboration',
+      path: 'Slack & Microsoft Teams',
+      description: 'Shared cloud-agent sessions started from team conversations',
+      details:
+        'In public preview, mention `@GitHub` in supported Slack or Microsoft Teams conversations ' +
+        'to start or steer a Copilot cloud-agent session. The integration can use conversation ' +
+        'context and continues asynchronously in a cloud sandbox. Repository permissions govern ' +
+        'who can trigger code changes, and conversation context can be stored with generated ' +
+        'artifacts. Use a direct message when you need narrower context.',
+      useCases: ['Discussion-to-PR', 'Collaborative Planning', 'Issue Creation'],
+      docLabel: 'Slack integration',
+      altDocLabel: 'Teams integration',
     },
   },
   toolsInsights: [
     {
       icon: '🔀',
       content:
-        '<strong>Agent Mode ≠ Cloud Agent.</strong> Agent Mode runs locally in your IDE — ' +
-        'you stay in the loop. Cloud Agent runs on GitHub Actions in the cloud — it works ' +
-        'independently and creates a PR when done.',
+        '<strong>Agent mode is not Copilot cloud agent.</strong> Agent mode works in your local ' +
+        'IDE session; cloud agent works asynchronously in a GitHub-hosted environment and returns a pull request.',
     },
     {
       icon: '🧠',
       content:
-        '<strong>3rd-party agents exist in both IDE and Cloud.</strong> In VS Code, Claude ' +
-        'and Codex use their native SDKs locally. On GitHub, they run as cloud agents ' +
-        'alongside Copilot cloud agent.',
+        '<strong>Third-party agents use different surfaces.</strong> VS Code exposes agent ' +
+        'harnesses, while GitHub hosts third-party coding agents alongside Copilot cloud agent.',
     },
     {
       icon: '💬',
       content:
-        '<strong>Ask mode is the starting point.</strong> Chat participants (@workspace), ' +
-        'slash commands (/fix), and variables (#file) let you precisely scope your questions ' +
-        'before escalating to Agent Mode for autonomous work.',
+        '<strong>Context controls vary by editor.</strong> Attach only relevant files, selections, ' +
+        'repository context, and supported tools before escalating to autonomous work.',
     },
     {
       icon: '🔒',
       content:
-        '<strong>Cloud agents have built-in security.</strong> Cloud agent runs CodeQL, ' +
-        'secret scanning, and dependency checks automatically. It can only push to ' +
-        '<code>copilot/</code> branches and always creates draft PRs.',
+        '<strong>Cloud work needs configured protections and human review.</strong> Use repository ' +
+        'permissions, firewall rules, scanning controls, tests, and pull-request review together.',
     },
   ],
 
@@ -416,7 +419,7 @@ export const en: Translations = {
     insightsTitle: 'The efficiency mindset',
     insightsSubtitle: 'Core principles for getting more value from every token',
     footerBuiltFor: 'Built for GitHub Copilot users',
-    footerDocsLink: 'Full docs on Copilot billing',
+    footerDocsLink: 'Optimize AI usage',
     pageTips: 'Efficiency Tips',
   },
   tipsViz: {
@@ -443,16 +446,15 @@ export const en: Translations = {
     principlesBrief: 'Principles only. Brief.',
     heavy: 'Heavy',
     skills: 'Skills',
-    repetitive: 'Repetitive',
-    promptFiles: 'Prompt Files',
+    customAgents: 'Distinct role + tools → Custom Agents',
     minimalDiff: 'Minimal diff + 3 bullets',
     alwaysOn: 'Always-on',
     costly: 'costly',
     onDemand: 'On-demand',
     efficient: 'efficient',
-    modelReads: 'Model reads',
-    descriptionLabel: 'description',
-    loadsIfRelevant: 'Loads full skill if relevant',
+    enabledTools: 'Required toolsets enabled',
+    disabledTools: 'Every toolset enabled',
+    taskScoped: 'Scoped to this task',
     loadOnce: 'Load schema once',
     reuseInQueries: 'Reference in subsequent queries',
     tokenPrefixMatch: '≥1024 tokens match',
@@ -486,7 +488,7 @@ export const en: Translations = {
     rawFiles: 'Feed raw files to AI',
     scriptOutput: 'Run script, feed output',
     research: '/research',
-    plan: '/plan',
+    plan: 'Plan mode',
     implement: '/fleet',
     withTests: 'With unit tests',
     withoutTests: 'Without unit tests',
@@ -502,8 +504,8 @@ export const en: Translations = {
     batchedCall: '1 batched call',
     cleanLayers: 'Domain → Application → Infra',
     agentMiss: 'Agent miss',
-    chronicle: '/chronicle',
-    updateInstructions: 'Update instructions',
+    rootCause: 'Find root cause',
+    durableFix: 'Encode durable fix',
     enterpriseDefault: 'Enterprise default',
     overridableKeys: 'Overridable keys',
     teamSpecialization: 'Team settings',
@@ -544,31 +546,24 @@ export const en: Translations = {
   },
   tipsComponents: {
     'token-billing': {
-      name: 'Token Cost Drivers',
-      description: 'Input, output, and cached-read tokens are the three billing dimensions',
+      name: 'AI Credit Cost Drivers',
+      description: 'Input, output, and cached tokens contribute differently by model',
       details:
-        'Under token-based billing, every interaction has three cost components: ' +
-        'input/context tokens (what you send), output tokens (what the model generates), ' +
-        'and cached-read tokens (cheaper but still metered). Input tokens include your ' +
-        'prompt, system instructions, file context, and tool outputs. Output tokens are ' +
-        'the model\'s response. Cached-read tokens are the cheapest dimension — typically ' +
-        'billed at ~10% of the normal input price — which is why preserving the cache ' +
-        'across turns matters. Understanding these three dimensions is the foundation of ' +
-        'cost optimization.',
+        'AI-credit usage depends on the selected model and the tokens processed. Input tokens ' +
+        'include prompts, instructions, file context, and tool output; output tokens are what ' +
+        'the model generates; cached reads can cost less when repeated context is reused. Rates ' +
+        'vary by model, so use the live pricing table instead of assuming one fixed ratio.',
       useCases: ['All Interactions', 'Budget Planning', 'Cost Analysis'],
     },
     'agentic-cost': {
       name: 'Agentic Cost Multiplier',
-      description: 'A single agentic request can trigger dozens of model calls',
+      description: 'Agentic work iterates across planning, tools, validation, and correction',
       details:
-        'Agentic experiences (Agent Mode, Cloud Agent, CLI) iterate by design: ' +
-        'plan → edit → run tools/tests → fix → repeat. The same user intent can vary ' +
-        'dramatically in consumption depending on the workflow. A simple "fix this bug" ' +
-        'might take 2 calls or 20+ calls depending on complexity, tool outputs, and ' +
-        'error recovery loops. Worse, errors compound: even at 99% accuracy per step, ' +
-        'a 50-step workflow only lands at ~60%. This is why workflow design matters ' +
-        'more than prompt length.',
-      useCases: ['Agent Mode', 'Cloud Agent', 'CLI Agent'],
+        'Agentic experiences (agent mode, Copilot cloud agent, CLI) iterate by design: ' +
+        'plan → edit → run tools/tests → fix → repeat. Consumption varies with task scope, ' +
+        'model choice, tool output, retries, and stopping conditions. Clear requirements and ' +
+        'deterministic validation reduce unnecessary loops.',
+      useCases: ['Agent Mode', 'Copilot Cloud Agent', 'CLI Agent'],
     },
     'context-discipline': {
       name: 'Context Discipline',
@@ -585,71 +580,60 @@ export const en: Translations = {
       name: 'Quality Over Quantity',
       description: 'Focus on high-quality context, not more instructions',
       details:
-        'More instructions ≠ better output. Scoped, high-quality guidance reduces ' +
-        'verbose, sprawling outputs. Instead of long preambles, give the model exactly ' +
-        'the context it needs: the relevant code, the specific requirement, and clear ' +
-        'constraints. Smaller scoped prompts also reduce runaway agentic sessions ' +
-        'where the agent keeps iterating without converging.',
-      useCases: ['Chat', 'Agent Mode', 'Prompt Files'],
+        'More instructions do not guarantee better output. Define the task and expected outcome, ' +
+        'provide the relevant files, logs, or known constraints, state how the result will be ' +
+        'validated, and give a clear stopping condition. This structure reduces exploration, ' +
+        'scope drift, retries, and unnecessary output.',
+      useCases: ['Chat', 'Agent Mode', 'Copilot CLI'],
     },
     'fresh-threads': {
       name: 'Fresh Threads',
       description: 'Start new conversations once decisions are shipped — avoid context rot',
       details:
         'Avoid long-lived sessions where tool outputs pile up in context. Each ' +
-        'accumulated tool output adds input tokens to every subsequent call, and once ' +
-        'the context window fills past ~50% models bias toward the most recent tokens ' +
-        '(recency bias) and "lose" what was in the middle. Once you\'ve shipped the ' +
+        'accumulated tool output can add input tokens to subsequent calls and dilute relevant ' +
+        'context. Once you\'ve shipped the ' +
         'decision into a durable artifact (issue, PR description, ADR, code commit), ' +
         'start a fresh thread with a clean context window. In Copilot CLI, `/new` (or ' +
         '`/clear`) starts a fresh conversation; in Chat, open a new chat session.',
       useCases: ['Chat', 'Agent Mode', 'CLI Sessions'],
     },
     'concise-instructions': {
-      name: 'Minify Instructions',
-      description: 'Keep .github/copilot-instructions.md short, stable, and principled',
+      name: 'Keep Instructions Focused',
+      description: 'Prioritize stable project guidance over task-specific detail',
       details:
-        'Instructions load into every conversation automatically — they\'re always-on ' +
-        'context. Keep copilot-instructions.md short and stable: principles, conventions, ' +
-        '"don\'t do" rules. Every extra line adds input tokens to every single interaction. ' +
-        'Move detailed guidance (playbooks, examples, domain rules) to Skills or Prompt ' +
-        'Files where they load only when needed.',
+        'Use repository instructions for the project map, validated build/test/lint commands, ' +
+        'stable conventions, and non-negotiable constraints. Remove obsolete or task-specific ' +
+        'detail. Put reusable domain playbooks, examples, scripts, and resources in skills so ' +
+        'Copilot can load them when relevant.',
       useCases: ['Instructions', 'Cost Optimization', 'All Interactions'],
     },
     'structure-for-reuse': {
       name: 'Structure for Reuse',
-      description: 'Use Skills for heavy guidance, Prompt Files for repetitive workflows',
+      description: 'Use skills for reusable expertise and agents for distinct roles',
       details:
-        'Put heavy guidance (playbooks, examples, domain rules, runbooks) into Agent ' +
-        'Skills so it loads only when the user\'s prompt matches. Put repetitive ' +
-        'workflows (e.g., "write unit tests," "create ADR," "generate changelog") into ' +
-        'Prompt Files so users don\'t paste huge instructions every time. This moves ' +
-        'context from always-on (expensive) to on-demand (efficient).',
-      useCases: ['Skills', 'Prompt Files', 'Team Workflows'],
+        'Put playbooks, examples, domain rules, scripts, and runbooks into Agent Skills so ' +
+        'Copilot can select them for relevant tasks. Use custom agents when a workflow needs a ' +
+        'distinct role, tool boundary, or isolated context. Keep broad repository instructions ' +
+        'focused on guidance that applies across tasks.',
+      useCases: ['Skills', 'Custom Agents', 'Team Workflows'],
     },
     'concise-answers': {
       name: 'Ask for Less',
       description: 'Instruct for the smallest useful answer to minimize output tokens',
       details:
-        'Output tokens are the most expensive dimension. Ask for the minimal useful ' +
-        'response: "Give me the minimal diff + 3 bullet justification" instead of ' +
+        'Ask for the minimal useful response: "Give me the minimal diff + 3 bullet justification" instead of ' +
         '"explain everything." "List only breaking changes; omit background" when doing ' +
-        'upgrades/migrations. Smaller outputs also mean faster responses and less noise ' +
-        'to read through.',
+        'upgrades or migrations. Smaller outputs reduce generated tokens and review noise.',
       useCases: ['Chat', 'Code Review', 'Migrations'],
     },
     'scope-context': {
       name: 'Scope Context Intentionally',
-      description: 'Use #file or #selection for narrow questions, #codebase only for cross-cutting changes',
+      description: 'Attach only the files, selections, and logs the task needs',
       details:
-        'Chat references (#file, #selection, #codebase) control exactly what context the ' +
-        'model sees — and what you pay for. Use #file for focused questions about a ' +
-        'specific file, #selection for even narrower scope (the highlighted lines only). ' +
-        'Reserve #codebase for cross-cutting changes where the model genuinely needs to ' +
-        'reason about the whole project. Same idea applies to tool output: attach only ' +
-        'the failing test output, not the full test suite logs. Targeted context is ' +
-        'cheaper, faster, and usually produces better answers because the model isn\'t ' +
-        'distracted by irrelevant code.',
+        'Open or attach relevant files and close irrelevant tabs. Include the selected code, ' +
+        'error, or failing test output instead of full logs. Context controls and keywords vary ' +
+        'by IDE, but the principle is stable: targeted context reduces distraction and AI-credit use.',
       useCases: ['Chat', 'Agent Mode', 'CLI'],
     },
     'conditional-context': {
@@ -674,16 +658,13 @@ export const en: Translations = {
       useCases: ['Instructions', 'Testing Rules', 'Framework-Specific'],
     },
     'skills-mcp': {
-      name: 'Leverage Skills & MCP',
-      description: 'Skills load on demand — but MCP tool schemas hit every loop',
+      name: 'Enable Only Needed Toolsets',
+      description: 'Limit MCP tools to the capabilities required for the task',
       details:
-        'Skills are discovered by the model from their descriptions and load full ' +
-        'guidance into context only when relevant. MCP server tool schemas, by contrast, ' +
-        'are loaded as static tokens on every loop — useful, but they add up. For some ' +
-        'workflows a plain CLI command can be cheaper than the equivalent MCP tool. ' +
-        'Write clear, concise skill descriptions and prefer skills/CLIs over heavyweight ' +
-        'MCPs when the trade-off makes sense.',
-      useCases: ['Skills', 'MCP Servers', 'Custom Agents'],
+        'Large MCP tool collections add context and make tool selection harder. Configure only ' +
+        'the GitHub MCP toolsets and external servers needed for the current workflow. Keep a ' +
+        'broader catalog available for discovery, but scope enabled tools before starting a task.',
+      useCases: ['MCP Servers', 'GitHub MCP Server', 'Context Management'],
     },
     'context-command': {
       name: '/context in CLI',
@@ -712,45 +693,24 @@ export const en: Translations = {
       name: 'Prompt Prefix Caching',
       description: 'LLM caching depends on exact prefix matches — structure prompts accordingly',
       details:
-        'LLM prompt caching (across providers) generally depends on exact prefix matches. ' +
-        'For example, Azure OpenAI prompt caching requires prompts ≥ 1,024 tokens and the ' +
-        'first 1,024 tokens identical to get cache reuse. This means stable system prompts ' +
-        'and instructions at the start of your prompt are more likely to hit the cache. ' +
-        'Varying preambles defeat caching.',
+        'Prompt caching generally depends on repeated prefixes. Stable instructions, tool ' +
+        'definitions, and relevant conversation context are more likely to be reused than ' +
+        'constantly changing preambles. Treat this as implementation background, not a fixed ' +
+        'Copilot token threshold.',
       useCases: ['All Interactions', 'Cost Optimization', 'Performance'],
     },
     'choose-right-model': {
-      name: 'Choose the Right Model',
-      description: 'Match capability to task: reasoning, mid-tier, or lighter models',
+      name: 'Choose Model & Reasoning Level',
+      description: 'Match model capability and reasoning effort to task complexity',
       details:
         'Model choice is one of the fastest ways to control cost — use as much capability as ' +
         'the task requires, and as little as necessary. Think in three tiers: reasoning models ' +
         'for architecture decisions, complex debugging, and system design; mid-tier models ' +
         'when the plan is clear and the agent just needs to execute; lighter models for ' +
-        'refactoring, formatting, docs, and other routine, well-scoped changes. Defaulting to ' +
-        'the most capable model for everything raises token usage without improving outcomes — ' +
-        'and overusing reasoning models can even reduce quality by overthinking the task.',
+        'refactoring, formatting, docs, and other routine, well-scoped changes. For models that ' +
+        'support configurable reasoning, use regular effort by default and raise it only for ' +
+        'harder work because higher effort consumes more AI credits.',
       useCases: ['All Interactions', 'Budget Planning', 'Task Routing'],
-    },
-    'high-effort-tasks': {
-      name: 'Premium for Complex Work',
-      description: 'Use higher-effort models for deep architecture, tricky debugging, agentic work',
-      details:
-        'Reserve premium/high-effort models (Claude Opus, GPT-4.1, o3) for tasks that ' +
-        'genuinely need deep reasoning: complex architecture decisions, tricky multi-file ' +
-        'debugging, large agentic workflows, and security-sensitive code review. These ' +
-        'models are more expensive per token but save time by getting it right the first time.',
-      useCases: ['Architecture', 'Debugging', 'Security Review', 'Agent Mode'],
-    },
-    'low-effort-tasks': {
-      name: 'Mini for Simple Tasks',
-      description: 'Default to efficient models for summarization, quick Q&A, small refactors',
-      details:
-        'Use mini/efficient models (GPT-4.1 mini, Claude Haiku, Gemini Flash) as your ' +
-        'default for summarization, quick Q&A, small refactors, and boilerplate generation. ' +
-        'These models are significantly cheaper per token and fast enough for simple tasks. ' +
-        'The cost savings compound quickly when most of your interactions are simple.',
-      useCases: ['Summarization', 'Q&A', 'Refactoring', 'Boilerplate'],
     },
     'auto-mode': {
       name: 'Use Auto Mode',
@@ -761,18 +721,17 @@ export const en: Translations = {
         'reasoning models for genuinely complex problems. Auto also protects your cache: it ' +
         'only changes models at natural boundaries (a new session or after `/compact`), never ' +
         'mid-task. On paid Copilot plans, using auto model selection earns a 10% discount on ' +
-        'model costs in Chat, CLI, and the cloud agent. A good default for most workflows.',
+        'model costs in Chat, CLI, the Copilot app, and cloud agent. A good default for most workflows.',
       useCases: ['Default Workflow', 'Mixed Tasks', 'New Users'],
     },
     'monitor-usage': {
-      name: 'Set User Budgets',
-      description: 'Set user-level budgets with sensible defaults by persona',
+      name: 'Baseline Usage, Then Set Budgets',
+      description: 'Use reports, alerts, cost centers, and user limits from observed usage',
       details:
-        'Set user-level budgets with sensible defaults by persona: IC engineer vs power ' +
-        'user vs CI agent. Start with conservative limits and tune based on observed ' +
-        'consumption. Monitor heavy usage patterns — a single agentic session can consume ' +
-        'more tokens than a week of chat interactions. Use the admin dashboard to identify ' +
-        'outliers and adjust.',
+        'Use AI usage reports, including per-model input, output, cache-read, and cache-write ' +
+        'breakdowns, to establish a baseline. When history is limited, begin with alert-only ' +
+        'budgets and a permissive universal user limit. Add cost-center budgets where ownership ' +
+        'is delegated, monitor threshold alerts, and right-size limits from observed patterns.',
       useCases: ['Admin', 'Budget Control', 'Team Governance'],
     },
     'managed-settings-tip': {
@@ -784,47 +743,29 @@ export const en: Translations = {
         'slugs in `copilot/team-mappings.json`, then place approved values under ' +
         '`copilot/teams/`. Unset values fall back to the enterprise default. Non-overridable ' +
         'keys remain locked, while `enabledPlugins` and `extraKnownMarketplaces` combine ' +
-        'additively. If a user belongs to multiple mapped teams, team values combine using ' +
-        'the least restrictive value beneath the enterprise policy.',
+        'additively. MCP allow and deny settings can centrally govern servers on supported ' +
+        'clients. If a user belongs to multiple mapped teams, team values combine using the ' +
+        'least restrictive value beneath the enterprise policy.',
       useCases: ['Platform Teams', 'AI Pioneers', 'Role-Based Tooling'],
       docLabel: 'Configure team-specific settings',
       altDocLabel: 'Managed settings reference',
     },
     'compound-errors': {
       name: 'Compound Error Problem',
-      description: 'Even at 99% per step, a 50-step workflow lands at only ~60%',
+      description: 'Hypothetical per-step error rates compound across long workflows',
       details:
-        'Per-step accuracy compounds multiplicatively across an agentic loop. At 99% ' +
-        'reliability per step, a 50-step workflow finishes at 0.99⁵⁰ ≈ 60%. Drop to ' +
-        '95% per step and a 50-step run is only ~8% likely to succeed end-to-end. This ' +
-        'is why "agent gambling" — hoping low-quality output works out — stops scaling. ' +
-        'Every improvement to per-step quality (better prompts, smaller scope, deterministic ' +
-        'checks) multiplies across the entire workflow.',
-      useCases: ['Agent Mode', 'Cloud Agent', 'Orchestrated Workflows'],
-    },
-    'prompt-anatomy': {
-      name: 'Prompt Anatomy',
-      description: 'Be precise · add stop signals · add known context beforehand',
-      details:
-        'Agents iterate by design: plan → edit → run tools → fix → repeat. Without ' +
-        'bounds, they keep going until they succeed (or exhaust context). Three reliable ' +
-        'ingredients of an effective prompt keep them on the road: (1) Be precise — ' +
-        'describe the change in plain, unambiguous terms, including the desired outcome. ' +
-        '(2) Add stop signals — "stop after first passing test", "make at most 2 alternative ' +
-        'solutions", "do not refactor unrelated code". (3) Add known context beforehand — ' +
-        'name the relevant files, folders, or docs so the agent doesn\'t waste tokens ' +
-        'searching. Combined with deterministic guardrails (tests, linters), this prevents ' +
-        'runaway sessions that burn through tokens.',
-      useCases: ['Chat', 'Agent Mode', 'CLI'],
+        'As an illustration, if each of 50 independent steps were 99% reliable, the hypothetical ' +
+        'end-to-end rate would be about 60%; at 95% it would be about 8%. These are mathematical ' +
+        'examples, not measured Copilot reliability rates. Smaller scopes and deterministic checks ' +
+        'reduce the number of unverified steps.',
+      useCases: ['Agent Mode', 'Copilot Cloud Agent', 'Orchestrated Workflows'],
     },
     'context-rot': {
       name: 'Context Rot',
-      description: 'Long sessions degrade — accumulated tool outputs poison every subsequent call',
+      description: 'Long histories increase cost and can dilute relevant decisions',
       details:
         'Each tool output, file attachment, and conversation turn pile up in the context. ' +
-        'Once the window crosses ~50% full, two things happen: input costs explode (every ' +
-        'subsequent call re-sends the entire history) and the model leans heavily on the most ' +
-        'recent tokens (recency bias), losing track of decisions made earlier in the session. ' +
+        'Long histories increase input processing and can make older decisions harder to recover. ' +
         'Mitigations: trim verbose tool outputs, ship intermediate decisions into durable ' +
         'artifacts (issues, PRs, ADRs), and start fresh threads before decay sets in.',
       useCases: ['Long Sessions', 'Agent Mode', 'CLI Sessions'],
@@ -833,12 +774,9 @@ export const en: Translations = {
       name: 'Lost in the Middle',
       description: 'Tokens placed in the middle of a long context are recalled less reliably',
       details:
-        'A documented failure mode: when context is long, models recall tokens at the start ' +
-        'and end of the window with high fidelity but degrade on tokens in the middle. ' +
-        'Even with a 200k window, burying a critical instruction in line 4,000 of 8,000 ' +
-        'means it may be effectively invisible. Mitigations: keep prompts short, put the ' +
-        'most important instructions at the very start or very end of the prompt, and split ' +
-        'long inputs into focused chunks rather than one mega-document.',
+        'External LLM research found weaker retrieval for information placed in the middle of ' +
+        'long contexts. Results vary by model and are not a Copilot reliability guarantee. Keep ' +
+        'critical instructions prominent and split unrelated material into focused inputs.',
       useCases: ['Large Prompts', 'Long Documents', 'Multi-File Reviews'],
     },
     'think-in-code': {
@@ -848,36 +786,29 @@ export const en: Translations = {
         'When you need to understand 10,000 lines of logs or a large JSON dump, don\'t ' +
         'paste it all in. Write (or have the agent write) a small script that extracts ' +
         'just what matters — counts, errors, the relevant slice — and feed the agent ' +
-        'the script\'s output instead. This collapses thousands of input tokens into ' +
-        'dozens and keeps the model focused on the actual question. Works equally well ' +
-        'for grep, jq, awk, or a 20-line Python script.',
+        'the script\'s output instead. This keeps the model focused on the actual question. ' +
+        'Use grep, jq, awk, or a small script, and batch independent deterministic operations ' +
+        'when they can safely run together.',
       useCases: ['Log Analysis', 'Data Exploration', 'Large Files'],
     },
     'research-plan-implement': {
       name: 'Research → Plan → Implement',
-      description: 'Chain three focused stages with the right model for each',
+      description: 'Separate discovery, agreement, and execution; parallelize independent work',
       details:
-        'Divide a non-trivial change into three handoffs instead of one mega-prompt. ' +
-        '(1) Research: a fast, broad model (e.g. Gemini 2.5 Pro) explores the codebase ' +
-        'and identifies the relevant files. (2) Plan: a deep-reasoning model (e.g. Opus) ' +
-        'turns that research into a precise spec. (3) Implement: an efficient model ' +
-        '(e.g. GPT-5.4 / Sonnet) applies the spec to code. Each stage gets only the ' +
-        'context it needs, and per-stage errors don\'t compound into one runaway loop. ' +
-        'In Copilot CLI this maps to `/research` → `/plan` → implement; always plan with a ' +
-        'strong reasoning model, then implement with a cheaper one, starting a new session ' +
-        'between phases so unnecessary context isn\'t carried forward.',
+        'Use `/research` for documented deep research, plan mode to agree scope and sequence ' +
+        'before edits, and implementation only after the plan is clear. Use `/fleet` when a ' +
+        'request can be decomposed into independent tasks that run in parallel. Keep each stage ' +
+        'focused and pass forward durable findings instead of an entire exploratory history.',
       useCases: ['Complex Refactors', 'Cross-Cutting Changes', 'Multi-File Edits'],
     },
     'deterministic-guardrails': {
-      name: 'Deterministic Guardrails',
-      description: 'Unit tests, linters, and security scans stop bad changes from compounding',
+      name: 'Validate Copilot Output',
+      description: 'Human review and deterministic checks remain required',
       details:
-        'LLMs are probabilistic — but tests, linters, and type-checkers are not. With ' +
-        'unit tests in place, a buggy change produces failing tests, which the agent sees ' +
-        'and corrects in the next loop. Without tests, the agent compounds bugs across ' +
-        'multiple changes before anyone notices — wasted CI/CD minutes, wasted review ' +
-        'cycles, wasted human time debugging. Tests + linters + secret scans are the ' +
-        'cheapest way to give an agent a reliable feedback signal.',
+        'Review generated code before production use. Run targeted tests, linters, type checking, ' +
+        'code scanning, secret scanning, and IP scanning where applicable. These checks provide ' +
+        'deterministic feedback inside an agent loop, while human review verifies intent, design, ' +
+        'security, readability, and maintainability.',
       useCases: ['Agent Mode', 'TDD', 'CI Pipelines'],
     },
     'trim-shell-outputs': {
@@ -887,55 +818,33 @@ export const en: Translations = {
         'CLI tools love verbosity. A single `npm install` or `terraform plan` can dump ' +
         'thousands of lines into the agent\'s context — most of it noise. Wrapping a noisy ' +
         'command so the agent sees only the relevant tail (errors, warnings, the final ' +
-        'summary) can help. Two community Agent Skills do this: **Snip** ' +
+        'summary) can help. Two community projects illustrate different forms of compression: **Snip** ' +
         '(github.com/edouard-claude/snip) prefixes shell commands — `snip -- npm install` — ' +
         'to filter verbose output while preserving errors. **Caveman** ' +
         '(github.com/juliusbrussee/caveman) instructs the model to respond in a compressed, ' +
-        'telegraphic style. ⚠️ But treat aggressive compression with skepticism: practitioner ' +
-        'evals (including Copilot-internal tests of RTK / "Headroom"-style context ' +
-        'compression) came back neutral at best and frequently increased total token use. ' +
-        'Compression strips information the agent later needs, which triggers a re-read — ' +
-        'ultimately costing more tokens and latency, not less. Prefer narrow, deterministic ' +
+        'telegraphic style. Treat aggressive compression with skepticism because lost information ' +
+        'can trigger re-reading and correction. Prefer narrow, deterministic ' +
         'trimming (drop only known-noise lines, always keep errors and the summary) over ' +
-        'blanket "shrink everything" approaches, and measure real token usage before adopting ' +
-        'a tool — if it sounds too good to be true, it usually is.',
+        'blanket "shrink everything" approaches, and measure real token usage before adopting a tool.',
       useCases: ['CLI Agent', 'Build Output', 'Test Runs'],
-    },
-    'collapse-tool-calls': {
-      name: 'Collapse Tool Calls',
-      description: 'Batch multiple tool invocations into one — fewer round-trips, fewer tokens',
-      details:
-        'Each tool call adds a full round-trip: input tokens for the request, output ' +
-        'tokens for the result, plus the system prompt replayed each time. Plugins like ' +
-        'jsturtevant/copilot-codeact-plugin let the agent express several tool ' +
-        'invocations as one code-act block, executed together. Five small calls become ' +
-        'one batched call — same outcome, far fewer tokens and faster wall-clock.',
-      useCases: ['Agent Mode', 'CLI', 'Multi-Step Tasks'],
     },
     'apply-architecture': {
       name: 'Apply Good Architecture',
-      description: 'DDD, hexagonal, CQRS — clean boundaries help the agent find its way',
+      description: 'Clear boundaries and names reduce unnecessary exploration',
       details:
-        'A messy codebase forces the agent to load far more context to make a change ' +
-        'safely. Clean architecture patterns (Domain-Driven Design, hexagonal/ports-and-' +
-        'adapters, CQRS, event-driven) give the agent strong guardrails: it can find the ' +
-        'right module by name, change it in isolation, and avoid touching unrelated code. ' +
-        'The result is shorter sessions, smaller diffs, and fewer compounding errors — ' +
-        'the same things that help humans.',
+        'Clear module boundaries, descriptive names, local conventions, and focused tests help ' +
+        'people and agents find the right code and validate isolated changes. Choose architecture ' +
+        'for the product and team, not for an AI tool; agent efficiency is a useful side effect.',
       useCases: ['New Projects', 'Refactoring', 'Team Codebases'],
     },
     'iterate-configs': {
       name: 'Treat Agent Misses as Incidents',
       description: 'When the agent gets it wrong, fix the config — not just the output',
       details:
-        'A misbehaving agent is a signal, not just a one-off. Treat each significant ' +
-        'miss like a small incident: what was missing — an instruction, a skill, the ' +
-        'right model? Update copilot-instructions.md, the relevant skill, or your ' +
-        'prompt template so the same miss doesn\'t happen twice. The Copilot CLI ships ' +
-        'two commands for this: `/chronicle improve` analyzes your current session and ' +
-        'suggests workflow fixes; `/chronicle tips` surfaces patterns from your usage ' +
-        'history. Run them regularly — over time the agent gets noticeably more ' +
-        'reliable without you doing more work per task.',
+        'Treat a significant miss as a small incident. Identify the root cause: missing project ' +
+        'guidance, the wrong skill or tool, weak validation, or an environment problem. Encode a ' +
+        'durable fix in instructions, skills, tests, or setup so the same failure is less likely ' +
+        'to repeat. Chronicle commands are covered separately in the governance layer.',
       useCases: ['Team Workflows', 'CLI Power Users', 'Long-Lived Repos'],
     },
     'project-map': {
@@ -977,53 +886,66 @@ export const en: Translations = {
     },
     'chronicle-insights': {
       name: 'Mine Sessions with /chronicle',
-      description: 'Use /chronicle tips and /chronicle cost-tips to turn session history into savings',
+      description: 'Turn Copilot CLI session history into summaries and workflow insights',
       details:
-        'Your session history is a free source of efficiency insights. In Copilot CLI, ' +
-        '`/chronicle tips` analyzes recent sessions and surfaces ways to use Copilot more ' +
-        'efficiently, while `/chronicle cost-tips` digs into your token-usage patterns and ' +
-        'where the credits go. When it flags a recurring pattern — a tool that\'s over-used, ' +
-        'a prompt that keeps being misread — encode that observation directly in your ' +
-        '`copilot-instructions.md` so a one-time insight becomes standing guidance for every ' +
-        'future session.',
+        'Use `/chronicle standup` for work summaries, `/chronicle tips` for personalized usage ' +
+        'guidance, `/chronicle cost tips` for token-spend feedback, `/chronicle search` for ' +
+        'session lookup, and `/chronicle improve` for repository-scoped instruction suggestions. ' +
+        'Insights are grounded in Copilot CLI session data. Review the storage, sync, and deletion ' +
+        'controls before using session history.',
       useCases: ['CLI', 'Team Governance', 'Continuous Improvement'],
+    },
+    'session-limits': {
+      name: 'Set AI Credit Session Limits',
+      description: 'Cap autonomous CLI and SDK work before a session starts',
+      details:
+        'Use `--max-ai-credits` to set a hard limit for Copilot CLI or SDK sessions. Session ' +
+        'limits bound unattended or long-running work and complement budgets, alerts, and human ' +
+        'approval. Choose a limit that matches the task and stop condition.',
+      useCases: ['Copilot CLI', 'Copilot SDK', 'Autonomous Work'],
+    },
+    'mcp-governance': {
+      name: 'Govern MCP Access',
+      description: 'Curate servers and protect configuration across supported surfaces',
+      details:
+        'Use approved MCP registries and enterprise allow or deny settings where supported. ' +
+        'Protect repository MCP configuration with review controls and document server owners, ' +
+        'scopes, and data access. Enforcement differs across IDEs, CLI, the Copilot app, and ' +
+        'cloud agent, so treat registries as governance and discovery rather than a universal ' +
+        'security boundary.',
+      useCases: ['Enterprise Governance', 'Approved Tooling', 'Data Access'],
     },
   },
   tipsInsights: [
     {
       icon: '📉',
       content:
-        '<strong>Quality compounds.</strong> Even at 99% per step, a 50-step agentic ' +
-        'workflow only lands at ~60%. At 95% per step it\'s 8%. Per-step improvements ' +
-        'multiply — make every token count.',
+        '<strong>Quality compounds.</strong> Hypothetical per-step reliability drops across a ' +
+        'long chain, so use smaller scopes and deterministic checks. The percentages shown are illustrations, not Copilot measurements.',
     },
     {
       icon: '💰',
       content:
-        '<strong>Context &gt; prompts for cost.</strong> Managing what context flows into each ' +
-        'model call has a much larger cost impact than optimizing prompt wording. Trim files, ' +
-        'start fresh threads, and use conditional context.',
+        '<strong>Keep context lean and relevant.</strong> Trim files and tool output, start fresh ' +
+        'threads for unrelated work, and use scoped context to reduce AI-credit use.',
     },
     {
       icon: '🎯',
       content:
-        '<strong>Match model to task.</strong> Don\'t use a premium model for simple Q&A, and ' +
-        'don\'t use a mini model for complex architecture. Use Auto mode when unsure — it routes ' +
-        'automatically.',
+        '<strong>Match model and reasoning effort to the task.</strong> Use regular effort by ' +
+        'default, raise it for hard problems, and use Auto when you want intent-based routing.',
     },
     {
       icon: '🔄',
       content:
-        '<strong>Agentic loops multiply cost.</strong> A single agentic request can trigger ' +
-        'dozens of model calls. Set explicit stop signals ("stop after first passing test") to ' +
-        'prevent runaway token consumption.',
+        '<strong>Agentic loops multiply work.</strong> Define a clear stopping condition and use ' +
+        'session limits for unattended or extended tasks.',
     },
     {
       icon: '📦',
       content:
-        '<strong>Move from always-on to on-demand.</strong> Keep instructions minimal. Heavy ' +
-        'guidance belongs in Skills (loaded by the model when relevant) and Prompt Files ' +
-        '(invoked explicitly), not in copilot-instructions.md.',
+        '<strong>Move specialized guidance out of broad instructions.</strong> Use Skills for ' +
+        'reusable expertise and custom agents for distinct roles, tools, or isolated context.',
     },
   ],
 };

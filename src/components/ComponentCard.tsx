@@ -34,11 +34,10 @@ const InstructionsViz: React.FC<{ v: Translations['viz'] }> = ({ v }) => (
   </div>
 );
 
-const PromptFilesViz: React.FC = () => (
-  <div className="viz viz-slash-commands">
-    <span className="slash-cmd">/security-review</span>
-    <span className="slash-cmd">/release-notes</span>
-    <span className="slash-cmd">/changelog</span>
+const McpViz: React.FC<{ v: Translations['viz'] }> = ({ v }) => (
+  <div className="viz viz-reuse-flow" aria-hidden="true">
+    <div className="reuse-item">☁️ {v.repositorySettings}</div>
+    <div className="reuse-item">💻 {v.ideConfig}</div>
   </div>
 );
 
@@ -79,9 +78,9 @@ const HooksViz: React.FC<{ v: Translations['viz'] }> = ({ v }) => (
       preToolUse
       <span className="lifecycle-badge">{v.approveDeny}</span>
     </div>
-    <div className="lifecycle-item">postToolUse</div>
-    <div className="lifecycle-item">errorOccurred</div>
-    <div className="lifecycle-item">sessionEnd</div>
+    <div className="lifecycle-item">permissionRequest</div>
+    <div className="lifecycle-item">subagentStart</div>
+    <div className="lifecycle-item">agentStop</div>
   </div>
 );
 
@@ -144,9 +143,11 @@ const PluginsViz: React.FC<{ v: Translations['viz'] }> = ({ v }) => (
   <div className="viz viz-agent-plugins" aria-hidden="true">
     <div className="plugin-package">
       <span className="plugin-file plugin-file--manifest">📦 {v.pluginJson}</span>
+      <span className="plugin-file">{v.agentsDir}</span>
       <span className="plugin-file">{v.skillsDir}</span>
+      <span className="plugin-file">{v.hooksJson}</span>
       <span className="plugin-file">{v.mcpJson}</span>
-      <span className="plugin-file">{v.copilotNamespace}</span>
+      <span className="plugin-file">{v.lspJson}</span>
     </div>
     <span className="plugin-portable-arrow">→</span>
     <div className="plugin-clients">
@@ -273,6 +274,14 @@ const CopilotChatCloudViz: React.FC<{ v: Translations['toolsViz'] }> = ({ v }) =
   </div>
 );
 
+const SlackTeamsViz: React.FC<{ v: Translations['toolsViz'] }> = ({ v }) => (
+  <div className="viz viz-agent-flow" aria-hidden="true">
+    <span className="agent-step">💬 {v.slack}</span>
+    <span className="agent-step">💬 {v.teams}</span>
+    <span className="agent-step">🤝 {v.sharedSession}</span>
+  </div>
+);
+
 /* ── Tips page visualizations ── */
 
 const TokenBillingViz: React.FC<{ v: Translations['tipsViz'] }> = ({ v }) => (
@@ -339,7 +348,7 @@ const ConciseInstructionsViz: React.FC<{ v: Translations['tipsViz'] }> = ({ v })
 const StructureForReuseViz: React.FC<{ v: Translations['tipsViz'] }> = ({ v }) => (
   <div className="viz viz-reuse-flow" aria-hidden="true">
     <div className="reuse-item">📦 {v.heavy} → <strong>{v.skills}</strong></div>
-    <div className="reuse-item">🔁 {v.repetitive} → <strong>{v.promptFiles}</strong></div>
+    <div className="reuse-item">🎭 {v.customAgents}</div>
   </div>
 );
 
@@ -358,9 +367,8 @@ const ConciseAnswersViz: React.FC<{ v: Translations['tipsViz'] }> = ({ v }) => (
 
 const ScopeContextViz: React.FC<{ v: Translations['tipsViz'] }> = ({ v }) => (
   <div className="viz viz-scope-compare" aria-hidden="true">
-    <span className="scope-option scope-option--narrow">🔬 #file <span className="scope-badge">{v.narrow}</span></span>
-    <span className="scope-option scope-option--narrow">🎯 #selection <span className="scope-badge">{v.narrow}</span></span>
-    <span className="scope-option scope-option--broad">🌐 #codebase <span className="scope-badge">{v.broad}</span></span>
+    <span className="scope-option scope-option--narrow">🎯 {v.scopedContext} <span className="scope-badge">{v.narrow}</span></span>
+    <span className="scope-option scope-option--broad">📚 {v.rawFiles} <span className="scope-badge">{v.broad}</span></span>
   </div>
 );
 
@@ -385,15 +393,14 @@ const ApplyToPathsViz: React.FC = () => (
   </div>
 );
 
-const SkillsMcpViz: React.FC<{ v: Translations['tipsViz'] }> = ({ v }) => (
-  <div className="viz viz-progressive" aria-hidden="true">
-    <div className="progressive-step">
-      <span className="progressive-num">1</span>
-      <span className="progressive-text">{v.modelReads} <em>{v.descriptionLabel}</em></span>
+const ToolsetScopingViz: React.FC<{ v: Translations['tipsViz'] }> = ({ v }) => (
+  <div className="viz viz-before-after" aria-hidden="true">
+    <div className="ba-item ba-item--before">
+      <span className="ba-label">✗ {v.disabledTools}</span>
     </div>
-    <div className="progressive-step">
-      <span className="progressive-num">2</span>
-      <span className="progressive-text">{v.loadsIfRelevant}</span>
+    <div className="ba-item ba-item--after">
+      <span className="ba-label">✓ {v.enabledTools}</span>
+      <span className="ba-text">{v.taskScoped}</span>
     </div>
   </div>
 );
@@ -437,22 +444,6 @@ const ModelPickerViz: React.FC<{ v: Translations['tipsViz'] }> = ({ v }) => (
   </div>
 );
 
-const HighEffortViz: React.FC<{ v: Translations['tipsViz'] }> = ({ v }) => (
-  <div className="viz viz-chat-keywords" aria-hidden="true">
-    <span className="chat-keyword chat-keyword--participant">{v.architecture}</span>
-    <span className="chat-keyword chat-keyword--command">{v.debugging}</span>
-    <span className="chat-keyword chat-keyword--variable">{v.agentic}</span>
-  </div>
-);
-
-const LowEffortViz: React.FC<{ v: Translations['tipsViz'] }> = ({ v }) => (
-  <div className="viz viz-chat-keywords" aria-hidden="true">
-    <span className="chat-keyword chat-keyword--variable">{v.summarize}</span>
-    <span className="chat-keyword chat-keyword--variable">{v.qa}</span>
-    <span className="chat-keyword chat-keyword--variable">{v.refactorLabel}</span>
-  </div>
-);
-
 const AutoModeViz: React.FC<{ v: Translations['tipsViz'] }> = ({ v }) => (
   <div className="viz viz-auto-route" aria-hidden="true">
     <span className="auto-badge">{v.auto}</span>
@@ -481,20 +472,6 @@ const CompoundErrorsViz: React.FC<{ v: Translations['tipsViz'] }> = ({ v }) => (
       <span className="cost-label">{v.accuracy95} · 50 {v.steps}</span>
       <span className="cost-bar" style={{ width: '8%' }} />
       <span className="cost-meta">→ 8%</span>
-    </div>
-  </div>
-);
-
-const PromptAnatomyViz: React.FC<{ v: Translations['tipsViz'] }> = ({ v }) => (
-  <div className="viz viz-prompt-anatomy" aria-hidden="true">
-    <div className="viz-checklist">
-      <div className="checklist-row"><span className="checklist-mark">✓</span><span>{v.bePrecise}</span></div>
-      <div className="checklist-row"><span className="checklist-mark">✓</span><span>{v.stopSignals}</span></div>
-      <div className="checklist-row"><span className="checklist-mark">✓</span><span>{v.knownContext}</span></div>
-    </div>
-    <div className="prompt-anatomy-terminal">
-      <span className="terminal-comment"># {v.stopAfterTest}</span>
-      <span className="terminal-keyword">max_attempts: <span className="terminal-cmd">2</span></span>
     </div>
   </div>
 );
@@ -560,19 +537,6 @@ const TrimShellOutputsViz: React.FC<{ v: Translations['tipsViz'] }> = ({ v }) =>
   </div>
 );
 
-const CollapseToolCallsViz: React.FC<{ v: Translations['tipsViz'] }> = ({ v }) => (
-  <div className="viz viz-agent-chain" aria-hidden="true">
-    <span className="agent-chain-call">1</span>
-    <span className="agent-chain-arrow">→</span>
-    <span className="agent-chain-call">2</span>
-    <span className="agent-chain-arrow">→</span>
-    <span className="agent-chain-call">3</span>
-    <span className="agent-chain-arrow">⇒</span>
-    <span className="agent-chain-call agent-chain-call--many">1</span>
-    <span className="agent-chain-label">{v.multipleCalls} → {v.batchedCall}</span>
-  </div>
-);
-
 const ApplyArchitectureViz: React.FC<{ v: Translations['tipsViz'] }> = ({ v }) => (
   <div className="viz viz-arch-stack" aria-hidden="true">
     <div className="arch-layer arch-layer--top">Domain</div>
@@ -586,9 +550,9 @@ const IterateConfigsViz: React.FC<{ v: Translations['tipsViz'] }> = ({ v }) => (
   <div className="viz viz-thread-lifecycle" aria-hidden="true">
     <span className="thread-step">⚠️ {v.agentMiss}</span>
     <span className="thread-arrow">→</span>
-    <span className="thread-step">📓 {v.chronicle}</span>
+    <span className="thread-step">🔍 {v.rootCause}</span>
     <span className="thread-arrow">→</span>
-    <span className="thread-step thread-step--fresh">📝 {v.updateInstructions}</span>
+    <span className="thread-step thread-step--fresh">📝 {v.durableFix}</span>
   </div>
 );
 
@@ -614,9 +578,9 @@ const ComponentCard: React.FC<ComponentCardProps> = ({ component, layerColor, on
     const tip = t.tipsViz;
     switch (component.id) {
       case 'instructions': return <InstructionsViz v={v} />;
-      case 'prompt-files': return <PromptFilesViz />;
       case 'custom-agents': return <AgentFlowViz v={v} />;
       case 'skills': return <SkillsViz v={v} />;
+      case 'mcp': return <McpViz v={v} />;
       case 'hooks': return <HooksViz v={v} />;
       case 'agentic-workflows': return <WorkflowsViz />;
       case 'copilot-setup-steps': return <SetupStepsViz />;
@@ -632,6 +596,7 @@ const ComponentCard: React.FC<ComponentCardProps> = ({ component, layerColor, on
       case 'review-agent': return <ReviewAgentViz v={tv} />;
       case 'third-party-agents-cloud': return <ThirdPartyAgentsCloudViz v={tv} />;
       case 'copilot-chat-cloud': return <CopilotChatCloudViz v={tv} />;
+      case 'slack-teams': return <SlackTeamsViz v={tv} />;
       /* Tips page */
       case 'token-billing': return <TokenBillingViz v={tip} />;
       case 'agentic-cost': return <AgenticCostViz v={tip} />;
@@ -644,24 +609,20 @@ const ComponentCard: React.FC<ComponentCardProps> = ({ component, layerColor, on
       case 'scope-context': return <ScopeContextViz v={tip} />;
       case 'conditional-context': return <ConditionalContextViz v={tip} />;
       case 'apply-to-paths': return <ApplyToPathsViz />;
-      case 'skills-mcp': return <SkillsMcpViz v={tip} />;
+      case 'skills-mcp': return <ToolsetScopingViz v={tip} />;
       case 'context-command': return <ContextCommandViz />;
       case 'reuse-context': return <ReuseContextViz v={tip} />;
       case 'prefix-matching': return <PrefixMatchingViz v={tip} />;
       case 'choose-right-model': return <ModelPickerViz v={tip} />;
-      case 'high-effort-tasks': return <HighEffortViz v={tip} />;
-      case 'low-effort-tasks': return <LowEffortViz v={tip} />;
       case 'auto-mode': return <AutoModeViz v={tip} />;
       case 'monitor-usage': return <MonitorUsageViz v={tip} />;
       case 'compound-errors': return <CompoundErrorsViz v={tip} />;
-      case 'prompt-anatomy': return <PromptAnatomyViz v={tip} />;
       case 'context-rot': return <ContextRotViz v={tip} />;
       case 'lost-in-middle': return <LostInMiddleViz v={tip} />;
       case 'think-in-code': return <ThinkInCodeViz v={tip} />;
       case 'research-plan-implement': return <ResearchPlanImplementViz v={tip} />;
       case 'deterministic-guardrails': return <DeterministicGuardrailsViz v={tip} />;
       case 'trim-shell-outputs': return <TrimShellOutputsViz v={tip} />;
-      case 'collapse-tool-calls': return <CollapseToolCallsViz v={tip} />;
       case 'apply-architecture': return <ApplyArchitectureViz v={tip} />;
       case 'iterate-configs': return <IterateConfigsViz v={tip} />;
       case 'managed-settings-tip': return <ManagedSettingsTipViz v={tip} />;

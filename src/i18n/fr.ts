@@ -4,7 +4,7 @@ export const fr: Translations = {
   locale: 'fr',
   seo: {
     title: 'Copilot Panorama — .github/ Stack',
-    description: 'Guide visuel interactif du système composable GitHub Copilot — explorez les 4 couches : Contexte Permanent, Capacités à la Demande, Contrôle & Automatisation, et Distribution.',
+    description: 'Guide visuel interactif du système composable GitHub Copilot — explorez les 4 couches : Contexte permanent, Capacités à la demande, Contrôle & Automatisation, et Distribution.',
   },
   ui: {
     heroTitle: 'stack composable',
@@ -15,26 +15,30 @@ export const fr: Translations = {
     useCasesLabel: 'Cas d\'usage',
     documentationLabel: 'Documentation',
     footerBuiltFor: 'Conçu pour les utilisateurs de GitHub Copilot',
-    footerDocsLink: 'Documentation complète du système composable',
+    footerDocsLink: 'Documentation complète sur le système composable',
     pageStack: '.github/ Stack',
     pageTools: 'Copilot Everywhere',
     shareLink: 'Partager le lien',
     shareCopied: 'Copié !',
   },
   viz: {
-    alwaysActive: 'Toujours actif',
-    loadsAutomatically: '— chargé dans chaque conversation automatiquement',
+    alwaysActive: 'S\'applique automatiquement',
+    loadsAutomatically: 'dans son périmètre pris en charge',
     planning: 'Planification',
     implementation: 'Implémentation',
     review: 'Revue',
-    descriptionRead: 'description lue depuis le frontmatter SKILL.md',
-    fullSkillInjected: 'SKILL.md complet injecté dans le contexte si pertinent',
-    approveDeny: 'approuver / refuser',
+    descriptionRead: 'les métadonnées du skill identifient l\'expertise pertinente',
+    fullSkillInjected: 'Les instructions et ressources se chargent quand le skill est sélectionné',
+    approveDeny: 'autoriser / refuser / modifier',
 
     pluginJson: 'plugin.json',
+    agentsDir: 'agents/',
     skillsDir: 'skills/',
-    mcpJson: 'mcp.json',
-    copilotNamespace: 'com.github.copilot/',
+    hooksJson: 'hooks.json',
+    mcpJson: '.mcp.json',
+    lspJson: 'lsp.json',
+    repositorySettings: 'Paramètres MCP du dépôt',
+    ideConfig: 'mcp.json (IDE)',
     vsCode: 'VS Code',
     copilotCli: 'Copilot CLI',
     copilotApp: 'Application Copilot',
@@ -45,7 +49,7 @@ export const fr: Translations = {
   layers: {
     'always-on-context': {
       title: 'Contexte permanent',
-      subtitle: 'Mémoire passive chargée dans chaque conversation automatiquement',
+      subtitle: 'Directives du dépôt appliquées automatiquement dans leur périmètre pris en charge',
     },
     'on-demand-capabilities': {
       title: 'Capacités à la demande',
@@ -53,7 +57,7 @@ export const fr: Translations = {
     },
     'enforcement-automation': {
       title: 'Contrôle & Automatisation',
-      subtitle: 'Garde-fous déterministes et orchestration CI/CD',
+      subtitle: 'Garde-fous déterministes et orchestration au niveau CI/CD',
     },
     distribution: {
       title: 'Distribution',
@@ -63,77 +67,78 @@ export const fr: Translations = {
   components: {
     instructions: {
       name: 'Instructions',
-      description: 'Mémoire passive appliquée automatiquement à chaque prompt',
+      description: 'Directives ciblées qui façonnent automatiquement les réponses de Copilot',
       details:
-        'Les instructions sont le fondement de la personnalisation de Copilot. Elles se ' +
-        'chargent EN PREMIER et constituent une mémoire passive permanente. Placez les ' +
-        'conventions globales dans `.github/copilot-instructions.md` et les instructions ' +
-        'spécifiques dans `.github/instructions/NOM.instructions.md` (avec le frontmatter ' +
-        '`applyTo`). Elles sont consultatives — elles guident le modèle mais n\'imposent ' +
-        'pas un comportement de façon déterministe.',
+        'Utilisez `.github/copilot-instructions.md` pour des directives valables sur tout le dépôt ' +
+        'et `.github/instructions/NOM.instructions.md` avec des globs `applyTo` pour les chemins ' +
+        'correspondants. Les agents peuvent aussi utiliser le `AGENTS.md` le plus proche, tandis ' +
+        'que les fichiers racine `CLAUDE.md` et `GEMINI.md` sont pris en charge sur certaines ' +
+        'surfaces. Les instructions personnelles et d\'organisation fournissent des valeurs par ' +
+        'défaut plus larges en dehors des fichiers du dépôt. La prise en charge varie selon la ' +
+        'surface Copilot, et les instructions guident le comportement sans l\'imposer.',
       useCases: ['Standards de code', 'Règles de framework', 'Conventions du dépôt'],
-    },
-    'prompt-files': {
-      name: 'Prompt Files',
-      description: 'Invoqués manuellement via des commandes slash',
-      details:
-        'Les fichiers de prompts sont des modèles réutilisables invoqués avec des ' +
-        'commandes slash (ex. `/security-review`, `/release-notes`). Ils permettent ' +
-        'aux équipes de standardiser les prompts courants pour que chaque développeur ' +
-        'obtienne des résultats cohérents et de qualité pour les tâches récurrentes.',
-      useCases: ['API Review', 'Perf Audit', 'Onboarding Guide'],
     },
     'custom-agents': {
       name: 'Custom Agents',
-      description: 'Personas spécialisés avec leurs propres outils et serveurs MCP',
+      description: 'Spécialistes avec des instructions ciblées, des outils et un contexte isolé',
       details:
-        'Les agents personnalisés sont des personas spécialisés définis en Markdown avec ' +
-        'un frontmatter YAML. Chaque profil spécifie une `description`, une liste ' +
-        'd\'`tools`, des `mcp-servers` optionnels et une préférence de `model`. Les ' +
-        'agents peuvent être chaînés via la propriété `handoffs` — ex. un agent de ' +
-        'planification passe la main à un agent d\'implémentation, puis à un agent de ' +
-        'revue. Le LLM lit les descriptions pour décider quel agent activer.',
+        'Définissez des agents de dépôt dans `.github/agents/NOM-AGENT.md`. Chaque agent peut ' +
+        'porter des instructions spécialisées, des restrictions d\'outils et du contexte MCP. Les ' +
+        'agents d\'organisation et d\'entreprise peuvent être distribués depuis les dépôts `.github` ' +
+        'ou `.github-private`. Copilot peut aussi déléguer un travail ciblé à des sous-agents avec ' +
+        'un contexte isolé. Des champs comme les modèles et les transferts (handoffs) varient selon ' +
+        'la surface, vérifiez la matrice de fonctionnalités actuelle.',
       useCases: ['Auditeur sécurité', 'Spécialiste BDD', 'Concepteur d\'API'],
     },
     skills: {
       name: 'Skills',
-      description: 'Dossiers autonomes d\'instructions, scripts et ressources — chargés automatiquement par le LLM quand pertinent',
+      description: 'Instructions, scripts et ressources réutilisables, chargés quand pertinent',
       details:
-        'Contrairement aux autres fonctionnalités à la demande invoquées par l\'utilisateur, ' +
-        'les skills sont sélectionnés de façon autonome par le LLM. Chaque skill est un ' +
-        'dossier avec un fichier `SKILL.md` (nom + description en frontmatter YAML, ' +
-        'instructions en Markdown) et des scripts/ressources optionnels. Le modèle lit ' +
-        'les descriptions pour décider lesquels activer — le `SKILL.md` complet n\'est ' +
-        'injecté dans le contexte qu\'à ce moment-là. Aucune action utilisateur requise. ' +
-        'Stockez les skills projet dans `.github/skills/<nom>/` et les skills personnels ' +
-        'dans `~/.copilot/skills/<nom>/`.',
+        'Chaque skill est un dossier contenant `SKILL.md` ainsi que des scripts et ressources ' +
+        'optionnels. Copilot sélectionne un skill quand son expertise correspond à la tâche. ' +
+        'Stockez les skills de projet dans `.github/skills/`, `.agents/skills/` ou `.claude/skills/` ; ' +
+        'les skills personnels peuvent résider dans `~/.copilot/skills/` ou `~/.agents/skills/`. La ' +
+        'prise en charge varie selon la surface.',
       useCases: ['Modules Terraform', 'Manifestes K8s', 'Stack d\'observabilité'],
+    },
+    mcp: {
+      name: 'MCP Servers',
+      description: 'Outils externes et données en direct connectés via le Model Context Protocol',
+      details:
+        'Configurez les serveurs MCP du dépôt dans les paramètres du dépôt sur GitHub pour ' +
+        'l\'agent cloud Copilot et la revue de code Copilot. Les clients IDE utilisent leur propre ' +
+        'configuration `mcp.json`, tandis que le CLI et l\'application Copilot exposent leurs ' +
+        'propres paramètres client. La prise en charge MCP, les politiques et les emplacements de ' +
+        'configuration varient selon la surface, activez donc uniquement les serveurs et toolsets ' +
+        'dont un workflow a besoin.',
+      useCases: ['Automatisation Issue & PR', 'Tests navigateur', 'Données internes'],
+      docLabel: 'Configurer les serveurs MCP du dépôt',
+      altDocLabel: 'À propos de MCP',
     },
     hooks: {
       name: 'Hooks',
-      description: 'Commandes shell déterministes sur 6 événements du cycle de vie',
+      description: 'Commandes exécutées à des points documentés du cycle de vie de l\'agent',
       details:
-        'Les hooks sont la SEULE primitive déterministe du système Copilot. Ils se ' +
-        'déclenchent à six points du cycle de vie : `sessionStart`, `sessionEnd`, ' +
-        '`userPromptSubmitted`, `preToolUse`, `postToolUse` et `errorOccurred`. ' +
-        'Le hook `preToolUse` peut approuver ou refuser l\'exécution d\'outils avant ' +
-        'qu\'elle n\'ait lieu. Définissez les hooks dans un fichier JSON dans ' +
-        '`.github/hooks/` avec `version: 1`. Contrairement aux instructions ' +
-        '(qui sont consultatives), les hooks sont coercitifs.',
+        'Définissez les hooks du dépôt dans `.github/hooks/NOM.json` avec `version: 1`. Les ' +
+        'événements couvrent les sessions, prompts, outils, permissions, la compaction, les ' +
+        'sous-agents et les arrêts d\'agent. `preToolUse` peut autoriser, refuser ou modifier un ' +
+        'appel d\'outil. La prise en charge des événements diffère entre Copilot CLI et l\'agent ' +
+        'cloud. Les échecs de hook laissent généralement l\'exécution se poursuivre ; les erreurs ' +
+        'de `preToolUse` échouent de façon fermée, tandis que les timeouts restent ouverts.',
       useCases: ['Portes de conformité', 'Contrôle d\'accès fichiers', 'Journalisation d\'audit'],
     },
     'agentic-workflows': {
       name: 'Agentic Workflows',
-      description: 'Automatisation de dépôts par des agents IA, exécutés dans GitHub Actions avec des garde-fous',
+      description: 'Automatisation de dépôt propulsée par des agents de codage IA, exécutée dans GitHub Actions avec des garde-fous',
       details:
         'Les workflows agentiques sont des fichiers Markdown avec frontmatter YAML ' +
-        '(permissions, safe-outputs, déclencheurs) compilés en GitHub Actions via ' +
-        'l\'extension CLI `gh aw`. Définissez l\'automatisation en langage naturel — ' +
-        'planifiez des rapports quotidiens, triez les issues, analysez les échecs CI ' +
-        'ou maintenez la documentation. Les agents s\'exécutent en lecture seule par ' +
-        'défaut ; les écritures nécessitent une approbation explicite via safe-output. ' +
-        'Exécution sandboxée avec filtrage d\'outils et isolation réseau. Compatible ' +
-        'avec GitHub Copilot, Claude ou OpenAI Codex.',
+        '(permissions, safe-outputs, déclencheurs) compilés en GitHub Actions via l\'extension ' +
+        'CLI `gh aw`. Définissez l\'automatisation en langage naturel — planifiez des rapports ' +
+        'quotidiens, triez les issues, analysez les échecs de CI ou maintenez la documentation. ' +
+        'Les agents s\'exécutent en lecture seule par défaut ; les opérations d\'écriture ' +
+        'nécessitent une approbation explicite via safe-output. L\'exécution est sandboxée avec ' +
+        'liste blanche d\'outils et isolation réseau. Fonctionne avec GitHub Copilot, Claude ou ' +
+        'OpenAI Codex.',
       useCases: ['Triage d\'issues', 'Analyse d\'échecs CI', 'Rapports quotidiens'],
     },
     'copilot-setup-steps': {
@@ -141,66 +146,64 @@ export const fr: Translations = {
       description: 'Workflow GitHub Actions qui préconfigure l\'environnement de l\'agent cloud',
       details:
         'Copilot Setup Steps est un workflow GitHub Actions spécial situé dans ' +
-        '`.github/workflows/copilot-setup-steps.yml` qui s\'exécute avant que l\'agent ' +
-        'cloud ne commence à travailler. Utilisez-le pour installer de manière déterministe ' +
-        'des outils, des dépendances ou configurer le runner — afin que l\'agent puisse ' +
-        'immédiatement compiler, tester et linter sans tâtonnement. Vous pouvez aussi passer ' +
-        'à des runners plus puissants, basculer sous Windows, activer Git LFS ou définir des ' +
+        '`.github/workflows/copilot-setup-steps.yml` qui s\'exécute avant que l\'agent cloud ne ' +
+        'commence à travailler. Utilisez-le pour installer de manière déterministe des outils, ' +
+        'des dépendances, ou configurer le runner — afin que l\'agent puisse immédiatement ' +
+        'compiler, tester et linter sans découverte par tâtonnement. Vous pouvez aussi passer à ' +
+        'des runners plus puissants, basculer sous Windows, activer Git LFS, ou définir des ' +
         'variables d\'environnement via l\'environnement Actions `copilot`. Le workflow doit ' +
-        'contenir un unique job `copilot-setup-steps` et ne prend effet que s\'il est présent ' +
-        'sur la branche par défaut.',
+        'contenir un unique job `copilot-setup-steps` et ne prend effet que s\'il est présent sur ' +
+        'la branche par défaut.',
       useCases: ['Préinstaller les dépendances', 'Runners plus puissants', 'Variables d\'environnement'],
     },
     plugins: {
-      name: 'Agent Plugins 1.0',
-      description: 'Un paquet portable pour les skills et serveurs MCP sur les clients agent compatibles',
+      name: 'GitHub Copilot Plugins',
+      description: 'Paquets installables pour agents, skills, hooks, MCP et intégrations LSP',
       details:
-        'Agent Plugins 1.0 est un standard ouvert pour les paquets d\'agents portables. Un ' +
-        '`plugin.json` racine déclare le schéma 1.0, les skills portables résident dans ' +
-        '`skills/` et la configuration MCP dans `mcp.json`. Les agents, commandes, règles, ' +
-        'hooks et extensions propres à Copilot résident sous `com.github.copilot/`, ignoré ' +
-        'par les autres clients. Le même paquet fonctionne dans VS Code, Copilot CLI, le ' +
-        'SDK Copilot et l\'application Copilot. Les plugins Copilot existants restent pris ' +
-        'en charge sans migration.',
-      useCases: ['Portabilité multi-client', 'Skills + MCP réutilisables', 'Distribution marketplace'],
-      docLabel: 'Spécification Agent Plugins 1.0',
-      altDocLabel: 'Créer un Agent Plugin',
+        'Un plugin Copilot natif démarre avec `plugin.json` et peut inclure `agents/`, `skills/`, ' +
+        '`hooks.json`, `.mcp.json` et `lsp.json`. Les plugins regroupent des capacités pour ' +
+        'l\'installation via les clients Copilot et les marketplaces. Séparément, Agent Plugins ' +
+        '1.0 définit un standard ouvert multi-client pour des paquets portables ; il complète, ' +
+        'sans la remplacer, la structure de plugin native de GitHub.',
+      useCases: ['Packs d\'agents réutilisables', 'Standardisation d\'équipe', 'Distribution Marketplace'],
+      docLabel: 'À propos des plugins Copilot',
+      altDocLabel: 'Standard Agent Plugins 1.0',
     },
   },
   insights: [
     {
       icon: '🧠',
       content:
-        '<strong>Les instructions se chargent EN PREMIER</strong> — c\'est une mémoire ' +
-        'passive permanente. Chaque prompt les voit avant que quoi que ce soit d\'autre ne se déclenche.',
+        '<strong>Les instructions s\'appliquent automatiquement dans leur périmètre.</strong> ' +
+        'Les directives à l\'échelle du dépôt, spécifiques à un chemin, à un agent, personnelles ' +
+        'et d\'organisation servent des périmètres différents.',
     },
     {
       icon: '🧩',
       content:
-        '<strong>Les skills sont chargés à la demande</strong> — Copilot lit uniquement la ' +
-        '<code>description</code> du frontmatter SKILL.md. Le fichier complet n\'est injecté ' +
-        'dans le contexte que lorsque le modèle juge le skill pertinent pour votre prompt.',
+        '<strong>Les skills apportent une expertise à la demande.</strong> Copilot peut ' +
+        'sélectionner un skill quand ses instructions et ressources correspondent à la tâche en cours.',
     },
     {
       icon: '🔒',
       content:
-        '<strong>Les hooks sont la seule primitive déterministe.</strong> Les instructions ' +
-        'sont consultatives. Les hooks sont coercitifs — 6 événements dont <code>preToolUse</code> ' +
-        'qui peut approuver ou refuser l\'exécution d\'outils.',
+        '<strong>Les hooks exécutent des commandes à des points du cycle de vie.</strong> ' +
+        '<code>preToolUse</code> peut autoriser, refuser ou modifier un appel d\'outil. Les ' +
+        'événements pris en charge et le comportement en cas d\'échec varient selon la surface.',
     },
     {
       icon: '🔀',
       content:
-        '<strong>Le LLM est le routeur.</strong> Il n\'y a pas d\'orchestrateur séparé — le ' +
-        'modèle lit les descriptions des agents et le frontmatter des skills pour décider ' +
-        'quoi activer. C\'est pourquoi écrire de bonnes descriptions est essentiel.',
+        '<strong>Copilot peut sélectionner les capacités pertinentes.</strong> Des descriptions ' +
+        'claires d\'agents, de skills et d\'outils aident Copilot à choisir la bonne expertise ' +
+        'pour une tâche.',
     },
   ],
 
   /* ── Page Outils ── */
   toolsSeo: {
     title: 'Copilot Panorama — Copilot Everywhere',
-    description: 'Guide visuel interactif des outils GitHub Copilot sur trois couches : IDE (Autocomplétion, Chat, Agent Mode, Agents tiers), Apps autonomes (CLI, Copilot App), et Cloud (Agent cloud, Agent de revue, Agents tiers).',
+    description: 'Guide visuel interactif de GitHub Copilot à travers les IDE, les applications autonomes et le Cloud GitHub, incluant Copilot CLI, l\'agent cloud, la revue de code, les agents tiers, Slack et Teams.',
   },
   toolsUi: {
     heroTitle: 'Copilot Everywhere',
@@ -231,15 +234,18 @@ export const fr: Translations = {
     reviewComments: 'Commentaires de revue',
     suggestedFixes: 'Corrections suggérées',
     selectAgent: 'Sélectionner un agent',
-    askAnything: 'Demandez n\'importe quoi',
+    askAnything: 'Posez n\'importe quelle question',
     repoContext: 'Contexte du dépôt',
     webSearch: 'Recherche web',
-    openSession: 'Ouvrir session',
+    openSession: 'Ouvrir la session',
     reviewDiff: 'Revoir le diff',
-    openPr: 'Ouvrir PR',
+    openPr: 'Ouvrir la PR',
     inbox: 'Boîte de réception',
     agenticMerge: 'Agentic Merge',
     savedWorkflows: 'Workflows',
+    slack: 'Slack',
+    teams: 'Teams',
+    sharedSession: 'Session d\'agent partagée',
   },
   toolsLayers: {
     'standalone-apps': {
@@ -258,196 +264,208 @@ export const fr: Translations = {
   toolsComponents: {
     'copilot-cli': {
       name: 'GitHub Copilot CLI',
-      description: 'Un agent IA complet dans votre terminal — sessions interactives, édition de fichiers et intégration GitHub',
+      path: 'Agent de terminal',
+      description: 'Un agent dans votre terminal pour le code, le shell et les workflows GitHub',
       details:
-        'GitHub Copilot CLI vous permet d\'utiliser Copilot directement depuis votre terminal. ' +
-        'Lancez une session interactive avec `copilot` ou passez un prompt unique avec ' +
-        '`copilot -p "..."`. Il peut éditer des fichiers locaux, exécuter des commandes shell, ' +
-        'interagir avec GitHub.com (créer des PRs, issues, gérer les workflows), et travailler ' +
-        'de manière itérative avec vous. Supporte le Plan Mode (Shift+Tab) pour une implémentation ' +
-        'structurée, les serveurs MCP, les agents personnalisés, les skills, les hooks, et la ' +
-        'compaction automatique du contexte pour des sessions infinies.',
+        'Démarrez une session interactive avec `copilot` ou passez un prompt unique avec ' +
+        '`copilot -p`. Le CLI peut éditer des fichiers, exécuter des commandes shell approuvées, ' +
+        'et travailler avec les issues, pull requests et Actions GitHub. Le mode plan cadre le ' +
+        'travail avant les modifications. `/context`, `/compact` et la compaction automatique ' +
+        'gèrent les sessions longues. Les sandboxes locaux et cloud sont en préversion publique. ' +
+        'Le CLI prend en charge les instructions, agents, skills, hooks, MCP, plugins et Copilot ' +
+        'Memory en préversion publique.',
       useCases: ['Livraison Issue-to-PR', 'Modernisation de code legacy', 'Exécution parallèle Fleet', 'Tri & planification du backlog', 'Développement agnostique d\'éditeur', 'Automatisation'],
     },
     'copilot-app': {
       name: 'GitHub Copilot App',
-      description: 'Application bureau native pour le développement agentique — Inbox, Agentic Merge, sessions parallèles et Workflows',
+      path: 'Espace de travail bureau pour agents',
+      description: 'Espace de travail bureau pour des sessions d\'agents parallèles et des automatisations récurrentes',
       details:
-        'L\'application GitHub Copilot est une application bureau autonome (macOS, Windows, Linux) qui offre ' +
-        'aux développeurs et rôles adjacents (PMs, designers, QA) une expérience GitHub-first pour diriger, ' +
-        'surveiller, réviser et livrer du travail piloté par agents. L\'Inbox agentique affiche les issues, PRs ' +
-        'et sessions à travers tous vos dépôts. Agentic Merge gère le « dernier kilomètre » — résoudre les ' +
-        'commentaires de revue, corriger les CI en échec et gérer les conflits de merge à votre place. ' +
-        'Chaque session s\'exécute dans un worktree git isolé pour un vrai développement parallèle. Les Workflows ' +
-        'permettent de sauvegarder des prompts et de les exécuter à la demande ou selon un calendrier, ' +
-        'transformant les tâches récurrentes en patterns d\'automatisation réutilisables. Actuellement en aperçu technique.',
+        'Exécutez plusieurs sessions d\'agents isolées à travers les dépôts, gérez les issues et ' +
+        'pull requests, et enregistrez des automatisations qui s\'exécutent à la demande ou selon ' +
+        'un calendrier. Les sessions de dépôt utilisent des worktrees dédiés ; les espaces de ' +
+        'travail cloud sont en préversion publique. L\'application prend en charge les ' +
+        'instructions, skills, serveurs MCP, agents personnalisés, plugins et extensions canvas. ' +
+        'Les paramètres gérés par l\'entreprise peuvent encadrer les actions et intégrations prises en charge.',
       useCases: ['Inbox agentique & triage', 'Agentic Merge (dernier kilomètre)', 'Travail parallèle multi-sessions', 'Workflows répétables', 'Collaboration rôles adjacents', 'Orchestration multi-dépôts'],
     },
     autocomplete: {
-      name: 'Autocomplete',
+      name: 'Suggestions en ligne',
+      path: 'Suggestions inline de l\'IDE',
       description: 'Suggestions de code en texte fantôme qui apparaissent inline pendant la saisie',
       details:
-        'Copilot propose des suggestions de type autocomplétion pendant que vous tapez — corps ' +
-        'de fonctions complets, boucles, conditions et plus encore selon le contexte de votre code. ' +
-        'Parcourez les alternatives avec Alt+] / Alt+[, acceptez mot par mot avec Ctrl+→, ou ' +
-        'acceptez la suggestion complète avec Tab. Next Edit Suggestions (NES) prédit ' +
-        'l\'emplacement de votre prochaine modification et suggère des complétions pour celle-ci. ' +
-        'Disponible dans VS Code, Visual Studio, les IDE JetBrains, Azure Data Studio, Xcode, ' +
-        'Vim/Neovim et Eclipse.',
+        'Copilot propose du code à partir du contexte de l\'éditeur pendant que vous tapez. Les ' +
+        'suggestions peuvent aller d\'une ligne à une fonction complète. Next Edit Suggestions ' +
+        'prédit l\'emplacement de la prochaine modification sur les éditeurs pris en charge. Les ' +
+        'raccourcis clavier et la disponibilité des fonctionnalités varient selon l\'IDE.',
       useCases: ['Complétion de code', 'Génération de boilerplate', 'Complétion de patterns', 'Commentaire vers code'],
     },
     ask: {
       name: 'Ask (Copilot Chat)',
+      path: 'Chat de l\'IDE',
       description: 'Chat IA conversationnel pour les questions, explications et génération de code',
       details:
-        'Copilot Chat fournit une interface conversationnelle pour poser des questions sur le code. ' +
-        'Utilisez les participants de chat (@workspace, @github, @terminal), les commandes slash ' +
-        '(/fix, /explain, /tests, /doc) et les variables de chat (#file, #selection, #web) pour ' +
-        'un contexte précis. Le participant @github permet la recherche web, la consultation ' +
-        'd\'issues et l\'analyse de PRs. Supporte plusieurs modèles d\'IA — changez en cours de ' +
-        'conversation via le sélecteur de modèle. Disponible dans VS Code, Visual Studio, ' +
-        'JetBrains, Eclipse, Xcode, GitHub.com et GitHub Mobile.',
-      useCases: ['Explication de code', 'Débogage', 'Génération de tests', 'Refactoring', 'Apprentissage'],
+        'Copilot Chat répond aux questions, explique le code, propose des modifications et aide ' +
+        'au débogage. Ajoutez les fichiers, sélections, contexte de dépôt ou outils pris en ' +
+        'charge pertinents pour cadrer une demande. Les mots-clés, commandes, modèles et la prise ' +
+        'en charge MCP varient selon l\'IDE, utilisez donc la matrice de fonctionnalités actuelle ' +
+        'pour l\'éditeur que vous utilisez.',
+      useCases: ['Explication de code', 'Débogage', 'Génération de tests', 'Refactoring de code', 'Apprentissage'],
     },
     'agent-mode': {
       name: 'Agent Mode',
+      path: 'Agent Mode de l\'IDE',
       description: 'Codage local autonome — Copilot détermine les fichiers, effectue les modifications, exécute les commandes et itère',
       details:
         'Agent Mode permet à Copilot de modifier votre code de manière autonome dans l\'IDE. Il ' +
-        'détermine quels fichiers modifier, effectue des éditions multi-fichiers, suggère et exécute ' +
-        'des commandes terminal, et itère pour corriger les erreurs jusqu\'à ce que la tâche soit ' +
-        'terminée. Supporte l\'intégration de serveurs MCP, les sous-agents pour les sous-tâches ' +
-        'déléguées, et les agents personnalisés. Seuls vos prompts sont facturés — les appels ' +
-        'd\'outils de suivi sont gratuits. À distinguer de l\'agent cloud Copilot (couche Cloud), ' +
-        'qui s\'exécute sur GitHub Actions.',
+        'détermine quels fichiers modifier, effectue des éditions multi-fichiers, propose des ' +
+        'commandes terminal pour approbation, et itère face aux erreurs. Les IDE pris en charge ' +
+        'peuvent ajouter des serveurs MCP, des sous-agents et des agents personnalisés. ' +
+        'Contrairement à l\'agent cloud Copilot, Agent Mode fonctionne dans votre session ' +
+        'd\'éditeur locale. La consommation de crédits IA dépend du modèle sélectionné et du ' +
+        'travail effectué.',
       useCases: ['Tâches complexes', 'Implémentation multi-étapes', 'Résolution d\'erreurs', 'Automatisation de builds'],
     },
     'third-party-agents-ide': {
-      name: '3rd-Party Agents',
-      description: 'Agents Claude et Codex fonctionnant dans VS Code avec leurs SDK natifs',
+      name: 'Harnais d\'agents tiers',
+      path: 'Harnais d\'agents tiers VS Code',
+      description: 'Harnais Claude et Codex disponibles dans VS Code',
       details:
-        'Les agents tiers d\'Anthropic (Claude) et d\'OpenAI (Codex) s\'exécutent directement dans ' +
-        'VS Code en utilisant le SDK natif et le harnais d\'agent de chaque fournisseur. Choisissez ' +
-        'entre des sessions locales (dans votre workspace) ou des sessions cloud (environnement ' +
-        'distant). Claude supporte les commandes slash (/agents, /hooks, /memory, /review, ' +
-        '/security-review), les modes de permission (éditer automatiquement, demander approbation, ' +
-        'planifier), et le contexte persistant via CLAUDE.md. Le tout facturé via votre abonnement ' +
-        'Copilot — aucune configuration de fournisseur séparée.',
+        'VS Code peut exécuter des harnais tiers pris en charge tels qu\'Anthropic Claude et ' +
+        'OpenAI Codex. Chaque harnais conserve son workflow et ses capacités propres au ' +
+        'fournisseur au sein de l\'éditeur. La disponibilité, le lieu d\'exécution, les ' +
+        'permissions et la facturation peuvent évoluer, consultez donc la documentation actuelle ' +
+        'des harnais d\'agents VS Code.',
       useCases: ['Codage autonome', 'Revue de sécurité', 'Fonctionnalités spécifiques au fournisseur', 'Tâches en arrière-plan'],
     },
     'copilot-chat-cloud': {
       name: 'Copilot Chat',
-      description: 'IA conversationnelle sur GitHub.com — posez des questions sur les dépôts, issues, PRs et le web',
+      path: 'GitHub.com et mobile',
+      description: 'IA conversationnelle sur GitHub.com — posez des questions sur les dépôts, issues, PR et le web',
       details:
-        'Copilot Chat sur GitHub.com vous permet de poser des questions depuis n\'importe quelle page — ' +
-        'sur un dépôt, une issue, une PR ou des sujets logiciels généraux. Il utilise des skills pour ' +
-        'récupérer du contexte depuis GitHub (recherche de code, historique des commits, détails des issues) ' +
-        'et optionnellement la recherche web Bing pour des informations à jour. Supporte la sélection ' +
-        'multi-modèles, les sous-conversations pour ramifier les discussions, la génération de fichiers ' +
-        'avec aperçu, et l\'historique des conversations (jusqu\'à 100 fils, rétention de 28 jours). ' +
-        'Également disponible sur GitHub Mobile.',
-      useCases: ['Q&R sur les dépôts', 'Analyse d\'issues', 'Compréhension des PRs', 'Recherche web', 'Génération de code'],
+        'Copilot Chat sur GitHub.com vous permet de poser des questions depuis n\'importe quelle ' +
+        'page — sur un dépôt, une issue, une pull request ou des sujets logiciels généraux. Il ' +
+        'peut utiliser le contexte du dépôt et du web, les modèles sélectionnés, et les ' +
+        'informations de session d\'agent. Chat et l\'agent cloud Copilot peuvent transmettre du ' +
+        'contexte au sein du workflow actif. GitHub Mobile donne accès aux expériences de Chat et ' +
+        'de session d\'agent prises en charge.',
+      useCases: ['Q&R sur les dépôts', 'Analyse d\'issues', 'Compréhension des PR', 'Recherche web', 'Génération de code'],
     },
     'coding-agent': {
-      name: 'Cloud Agent',
-      description: 'Agent cloud autonome — assignez une issue, obtenez une PR avec vérifications de sécurité',
+      name: 'Copilot Cloud Agent',
+      path: 'Agent cloud GitHub',
+      description: 'Travail autonome sur le dépôt dans un environnement hébergé par GitHub',
       details:
-        'L\'agent cloud Copilot travaille de manière indépendante dans un environnement propulsé ' +
-        'par GitHub Actions. Assignez une issue à @copilot, mentionnez-le sur une PR, ou demandez ' +
-        'depuis le Chat — il évalue la tâche, effectue les modifications, exécute les tests et ' +
-        'linters, réalise une analyse de sécurité CodeQL, vérifie les secrets, et crée une PR ' +
-        'brouillon pour revue. Supporte les instructions personnalisées, les serveurs MCP, les ' +
-        'agents personnalisés, les hooks, les skills et Copilot Memory. Ne pousse que sur les ' +
-        'branches `copilot/`. Disponible sur Pro, Pro+, Business, Enterprise.',
+        'Déléguez du travail depuis des issues, pull requests, Chat ou la vue Agents. Copilot ' +
+        'analyse le dépôt, planifie, modifie le code sur une branche, valide le résultat, et ' +
+        'ouvre une pull request pour revue humaine. Les instructions, MCP, agents, hooks, skills ' +
+        'et Copilot Memory (préversion publique) peuvent personnaliser la session. Le code ' +
+        'scanning, le secret scanning, les vérifications de dépendances et les règles de ' +
+        'pare-feu sont des protections configurables, pas des garanties universelles.',
       useCases: ['Corrections de bugs', 'Implémentation de fonctionnalités', 'Couverture de tests', 'Dette technique', 'Campagnes de sécurité'],
     },
     'review-agent': {
-      name: 'Review Agent',
+      name: 'Copilot Code Review',
+      path: 'Revue de pull request',
       description: 'Reviewer de code IA avec contexte projet complet et corrections suggérées',
       details:
-        'La revue de code Copilot analyse les pull requests et fournit des retours avec des ' +
-        'suggestions de modifications applicables en un clic. Utilise des capacités agentiques ' +
-        'pour collecter le contexte complet du projet — il analyse l\'ensemble de votre dépôt pour ' +
-        'comprendre les changements de code. Peut être configuré pour des revues automatiques sur ' +
-        'toutes les PRs. Supporte les instructions personnalisées via .github/copilot-instructions.md ' +
-        'et les règles par chemin. Disponible sur GitHub.com, GitHub Mobile, VS Code, Visual Studio, ' +
-        'Xcode et JetBrains.',
-      useCases: ['Qualité du code', 'Revue de sécurité', 'Bonnes pratiques', 'Workflow de PRs', 'Gouvernance d\'équipe'],
+        'La revue de code Copilot analyse les modifications, rassemble le contexte de dépôt ' +
+        'pertinent, et fournit des commentaires avec des corrections suggérées. Les équipes ' +
+        'peuvent demander des revues manuellement ou configurer des revues automatiques. Les ' +
+        'instructions de dépôt, les skills d\'agent et les serveurs MCP sont pris en charge ; ' +
+        'Copilot Memory est en préversion publique. La disponibilité diffère entre GitHub et les ' +
+        'IDE pris en charge.',
+      useCases: ['Qualité du code', 'Revue de sécurité', 'Bonnes pratiques', 'Workflow de PR', 'Gouvernance d\'équipe'],
     },
     'third-party-agents-cloud': {
-      name: '3rd-Party Agents',
-      description: 'Anthropic Claude et OpenAI Codex comme agents de codage cloud sur GitHub',
+      name: 'Agents de codage tiers',
+      path: 'Agents tiers GitHub',
+      description: 'Agents de codage partenaires qui fonctionnent aux côtés de Copilot sur GitHub',
       details:
-        'Les agents de codage tiers fonctionnent aux côtés de l\'agent cloud Copilot sur la ' +
-        'plateforme GitHub. Supporte actuellement Anthropic Claude (Claude Agent SDK) et OpenAI ' +
-        'Codex (Codex SDK). Assignez des issues, lancez des tâches depuis l\'onglet Agents, ' +
-        'mentionnez @NOM_AGENT sur les PRs, ou démarrez des sessions depuis VS Code et GitHub ' +
-        'Mobile. Soumis aux mêmes protections de sécurité que l\'agent cloud Copilot. Chaque ' +
-        'session consomme une requête premium plus des minutes GitHub Actions. Actuellement en ' +
-        'préversion publique.',
+        'Les agents de codage tiers tels qu\'Anthropic Claude et OpenAI Codex peuvent travailler ' +
+        'sur GitHub aux côtés de l\'agent cloud Copilot. Démarrez des sessions prises en charge ' +
+        'depuis les surfaces GitHub et revoyez leurs modifications via des pull requests. La ' +
+        'fonctionnalité est en préversion publique et utilise les limites de sécurité de l\'agent ' +
+        'cloud, avec des capacités et une facturation définies par la documentation produit ' +
+        'actuelle.',
       useCases: ['Workflows multi-agents', 'Comparaison d\'agents', 'Tâches spécialisées', 'Développement parallèle'],
+    },
+    'slack-teams': {
+      name: 'Collaboration Slack et Teams',
+      path: 'Slack\nMicrosoft Teams',
+      description: 'Sessions d\'agent cloud partagées, démarrées depuis des conversations d\'équipe',
+      details:
+        'En préversion publique, mentionnez `@GitHub` dans les conversations Slack ou Microsoft ' +
+        'Teams prises en charge pour démarrer ou piloter une session d\'agent cloud Copilot. ' +
+        'L\'intégration peut utiliser le contexte de conversation et continue de façon ' +
+        'asynchrone dans un sandbox cloud. Les permissions du dépôt régissent qui peut déclencher ' +
+        'des modifications de code, et le contexte de conversation peut être stocké avec les ' +
+        'artefacts générés. Utilisez un message direct quand vous avez besoin d\'un contexte plus étroit.',
+      useCases: ['Discussion vers PR', 'Planification collaborative', 'Création d\'issues'],
+      docLabel: 'Intégration Slack',
+      altDocLabel: 'Intégration Teams',
     },
   },
   toolsInsights: [
     {
       icon: '🔀',
       content:
-        '<strong>Agent Mode ≠ Agent cloud.</strong> Agent Mode s\'exécute localement dans ' +
-        'votre IDE — vous restez dans la boucle. L\'agent cloud s\'exécute sur GitHub Actions ' +
-        'dans le cloud — il travaille de manière indépendante et crée une PR quand il a terminé.',
+        '<strong>Agent Mode n\'est pas l\'agent cloud Copilot.</strong> Agent Mode fonctionne dans ' +
+        'votre session IDE locale ; l\'agent cloud fonctionne de façon asynchrone dans un ' +
+        'environnement hébergé par GitHub et retourne une pull request.',
     },
     {
       icon: '🧠',
       content:
-        '<strong>Les agents tiers existent dans l\'IDE et le Cloud.</strong> Dans VS Code, Claude ' +
-        'et Codex utilisent leurs SDK natifs localement. Sur GitHub, ils s\'exécutent comme agents ' +
-        'cloud aux côtés de l\'agent cloud Copilot.',
+        '<strong>Les agents tiers utilisent des surfaces différentes.</strong> VS Code expose ' +
+        'des harnais d\'agents, tandis que GitHub héberge des agents de codage tiers aux côtés de ' +
+        'l\'agent cloud Copilot.',
     },
     {
       icon: '💬',
       content:
-        '<strong>Le mode Ask est le point de départ.</strong> Les participants de chat (@workspace), ' +
-        'les commandes slash (/fix) et les variables (#file) vous permettent de cadrer précisément ' +
-        'vos questions avant de passer à Agent Mode pour un travail autonome.',
+        '<strong>Les contrôles de contexte varient selon l\'éditeur.</strong> N\'attachez que les ' +
+        'fichiers, sélections, contexte de dépôt et outils pris en charge pertinents avant de ' +
+        'passer à un travail autonome.',
     },
     {
       icon: '🔒',
       content:
-        '<strong>Les agents cloud intègrent la sécurité.</strong> L\'agent cloud exécute ' +
-        'CodeQL, la détection de secrets et les vérifications de dépendances automatiquement. ' +
-        'Il ne peut pousser que sur les branches <code>copilot/</code> et crée toujours des PRs brouillon.',
+        '<strong>Le travail cloud nécessite des protections configurées et une revue humaine.</strong> ' +
+        'Utilisez ensemble les permissions du dépôt, les règles de pare-feu, les contrôles de ' +
+        'scanning, les tests et la revue de pull request.',
     },
   ],
 
-  /* ── Tips page ── */
+  /* ── Page Conseils ── */
   tipsSeo: {
     title: 'Copilot Panorama — Conseils d\'efficacité',
     description: 'Guide pratique pour optimiser l\'utilisation de GitHub Copilot — gestion des tokens, conception de prompts, cadrage du contexte, sélection de modèles et gouvernance.',
   },
   tipsUi: {
-    heroTitle: 'Efficiency Tips',
-    insightsTitle: 'The efficiency mindset',
-    insightsSubtitle: 'Core principles for getting more value from every token',
-    footerBuiltFor: 'Built for GitHub Copilot users',
-    footerDocsLink: 'Full docs on Copilot billing',
-    pageTips: 'Efficiency Tips',
+    heroTitle: 'Conseils d\'efficacité',
+    insightsTitle: 'L\'état d\'esprit de l\'efficacité',
+    insightsSubtitle: 'Principes clés pour tirer plus de valeur de chaque token',
+    footerBuiltFor: 'Conçu pour les utilisateurs de GitHub Copilot',
+    footerDocsLink: 'Documentation complète sur la facturation Copilot',
+    pageTips: 'Conseils d\'efficacité',
   },
   tipsViz: {
-    inputTokens: 'Input tokens',
-    outputTokens: 'Output tokens',
-    cachedTokens: 'Cached tokens',
-    modelCalls: 'model calls',
-    before: 'Before',
-    after: 'After',
-    expensive: 'Expensive',
-    cheap: 'Cheap',
-    high: 'High-effort',
-    low: 'Low-effort',
+    inputTokens: 'Tokens d\'entrée',
+    outputTokens: 'Tokens de sortie',
+    cachedTokens: 'Tokens en cache',
+    modelCalls: 'appels modèle',
+    before: 'Avant',
+    after: 'Après',
+    expensive: 'Coûteux',
+    cheap: 'Économique',
+    high: 'Effort élevé',
+    low: 'Effort faible',
     auto: 'Auto',
-    cacheHit: 'Cache hit',
-    cacheMiss: 'Cache miss',
-    narrow: 'Narrow',
-    broad: 'Broad',
+    cacheHit: 'Cache atteint',
+    cacheMiss: 'Cache manqué',
+    narrow: 'Étroit',
+    broad: 'Large',
     verboseInstructions: 'Instructions longues et verbeuses…',
     scopedContext: 'Contexte précis et ciblé',
     chat: 'Chat',
@@ -456,19 +474,18 @@ export const fr: Translations = {
     principlesBrief: 'Principes seulement. Bref.',
     heavy: 'Lourd',
     skills: 'Skills',
-    repetitive: 'Répétitif',
-    promptFiles: 'Fichiers Prompt',
-    minimalDiff: 'Diff minimal + 3 points',
+    customAgents: 'Rôle + outils distincts → Custom Agents',
+    minimalDiff: 'Diff minimal + 3 puces',
     alwaysOn: 'Toujours actif',
     costly: 'coûteux',
     onDemand: 'À la demande',
     efficient: 'efficace',
-    modelReads: 'Le modèle lit',
-    descriptionLabel: 'la description',
-    loadsIfRelevant: 'Charge le skill complet si pertinent',
+    enabledTools: 'Toolsets requis activés',
+    disabledTools: 'Tous les toolsets activés',
+    taskScoped: 'Cadré pour cette tâche',
     loadOnce: 'Charger le schéma une fois',
-    reuseInQueries: 'Réutiliser dans les requêtes suivantes',
-    tokenPrefixMatch: '≥1024 tokens identiques',
+    reuseInQueries: 'Référencer dans les requêtes suivantes',
+    tokenPrefixMatch: '≥1024 tokens correspondent',
     prefixDiffers: 'préfixe différent',
     standard: 'Standard',
     architecture: 'Architecture',
@@ -482,69 +499,65 @@ export const fr: Translations = {
     icEng: 'Ingénieur IC',
     powerUser: 'Power user',
     ciAgent: 'Agent CI',
-    stopAfterTest: 'Arrêter après le premier test réussi',
+    stopAfterTest: 'S\'arrêter après le premier test réussi',
     perStep: 'par étape',
     steps: 'étapes',
-    accuracy99: '99%',
-    accuracy95: '95%',
+    accuracy99: '99 %',
+    accuracy95: '95 %',
     bePrecise: 'Être précis',
     stopSignals: 'Ajouter des signaux d\'arrêt',
     knownContext: 'Ajouter le contexte connu',
     lostInMiddle: 'Perdu au milieu',
     recencyBias: 'Biais de récence',
     middleDecay: 'Les tokens du milieu se dégradent',
-    startStrong: '✓ Début : bonne mémoire',
+    startStrong: '✓ Début : forte mémorisation',
     middleLost: '✗ Milieu : dégradé',
-    endStrong: '✓ Fin : bonne mémoire',
+    endStrong: '✓ Fin : forte mémorisation',
     rawFiles: 'Donner les fichiers bruts à l\'IA',
     scriptOutput: 'Exécuter un script, donner la sortie',
     research: '/research',
-    plan: '/plan',
+    plan: 'Mode plan',
     implement: '/fleet',
     withTests: 'Avec tests unitaires',
     withoutTests: 'Sans tests unitaires',
-    buggyChange: 'Changement bogué',
-    silentMerge: 'Fusion silencieuse',
+    buggyChange: 'Changement buggé',
+    silentMerge: 'Merge silencieux',
     brokenMain: 'Main cassée',
     failingTests: 'Tests en échec',
     correction: 'Correction',
-    succeedingTests: 'Tests qui réussissent',
+    succeedingTests: 'Tests réussis',
     rawOutput: 'Sortie brute : 4 200 lignes',
-    trimmed: 'Réduit : 38 lignes',
+    trimmed: 'Réduite : 38 lignes',
     multipleCalls: '5 appels d\'outils séquentiels',
     batchedCall: '1 appel groupé',
     cleanLayers: 'Domaine → Application → Infra',
     agentMiss: 'Erreur de l\'agent',
-    chronicle: '/chronicle',
-    updateInstructions: 'Mettre à jour les instructions',
+    rootCause: 'Trouver la cause racine',
+    durableFix: 'Encoder une correction durable',
     enterpriseDefault: 'Défaut entreprise',
-    overridableKeys: 'Clés remplaçables',
+    overridableKeys: 'Clés surchargeables',
     teamSpecialization: 'Paramètres d\'équipe',
   },
   tipsLayers: {
     mechanics: {
-      title: 'Mécanique des tokens',
+      title: 'Mécaniques des tokens',
       subtitle: 'Comprendre les facteurs de coût derrière chaque interaction Copilot',
     },
     pitfalls: {
       title: 'Pièges',
-      subtitle: 'Modes d\'échec qui dégradent silencieusement la sortie et consomment des tokens',
+      subtitle: 'Modes de défaillance qui dégradent discrètement les résultats et brûlent des tokens',
     },
     prompting: {
       title: 'Prompting',
-      subtitle: 'Écrire des prompts qui produisent de meilleurs résultats avec moins de tokens',
+      subtitle: 'Rédiger des prompts qui produisent de meilleurs résultats avec moins de tokens',
     },
     context: {
       title: 'Contexte',
       subtitle: 'Fournir au modèle exactement ce dont il a besoin — ni plus, ni moins',
     },
-    'workflow-design': {
-      title: 'Conception de workflow',
-      subtitle: 'Structurer le travail pour que chaque étape soit fiable et reproductible',
-    },
     caching: {
-      title: 'Cache',
-      subtitle: 'Tirer parti du cache de prompts pour des interactions plus rapides et moins coûteuses',
+      title: 'Mise en cache',
+      subtitle: 'Tirer parti du prompt caching pour des interactions plus rapides et moins coûteuses',
     },
     models: {
       title: 'Modèles',
@@ -554,517 +567,485 @@ export const fr: Translations = {
       title: 'Gouvernance',
       subtitle: 'Surveiller la consommation et définir des garde-fous au niveau de l\'organisation',
     },
+    'workflow-design': {
+      title: 'Conception du workflow',
+      subtitle: 'Diviser pour régner — enchaîner des étapes ciblées plutôt qu\'un méga-prompt',
+    },
   },
   tipsComponents: {
     'token-billing': {
-      name: 'Facteurs de coût des tokens',
-      description: 'Les tokens d\'entrée, de sortie et de lecture en cache sont les trois dimensions de facturation',
+      name: 'Facteurs de coût des crédits IA',
+      path: 'Facteurs de coût',
+      description: 'Les tokens d\'entrée, de sortie et en cache contribuent différemment selon le modèle',
       details:
-        'Avec la facturation par token, chaque interaction comporte trois composants de coût : ' +
-        'les tokens d\'entrée/contexte (ce que vous envoyez), les tokens de sortie (ce que le ' +
-        'modèle génère) et les tokens de lecture en cache (moins chers mais toujours mesurés). ' +
-        'Les tokens d\'entrée incluent votre prompt, les instructions système, le contexte de ' +
-        'fichier et les sorties d\'outils. Les tokens de sortie sont la réponse du modèle. ' +
-        'Les tokens de lecture en cache sont la dimension la moins chère — généralement ' +
-        'facturés à ~10% du prix normal des entrées — d\'où l\'importance de préserver le ' +
-        'cache entre les tours. Comprendre ces trois dimensions est la base de l\'optimisation ' +
-        'des coûts.',
-      useCases: ['Toutes les interactions', 'Planification budgétaire', 'Analyse des coûts'],
+        'La consommation de crédits IA dépend du modèle sélectionné et des tokens traités. Les ' +
+        'tokens d\'entrée incluent les prompts, instructions, contexte de fichiers et sorties ' +
+        'd\'outils ; les tokens de sortie sont ce que le modèle génère ; les lectures en cache ' +
+        'peuvent coûter moins cher quand le contexte répété est réutilisé. Les tarifs varient ' +
+        'selon le modèle, utilisez donc la grille tarifaire à jour plutôt que de supposer un ' +
+        'ratio fixe unique.',
+      useCases: ['Toutes interactions', 'Planification budgétaire', 'Analyse des coûts'],
     },
     'agentic-cost': {
       name: 'Multiplicateur de coût agentique',
-      description: 'Une seule requête agentique peut déclencher des dizaines d\'appels au modèle',
+      path: 'Agentic Workflows',
+      description: 'Le travail agentique itère entre planification, outils, validation et correction',
       details:
         'Les expériences agentiques (Agent Mode, Cloud Agent, CLI) itèrent par conception : ' +
-        'planifier → éditer → exécuter des outils/tests → corriger → répéter. La même intention ' +
-        'utilisateur peut varier considérablement en consommation selon le workflow. Un simple ' +
-        '« corrige ce bug » peut nécessiter 2 ou plus de 20 appels selon la complexité, les ' +
-        'sorties d\'outils et les boucles de récupération d\'erreurs. Pire, les erreurs se ' +
-        'cumulent : même à 99% par étape, un workflow de 50 étapes ne réussit qu\'à ~60%. ' +
-        'C\'est pourquoi la conception du workflow compte plus que la longueur du prompt.',
-      useCases: ['Agent Mode', 'Cloud Agent', 'CLI Agent'],
+        'planifier → éditer → exécuter outils/tests → corriger → répéter. La consommation varie ' +
+        'selon le périmètre de la tâche, le choix du modèle, la sortie des outils, les tentatives ' +
+        'et les conditions d\'arrêt. Des exigences claires et une validation déterministe ' +
+        'réduisent les boucles inutiles.',
+      useCases: ['Agent Mode', 'Cloud Agent', 'Agent CLI'],
     },
     'context-discipline': {
       name: 'Discipline de contexte',
-      description: 'L\'optimisation des coûts repose principalement sur la discipline de contexte et la conception du workflow',
+      path: 'Conception du workflow',
+      description: 'L\'optimisation des coûts, c\'est surtout de la discipline de contexte + de la conception de workflow',
       details:
-        'Le plus grand levier de coût n\'est pas d\'écrire des prompts plus courts — c\'est de ' +
-        'gérer quel contexte alimente chaque appel au modèle. Chaque fichier joint, sortie ' +
+        'Le plus gros levier de coût n\'est pas d\'écrire des prompts plus courts — c\'est de ' +
+        'gérer le contexte qui entre dans chaque appel modèle. Chaque pièce jointe, sortie ' +
         'd\'outil et élément d\'historique de conversation ajoute des tokens d\'entrée. Une ' +
-        'gestion disciplinée du contexte (cadrer les fichiers, réduire les logs, démarrer de ' +
-        'nouveaux fils) a un impact bien plus important que la reformulation des prompts.',
-      useCases: ['Tous les workflows', 'Optimisation des coûts', 'Performance'],
+        'gestion disciplinée du contexte (cadrer les fichiers, réduire les logs, démarrer des ' +
+        'fils neufs) a un impact bien plus important que de peaufiner les prompts.',
+      useCases: ['Tous workflows', 'Optimisation des coûts', 'Performance'],
     },
     'quality-over-quantity': {
-      name: 'Qualité plutôt que quantité',
-      description: 'Se concentrer sur un contexte de haute qualité, pas sur plus d\'instructions',
+      name: 'La qualité plutôt que la quantité',
+      path: 'Conception de prompts',
+      description: 'Se concentrer sur un contexte de haute qualité, pas plus d\'instructions',
       details:
-        'Plus d\'instructions ≠ meilleure sortie. Un guidage ciblé et de haute qualité réduit ' +
-        'les sorties verbeuses et dispersées. Au lieu de longues introductions, donnez au modèle ' +
-        'exactement le contexte nécessaire : le code pertinent, l\'exigence spécifique et des ' +
-        'contraintes claires. Des prompts plus ciblés réduisent aussi les sessions agentiques ' +
-        'incontrôlées où l\'agent continue d\'itérer sans converger.',
-      useCases: ['Chat', 'Agent Mode', 'Fichiers de prompt'],
+        'Plus d\'instructions ne garantit pas un meilleur résultat. Définissez la tâche et le ' +
+        'résultat attendu, fournissez les fichiers, logs ou contraintes connues pertinents, ' +
+        'indiquez comment le résultat sera validé, et donnez une condition d\'arrêt claire. Cette ' +
+        'structure réduit l\'exploration, la dérive de périmètre, les tentatives et les sorties inutiles.',
+      useCases: ['Chat', 'Agent Mode', 'Copilot CLI'],
     },
     'fresh-threads': {
-      name: 'Nouveaux fils de discussion',
-      description: 'Démarrer de nouvelles conversations dès qu\'une décision est livrée — éviter la dégradation du contexte',
+      name: 'Des fils de discussion neufs',
+      path: 'Hygiène de session',
+      description: 'Démarrer de nouvelles conversations une fois les décisions livrées — éviter le context rot',
       details:
-        'Évitez les sessions longues où les sorties d\'outils s\'accumulent dans le contexte. ' +
-        'Chaque sortie accumulée ajoute des tokens d\'entrée à chaque appel suivant, et ' +
-        'une fois la fenêtre remplie à plus de ~50% le modèle privilégie les tokens les plus ' +
-        'récents (biais de récence) et « perd » ceux du milieu. Dès qu\'une décision est ' +
-        'intégrée dans un artefact durable (issue, PR, ADR, commit), démarrez un nouveau ' +
-        'fil avec un contexte propre. Dans Copilot CLI, `/new` (ou `/clear`) démarre une ' +
-        'conversation fraîche ; dans Chat, ouvrez une nouvelle session de chat.',
+        'Évitez les sessions longue durée où les sorties d\'outils s\'accumulent dans le ' +
+        'contexte. Chaque sortie d\'outil accumulée peut ajouter des tokens d\'entrée aux appels ' +
+        'suivants et diluer le contexte pertinent. Une fois que vous avez livré la décision dans ' +
+        'un artefact durable (issue, description de PR, ADR, commit de code), démarrez un fil ' +
+        'neuf avec une fenêtre de contexte propre. Dans Copilot CLI, `/new` (ou `/clear`) démarre ' +
+        'une conversation neuve ; dans Chat, ouvrez une nouvelle session de chat.',
       useCases: ['Chat', 'Agent Mode', 'Sessions CLI'],
     },
     'concise-instructions': {
-      name: 'Minifier les instructions',
-      description: 'Garder .github/copilot-instructions.md court, stable et basé sur des principes',
+      name: 'Garder des instructions ciblées',
+      path: 'Instructions',
+      description: 'Prioriser les directives stables du projet plutôt que le détail spécifique à la tâche',
       details:
-        'Les instructions se chargent dans chaque conversation automatiquement — c\'est du ' +
-        'contexte permanent. Gardez copilot-instructions.md court et stable : principes, ' +
-        'conventions, règles « ne pas faire ». Chaque ligne supplémentaire ajoute des tokens ' +
-        'd\'entrée à chaque interaction. Déplacez les guidages détaillés (playbooks, exemples, ' +
-        'règles de domaine) vers les Skills ou les fichiers de prompt où ils ne se chargent ' +
-        'que lorsque nécessaire.',
-      useCases: ['Instructions', 'Optimisation des coûts', 'Toutes les interactions'],
+        'Utilisez les instructions de dépôt pour la carte du projet, les commandes de ' +
+        'build/test/lint validées, les conventions stables et les contraintes non négociables. ' +
+        'Retirez le détail obsolète ou spécifique à une tâche. Placez les playbooks de domaine ' +
+        'réutilisables, exemples, scripts et ressources dans des skills pour que Copilot puisse ' +
+        'les charger quand pertinent.',
+      useCases: ['Instructions', 'Optimisation des coûts', 'Toutes interactions'],
     },
     'structure-for-reuse': {
       name: 'Structurer pour la réutilisation',
-      description: 'Utiliser les Skills pour les guidages lourds, les fichiers de prompt pour les workflows répétitifs',
+      path: 'Contexte réutilisable',
+      description: 'Utiliser les skills pour l\'expertise réutilisable et les agents pour les rôles distincts',
       details:
-        'Placez les guidages lourds (playbooks, exemples, règles de domaine, runbooks) dans ' +
-        'les Agent Skills pour qu\'ils ne se chargent que lorsque le prompt de l\'utilisateur ' +
-        'correspond. Placez les workflows répétitifs (ex. : « écrire des tests unitaires », ' +
-        '« créer un ADR », « générer un changelog ») dans les fichiers de prompt pour que les ' +
-        'utilisateurs ne collent pas d\'énormes instructions à chaque fois. Cela fait passer ' +
-        'le contexte de permanent (coûteux) à à la demande (efficace).',
-      useCases: ['Skills', 'Fichiers de prompt', 'Workflows d\'équipe'],
+        'Placez playbooks, exemples, règles de domaine, scripts et runbooks dans des Agent ' +
+        'Skills pour que Copilot puisse les sélectionner pour les tâches pertinentes. Utilisez ' +
+        'des agents personnalisés quand un workflow a besoin d\'un rôle distinct, d\'une limite ' +
+        'd\'outils ou d\'un contexte isolé. Gardez les instructions de dépôt larges concentrées ' +
+        'sur des directives qui s\'appliquent à travers les tâches.',
+      useCases: ['Skills', 'Custom Agents', 'Workflows d\'équipe'],
     },
     'concise-answers': {
       name: 'Demander moins',
+      path: 'Contrôle de la sortie',
       description: 'Demander la plus petite réponse utile pour minimiser les tokens de sortie',
       details:
-        'Les tokens de sortie sont la dimension la plus coûteuse. Demandez la réponse minimale ' +
-        'utile : « Donne-moi le diff minimal + 3 points de justification » au lieu de ' +
-        '« explique tout ». « Lister uniquement les changements cassants ; omettre le contexte » ' +
-        'lors des mises à jour/migrations. Des sorties plus petites signifient aussi des réponses ' +
-        'plus rapides et moins de bruit à lire.',
+        'Demandez la réponse minimale utile : « Donne-moi le diff minimal + 3 puces de ' +
+        'justification » plutôt que « explique tout ». « Liste uniquement les changements ' +
+        'cassants ; omets le contexte » pour les montées de version ou migrations. Des sorties ' +
+        'plus petites réduisent les tokens générés et le bruit en revue.',
       useCases: ['Chat', 'Revue de code', 'Migrations'],
     },
     'scope-context': {
       name: 'Cadrer le contexte intentionnellement',
-      description: 'Utilisez #file ou #selection pour les questions ciblées, #codebase uniquement pour les changements transversaux',
+      path: 'Stratégie de contexte',
+      description: 'N\'attacher que les fichiers, sélections et logs dont la tâche a besoin',
       details:
-        'Les références de chat (#file, #selection, #codebase) contrôlent exactement ce ' +
-        'que le modèle voit — et ce que vous payez. Utilisez #file pour des questions ' +
-        'ciblées sur un fichier spécifique, #selection pour une portée encore plus étroite ' +
-        '(uniquement les lignes surlignées). Réservez #codebase pour les changements ' +
-        'transversaux où le modèle a vraiment besoin de raisonner sur tout le projet. ' +
-        'Même principe pour la sortie d\'outils : joignez uniquement la sortie du test ' +
-        'échoué, pas les logs complets. Un contexte ciblé est moins cher, plus rapide, ' +
-        'et produit généralement de meilleures réponses car le modèle n\'est pas distrait ' +
-        'par du code non pertinent.',
+        'Ouvrez ou attachez les fichiers pertinents et fermez les onglets non pertinents. ' +
+        'Incluez le code sélectionné, l\'erreur, ou la sortie du test en échec plutôt que les ' +
+        'logs complets. Les contrôles de contexte et mots-clés varient selon l\'IDE, mais le ' +
+        'principe est stable : un contexte ciblé réduit la distraction et la consommation de crédits IA.',
       useCases: ['Chat', 'Agent Mode', 'CLI'],
     },
     'conditional-context': {
       name: 'Conditionnel plutôt que permanent',
-      description: 'Préférer le contexte qui se charge uniquement lorsqu\'il est pertinent pour la tâche en cours',
+      path: 'Chargement conditionnel',
+      description: 'Préférer un contexte qui se charge seulement quand pertinent pour la tâche en cours',
       details:
-        'Le contexte permanent (copilot-instructions.md) se charge dans chaque conversation et ' +
-        'coûte des tokens à chaque fois. Le contexte conditionnel (Skills, instructions avec ' +
-        'portée de chemin) ne se charge que lorsqu\'il est pertinent. Déplacez les guidages ' +
-        'spécialisés vers les Skills où le modèle décide quand les charger, ou utilisez les ' +
+        'Le contexte toujours actif (copilot-instructions.md) se charge dans chaque ' +
+        'conversation et coûte des tokens à chaque fois. Le contexte conditionnel (Skills, ' +
+        'instructions cadrées par chemin) ne se charge que si pertinent. Déplacez les directives ' +
+        'spécialisées vers des Skills où le modèle décide quand les charger, ou utilisez des ' +
         'globs applyTo pour que les instructions ne s\'appliquent qu\'aux fichiers correspondants.',
-      useCases: ['Instructions', 'Skills', 'Portée par chemin'],
+      useCases: ['Instructions', 'Skills', 'Cadrage par chemin'],
     },
     'apply-to-paths': {
-      name: 'Utiliser les chemins applyTo',
-      description: 'Limiter les instructions personnalisées à des patterns de fichiers spécifiques avec les globs applyTo',
+      name: 'Utiliser des chemins applyTo',
+      path: 'Cadrage par chemin',
+      description: 'Cadrer les instructions personnalisées à des motifs de fichiers spécifiques avec des globs applyTo',
       details:
-        'Les instructions spécifiques à un chemin (dans .github/instructions/) supportent le ' +
-        'frontmatter glob applyTo. Cela signifie que l\'instruction ne se charge que lorsque le ' +
-        'modèle travaille sur des fichiers correspondants — ex. : applyTo: "**/*.test.ts" pour ' +
-        'les conventions de test. C\'est du contexte gratuit quand non pertinent et du contexte ' +
-        'précis quand nécessaire.',
+        'Les instructions spécifiques à un chemin (dans .github/instructions/) prennent en ' +
+        'charge le frontmatter glob applyTo. Cela signifie que l\'instruction ne se charge que ' +
+        'lorsque le modèle travaille sur des fichiers correspondants — ex. applyTo: "**/*.test.ts" ' +
+        'pour les conventions de test. C\'est du contexte gratuit quand ce n\'est pas pertinent et ' +
+        'du contexte précis quand nécessaire.',
       useCases: ['Instructions', 'Règles de test', 'Spécifique au framework'],
     },
     'skills-mcp': {
-      name: 'Exploiter Skills & MCP',
-      description: 'Les Skills se chargent à la demande — mais les schémas MCP coûtent à chaque boucle',
+      name: 'Activer uniquement les toolsets nécessaires',
+      path: 'Cadrage des toolsets',
+      description: 'Limiter les outils MCP aux capacités requises pour la tâche',
       details:
-        'Les Skills sont découverts par le modèle d\'après leurs descriptions et chargent le ' +
-        'guidage complet dans le contexte uniquement quand c\'est pertinent. Les schémas ' +
-        'd\'outils des serveurs MCP, en revanche, sont chargés comme tokens statiques à ' +
-        'chaque boucle — utiles, mais cela s\'accumule. Pour certains workflows, une simple ' +
-        'commande CLI peut coûter moins cher que l\'outil MCP équivalent. Écrivez des ' +
-        'descriptions de skills claires et préférez Skills/CLI aux MCP lourds quand le ' +
-        'compromis est favorable.',
-      useCases: ['Skills', 'Serveurs MCP', 'Agents personnalisés'],
+        'De grandes collections d\'outils MCP ajoutent du contexte et compliquent la sélection ' +
+        'd\'outils. Configurez uniquement les toolsets MCP GitHub et les serveurs externes ' +
+        'nécessaires au workflow en cours. Gardez un catalogue plus large disponible pour la ' +
+        'découverte, mais cadrez les outils activés avant de démarrer une tâche.',
+      useCases: ['Serveurs MCP', 'Serveur MCP GitHub', 'Gestion du contexte'],
     },
     'context-command': {
-      name: '/context dans le CLI',
-      description: 'Surveiller le contexte avec /context ; compacter les longues sessions avec /compact au lieu de repartir de zéro',
+      name: '/context dans la CLI',
+      path: 'Contexte CLI',
+      description: 'Surveiller le contexte avec /context ; compacter les sessions longues avec /compact plutôt que repartir de zéro',
       details:
-        'Dans Copilot CLI, utilisez `/context` pour voir quelle part de votre fenêtre de ' +
-        'contexte est consommée. Quand une session devient volumineuse mais que vous voulez ' +
-        'continuer, lancez `/compact` pour résumer l\'historique et réduire la fenêtre — ' +
-        'avec un focus optionnel, par exemple `/compact focus on the auth module`. Quand ' +
-        'vous passez à un problème sans rapport, repartez proprement avec `/new` ou ' +
-        '`/clear`. Surveiller la consommation de contexte vous aide à décider quand ' +
-        'compacter, démarrer une session fraîche ou continuer.',
+        'Dans Copilot CLI, utilisez `/context` pour voir quelle part de votre fenêtre de contexte ' +
+        'est consommée. Quand une session grossit mais que vous voulez continuer, lancez ' +
+        '`/compact` pour résumer l\'historique et réduire la fenêtre — en la ciblant ' +
+        'éventuellement, ex. `/compact focus on the auth module`. Quand vous passez à un ' +
+        'problème sans rapport, repartez propre avec `/new` ou `/clear`. Être conscient de la ' +
+        'consommation de contexte vous aide à décider quand compacter, repartir de zéro, ou continuer.',
       useCases: ['CLI', 'Sessions longues', 'Gestion du contexte'],
     },
     'reuse-context': {
       name: 'Stocker et réutiliser le contexte',
+      path: 'Réutilisation du contexte',
       description: 'Charger le contexte partagé tôt pour que les questions suivantes puissent le référencer à moindre coût',
       details:
         'Stockez et réutilisez le contexte dans vos prompts. Par exemple, chargez un schéma de ' +
-        'base de données tôt dans la conversation pour que le travail suivant puisse le réutiliser ' +
-        '— posez des questions ciblées référençant ce contexte au lieu de le recoller à chaque ' +
-        'fois. C\'est particulièrement efficace dans le CLI où les sessions peuvent être longues ' +
-        'et le préfixe partagé active le cache de prompts.',
-      useCases: ['Sessions CLI', 'Chat', 'Travail orienté schéma'],
+        'base de données tôt dans la conversation pour que le travail suivant puisse le ' +
+        'réutiliser — posez des questions ciblées qui y font référence au lieu de le recoller à ' +
+        'chaque fois. C\'est particulièrement efficace dans le CLI où les sessions peuvent durer ' +
+        'longtemps et où le préfixe partagé permet le prompt caching.',
+      useCases: ['Sessions CLI', 'Chat', 'Travail à schéma lourd'],
     },
     'prefix-matching': {
-      name: 'Cache de préfixe de prompt',
-      description: 'Le cache LLM dépend de correspondances exactes de préfixe — structurez vos prompts en conséquence',
+      name: 'Mise en cache du préfixe de prompt',
+      path: 'Prompt caching',
+      description: 'La mise en cache LLM dépend de correspondances exactes de préfixe — structurez les prompts en conséquence',
       details:
-        'Le cache de prompt LLM (tous fournisseurs confondus) dépend généralement de ' +
-        'correspondances exactes de préfixe. Par exemple, le cache de prompt Azure OpenAI ' +
-        'nécessite des prompts ≥ 1 024 tokens et que les 1 024 premiers tokens soient identiques ' +
-        'pour réutiliser le cache. Cela signifie que des prompts système et instructions stables ' +
-        'au début de votre prompt ont plus de chances de toucher le cache. Varier les préambules ' +
-        'annule le cache.',
-      useCases: ['Toutes les interactions', 'Optimisation des coûts', 'Performance'],
+        'Le prompt caching dépend généralement de préfixes répétés. Des instructions stables, des ' +
+        'définitions d\'outils et un contexte de conversation pertinent sont plus susceptibles ' +
+        'd\'être réutilisés que des préambules qui changent constamment. Traitez cela comme du ' +
+        'contexte d\'implémentation, pas comme un seuil de tokens Copilot fixe.',
+      useCases: ['Toutes interactions', 'Optimisation des coûts', 'Performance'],
     },
     'choose-right-model': {
-      name: 'Choisir le bon modèle',
-      description: 'Adapter la capacité à la tâche : raisonnement, milieu de gamme ou modèles plus légers',
+      name: 'Choisir le modèle et le niveau de raisonnement',
+      path: 'Sélection de modèle',
+      description: 'Adapter la capacité du modèle et l\'effort de raisonnement à la complexité de la tâche',
       details:
-        'Le choix du modèle est l\'un des moyens les plus rapides de contrôler les coûts — ' +
-        'utilisez autant de capacité que la tâche l\'exige, et aussi peu que nécessaire. ' +
-        'Pensez en trois niveaux : modèles de raisonnement pour les décisions d\'architecture, ' +
-        'le débogage complexe et le design système ; modèles de milieu de gamme quand le ' +
-        'plan est clair et que l\'agent doit surtout exécuter ; modèles plus légers pour ' +
-        'le refactoring, le formatage, la documentation et les autres changements routiniers ' +
-        'bien cadrés. Utiliser par défaut le modèle le plus capable augmente la consommation ' +
-        'de tokens sans améliorer les résultats — et abuser des modèles de raisonnement peut ' +
-        'même réduire la qualité en sur-analysant la tâche.',
-      useCases: ['Toutes les interactions', 'Planification budgétaire', 'Routage des tâches'],
-    },
-    'high-effort-tasks': {
-      name: 'Premium pour le travail complexe',
-      description: 'Utiliser des modèles à effort élevé pour l\'architecture profonde, le débogage complexe, le travail agentique',
-      details:
-        'Réservez les modèles premium/à effort élevé (Claude Opus, GPT-4.1, o3) aux tâches qui ' +
-        'nécessitent vraiment un raisonnement profond : décisions architecturales complexes, ' +
-        'débogage multi-fichiers délicat, grands workflows agentiques et revue de code sensible ' +
-        'à la sécurité. Ces modèles sont plus chers par token mais font gagner du temps en ' +
-        'trouvant la bonne réponse du premier coup.',
-      useCases: ['Architecture', 'Débogage', 'Revue de sécurité', 'Agent Mode'],
-    },
-    'low-effort-tasks': {
-      name: 'Mini pour les tâches simples',
-      description: 'Utiliser par défaut des modèles efficaces pour la synthèse, les Q&A rapides, les petits refactorings',
-      details:
-        'Utilisez des modèles mini/efficaces (GPT-4.1 mini, Claude Haiku, Gemini Flash) par ' +
-        'défaut pour la synthèse, les Q&A rapides, les petits refactorings et la génération de ' +
-        'code standard. Ces modèles sont significativement moins chers par token et assez rapides ' +
-        'pour les tâches simples. Les économies s\'accumulent rapidement quand la plupart de vos ' +
-        'interactions sont simples.',
-      useCases: ['Synthèse', 'Q&A', 'Refactoring', 'Code standard'],
+        'Le choix du modèle est l\'un des moyens les plus rapides de contrôler le coût — utilisez ' +
+        'autant de capacité que la tâche l\'exige, et aussi peu que nécessaire. Pensez en trois ' +
+        'niveaux : modèles de raisonnement pour les décisions d\'architecture, le débogage ' +
+        'complexe et la conception système ; modèles intermédiaires quand le plan est clair et ' +
+        'que l\'agent n\'a qu\'à exécuter ; modèles plus légers pour le refactoring, le ' +
+        'formatage, la documentation et autres changements courants et bien cadrés. Pour les ' +
+        'modèles qui prennent en charge un raisonnement configurable, utilisez l\'effort standard ' +
+        'par défaut et augmentez-le seulement pour un travail plus difficile car un effort plus ' +
+        'élevé consomme plus de crédits IA.',
+      useCases: ['Toutes interactions', 'Planification budgétaire', 'Routage des tâches'],
     },
     'auto-mode': {
-      name: 'Utiliser le mode Auto',
-      description: 'Auto route chaque prompt vers un modèle efficace, protège votre cache et obtient 10% de remise',
+      name: 'Utiliser le mode automatique',
+      path: 'Sélection auto',
+      description: 'Auto route chaque prompt vers un modèle efficace, protège votre cache, et donne 10 % de remise',
       details:
-        'Quand vous ne savez pas quel modèle utiliser, sélectionnez « Auto ». Un petit ' +
-        'routeur analyse votre prompt et l\'envoie au modèle qui peut le traiter le plus ' +
-        'efficacement — en réservant les modèles de raisonnement coûteux aux problèmes ' +
-        'vraiment complexes. Auto protège aussi votre cache : il ne change de modèle qu\'aux ' +
-        'frontières naturelles (nouvelle session ou après `/compact`), jamais en plein ' +
-        'milieu d\'une tâche. Sur les forfaits Copilot payants, la sélection automatique ' +
-        'du modèle donne droit à 10% de remise sur les coûts de modèle dans Chat, le CLI ' +
-        'et l\'agent cloud. Un bon défaut pour la plupart des workflows.',
+        'En cas d\'incertitude sur le modèle à utiliser, sélectionnez « Auto ». Un petit routeur ' +
+        'analyse votre prompt et l\'envoie au modèle capable de le traiter le plus efficacement — ' +
+        'réservant les modèles de raisonnement coûteux aux problèmes réellement complexes. Auto ' +
+        'protège aussi votre cache : il ne change de modèle qu\'aux frontières naturelles (une ' +
+        'nouvelle session ou après `/compact`), jamais en plein milieu d\'une tâche. Sur les ' +
+        'plans Copilot payants, l\'utilisation de la sélection automatique de modèle donne 10 % ' +
+        'de remise sur les coûts de modèle dans Chat, le CLI, l\'application Copilot et l\'agent ' +
+        'cloud. Un bon choix par défaut pour la plupart des workflows.',
       useCases: ['Workflow par défaut', 'Tâches mixtes', 'Nouveaux utilisateurs'],
     },
     'monitor-usage': {
-      name: 'Définir des budgets utilisateur',
-      description: 'Définir des budgets par utilisateur avec des défauts adaptés par persona',
+      name: 'Mesurer l\'usage, puis définir des budgets',
+      path: 'Contrôles budgétaires',
+      description: 'Utiliser rapports, alertes, centres de coûts et limites utilisateur à partir de l\'usage observé',
       details:
-        'Définissez des budgets par utilisateur avec des défauts adaptés par persona : ingénieur ' +
-        'IC vs utilisateur avancé vs agent CI. Commencez avec des limites prudentes et ajustez en ' +
-        'fonction de la consommation observée. Surveillez les schémas de forte consommation — une ' +
-        'seule session agentique peut consommer plus de tokens qu\'une semaine d\'interactions chat. ' +
-        'Utilisez le tableau de bord administrateur pour identifier les valeurs aberrantes et ajuster.',
+        'Utilisez les rapports d\'usage IA, y compris les répartitions par modèle des entrées, ' +
+        'sorties, lectures et écritures en cache, pour établir une référence. Quand l\'historique ' +
+        'est limité, commencez par des budgets d\'alerte seule et une limite utilisateur ' +
+        'universelle permissive. Ajoutez des budgets par centre de coûts là où la propriété est ' +
+        'déléguée, surveillez les alertes de seuil, et ajustez les limites à partir des ' +
+        'tendances observées.',
       useCases: ['Admin', 'Contrôle budgétaire', 'Gouvernance d\'équipe'],
     },
     'managed-settings-tip': {
-      name: 'Spécialiser les Managed Settings par équipe',
-      description: 'Conserver les garde-fous d\'entreprise tout en personnalisant les paramètres approuvés',
+      name: 'Spécialiser les paramètres gérés par équipe',
+      path: 'managed-settings.json\nteam-mappings.json\nteams/<name>.json',
+      description: 'Garder les garde-fous entreprise fixes tandis que les équipes personnalisent les paramètres approuvés',
       details:
-        'Commencez avec les valeurs d\'entreprise dans `copilot/managed-settings.json`. ' +
-        'Marquez uniquement les clés modifiables par les équipes avec `overridable`, associez ' +
-        'les fichiers aux slugs d\'équipes dans `copilot/team-mappings.json`, puis placez les ' +
-        'valeurs approuvées sous `copilot/teams/`. Les valeurs absentes héritent du défaut ' +
-        'd\'entreprise. Les clés non remplaçables restent verrouillées, tandis que ' +
-        '`enabledPlugins` et `extraKnownMarketplaces` sont additifs. Pour un utilisateur ' +
-        'membre de plusieurs équipes, les valeurs d\'équipe se combinent selon la valeur la ' +
-        'moins restrictive, sous la politique d\'entreprise.',
+        'Commencez avec les valeurs par défaut entreprise dans `copilot/managed-settings.json`. ' +
+        'Marquez uniquement les clés que les équipes peuvent modifier avec `overridable`, ' +
+        'associez les fichiers de paramètres aux slugs d\'équipe entreprise dans ' +
+        '`copilot/team-mappings.json`, puis placez les valeurs approuvées sous `copilot/teams/`. ' +
+        'Les valeurs non définies reviennent au défaut entreprise. Les clés non surchargeables ' +
+        'restent verrouillées, tandis que `enabledPlugins` et `extraKnownMarketplaces` se ' +
+        'combinent de façon additive. Les paramètres d\'autorisation et de refus MCP peuvent ' +
+        'gouverner centralement les serveurs sur les clients pris en charge. Si un utilisateur ' +
+        'appartient à plusieurs équipes mappées, les valeurs d\'équipe se combinent en utilisant ' +
+        'la valeur la moins restrictive sous la politique entreprise.',
       useCases: ['Équipes plateforme', 'Pionniers IA', 'Outillage par rôle'],
-      docLabel: 'Configurer les paramètres propres à l\'équipe',
-      altDocLabel: 'Référence des Managed Settings',
+      docLabel: 'Configurer des paramètres spécifiques à une équipe',
+      altDocLabel: 'Référence des paramètres gérés',
     },
     'compound-errors': {
-      name: 'Erreurs qui s\'accumulent',
-      description: 'Même à 99% par étape, un workflow de 50 étapes ne réussit qu\'à ~60%',
+      name: 'Le problème des erreurs cumulées',
+      path: 'Mathématiques de la qualité',
+      description: 'Des taux d\'erreur hypothétiques par étape se composent sur des workflows longs',
       details:
-        'La fiabilité par étape se multiplie tout au long d\'une boucle agentique. À 99% par ' +
-        'étape, un workflow de 50 étapes finit à 0,99⁵⁰ ≈ 60%. Tombez à 95% et ce même workflow ' +
-        'n\'a que ~8% de chances de réussir de bout en bout. C\'est pourquoi le « pari agentique » ' +
-        '— espérer qu\'une sortie de faible qualité s\'arrange — ne passe pas à l\'échelle. ' +
-        'Chaque amélioration par étape (meilleurs prompts, portée réduite, vérifications ' +
-        'déterministes) se multiplie sur tout le workflow.',
+        'À titre d\'illustration, si chacune de 50 étapes indépendantes était fiable à 99 %, le ' +
+        'taux hypothétique de bout en bout serait d\'environ 60 % ; à 95 %, il serait d\'environ ' +
+        '8 %. Ce sont des exemples mathématiques, pas des taux de fiabilité Copilot mesurés. Des ' +
+        'périmètres plus petits et des vérifications déterministes réduisent le nombre d\'étapes ' +
+        'non vérifiées.',
       useCases: ['Agent Mode', 'Cloud Agent', 'Workflows orchestrés'],
-    },
-    'prompt-anatomy': {
-      name: 'Anatomie du prompt',
-      description: 'Soyez précis · ajoutez des signaux d\'arrêt · ajoutez le contexte connu',
-      details:
-        'Les agents itèrent par conception : planifier → éditer → exécuter des outils → ' +
-        'corriger → répéter. Sans limites, ils continueront jusqu\'à réussir (ou épuiser le ' +
-        'contexte). Trois ingrédients fiables d\'un prompt efficace les gardent sur la route : ' +
-        '(1) Être précis — décrivez le changement en termes simples et sans ambiguïté, avec ' +
-        'le résultat attendu. (2) Ajouter des signaux d\'arrêt — « s\'arrêter au premier test ' +
-        'réussi », « proposer au plus 2 alternatives », « ne pas refactoriser le code non lié ». ' +
-        '(3) Ajouter le contexte connu en amont — nommez les fichiers, dossiers ou docs ' +
-        'pertinents pour que l\'agent ne perde pas de tokens à chercher. Combinés à des ' +
-        'garde-fous déterministes (tests, linters), cela empêche les sessions incontrôlées.',
-      useCases: ['Chat', 'Agent Mode', 'CLI'],
     },
     'context-rot': {
       name: 'Dégradation du contexte',
-      description: 'Les longues sessions se dégradent — les sorties d\'outils accumulées polluent chaque appel suivant',
+      path: 'Décomposition du contexte',
+      description: 'De longs historiques augmentent le coût et peuvent diluer les décisions pertinentes',
       details:
         'Chaque sortie d\'outil, pièce jointe et tour de conversation s\'accumule dans le ' +
-        'contexte. Au-delà de ~50% de remplissage, deux choses arrivent : les coûts d\'entrée ' +
-        'explosent (chaque appel suivant ré-envoie tout l\'historique) et le modèle s\'appuie ' +
-        'fortement sur les tokens les plus récents (biais de récence), perdant les décisions ' +
-        'prises plus tôt. Mitigations : couper les sorties d\'outils verbeuses, transférer les ' +
-        'décisions intermédiaires dans des artefacts durables (issues, PRs, ADRs), et démarrer ' +
-        'de nouveaux fils avant que la dégradation ne s\'installe.',
-      useCases: ['Longues sessions', 'Agent Mode', 'Sessions CLI'],
+        'contexte. De longs historiques augmentent le traitement d\'entrée et peuvent rendre les ' +
+        'décisions plus anciennes plus difficiles à retrouver. Mitigations : réduire les sorties ' +
+        'd\'outils verbeuses, livrer les décisions intermédiaires dans des artefacts durables ' +
+        '(issues, PR, ADR), et démarrer des fils neufs avant que la dégradation ne s\'installe.',
+      useCases: ['Sessions longues', 'Agent Mode', 'Sessions CLI'],
     },
     'lost-in-middle': {
       name: 'Perdu au milieu',
-      description: 'Les tokens au milieu d\'un long contexte sont moins bien restitués',
+      path: 'Biais de position',
+      description: 'Les tokens placés au milieu d\'un long contexte sont rappelés de façon moins fiable',
       details:
-        'Un mode d\'échec documenté : quand le contexte est long, les modèles restituent ' +
-        'fidèlement les tokens du début et de la fin, mais se dégradent sur ceux du milieu. ' +
-        'Même avec une fenêtre de 200k, enfouir une instruction critique à la ligne 4 000 sur ' +
-        '8 000 la rend effectivement invisible. Mitigations : prompts courts, instructions ' +
-        'critiques au tout début ou à la toute fin, et découper les longs inputs en morceaux ' +
-        'focalisés plutôt qu\'un seul méga-document.',
-      useCases: ['Gros prompts', 'Longs documents', 'Revues multi-fichiers'],
+        'Des recherches externes sur les LLM ont trouvé une récupération plus faible pour les ' +
+        'informations placées au milieu de longs contextes. Les résultats varient selon le ' +
+        'modèle et ne constituent pas une garantie de fiabilité Copilot. Gardez les instructions ' +
+        'critiques bien en vue et divisez le matériel non lié en entrées ciblées.',
+      useCases: ['Prompts volumineux', 'Documents longs', 'Revues multi-fichiers'],
     },
     'think-in-code': {
       name: 'Penser en code',
-      description: 'Préférer des scripts plutôt que de donner les fichiers bruts',
+      path: 'Scripts plutôt que l\'IA',
+      description: 'Préférer les scripts à l\'envoi de fichiers bruts — analyser, puis donner un résumé au modèle',
       details:
-        'Pour comprendre 10 000 lignes de logs ou un gros JSON, ne collez pas tout. ' +
-        'Écrivez (ou demandez à l\'agent d\'écrire) un petit script qui extrait juste ' +
-        'l\'essentiel — comptes, erreurs, la tranche utile — et donnez la sortie du script ' +
-        'à l\'agent. Cela transforme des milliers de tokens d\'entrée en dizaines et garde ' +
-        'le modèle concentré sur la vraie question. Marche aussi bien avec grep, jq, awk ' +
-        'ou un script Python de 20 lignes.',
-      useCases: ['Analyse de logs', 'Exploration de données', 'Gros fichiers'],
+        'Quand vous devez comprendre 10 000 lignes de logs ou un gros dump JSON, ne collez pas ' +
+        'tout. Écrivez (ou faites écrire par l\'agent) un petit script qui extrait uniquement ce ' +
+        'qui compte — comptages, erreurs, la tranche pertinente — et donnez à l\'agent la sortie ' +
+        'du script à la place. Cela garde le modèle concentré sur la vraie question. Utilisez ' +
+        'grep, jq, awk, ou un petit script, et regroupez les opérations déterministes ' +
+        'indépendantes quand elles peuvent s\'exécuter ensemble en sécurité.',
+      useCases: ['Analyse de logs', 'Exploration de données', 'Fichiers volumineux'],
     },
     'research-plan-implement': {
-      name: 'Recherche → Plan → Implémentation',
-      description: 'Trois étapes ciblées avec le bon modèle pour chacune',
+      name: 'Recherche → Plan → Mise en œuvre',
+      path: 'Diviser pour régner',
+      description: 'Séparer découverte, accord et exécution ; paralléliser le travail indépendant',
       details:
-        'Découpez un changement non trivial en trois passages au lieu d\'un méga-prompt. ' +
-        '(1) Recherche : un modèle rapide et large (Gemini 2.5 Pro) explore le code et ' +
-        'identifie les fichiers pertinents. (2) Plan : un modèle de raisonnement profond ' +
-        '(Opus) transforme cette recherche en spécification précise. (3) Implémentation : ' +
-        'un modèle efficace (GPT-5.4 / Sonnet) applique la spec au code. Chaque étape ' +
-        'reçoit juste le contexte nécessaire, et les erreurs par étape ne s\'accumulent ' +
-        'pas en une boucle incontrôlée. Dans Copilot CLI, cela correspond à `/research` → ' +
-        '`/plan` → implémenter ; planifiez toujours avec un modèle de raisonnement fort, ' +
-        'puis implémentez avec un modèle moins cher, en démarrant une nouvelle session entre ' +
-        'les phases pour ne pas transporter de contexte inutile.',
-      useCases: ['Refactors complexes', 'Changements transverses', 'Éditions multi-fichiers'],
+        'Utilisez `/research` pour une recherche approfondie documentée, le mode plan pour ' +
+        'convenir du périmètre et de la séquence avant les modifications, et l\'implémentation ' +
+        'seulement une fois le plan clair. Utilisez `/fleet` quand une demande peut se décomposer ' +
+        'en tâches indépendantes exécutées en parallèle. Gardez chaque étape ciblée et transmettez ' +
+        'des constats durables plutôt qu\'un historique exploratoire complet.',
+      useCases: ['Refactorings complexes', 'Changements transversaux', 'Éditions multi-fichiers'],
     },
     'deterministic-guardrails': {
-      name: 'Garde-fous déterministes',
-      description: 'Tests unitaires, linters et scans empêchent les mauvais changements de s\'accumuler',
+      name: 'Valider la sortie de Copilot',
+      path: 'Boucles pilotées par les tests',
+      description: 'La revue humaine et les vérifications déterministes restent nécessaires',
       details:
-        'Les LLM sont probabilistes — mais les tests, linters et type-checkers ne le sont ' +
-        'pas. Avec des tests en place, un changement bogué produit des tests en échec que ' +
-        'l\'agent voit et corrige à la boucle suivante. Sans tests, l\'agent empile les ' +
-        'bugs sur plusieurs changements avant que quelqu\'un ne s\'en aperçoive — minutes ' +
-        'CI gâchées, revues gâchées, debug humain. Tests + linters + scans de secrets sont ' +
-        'le moyen le moins cher de donner à l\'agent un retour fiable.',
+        'Passez en revue le code généré avant de le mettre en production. Exécutez des tests ' +
+        'ciblés, des linters, du typage, du code scanning, du secret scanning et du IP scanning ' +
+        'là où applicable. Ces vérifications fournissent un retour déterministe au sein d\'une ' +
+        'boucle d\'agent, tandis que la revue humaine vérifie l\'intention, la conception, la ' +
+        'sécurité, la lisibilité et la maintenabilité.',
       useCases: ['Agent Mode', 'TDD', 'Pipelines CI'],
     },
     'trim-shell-outputs': {
       name: 'Réduire les sorties shell (avec prudence)',
-      description: 'Supprimer le bruit connu des commandes verbeuses — mais la compression généralisée se retourne souvent contre vous',
+      path: 'Hygiène du shell',
+      description: 'Éliminer le bruit connu des commandes verbeuses — mais la compression généralisée se retourne souvent contre vous',
       details:
-        'Les CLI adorent être verbeux. Un seul `npm install` ou `terraform plan` peut ' +
+        'Les outils CLI adorent la verbosité. Un simple `npm install` ou `terraform plan` peut ' +
         'déverser des milliers de lignes dans le contexte de l\'agent — la plupart du bruit. ' +
-        'Encapsuler une commande bruyante pour que l\'agent ne voie que la fin pertinente ' +
-        '(erreurs, warnings, résumé final) peut aider. Deux Agent Skills communautaires le ' +
-        'font : **Snip** (github.com/edouard-claude/snip) préfixe les commandes shell — ' +
-        '`snip -- npm install` — pour filtrer la sortie verbeuse tout en préservant les ' +
-        'erreurs. **Caveman** (github.com/juliusbrussee/caveman) demande au modèle de ' +
-        'répondre dans un style compressé et télégraphique. ⚠️ Mais traitez la compression ' +
-        'agressive avec scepticisme : les évaluations de terrain (y compris les tests ' +
-        'internes Copilot de compression de contexte type RTK / "Headroom") sont revenues ' +
-        'neutres au mieux et ont souvent augmenté l\'usage total de tokens. La compression ' +
-        'retire des informations dont l\'agent a ensuite besoin, ce qui déclenche une relecture ' +
-        '— au final plus de tokens et de latence, pas moins. Préférez un élagage étroit et ' +
-        'déterministe (supprimer seulement les lignes de bruit connu, toujours garder les ' +
-        'erreurs et le résumé) aux approches générales de type « tout réduire », et mesurez ' +
-        'l\'usage réel des tokens avant d\'adopter un outil — si cela semble trop beau pour ' +
-        'être vrai, c\'est généralement le cas.',
-      useCases: ['Agent CLI', 'Sortie de build', 'Tests'],
-    },
-    'collapse-tool-calls': {
-      name: 'Regrouper les appels d\'outils',
-      description: 'Plusieurs invocations en une seule — moins d\'aller-retours, moins de tokens',
-      details:
-        'Chaque appel d\'outil ajoute un aller-retour complet : tokens d\'entrée pour la ' +
-        'requête, tokens de sortie pour le résultat, plus le prompt système rejoué à ' +
-        'chaque fois. Des plugins comme jsturtevant/copilot-codeact-plugin permettent à ' +
-        'l\'agent d\'exprimer plusieurs invocations en un bloc « code-act » exécuté ' +
-        'd\'un coup. Cinq petits appels deviennent un appel groupé — même résultat, ' +
-        'bien moins de tokens et plus rapide.',
-      useCases: ['Agent Mode', 'CLI', 'Tâches multi-étapes'],
+        'Envelopper une commande bruyante pour que l\'agent ne voie que la fin pertinente ' +
+        '(erreurs, avertissements, le résumé final) peut aider. Deux projets communautaires ' +
+        'illustrent différentes formes de compression : **Snip** (github.com/edouard-claude/snip) ' +
+        'préfixe les commandes shell — `snip -- npm install` — pour filtrer la sortie verbeuse ' +
+        'tout en préservant les erreurs. **Caveman** (github.com/juliusbrussee/caveman) demande ' +
+        'au modèle de répondre dans un style compressé et télégraphique. Traitez la compression ' +
+        'agressive avec scepticisme car une information perdue peut déclencher une relecture et ' +
+        'une correction. Préférez une réduction étroite et déterministe (n\'éliminer que les ' +
+        'lignes connues comme du bruit, toujours garder les erreurs et le résumé) aux approches ' +
+        '« tout réduire », et mesurez l\'usage réel de tokens avant d\'adopter un outil.',
+      useCases: ['Agent CLI', 'Sortie de build', 'Exécution de tests'],
     },
     'apply-architecture': {
       name: 'Appliquer une bonne architecture',
-      description: 'DDD, hexagonale, CQRS — des frontières propres aident l\'agent à s\'y retrouver',
+      path: 'Code adapté aux agents',
+      description: 'Des limites et des noms clairs réduisent l\'exploration inutile',
       details:
-        'Un code en désordre force l\'agent à charger bien plus de contexte pour faire ' +
-        'un changement sûr. Les patterns d\'architecture propre (DDD, hexagonal/ports-' +
-        'and-adapters, CQRS, événementiel) donnent à l\'agent de solides garde-fous : il ' +
-        'trouve le bon module par son nom, le change en isolation, évite de toucher au ' +
-        'code non lié. Résultat : sessions plus courtes, diffs plus petites, moins ' +
-        'd\'erreurs cumulées — les mêmes choses qui aident les humains.',
-      useCases: ['Nouveaux projets', 'Refactoring', 'Codebases d\'équipe'],
+        'Des limites de module claires, des noms descriptifs, des conventions locales et des ' +
+        'tests ciblés aident les humains et les agents à trouver le bon code et à valider des ' +
+        'changements isolés. Choisissez l\'architecture pour le produit et l\'équipe, pas pour un ' +
+        'outil IA ; l\'efficacité de l\'agent est un effet secondaire utile.',
+      useCases: ['Nouveaux projets', 'Refactoring', 'Bases de code d\'équipe'],
     },
     'iterate-configs': {
       name: 'Traiter les erreurs de l\'agent comme des incidents',
-      description: 'Quand l\'agent se trompe, corrigez la config — pas juste la sortie',
+      path: 'Erreurs → Incidents',
+      description: 'Quand l\'agent se trompe, corrigez la configuration — pas seulement la sortie',
       details:
-        'Un agent qui dérive est un signal, pas un simple incident isolé. Traitez chaque ' +
-        'erreur significative comme un petit incident : qu\'est-ce qui manquait — une ' +
-        'instruction, un skill, le bon modèle ? Mettez à jour copilot-instructions.md, ' +
-        'le skill concerné ou votre template de prompt pour que la même erreur ne se ' +
-        'reproduise pas. Le CLI Copilot fournit deux commandes pour cela : ' +
-        '`/chronicle improve` analyse votre session courante et suggère des correctifs ' +
-        'de workflow ; `/chronicle tips` fait émerger des motifs depuis votre historique. ' +
-        'Lancez-les régulièrement — avec le temps, l\'agent devient nettement plus ' +
-        'fiable sans plus de travail par tâche.',
-      useCases: ['Workflows d\'équipe', 'Utilisateurs avancés CLI', 'Repos long terme'],
+        'Traitez une erreur significative comme un petit incident. Identifiez la cause racine : ' +
+        'directive de projet manquante, mauvais skill ou outil, validation faible, ou problème ' +
+        'd\'environnement. Encodez une correction durable dans les instructions, skills, tests ou ' +
+        'la configuration pour que le même échec soit moins susceptible de se reproduire. Les ' +
+        'commandes chronicle sont couvertes séparément dans la couche gouvernance.',
+      useCases: ['Workflows d\'équipe', 'Power users CLI', 'Dépôts de longue durée'],
     },
     'project-map': {
-      name: 'Donner une carte du projet à Copilot',
+      name: 'Donner à Copilot une carte du projet',
+      path: 'Carte du projet',
       description: 'Un AGENTS.md / copilot-instructions.md maintenu évite à l\'agent de lire des dizaines de fichiers',
       details:
-        'Sans vue d\'ensemble structurelle, l\'agent lit beaucoup de fichiers juste pour ' +
-        's\'orienter — chacun coûte des tokens d\'entrée. Une carte bien maintenue, comme ' +
-        'un `AGENTS.md` ou `.github/copilot-instructions.md`, lui donne l\'organisation dès ' +
-        'le départ : où vivent les choses, comment les modules se relient, les commandes ' +
-        'build/test/lint et les conventions clés. L\'agent dépense son budget sur le vrai ' +
-        'changement plutôt que sur l\'exploration, avec des sessions plus courtes et des ' +
-        'diffs plus petites.',
-      useCases: ['Onboarding', 'Gros repos', 'Toutes les interactions'],
+        'Sans vue d\'ensemble structurelle, l\'agent lit un grand nombre de fichiers juste pour ' +
+        's\'orienter — chacun d\'eux coûtant des tokens d\'entrée. Une carte bien maintenue, ' +
+        'comme un `AGENTS.md` ou `.github/copilot-instructions.md`, lui donne la disposition dès ' +
+        'le départ : où se trouvent les choses, comment les modules se relient, les commandes de ' +
+        'build/test/lint, et les conventions clés. L\'agent dépense son budget sur le changement ' +
+        'réel plutôt que sur l\'exploration, produisant des sessions plus courtes et des diffs ' +
+        'plus petits.',
+      useCases: ['Onboarding', 'Grands dépôts', 'Toutes interactions'],
     },
     'preserve-cache': {
       name: 'Préserver le cache',
-      description: 'Ne changez pas de modèle, niveau de raisonnement ou jeu d\'outils en cours de session — cela invalide le cache',
+      path: 'Invalidation du cache',
+      description: 'Ne pas changer de modèle, de niveau de raisonnement ou de toolset en cours de session — cela invalide le cache',
       details:
-        'Le cache réutilise le grand contexte répété (prompt système, contenu des fichiers, ' +
-        'définitions d\'outils) entre les tours, et les tokens en cache sont facturés à ~10% ' +
-        'du prix normal des entrées. Trois choses le jettent et refacturent tout le contexte ' +
-        'comme une entrée fraîche : changer de modèle en cours de session (un modèle ne peut ' +
-        'pas réutiliser le cache d\'un autre), modifier le niveau de raisonnement / la taille ' +
-        'de contexte / les outils activés en cours de session, et revenir à une ancienne ' +
-        'session après expiration du cache (24h pour les modèles OpenAI, ~1h pour la plupart ' +
-        'des autres). Choisissez votre modèle et vos réglages avant de commencer, gardez-les ' +
-        'fixes, et sur une session périmée démarrez une nouvelle session ou utilisez `/compact` ' +
-        'pour reconstruire un résumé court, pas tout l\'historique.',
+        'La mise en cache réutilise le contexte large et répété (prompt système, contenu de ' +
+        'fichiers, définitions d\'outils) à travers les tours, et les tokens en cache sont ' +
+        'facturés à ~10 % de l\'entrée normale. Trois choses jettent cela et refacturent le ' +
+        'contexte complet comme entrée neuve : changer de modèle en cours de session (un modèle ' +
+        'ne peut pas réutiliser le cache d\'un autre), changer le niveau de raisonnement / la ' +
+        'taille du contexte / les outils activés en cours de session, et revenir à une ancienne ' +
+        'session après expiration du cache (24 h pour les modèles OpenAI, ~1 h pour la plupart ' +
+        'des autres). Choisissez votre modèle et vos paramètres avant de démarrer, gardez-les ' +
+        'fixes, et sur une session périmée démarrez-en une nouvelle ou faites `/compact` pour que ' +
+        'ce qui se reconstruit soit un court résumé, pas tout l\'historique.',
       useCases: ['Sessions longues', 'CLI', 'Optimisation des coûts'],
     },
     'cheaper-subagents': {
-      name: 'Modèles moins chers pour les sous-agents',
-      description: 'Faites tourner les sous-agents sur des modèles plus légers — un contexte ciblé nécessite rarement un modèle premium',
+      name: 'Des modèles moins coûteux pour les sous-agents',
+      path: 'Modèles de sous-agents',
+      description: 'Exécuter les sous-agents sur des modèles plus légers — un contexte cadré nécessite rarement un modèle premium',
       details:
-        'Les sous-agents tournent dans leur propre session et n\'héritent pas de l\'historique ' +
-        'de conversation de l\'agent principal. Comme leur contexte est limité à une tâche ' +
-        'unique et ciblée, un modèle plus léger suffit généralement pour bien faire le travail. ' +
-        'En affecter un à un sous-agent ne touche pas non plus au cache de l\'agent principal ' +
-        'comme le ferait un changement de modèle en cours de session — vous économisez donc ' +
-        'sur le travail du sous-agent sans payer de pénalité de reconstruction du cache sur ' +
-        'le fil principal.',
+        'Les sous-agents s\'exécutent dans leur propre session et n\'héritent pas de ' +
+        'l\'historique de conversation de l\'agent principal. Comme leur contexte est cadré sur ' +
+        'une seule tâche ciblée, un modèle plus léger suffit généralement à bien faire le travail. ' +
+        'En assigner un à un sous-agent ne touche pas non plus le cache de l\'agent principal ' +
+        'comme le ferait un changement de modèle en cours de session — vous économisez donc sur ' +
+        'le travail du sous-agent sans payer de pénalité de reconstruction de cache sur le fil ' +
+        'principal.',
       useCases: ['Sous-agents', 'Workflows orchestrés', 'Optimisation des coûts'],
     },
     'chronicle-insights': {
       name: 'Exploiter les sessions avec /chronicle',
-      description: 'Utiliser /chronicle tips et /chronicle cost-tips pour transformer l\'historique de session en économies',
+      path: 'Apprendre des sessions',
+      description: 'Transformer l\'historique de session Copilot CLI en résumés et enseignements de workflow',
       details:
-        'Votre historique de session est une source gratuite d\'enseignements d\'efficacité. ' +
-        'Dans Copilot CLI, `/chronicle tips` analyse les sessions récentes et fait émerger ' +
-        'des façons d\'utiliser Copilot plus efficacement, tandis que `/chronicle cost-tips` ' +
-        'creuse vos patterns d\'usage des tokens et où partent les crédits. Quand il signale ' +
-        'un motif récurrent — un outil trop utilisé, un prompt souvent mal compris — encodez ' +
-        'cette observation directement dans `copilot-instructions.md` pour qu\'un enseignement ' +
-        'ponctuel devienne un guidage permanent pour chaque future session.',
+        'Utilisez `/chronicle standup` pour des résumés de travail, `/chronicle tips` pour des ' +
+        'conseils d\'usage personnalisés, `/chronicle cost tips` pour un retour sur la dépense de ' +
+        'tokens, `/chronicle search` pour retrouver des sessions, et `/chronicle improve` pour ' +
+        'des suggestions d\'instructions cadrées au dépôt. Les enseignements s\'appuient sur les ' +
+        'données de session Copilot CLI. Passez en revue les contrôles de stockage, de ' +
+        'synchronisation et de suppression avant d\'utiliser l\'historique de session.',
       useCases: ['CLI', 'Gouvernance d\'équipe', 'Amélioration continue'],
+    },
+    'session-limits': {
+      name: 'Définir des limites de crédits IA par session',
+      path: 'Garde-fous de session',
+      description: 'Plafonner le travail autonome du CLI et du SDK avant qu\'une session ne démarre',
+      details:
+        'Utilisez `--max-ai-credits` pour fixer une limite stricte pour les sessions Copilot ' +
+        'CLI ou SDK. Les limites de session encadrent le travail sans surveillance ou de longue ' +
+        'durée et complètent les budgets, alertes et l\'approbation humaine. Choisissez une ' +
+        'limite adaptée à la tâche et à la condition d\'arrêt.',
+      useCases: ['Copilot CLI', 'Copilot SDK', 'Travail autonome'],
+    },
+    'mcp-governance': {
+      name: 'Gouverner l\'accès MCP',
+      path: 'Gouvernance MCP',
+      description: 'Sélectionner les serveurs et protéger la configuration sur les surfaces prises en charge',
+      details:
+        'Utilisez des registres MCP approuvés et des paramètres d\'autorisation ou de refus ' +
+        'entreprise là où pris en charge. Protégez la configuration MCP du dépôt avec des ' +
+        'contrôles de revue et documentez les propriétaires, périmètres et accès aux données des ' +
+        'serveurs. L\'application diffère selon les IDE, le CLI, l\'application Copilot et ' +
+        'l\'agent cloud, traitez donc les registres comme de la gouvernance et de la découverte ' +
+        'plutôt que comme une limite de sécurité universelle.',
+      useCases: ['Gouvernance entreprise', 'Outillage approuvé', 'Accès aux données'],
     },
   },
   tipsInsights: [
     {
       icon: '📉',
       content:
-        '<strong>La qualité se cumule.</strong> Même à 99% par étape, un workflow ' +
-        'agentique de 50 étapes ne réussit qu\'à ~60%. À 95% par étape c\'est 8%. Les ' +
-        'gains par étape se multiplient — faites compter chaque token.',
+        '<strong>La qualité se compose.</strong> La fiabilité hypothétique par étape chute sur ' +
+        'une longue chaîne, utilisez donc des périmètres plus petits et des vérifications ' +
+        'déterministes. Les pourcentages montrés sont des illustrations, pas des mesures Copilot.',
     },
     {
       icon: '💰',
       content:
-        '<strong>Le contexte &gt; les prompts pour le coût.</strong> Gérer le contexte qui ' +
-        'alimente chaque appel au modèle a un impact bien plus grand que la formulation des ' +
-        'prompts. Réduisez les fichiers, démarrez de nouveaux fils, utilisez le contexte ' +
-        'conditionnel.',
+        '<strong>Gardez un contexte allégé et pertinent.</strong> Réduisez les fichiers et les ' +
+        'sorties d\'outils, démarrez des fils neufs pour un travail sans rapport, et utilisez un ' +
+        'contexte cadré pour réduire la consommation de crédits IA.',
     },
     {
       icon: '🎯',
       content:
-        '<strong>Adapter le modèle à la tâche.</strong> N\'utilisez pas un modèle premium pour ' +
-        'un simple Q&A, ni un modèle mini pour de l\'architecture complexe. Le mode Auto route ' +
-        'automatiquement en cas de doute.',
+        '<strong>Adaptez le modèle et l\'effort de raisonnement à la tâche.</strong> Utilisez ' +
+        'l\'effort standard par défaut, augmentez-le pour les problèmes difficiles, et utilisez ' +
+        'Auto quand vous voulez un routage basé sur l\'intention.',
     },
     {
       icon: '🔄',
       content:
-        '<strong>Les boucles agentiques multiplient le coût.</strong> Une seule requête ' +
-        'agentique peut déclencher des dizaines d\'appels. Ajoutez des signaux d\'arrêt ' +
-        'explicites (« arrêter au premier test réussi ») pour éviter la consommation ' +
-        'incontrôlée.',
+        '<strong>Les boucles agentiques multiplient le travail.</strong> Définissez une ' +
+        'condition d\'arrêt claire et utilisez des limites de session pour les tâches sans ' +
+        'surveillance ou étendues.',
     },
     {
       icon: '📦',
       content:
-        '<strong>Passer du permanent à la demande.</strong> Gardez les instructions minimales. ' +
-        'Le guidage lourd appartient aux Skills (chargés par le modèle quand pertinent) et aux ' +
-        'fichiers de prompt (invoqués explicitement), pas dans copilot-instructions.md.',
+        '<strong>Sortez les directives spécialisées des instructions larges.</strong> Utilisez ' +
+        'les Skills pour l\'expertise réutilisable et les agents personnalisés pour les rôles, ' +
+        'outils ou contexte isolé distincts.',
     },
   ],
 };

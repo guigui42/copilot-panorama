@@ -812,26 +812,6 @@
   color: var(--color-accent-blue);
 }
 
-/* Prompt files — slash commands */
-.viz-slash-commands {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-}
-
-.slash-cmd {
-  display: inline-flex;
-  align-items: center;
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  font-weight: 500;
-  color: var(--color-accent-green);
-  padding: 4px 10px;
-  background: color-mix(in srgb, var(--color-accent-green) 8%, var(--color-bg-tertiary));
-  border-radius: 4px;
-  border: 1px solid color-mix(in srgb, var(--color-accent-green) 15%, transparent);
-}
-
 /* Agent flow — handoff chain */
 .viz-agent-flow {
   display: flex;

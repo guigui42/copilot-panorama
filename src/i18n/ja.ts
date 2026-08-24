@@ -4,208 +4,214 @@ export const ja: Translations = {
   locale: 'ja',
   seo: {
     title: 'Copilot Panorama — .github/ スタック',
-    description: 'GitHub Copilot コンポーザブルシステムのインタラクティブなビジュアルガイド — 4つのレイヤーを探索：常時オンコンテキスト、オンデマンド機能、実行制御と自動化、ディストリビューション。',
+    description: 'GitHub Copilot のコンポーザブルシステムをインタラクティブに可視化 — 常時適用コンテキスト、オンデマンド機能、制御と自動化、配布の4層を解説。',
   },
   ui: {
     heroTitle: 'コンポーザブルスタック',
     layerPrefix: 'レイヤー',
-    insightsTitle: 'システムの実際の仕組み',
-    insightsSubtitle: 'ほとんどのチームが見落とすアーキテクチャの重要なポイント',
+    insightsTitle: 'システムが実際にどう動くか',
+    insightsSubtitle: 'ほとんどのチームが見落としがちな主要なアーキテクチャの要点',
     detailsLabel: '詳細',
     useCasesLabel: 'ユースケース',
     documentationLabel: 'ドキュメント',
-    footerBuiltFor: 'GitHub Copilot ユーザーのために構築',
+    footerBuiltFor: 'GitHub Copilot ユーザーのために作成',
     footerDocsLink: 'コンポーザブルシステムの完全なドキュメント',
-    pageStack: '.github/ スタック',
+    pageStack: '.github/ Stack',
     pageTools: 'Copilot Everywhere',
     shareLink: 'リンクを共有',
     shareCopied: 'コピーしました！',
   },
   viz: {
-    alwaysActive: '常時アクティブ',
-    loadsAutomatically: '— すべての会話に自動的に読み込まれます',
-    planning: 'プランニング',
+    alwaysActive: '対応スコープ内で自動適用',
+    loadsAutomatically: '対応スコープ内で',
+    planning: '計画',
     implementation: '実装',
     review: 'レビュー',
-    descriptionRead: 'SKILL.md フロントマターから説明を読み取り',
-    fullSkillInjected: '関連性がある場合、完全な SKILL.md がコンテキストに挿入されます',
-    approveDeny: '承認 / 拒否',
+    descriptionRead: 'skill のメタデータが関連する専門性を特定',
+    fullSkillInjected: 'skill 選択時に指示とリソースを読み込み',
+    approveDeny: '承認 / 拒否 / 変更',
 
     pluginJson: 'plugin.json',
+    agentsDir: 'agents/',
     skillsDir: 'skills/',
-    mcpJson: 'mcp.json',
-    copilotNamespace: 'com.github.copilot/',
+    hooksJson: 'hooks.json',
+    mcpJson: '.mcp.json',
+    lspJson: 'lsp.json',
+    repositorySettings: 'リポジトリの MCP 設定',
+    ideConfig: 'mcp.json (IDE)',
     vsCode: 'VS Code',
     copilotCli: 'Copilot CLI',
     copilotApp: 'Copilot アプリ',
-    marketplace: 'マーケットプレイス',
+    marketplace: 'Marketplace',
     gitRepo: 'Git リポジトリ',
     localPath: 'ローカルパス',
   },
   layers: {
     'always-on-context': {
-      title: '常時オンコンテキスト',
-      subtitle: 'すべての会話に自動的に読み込まれるパッシブメモリ',
+      title: '常時適用コンテキスト',
+      subtitle: '対応スコープ内で自動的に適用されるリポジトリのガイドライン',
     },
     'on-demand-capabilities': {
       title: 'オンデマンド機能',
       subtitle: '開発者が明示的に呼び出すか、モデルが選択する機能',
     },
     'enforcement-automation': {
-      title: '実行制御と自動化',
+      title: '制御と自動化',
       subtitle: '決定論的なガードレールと CI/CD レベルのオーケストレーション',
     },
     distribution: {
-      title: 'ディストリビューション',
-      subtitle: 'エージェントスタックをチームやリポジトリ間でパッケージ化して共有',
+      title: '配布',
+      subtitle: 'エージェントスタックをチームやリポジトリ間でパッケージ化・共有',
     },
   },
   components: {
     instructions: {
       name: 'Instructions',
-      description: 'すべてのプロンプトに自動的に適用されるパッシブメモリ',
+      description: 'Copilot の応答を自動的に形作るスコープ限定のガイドライン',
       details:
-        'Instructions は Copilot カスタマイズの基盤です。最初に読み込まれ、常時オンの' +
-        'パッシブメモリとして機能します。リポジトリ全体の規約は ' +
-        '`.github/copilot-instructions.md` に、パス固有の指示は ' +
-        '`.github/instructions/NAME.instructions.md`（`applyTo` glob フロントマター付き）に' +
-        '配置します。これらは助言的なものであり、モデルを導きますが、動作を決定論的に' +
-        '強制するものではありません。',
-      useCases: ['コーディング規約', 'フレームワークルール', 'リポジトリ規約'],
-    },
-    'prompt-files': {
-      name: 'Prompt Files',
-      description: 'スラッシュコマンドで手動呼び出し',
-      details:
-        'Prompt Files はスラッシュコマンドで呼び出す再利用可能なプロンプトテンプレートです' +
-        '（例：`/security-review`、`/release-notes`）。チームが共通のプロンプトを標準化し、' +
-        'すべての開発者が繰り返しタスクに対して一貫した高品質な出力を得られるようにします。',
-      useCases: ['API レビュー', 'パフォーマンス監査', 'オンボーディングガイド'],
+        'リポジトリ全体のガイドラインには `.github/copilot-instructions.md` を、パスに ' +
+        '一致する指示には `applyTo` glob 付きの ' +
+        '`.github/instructions/NAME.instructions.md` を使用します。エージェントは最も近い ' +
+        '`AGENTS.md` も参照でき、ルートの `CLAUDE.md` や `GEMINI.md` は特定のサーフェスで ' +
+        'サポートされます。個人およびOrganizationの指示は、リポジトリファイルの外でより広い ' +
+        'デフォルトを提供します。サポート状況は Copilot のサーフェスによって異なり、指示は ' +
+        '動作を強制するのではなく導くものです。',
+      useCases: ['コーディング規約', 'フレームワークのルール', 'リポジトリの慣例'],
     },
     'custom-agents': {
       name: 'Custom Agents',
-      description: '独自のツールと MCP サーバーを持つ専門ペルソナ',
+      description: 'スコープ限定の指示、ツール、隔離されたコンテキストを持つスペシャリスト',
       details:
-        'Custom Agents は YAML フロントマター付きの Markdown で定義された専門ペルソナです。' +
-        '各プロファイルは `description`、`tools` リスト、オプションの `mcp-servers`、' +
-        '`model` 設定を指定します。エージェントは `handoffs` プロパティで連鎖できます — ' +
-        '例えば、プランニングエージェントが実装エージェントに引き継ぎ、さらにレビュー' +
-        'エージェントに引き継ぎます。LLM はエージェントの説明を読んで、どれを' +
-        '有効化するかを決定します。',
-      useCases: ['セキュリティ監査', 'データベーススペシャリスト', 'API デザイナー'],
+        'リポジトリのエージェントは `.github/agents/AGENT-NAME.md` で定義します。各エージェント ' +
+        'は専門化された指示、ツール制限、MCP コンテキストを持てます。Organization および ' +
+        'Enterprise のエージェントは `.github` または `.github-private` リポジトリから配布 ' +
+        'できます。Copilot はスコープ限定タスクを隔離されたコンテキストのサブエージェントに ' +
+        '委任することもあります。モデルやハンドオフなどのフィールドはサーフェスによって異なる ' +
+        'ため、最新の機能マトリクスを参照してください。',
+      useCases: ['セキュリティ監査者', 'データベース専門家', 'API デザイナー'],
     },
     skills: {
       name: 'Skills',
-      description: '指示、スクリプト、リソースの自己完結型フォルダ — 関連性がある場合に LLM が自動的に読み込み',
+      description: '関連性がある場合に読み込まれる、再利用可能な指示・スクリプト・リソース',
       details:
-        'ユーザーが呼び出す他のオンデマンド機能とは異なり、Skills は LLM が自律的に選択します。' +
-        '各スキルは `SKILL.md` ファイル（YAML フロントマターに名前と説明、Markdown 本文に指示）' +
-        'とオプションのスクリプトやリソースを含むフォルダです。モデルはスキルの説明を読んで' +
-        'どれを有効化するかを決定し、その時初めて完全な `SKILL.md` がコンテキストに挿入されます。' +
-        'ユーザーアクションは不要です。プロジェクトスキルは `.github/skills/<name>/` に、' +
-        '個人スキルは `~/.copilot/skills/<name>/` に配置します。',
+        '各 skill は `SKILL.md` とオプションのスクリプト・リソースを含むフォルダです。専門性が ' +
+        'タスクに一致すると、Copilot が skill を選択します。プロジェクトの skill は ' +
+        '`.github/skills/`、`.agents/skills/`、`.claude/skills/` に保存し、個人の skill は ' +
+        '`~/.copilot/skills/` や `~/.agents/skills/` に置けます。サポート状況はサーフェス ' +
+        'によって異なります。',
       useCases: ['Terraform モジュール', 'K8s マニフェスト', 'オブザーバビリティスタック'],
+    },
+    mcp: {
+      name: 'MCP Servers',
+      description: 'Model Context Protocol で接続する外部ツールとライブデータ',
+      details:
+        'Copilot のクラウドエージェントと Copilot コードレビュー向けに、リポジトリの MCP ' +
+        'サーバーは GitHub 上のリポジトリ設定で構成します。IDE クライアントは独自の ' +
+        '`mcp.json` 設定を使用し、CLI とアプリはそれぞれ独自のクライアント設定を公開 ' +
+        'します。MCP のサポート、ポリシー、設定の場所はサーフェスによって異なるため、ワーク ' +
+        'フローに必要なサーバーとツールセットのみを有効にしてください。',
+      useCases: ['Issue/PR 自動化', 'ブラウザテスト', '社内データ'],
+      docLabel: 'リポジトリの MCP サーバーを設定',
+      altDocLabel: 'MCP について',
     },
     hooks: {
       name: 'Hooks',
-      description: '6つのライフサイクルイベントでの決定論的シェルコマンド',
+      description: 'エージェントのライフサイクルの文書化されたポイントで実行されるコマンド',
       details:
-        'Hooks は Copilot システムにおける唯一の決定論的プリミティブです。' +
-        '6つのライフサイクルポイントで発火します：`sessionStart`、`sessionEnd`、' +
-        '`userPromptSubmitted`、`preToolUse`、`postToolUse`、`errorOccurred`。' +
-        '`preToolUse` フックはツール実行を事前に承認または拒否できます。' +
-        'Hooks は `.github/hooks/` 内の JSON ファイルに `version: 1` で定義します。' +
-        'Instructions（助言的）とは異なり、Hooks は強制的です。',
-      useCases: ['ポリシーゲート', 'ファイルアクセス制御', '監査ログ'],
+        'リポジトリの hook は `version: 1` の `.github/hooks/NAME.json` で定義します。イベント ' +
+        'はセッション、プロンプト、ツール、権限、圧縮、サブエージェント、エージェントの停止に ' +
+        'わたります。`preToolUse` はツール呼び出しを許可・拒否・変更できます。イベントサポート ' +
+        'は Copilot CLI とクラウドエージェントで異なります。hook の失敗は通常実行を継続 ' +
+        'させますが、`preToolUse` のエラーは fail-closed、タイムアウトは fail-open です。',
+      useCases: ['コンプライアンスゲート', 'ファイルアクセス制御', '監査ログ'],
     },
     'agentic-workflows': {
       name: 'Agentic Workflows',
-      description: 'ガードレール付きで GitHub Actions で実行される AI コーディングエージェントによるリポジトリ自動化',
+      description: 'AI コーディングエージェント駆動のリポジトリ自動化を GitHub Actions 上でガードレール付きで実行',
       details:
-        'Agentic Workflows は YAML フロントマター（権限、safe-outputs、トリガー）付きの ' +
-        'Markdown ファイルで、`gh aw` CLI 拡張機能を通じて GitHub Actions にコンパイルされます。' +
-        '自然言語で自動化を定義 — 日次レポートのスケジュール、Issue のトリアージ、' +
-        'CI 障害の分析、ドキュメントのメンテナンスなど。エージェントはデフォルトで' +
-        '読み取り専用権限で実行され、書き込み操作には明示的な safe-output 承認が必要です。' +
-        '実行はツールの許可リストとネットワーク分離でサンドボックス化されています。' +
-        'GitHub Copilot、Claude、OpenAI Codex で動作します。',
-      useCases: ['Issue トリアージ', 'CI 障害分析', '日次ステータスレポート'],
+        'エージェント型ワークフローは、CLI 拡張機能 `gh aw` によって GitHub Actions にコンパイル ' +
+        'される YAML フロントマター（権限、safe-outputs、トリガー）付きの Markdown ファイル ' +
+        'です。自然言語で自動化を定義します — 日次レポートのスケジュール、issue のトリアージ、' +
+        'CI 失敗の分析、ドキュメントの維持などです。エージェントはデフォルトで読み取り専用の ' +
+        '権限で実行され、書き込み操作には明示的な safe-output 承認が必要です。実行はツール ' +
+        'のホワイトリストとネットワーク分離によりサンドボックス化されます。GitHub Copilot、' +
+        'Claude、OpenAI Codex で動作します。',
+      useCases: ['Issue トリアージ', 'CI 失敗分析', '日次レポート'],
     },
     'copilot-setup-steps': {
       name: 'Copilot Setup Steps',
       description: 'クラウドエージェントの環境を事前設定する GitHub Actions ワークフロー',
       details:
-        'Copilot Setup Steps は `.github/workflows/copilot-setup-steps.yml` にある特別な ' +
+        'Copilot Setup Steps は、`.github/workflows/copilot-setup-steps.yml` にある特別な ' +
         'GitHub Actions ワークフローで、クラウドエージェントが作業を開始する前に実行されます。' +
-        'ツール、依存関係、ランナーの設定を決定論的にインストール・設定するために使用します — ' +
-        'エージェントが試行錯誤なしですぐにビルド、テスト、リントできるようにします。' +
-        'より大きなランナーへのアップグレード、Windows への切り替え、Git LFS の有効化、' +
-        '`copilot` Actions 環境を通じた環境変数の設定も可能です。ワークフローには単一の ' +
-        '`copilot-setup-steps` ジョブを含める必要があり、デフォルトブランチに存在する場合のみ有効です。',
+        'ツールや依存関係を決定論的にインストールしたり、ランナーを構成したりするために ' +
+        '使用します — これにより、エージェントは試行錯誤による探索なしに、すぐにビルド・ ' +
+        'テスト・リントを実行できます。より大きなランナーへのアップグレード、Windows への ' +
+        '切り替え、Git LFS の有効化、または `copilot` の Actions 環境を通じた環境変数の設定も ' +
+        '可能です。ワークフローには単一の `copilot-setup-steps` ジョブが必要で、デフォルト ' +
+        'ブランチに存在する場合にのみ有効です。',
       useCases: ['依存関係の事前インストール', 'より大きなランナー', '環境変数'],
     },
     plugins: {
-      name: 'Agent Plugins 1.0',
-      description: '対応エージェントクライアント間でスキルと MCP サーバーを共有するポータブルパッケージ',
+      name: 'GitHub Copilot Plugins',
+      description: 'エージェント、skill、hook、MCP、LSP 統合のためのインストール可能パッケージ',
       details:
-        'Agent Plugins 1.0 はポータブルなエージェントパッケージのオープン標準です。' +
-        'ルートの `plugin.json` が 1.0 スキーマを宣言し、ポータブルなスキルは `skills/`、' +
-        'MCP 設定は `mcp.json` に配置します。Copilot 固有のエージェント、コマンド、ルール、' +
-        'フック、拡張機能は、他のクライアントが無視する `com.github.copilot/` 配下に置きます。' +
-        '同じパッケージが VS Code、Copilot CLI、Copilot SDK、Copilot アプリで動作します。' +
-        '既存の Copilot プラグインも移行なしで引き続きサポートされます。',
-      useCases: ['クライアント間ポータビリティ', '再利用可能な Skills + MCP', 'マーケットプレイス配布'],
-      docLabel: 'Agent Plugins 1.0 仕様',
-      altDocLabel: 'Agent Plugin を作成',
+        'ネイティブの Copilot プラグインは `plugin.json` から始まり、`agents/`、`skills/`、' +
+        '`hooks.json`、`.mcp.json`、`lsp.json` を含めることができます。プラグインは、Copilot ' +
+        'クライアントや marketplace を通じてインストールできるように機能をバンドルします。 ' +
+        '別途、Agent Plugins 1.0 は移植可能なパッケージのためのマルチクライアントのオープン ' +
+        '標準を定義しており、GitHub のネイティブプラグイン構造を置き換えるのではなく補完します。',
+      useCases: ['再利用可能なエージェントパッケージ', 'チームの標準化', 'Marketplace での配布'],
+      docLabel: 'Copilot プラグインについて',
+      altDocLabel: 'Agent Plugins 1.0 標準',
     },
   },
   insights: [
     {
       icon: '🧠',
       content:
-        '<strong>Instructions は最初に読み込まれます</strong> — 常時オンのパッシブメモリです。' +
-        'すべてのプロンプトは、他の何かが発火する前にこれらを認識します。',
+        '<strong>指示はスコープ内で自動的に適用されます。</strong> リポジトリ全体、パス固有、' +
+        'エージェント固有、個人、Organization のガイドラインはそれぞれ異なるスコープに適用 ' +
+        'されます。',
     },
     {
       icon: '🧩',
       content:
-        '<strong>Skills はオンデマンドで読み込まれます</strong> — Copilot はまず SKILL.md フロントマターの ' +
-        '<code>description</code> のみを読み取ります。完全なファイルは、モデルがそのスキルが' +
-        'プロンプトに関連すると判断した場合にのみ、エージェントのコンテキストに挿入されます。',
+        '<strong>Skill はオンデマンドで専門性をもたらします。</strong> skill の指示とリソースが ' +
+        '現在のタスクに一致すると、Copilot はその skill を選択できます。',
     },
     {
       icon: '🔒',
       content:
-        '<strong>Hooks は唯一の決定論的プリミティブです。</strong>Instructions は助言的です。' +
-        'Hooks は強制的です — ツール実行を事前に承認または拒否できる <code>preToolUse</code> を含む' +
-        '6つのライフサイクルイベントがあります。',
+        '<strong>Hook はライフサイクルの各ポイントでコマンドを実行します。</strong> ' +
+        '<code>preToolUse</code> はツール呼び出しを許可・拒否・変更できます。サポートされる ' +
+        'イベントと失敗時の挙動はサーフェスによって異なります。',
     },
     {
       icon: '🔀',
       content:
-        '<strong>LLM がルーターです。</strong>別個のオーケストレーターは存在しません — ' +
-        'モデルはインデックス化されたエージェントの説明とスキルのフロントマターを読んで、' +
-        '何を有効化するかを決定します。だからこそ、良い説明を書くことが重要なのです。',
+        '<strong>Copilot は関連する機能を選択できます。</strong> エージェント、skill、ツールの ' +
+        '明確な説明は、Copilot がタスクに適した専門性を選ぶ助けになります。',
     },
   ],
 
   /* ── Tools ページ ── */
   toolsSeo: {
     title: 'Copilot Panorama — Copilot Everywhere',
-    description: 'GitHub Copilot ツールのインタラクティブなビジュアルガイド — 3つのレイヤーを探索：IDE（オートコンプリート、チャット、Agent Mode、サードパーティエージェント）、スタンドアロンアプリ（CLI、Copilot App）、クラウド（Cloud Agent、Review Agent、サードパーティエージェント）。',
+    description: 'IDE、スタンドアロンアプリ、GitHub クラウドにおける GitHub Copilot をインタラクティブに可視化 — Copilot CLI、クラウドエージェント、コードレビュー、サードパーティエージェント、Slack、Teams を含む。',
   },
   toolsUi: {
     heroTitle: 'Copilot Everywhere',
-    insightsTitle: 'ほとんどの開発者が見落とす重要な違い',
-    insightsSubtitle: '3つのレイヤーにまたがるアーキテクチャの洞察',
-    footerBuiltFor: 'GitHub Copilot ユーザーのために構築',
-    footerDocsLink: 'Copilot 機能の完全なドキュメント',
+    insightsTitle: 'ほとんどの開発者が見落とす主要な違い',
+    insightsSubtitle: '3層にわたるアーキテクチャの要点',
+    footerBuiltFor: 'GitHub Copilot ユーザーのために作成',
+    footerDocsLink: 'Copilot の機能に関する完全なドキュメント',
   },
   toolsViz: {
     interactive: 'インタラクティブ',
     programmatic: 'プログラマティック',
     ghostText: 'ゴーストテキスト',
-    tabToAccept: 'Tab で受け入れ',
+    tabToAccept: 'Tab で確定',
     chatParticipants: '@workspace',
     slashCommands: '/fix',
     chatVariables: '#file',
@@ -215,32 +221,35 @@ export const ja: Translations = {
     fix: '修正',
     local: 'ローカル',
     cloud: 'クラウド',
-    issueAssigned: 'Issue がアサインされました',
+    issueAssigned: 'Issue が割り当て',
     agentCodes: 'エージェントがコーディング',
-    prCreated: 'PR が作成されました',
+    prCreated: 'PR 作成',
     securityChecks: 'セキュリティチェック',
     addReviewer: 'レビュアーを追加',
     reviewComments: 'レビューコメント',
-    suggestedFixes: '修正の提案',
+    suggestedFixes: '修正提案',
     selectAgent: 'エージェントを選択',
     askAnything: '何でも質問',
     repoContext: 'リポジトリコンテキスト',
-    webSearch: 'ウェブ検索',
-    openSession: 'セッション開始',
-    reviewDiff: 'Diff レビュー',
+    webSearch: 'Web 検索',
+    openSession: 'セッションを開く',
+    reviewDiff: '差分をレビュー',
     openPr: 'PR を開く',
-    inbox: '受信トレイ',
+    inbox: '受信箱',
     agenticMerge: 'Agentic Merge',
     savedWorkflows: 'ワークフロー',
+    slack: 'Slack',
+    teams: 'Teams',
+    sharedSession: '共有エージェントセッション',
   },
   toolsLayers: {
     'standalone-apps': {
       title: 'スタンドアロンアプリ',
-      subtitle: 'エージェント開発のための専用デスクトップ・ターミナルアプリケーション',
+      subtitle: 'エージェント型開発に特化したデスクトップ／ターミナルアプリケーション',
     },
     ide: {
       title: 'IDE',
-      subtitle: 'エディター内でのインライン提案、チャット、自律編集、サードパーティエージェント',
+      subtitle: 'エディタ内のインラインサジェスト、チャット、自律的な編集、サードパーティエージェント',
     },
     cloud: {
       title: 'クラウド',
@@ -250,764 +259,754 @@ export const ja: Translations = {
   toolsComponents: {
     'copilot-cli': {
       name: 'GitHub Copilot CLI',
-      description: 'ターミナルで動くフル AI エージェント — インタラクティブセッション、ファイル編集、GitHub 連携',
+      path: 'ターミナルエージェント',
+      description: 'コード、シェル、GitHub ワークフローのためのターミナル内エージェント',
       details:
-        'GitHub Copilot CLI は、ターミナルから直接 Copilot を使用できます。`copilot` で' +
-        'インタラクティブセッションを開始するか、`copilot -p "..."` で単一のプロンプトを' +
-        '渡せます。ローカルファイルの編集、シェルコマンドの実行、GitHub.com との連携' +
-        '（PR やIssue の作成、ワークフロー管理）、反復的な作業が可能です。Plan Mode' +
-        '（Shift+Tab）による構造化された実装、MCP サーバー、カスタムエージェント、' +
-        'スキル、フック、無限セッションのための自動コンテキスト圧縮をサポートしています。',
-      useCases: ['Issue から PR への配信', 'レガシーコードの近代化', '並列 Fleet 実行', 'バックログのトリアージと計画', 'エディタ非依存の開発', '自動化'],
+        '`copilot` でインタラクティブセッションを開始するか、`copilot -p` で単一のプロンプトを ' +
+        '渡します。CLI はファイルを編集し、承認されたシェルコマンドを実行し、GitHub の issue、' +
+        'pull request、Actions を扱えます。プランモードは変更前に作業のスコープを定めます。' +
+        '`/context`、`/compact`、自動圧縮が長いセッションを管理します。ローカルおよびクラウド ' +
+        'のサンドボックスはパブリックプレビュー中です。CLI は instructions、agents、skills、' +
+        'hooks、MCP、plugins、Copilot Memory（パブリックプレビュー）をサポートします。',
+      useCases: ['Issue から PR まで', 'レガシーコードの近代化', 'Fleet による並列実行', 'バックログのトリアージと計画', 'エディタ非依存の開発', '自動化'],
     },
     'copilot-app': {
       name: 'GitHub Copilot App',
-      description: 'エージェント開発のためのネイティブデスクトップアプリ — Inbox、Agentic Merge、並列セッション、ワークフロー',
+      path: 'エージェント用デスクトップワークスペース',
+      description: '並行するエージェントセッションと定期的な自動化のためのデスクトップワークスペース',
       details:
-        'GitHub Copilot App は、macOS、Windows、Linux 対応のスタンドアロンデスクトップアプリケーションです。' +
-        '開発者および開発隣接ロール（PM、デザイナー、QA）に GitHub ファーストな体験を提供し、' +
-        'エージェント駆動の作業を指示、監視、レビュー、配信できます。エージェント Inbox が ' +
-        'すべてのリポジトリの Issue、PR、セッションを表示します。Agentic Merge が「ラストマイル」を' +
-        '担当 — レビューコメントの解決、失敗した CI の修正、マージコンフリクトの処理を代行します。' +
-        '各セッションは分離された git worktree で実行され、真の並列開発が可能です。ワークフローで ' +
-        'プロンプトを保存し、オンデマンドまたはスケジュールで実行して、繰り返しタスクを ' +
-        '再利用可能な自動化パターンに変換できます。現在テクニカルプレビュー中です。',
-      useCases: ['エージェント Inbox & トリアージ', 'Agentic Merge（ラストマイル）', '並列マルチセッション作業', '反復可能なワークフロー', '開発隣接ロールの協業', 'クロスリポジトリオーケストレーション'],
+        '複数のリポジトリにまたがる複数の隔離されたエージェントセッションを実行し、issue と ' +
+        'pull request を管理し、オンデマンドまたはスケジュールで実行される自動化を保存 ' +
+        'します。リポジトリセッションは専用の worktree を使用し、クラウドワークスペースは ' +
+        'パブリックプレビュー中です。アプリは instructions、skills、MCP サーバー、custom ' +
+        'agents、plugins、canvas 拡張機能をサポートします。Enterprise が管理する設定が、' +
+        'サポートされるアクションと統合を統制する場合があります。',
+      useCases: ['エージェント型受信箱とトリアージ', 'Agentic Merge（ラストマイル）', 'マルチセッション並行作業', '繰り返し可能なワークフロー', '隣接ロールとのコラボレーション', 'クロスリポジトリのオーケストレーション'],
     },
     autocomplete: {
-      name: 'オートコンプリート',
-      description: '入力中にインラインで表示されるゴーストテキストのコード提案',
+      name: 'インライン提案',
+      path: 'IDE のインラインサジェスト',
+      description: '入力中にインラインで表示されるゴーストテキストのコードサジェスト',
       details:
-        'Copilot は入力中にオートコンプリート形式の提案を表示します — 関数本体、ループ、' +
-        '条件分岐など、コードコンテキストに基づいた提案です。Alt+] / Alt+[ で候補を切り替え、' +
-        'Ctrl+→ で単語ごとに受け入れ、Tab で提案全体を受け入れます。Next Edit Suggestions' +
-        '（NES）は次の編集位置を予測し、その補完を提案します。VS Code、Visual Studio、' +
-        'JetBrains IDE、Azure Data Studio、Xcode、Vim/Neovim、Eclipse で利用可能です。',
-      useCases: ['コード補完', 'ボイラープレート生成', 'パターン補完', 'コメントからコード生成'],
+        'Copilot は現在のエディタコンテキストから入力中にコードを提案します。サジェストは ' +
+        '1行から関数全体まで及ぶことがあります。Next Edit Suggestions は対応エディタで次の ' +
+        '編集位置を予測します。キーボードショートカットと機能の可用性は IDE によって異なります。',
+      useCases: ['コード補完', 'ボイラープレート生成', 'パターン補完', 'コメントからコードへ'],
     },
     ask: {
-      name: 'Ask（Copilot Chat）',
-      description: 'コードの質問、説明、生成のための対話型 AI チャット',
+      name: 'Ask (Copilot Chat)',
+      path: 'IDE のチャット',
+      description: 'コードに関する質問、説明、生成のための会話型 AI チャット',
       details:
-        'Copilot Chat はコーディングの質問をするための対話型インターフェースを提供します。' +
-        'チャット参加者（@workspace、@github、@terminal）、スラッシュコマンド（/fix、/explain、' +
-        '/tests、/doc）、チャット変数（#file、#selection、#web）で正確なコンテキストを指定できます。' +
-        '@github 参加者はウェブ検索、Issue の検索、PR の分析を可能にします。複数の AI モデルを' +
-        'サポートし、モデルピッカーで会話中に切り替えられます。VS Code、Visual Studio、' +
-        'JetBrains、Eclipse、Xcode、GitHub.com、GitHub Mobile で利用可能です。',
-      useCases: ['コード説明', 'デバッグ', 'テスト生成', 'コードリファクタリング', '学習'],
+        'Copilot Chat は質問に答え、コードを説明し、変更を提案し、デバッグを支援します。関連 ' +
+        'ファイル、選択範囲、リポジトリコンテキスト、対応ツールを追加してリクエストのスコープ ' +
+        'を定めます。キーワード、コマンド、モデル、MCP サポートは IDE によって異なるため、' +
+        '使用しているエディタの最新の機能マトリクスを参照してください。',
+      useCases: ['コードの説明', 'デバッグ', 'テスト生成', 'コードリファクタリング', '学習'],
     },
     'agent-mode': {
       name: 'Agent Mode',
-      description: '自律的なローカルコーディング — Copilot がファイルを判断し、編集を行い、コマンドを実行して反復',
+      path: 'IDE の Agent Mode',
+      description: '自律的なローカルコーディング — Copilot がファイルを判断し、変更を加え、コマンドを実行し、反復する',
       details:
-        'Agent Mode は Copilot が IDE 内で自律的にコードを編集できるようにします。変更すべき' +
-        'ファイルを判断し、複数ファイルの編集を行い、ターミナルコマンドを提案・実行し、タスクが' +
-        '完了するまでエラーを修正しながら反復します。MCP サーバーの統合、委任サブタスクのための' +
-        'サブエージェント、カスタムエージェントをサポートします。課金されるのはプロンプトのみで、' +
-        'フォローアップのツール呼び出しは無料です。GitHub Actions で実行される Copilot coding ' +
-        'agent（クラウドレイヤー）とは異なります。',
-      useCases: ['複雑なタスク', '複数ステップの実装', 'エラー解決', 'ビルド自動化'],
+        'Agent Mode は Copilot が IDE 内でコードを自律的に編集できるようにします。どの ' +
+        'ファイルを変更するかを判断し、複数ファイルにわたる編集を行い、承認のためにターミナル ' +
+        'コマンドを提案し、エラーに対して反復します。対応 IDE は MCP サーバー、サブエージェント、' +
+        'custom agents を追加できます。Copilot のクラウドエージェントとは異なり、Agent Mode は ' +
+        'ローカルのエディタセッション内で動作します。AI クレジットの消費は選択したモデルと実行 ' +
+        'された作業によります。',
+      useCases: ['複雑なタスク', '多段階の実装', 'エラー解決', 'ビルド自動化'],
     },
     'third-party-agents-ide': {
-      name: 'サードパーティエージェント',
-      description: 'VS Code でネイティブ SDK を使用して動作する Claude と Codex のエージェント',
+      name: 'サードパーティのエージェントハーネス',
+      path: 'VS Code のサードパーティエージェントハーネス',
+      description: 'VS Code 内で利用可能な Claude と Codex のハーネス',
       details:
-        'Anthropic（Claude）と OpenAI（Codex）のサードパーティエージェントは、各プロバイダーの' +
-        'ネイティブ SDK とエージェントハーネスを使用して VS Code 内で直接実行されます。ローカル' +
-        'セッション（ワークスペースで実行）またはクラウドセッション（リモート環境）を選択できます。' +
-        'Claude はスラッシュコマンド（/agents、/hooks、/memory、/review、/security-review）、' +
-        '権限モード（自動編集、承認リクエスト、プラン）、CLAUDE.md による永続的コンテキストを' +
-        'サポートします。すべて Copilot サブスクリプションで課金され、別途プロバイダーの設定は不要です。',
-      useCases: ['自律コーディング', 'セキュリティレビュー', 'プロバイダー固有の機能', 'バックグラウンドタスク'],
+        'VS Code は Anthropic Claude や OpenAI Codex のような対応サードパーティハーネスを ' +
+        '実行できます。各ハーネスはエディタ内でベンダー固有のワークフローと機能を維持します。' +
+        '可用性、実行場所、権限、課金は変更される可能性があるため、最新の VS Code エージェント ' +
+        'ハーネスのドキュメントを参照してください。',
+      useCases: ['自律コーディング', 'セキュリティレビュー', 'ベンダー固有機能', 'バックグラウンドタスク'],
     },
     'copilot-chat-cloud': {
       name: 'Copilot Chat',
-      description: 'GitHub.com 上の会話型 AI — リポジトリ、Issue、PR、ウェブについて質問',
+      path: 'GitHub.com とモバイル',
+      description: 'GitHub.com 上の会話型 AI — リポジトリ、issue、PR、Web について質問',
       details:
-        'GitHub.com の Copilot Chat では、どのページからでも質問できます — リポジトリ、Issue、' +
-        'PR、または一般的なソフトウェアトピックについて。GitHub からコンテキストを取得するために ' +
-        'Skills を使用し（コード検索、コミット履歴、Issue 詳細）、オプションで Bing ウェブ検索に' +
-        'よる最新情報も取得できます。マルチモデル選択、会話を分岐するサブスレッド、プレビュー付き' +
-        'ファイル生成、会話履歴（最大 100 スレッド、28 日間保持）をサポートします。GitHub Mobile ' +
-        'でも利用可能です。',
-      useCases: ['リポジトリ Q&A', 'Issue 分析', 'PR の理解', 'ウェブ検索', 'コード生成'],
+        'GitHub.com の Copilot Chat では、どのページからでも質問できます — リポジトリ、issue、' +
+        'pull request、またはソフトウェア全般に関する話題についてです。リポジトリと Web の ' +
+        'コンテキスト、選択したモデル、エージェントセッション情報を使用できます。Chat と ' +
+        'Copilot のクラウドエージェントは、アクティブなワークフロー内でコンテキストを ' +
+        '受け渡しできます。GitHub Mobile は対応する Chat とエージェントセッション体験への ' +
+        'アクセスを提供します。',
+      useCases: ['リポジトリの Q&A', 'Issue 分析', 'PR の理解', 'Web 検索', 'コード生成'],
     },
     'coding-agent': {
-      name: 'Cloud Agent',
-      description: '自律型クラウドエージェント — Issue をアサインすると、セキュリティチェック付きの PR を作成',
+      name: 'Copilot Cloud Agent',
+      path: 'GitHub のクラウドエージェント',
+      description: 'GitHub がホストする環境内での自律的なリポジトリ作業',
       details:
-        'Copilot cloud agent は GitHub Actions 環境で独立して動作します。Issue を @copilot に' +
-        'アサインするか、PR でメンションするか、Chat から依頼すると、タスクを評価し、変更を行い、' +
-        'テストとリンターを実行し、CodeQL セキュリティ分析を行い、シークレットをチェックし、' +
-        'レビュー用のドラフト PR を作成します。カスタム Instructions、MCP サーバー、カスタム' +
-        'エージェント、Hooks、Skills、Copilot Memory をサポートします。`copilot/` ブランチにのみ' +
-        'プッシュします。Pro、Pro+、Business、Enterprise で利用可能です。',
+        'issue、pull request、Chat、または Agents ビューから作業を委任します。Copilot は ' +
+        'リポジトリを調査し、計画を立て、ブランチ上でコードを変更し、結果を検証し、人間の ' +
+        'レビューのために pull request を開きます。instructions、MCP、agents、hooks、skills、' +
+        'Copilot Memory（パブリックプレビュー）でセッションをカスタマイズできます。コード ' +
+        'スキャン、シークレットスキャン、依存関係チェック、ファイアウォールルールは設定可能な ' +
+        '保護策であり、普遍的な保証ではありません。',
       useCases: ['バグ修正', '機能実装', 'テストカバレッジ', '技術的負債', 'セキュリティキャンペーン'],
     },
     'review-agent': {
-      name: 'Review Agent',
-      description: 'プロジェクト全体のコンテキストと修正提案を備えた AI コードレビュアー',
+      name: 'Copilot Code Review',
+      path: 'Pull request レビュー',
+      description: 'プロジェクト全体のコンテキストと修正提案を持つ AI コードレビュアー',
       details:
-        'Copilot コードレビューはプルリクエストを分析し、ワンクリックで適用できる変更提案付きの' +
-        'フィードバックを提供します。エージェント機能を使用してプロジェクト全体のコンテキストを' +
-        '収集し、リポジトリ全体を分析してコード変更を理解します。すべての PR に対する自動レビューを' +
-        '設定できます。.github/copilot-instructions.md によるカスタム Instructions とパス固有の' +
-        'ルールをサポートします。GitHub.com、GitHub Mobile、VS Code、Visual Studio、Xcode、' +
-        'JetBrains で利用可能です。',
+        'Copilot コードレビューは変更を分析し、関連するリポジトリコンテキストを収集し、修正 ' +
+        '提案付きのフィードバックを提供します。チームは手動でレビューをリクエストするか、' +
+        '自動レビューを設定できます。リポジトリの instructions、エージェントの skill、MCP ' +
+        'サーバーがサポートされます。Copilot Memory はパブリックプレビュー中です。可用性は ' +
+        'GitHub と対応 IDE で異なります。',
       useCases: ['コード品質', 'セキュリティレビュー', 'ベストプラクティス', 'PR ワークフロー', 'チームガバナンス'],
     },
     'third-party-agents-cloud': {
-      name: 'サードパーティエージェント',
-      description: 'GitHub 上のクラウドコーディングエージェントとしての Anthropic Claude と OpenAI Codex',
+      name: 'サードパーティのコーディングエージェント',
+      path: 'GitHub のサードパーティエージェント',
+      description: 'GitHub 上で Copilot と並行して動作するパートナーのコーディングエージェント',
       details:
-        'サードパーティのコーディングエージェントは GitHub プラットフォーム上で Copilot cloud ' +
-        'agent と並んで動作します。現在 Anthropic Claude（Claude Agent SDK）と OpenAI Codex' +
-        '（Codex SDK）をサポートしています。Issue のアサイン、Agents タブからのタスク開始、' +
-        'PR での @AGENT_NAME メンション、VS Code や GitHub Mobile からのセッション開始が可能です。' +
-        'Copilot cloud agent と同じセキュリティ保護が適用されます。各セッションは1つのプレミアム' +
-        'リクエストと GitHub Actions の分数を消費します。現在パブリックプレビュー中です。',
-      useCases: ['マルチエージェントワークフロー', 'エージェント比較', '専門タスク', '並行開発'],
+        'Anthropic Claude や OpenAI Codex のようなサードパーティのコーディングエージェントは、' +
+        'GitHub 上で Copilot のクラウドエージェントと並行して作業できます。GitHub のサーフェス ' +
+        'から対応セッションを開始し、pull request を通じてその変更をレビューします。この機能は ' +
+        'パブリックプレビュー中で、クラウドエージェントのセキュリティ境界を使用し、機能と課金 ' +
+        'は最新の製品ドキュメントで定義されます。',
+      useCases: ['マルチエージェントワークフロー', 'エージェントの比較', '専門タスク', '並行開発'],
+    },
+    'slack-teams': {
+      name: 'Slack & Teams での共同作業',
+      path: 'Slack\nMicrosoft Teams',
+      description: 'チームの会話から起動する共有クラウドエージェントセッション',
+      details:
+        'パブリックプレビューでは、対応する Slack や Microsoft Teams の会話で `@GitHub` に ' +
+        'メンションすると、Copilot のクラウドエージェントセッションを開始・操作できます。' +
+        '統合は会話コンテキストを使用でき、クラウドサンドボックス内で非同期に継続します。' +
+        'リポジトリの権限がコード変更を誰がトリガーできるかを統制し、会話コンテキストは生成 ' +
+        'された成果物とともに保存される場合があります。よりスコープを限定したコンテキストが ' +
+        '必要な場合はダイレクトメッセージを使用してください。',
+      useCases: ['議論から PR へ', '協働計画', 'Issue 作成'],
+      docLabel: 'Slack 統合',
+      altDocLabel: 'Teams 統合',
     },
   },
   toolsInsights: [
     {
       icon: '🔀',
       content:
-        '<strong>Agent Mode ≠ Cloud Agent。</strong>Agent Mode は IDE 内でローカルに実行され、' +
-        'あなたが操作に関与し続けます。Cloud Agent はクラウドの GitHub Actions で実行され、' +
-        '独立して作業し、完了すると PR を作成します。',
+        '<strong>Agent Mode は Copilot のクラウドエージェントではありません。</strong> Agent ' +
+        'Mode はローカルの IDE セッションで動作しますが、クラウドエージェントは GitHub が ' +
+        'ホストする環境で非同期に動作し、pull request を返します。',
     },
     {
       icon: '🧠',
       content:
-        '<strong>サードパーティエージェントは IDE とクラウドの両方に存在します。</strong>' +
-        'VS Code では Claude と Codex がネイティブ SDK でローカルに動作します。GitHub 上では' +
-        'Copilot cloud agent と並んでクラウドエージェントとして実行されます。',
+        '<strong>サードパーティエージェントは異なるサーフェスを使用します。</strong> VS Code は ' +
+        'エージェントハーネスを公開し、GitHub は Copilot のクラウドエージェントと並行して ' +
+        'サードパーティのコーディングエージェントをホストします。',
     },
     {
       icon: '💬',
       content:
-        '<strong>Ask モードが出発点です。</strong>チャット参加者（@workspace）、スラッシュコマンド' +
-        '（/fix）、変数（#file）で質問のスコープを正確に絞り、自律的な作業のために Agent Mode に' +
-        'エスカレーションできます。',
+        '<strong>コンテキスト制御はエディタによって異なります。</strong> 自律作業に進む前に、' +
+        '関連するファイル、選択範囲、リポジトリコンテキスト、対応ツールのみを添付してください。',
     },
     {
       icon: '🔒',
       content:
-        '<strong>クラウドエージェントにはセキュリティが組み込まれています。</strong>Cloud Agent は ' +
-        'CodeQL、シークレットスキャン、依存関係チェックを自動的に実行します。' +
-        '<code>copilot/</code> ブランチにのみプッシュでき、常にドラフト PR を作成します。',
+        '<strong>クラウド作業には設定された保護策と人間のレビューが必要です。</strong> リポジトリ ' +
+        'の権限、ファイアウォールルール、スキャン制御、テスト、pull request レビューを組み合わ ' +
+        'せて使用してください。',
     },
   ],
 
-  /* ── Tips page ── */
+  /* ── Tips ページ ── */
   tipsSeo: {
-    title: 'Copilot Panorama — 効率化ティップス',
-    description: 'GitHub Copilotの利用を最適化するための実践ガイド — トークン管理、プロンプト設計、コンテキストスコーピング、モデル選択、ガバナンス。',
+    title: 'Copilot Panorama — 効率化のヒント',
+    description: 'GitHub Copilot の使用を最適化するための実践ガイド — トークン管理、プロンプト設計、コンテキストのスコープ設定、モデル選択、ガバナンス。',
   },
   tipsUi: {
-    heroTitle: 'Efficiency Tips',
-    insightsTitle: 'The efficiency mindset',
-    insightsSubtitle: 'Core principles for getting more value from every token',
-    footerBuiltFor: 'Built for GitHub Copilot users',
-    footerDocsLink: 'Full docs on Copilot billing',
-    pageTips: 'Efficiency Tips',
+    heroTitle: '効率化のヒント',
+    insightsTitle: '効率化のマインドセット',
+    insightsSubtitle: 'トークンごとの価値を最大化するための主要な原則',
+    footerBuiltFor: 'GitHub Copilot ユーザーのために作成',
+    footerDocsLink: 'Copilot の課金に関する完全なドキュメント',
+    pageTips: '効率化のヒント',
   },
   tipsViz: {
-    inputTokens: 'Input tokens',
-    outputTokens: 'Output tokens',
-    cachedTokens: 'Cached tokens',
-    modelCalls: 'model calls',
-    before: 'Before',
-    after: 'After',
-    expensive: 'Expensive',
-    cheap: 'Cheap',
-    high: 'High-effort',
-    low: 'Low-effort',
+    inputTokens: '入力トークン',
+    outputTokens: '出力トークン',
+    cachedTokens: 'キャッシュされたトークン',
+    modelCalls: 'モデル呼び出し',
+    before: '変更前',
+    after: '変更後',
+    expensive: '高コスト',
+    cheap: '低コスト',
+    high: '高負荷',
+    low: '低負荷',
     auto: 'Auto',
-    cacheHit: 'Cache hit',
-    cacheMiss: 'Cache miss',
-    narrow: 'Narrow',
-    broad: 'Broad',
-    verboseInstructions: '長い冗長な指示…',
-    scopedContext: 'スコープを絞った正確なコンテキスト',
-    chat: 'チャット',
-    shipToPr: 'PRに反映',
+    cacheHit: 'キャッシュヒット',
+    cacheMiss: 'キャッシュミス',
+    narrow: '狭い',
+    broad: '広い',
+    verboseInstructions: '長く冗長な指示…',
+    scopedContext: '正確でスコープ限定のコンテキスト',
+    chat: 'Chat',
+    shipToPr: 'PR に反映',
     freshThread: '新しいスレッド',
     principlesBrief: '原則のみ。簡潔に。',
     heavy: '重い',
-    skills: 'スキル',
-    repetitive: '繰り返し',
-    promptFiles: 'プロンプトファイル',
-    minimalDiff: '最小限のdiff + 3つの要点',
-    alwaysOn: '常時オン',
+    skills: 'Skills',
+    customAgents: '異なるロール + ツール → Custom Agents',
+    minimalDiff: '最小限の差分 + 3つの箇条書き',
+    alwaysOn: '常時有効',
     costly: '高コスト',
     onDemand: 'オンデマンド',
     efficient: '効率的',
-    modelReads: 'モデルが読む',
-    descriptionLabel: '説明',
-    loadsIfRelevant: '関連する場合フルスキルを読み込み',
-    loadOnce: 'スキーマを一度読み込む',
-    reuseInQueries: '後続のクエリで再利用',
-    tokenPrefixMatch: '≥1024トークン一致',
-    prefixDiffers: 'プレフィックス不一致',
-    standard: 'スタンダード',
+    enabledTools: '必要なツールセットのみ有効',
+    disabledTools: '全ツールセット有効',
+    taskScoped: 'このタスクにスコープ限定',
+    loadOnce: 'スキーマを一度だけ読み込む',
+    reuseInQueries: '後続のクエリで参照',
+    tokenPrefixMatch: '≥1024 トークンが一致',
+    prefixDiffers: 'プレフィックスが異なる',
+    standard: '標準',
     architecture: 'アーキテクチャ',
     debugging: 'デバッグ',
-    agentic: 'エージェント',
+    agentic: 'エージェント型',
     summarize: '要約',
     qa: 'Q&A',
     refactorLabel: 'リファクタリング',
     simpleToMini: 'シンプル → mini',
     complexToPremium: '複雑 → premium',
-    icEng: 'ICエンジニア',
+    icEng: 'IC エンジニア',
     powerUser: 'パワーユーザー',
-    ciAgent: 'CIエージェント',
-    stopAfterTest: '最初のテスト成功後に停止',
-    perStep: 'ステップあたり',
+    ciAgent: 'CI エージェント',
+    stopAfterTest: '最初のテスト成功で停止',
+    perStep: 'ステップごと',
     steps: 'ステップ',
     accuracy99: '99%',
     accuracy95: '95%',
     bePrecise: '正確に',
     stopSignals: '停止シグナルを追加',
-    knownContext: '既知のコンテキストを事前に',
-    lostInMiddle: '中央で見失う',
+    knownContext: '既知のコンテキストを追加',
+    lostInMiddle: '中間で失われる',
     recencyBias: '直近バイアス',
-    middleDecay: '中央トークンが薄れる',
-    startStrong: '✓ 先頭: 高い想起',
-    middleLost: '✗ 中央: 劣化',
-    endStrong: '✓ 末尾: 高い想起',
-    rawFiles: '生ファイルをAIに',
-    scriptOutput: 'スクリプト実行、出力を渡す',
+    middleDecay: '中間のトークンが劣化',
+    startStrong: '✓ 冒頭：強い記憶',
+    middleLost: '✗ 中間：劣化',
+    endStrong: '✓ 末尾：強い記憶',
+    rawFiles: '生ファイルを AI に渡す',
+    scriptOutput: 'スクリプトを実行し、出力を渡す',
     research: '/research',
-    plan: '/plan',
+    plan: 'プランモード',
     implement: '/fleet',
     withTests: '単体テストあり',
     withoutTests: '単体テストなし',
-    buggyChange: 'バグ入り変更',
+    buggyChange: 'バグのある変更',
     silentMerge: 'サイレントマージ',
-    brokenMain: 'main 破壊',
+    brokenMain: 'main が壊れる',
     failingTests: '失敗するテスト',
     correction: '修正',
     succeedingTests: '成功するテスト',
-    rawOutput: '生出力: 4,200行',
-    trimmed: 'トリム後: 38行',
-    multipleCalls: '5回の連続ツール呼び出し',
-    batchedCall: '1回のバッチ呼び出し',
-    cleanLayers: 'Domain → Application → Infra',
-    agentMiss: 'エージェントミス',
-    chronicle: '/chronicle',
-    updateInstructions: '指示を更新',
-    enterpriseDefault: '企業デフォルト',
-    overridableKeys: '上書き可能キー',
-    teamSpecialization: 'チーム設定',
+    rawOutput: '生の出力：4200行',
+    trimmed: '整形後：38行',
+    multipleCalls: '5回の順次ツール呼び出し',
+    batchedCall: 'バッチ化された1回の呼び出し',
+    cleanLayers: 'ドメイン → アプリケーション → インフラストラクチャ',
+    agentMiss: 'エージェントのミス',
+    rootCause: '根本原因を特定',
+    durableFix: '持続的な修正をコード化',
+    enterpriseDefault: 'Enterprise のデフォルト',
+    overridableKeys: 'オーバーライド可能なキー',
+    teamSpecialization: 'チームの構成',
   },
   tipsLayers: {
     mechanics: {
-      title: 'トークンメカニクス',
-      subtitle: 'Copilotの各インタラクションにおけるコストの仕組みを理解する',
+      title: 'トークンの仕組み',
+      subtitle: 'Copilot とのやり取りごとのコスト要因を理解する',
     },
     pitfalls: {
       title: '落とし穴',
-      subtitle: '出力を静かに劣化させトークンを消費する失敗モード',
+      subtitle: '結果を静かに劣化させ、トークンを消費する失敗パターン',
     },
     prompting: {
       title: 'プロンプティング',
-      subtitle: 'より少ないトークンでより良い出力を得るプロンプトを書く',
+      subtitle: 'より少ないトークンでより良い結果を出すプロンプトを書く',
     },
     context: {
       title: 'コンテキスト',
-      subtitle: 'モデルに必要なものだけを過不足なく与える',
-    },
-    'workflow-design': {
-      title: 'ワークフロー設計',
-      subtitle: '各ステップが信頼でき再現可能になるよう作業を構造化する',
+      subtitle: 'モデルに必要なものだけを与える — 多すぎず、少なすぎず',
     },
     caching: {
-      title: 'キャッシング',
-      subtitle: 'プロンプトキャッシュを活用してより速く、より安く',
+      title: 'キャッシュ',
+      subtitle: 'プロンプトキャッシュを活用して、より速く安価なやり取りを実現',
     },
     models: {
       title: 'モデル',
-      subtitle: 'タスクの複雑さにモデルの能力を合わせる',
+      subtitle: 'モデルの能力をタスクの複雑さに合わせる',
     },
     governance: {
       title: 'ガバナンス',
-      subtitle: '組織レベルで消費を監視しガードレールを設定する',
+      subtitle: '消費を監視し、Organization レベルのガードレールを設定する',
+    },
+    'workflow-design': {
+      title: 'ワークフロー設計',
+      subtitle: '分割統治 — 1つの巨大プロンプトではなく、スコープ限定のステップを連鎖させる',
     },
   },
   tipsComponents: {
     'token-billing': {
-      name: 'トークンコストの要因',
-      description: '入力、出力、キャッシュ読み取りトークンが3つの課金軸',
+      name: 'AIクレジットのコスト要因',
+      path: 'コスト要因',
+      description: '入力・出力・キャッシュのトークンはモデルによって異なる形で貢献する',
       details:
-        'トークンベースの課金では、各インタラクションに3つのコスト要素があります：' +
-        '入力/コンテキストトークン（送信するもの）、出力トークン（モデルが生成するもの）、' +
-        'キャッシュ読み取りトークン（安価だが計測対象）。入力トークンにはプロンプト、' +
-        'システム指示、ファイルコンテキスト、ツール出力が含まれます。出力トークンは' +
-        'モデルのレスポンスです。キャッシュ読み取りトークンは最も安い軸で、通常の入力価格の' +
-        '約10%で課金されることが一般的です — だからこそターンをまたいでキャッシュを' +
-        '維持することが重要です。この3つの軸を理解することがコスト最適化の基盤です。',
-      useCases: ['全インタラクション', '予算計画', 'コスト分析'],
+        'AI クレジットの消費は、選択したモデルと処理されたトークンによります。入力トークンには ' +
+        'プロンプト、指示、ファイルコンテキスト、ツール出力が含まれます。出力トークンはモデル ' +
+        'が生成するものです。キャッシュされた読み取りは、繰り返しコンテキストが再利用される ' +
+        '際にコストが低くなることがあります。料金はモデルによって異なるため、固定の比率を ' +
+        '仮定せず、最新の価格表を使用してください。',
+      useCases: ['すべてのやり取り', '予算計画', 'コスト分析'],
     },
     'agentic-cost': {
-      name: 'エージェントのコスト乗数',
-      description: '1つのエージェントリクエストが数十回のモデル呼び出しを発生させることがある',
+      name: 'エージェント型コストの乗数',
+      path: 'Agentic Workflows',
+      description: 'エージェント型の作業は計画、ツール、検証、修正の間を反復する',
       details:
-        'エージェント体験（Agent Mode、Cloud Agent、CLI）は設計上反復します：' +
-        '計画 → 編集 → ツール/テスト実行 → 修正 → 繰り返し。同じユーザー意図でも' +
-        'ワークフローによって消費量が大きく異なります。単純な「このバグを直して」でも、' +
-        '複雑さ、ツール出力、エラー回復ループ次第で2回から20回以上の呼び出しになること' +
-        'があります。さらにエラーは積み重なります：ステップあたり99%の精度でも、' +
-        '50ステップのワークフローは約60%に着地します。だからこそプロンプトの長さより' +
-        'ワークフロー設計が重要なのです。',
-      useCases: ['Agent Mode', 'Cloud Agent', 'CLI Agent'],
+        'エージェント型体験（Agent Mode、クラウドエージェント、CLI）は設計上反復します：計画 ' +
+        '→ 編集 → ツール／テストの実行 → 修正 → 繰り返し。消費量はタスクのスコープ、モデル ' +
+        '選択、ツール出力、リトライ、停止条件によって変わります。明確な要件と決定論的な検証 ' +
+        'が不要なループを減らします。',
+      useCases: ['Agent Mode', 'クラウドエージェント', 'CLI エージェント'],
     },
     'context-discipline': {
       name: 'コンテキスト規律',
-      description: 'コスト最適化の大部分はコンテキスト規律とワークフロー設計',
+      path: 'ワークフロー設計',
+      description: 'コスト最適化の大部分はコンテキスト規律 + ワークフロー設計にある',
       details:
-        '最大のコストレバーは短いプロンプトを書くことではなく、各モデル呼び出しに' +
-        'どのコンテキストが流れ込むかを管理することです。ファイル添付、ツール出力、' +
-        '会話履歴の各項目が入力トークンを追加します。規律あるコンテキスト管理' +
-        '（ファイルのスコープ限定、ログの削減、新しいスレッドの開始）は、' +
-        'プロンプトの推敲よりもはるかに大きな効果があります。',
-      useCases: ['全ワークフロー', 'コスト最適化', 'パフォーマンス'],
+        '最大のコストレバーは短いプロンプトを書くことではなく、モデル呼び出しごとにどの ' +
+        'コンテキストを含めるかを管理することです。添付されるファイル、ツール出力、会話履歴の ' +
+        '各項目が入力トークンを追加します。規律あるコンテキスト管理（ファイルのスコープ限定、' +
+        'ログの整形、新規スレッドの開始）は、プロンプトを磨くことよりもはるかに大きな影響を ' +
+        '持ちます。',
+      useCases: ['すべてのワークフロー', 'コスト最適化', 'パフォーマンス'],
     },
     'quality-over-quantity': {
       name: '量より質',
-      description: '指示を増やすのではなく、高品質なコンテキストに集中する',
+      path: 'プロンプト設計',
+      description: '指示の量ではなく、質の高いコンテキストに集中する',
       details:
-        '指示が多い ≠ 良い出力。スコープを絞った高品質なガイダンスは冗長で散漫な' +
-        '出力を減らします。長い前置きの代わりに、モデルに必要なものだけを与えましょう：' +
-        '関連するコード、具体的な要件、明確な制約。スコープを絞ったプロンプトは、' +
-        'エージェントが収束せず反復し続ける暴走セッションも減らします。',
-      useCases: ['Chat', 'Agent Mode', 'プロンプトファイル'],
+        '指示が多いほど結果が良くなるわけではありません。タスクと期待される成果を定義し、' +
+        '関連するファイル、ログ、既知の制約を提供し、結果がどう検証されるかを示し、明確な停止 ' +
+        '条件を与えます。この構造は、探索、スコープの逸脱、リトライ、不要な出力を減らします。',
+      useCases: ['Chat', 'Agent Mode', 'Copilot CLI'],
     },
     'fresh-threads': {
-      name: '新しいスレッドを開始する',
-      description: '決定が永続的な成果物に反映されたら新しい会話を始める — コンテキストロットを避ける',
+      name: '新しいスレッドを使う',
+      path: 'セッション衛生',
+      description: '意思決定が反映されたら新しい会話を開始する — コンテキストの劣化を防ぐ',
       details:
-        'ツール出力がコンテキストに蓄積される長期セッションを避けましょう。蓄積された' +
-        'ツール出力は後続の各呼び出しに入力トークンを追加し、コンテキストウィンドウが' +
-        '50%を超えるとモデルは直近のトークンに偏り（直近バイアス）、中央のものを' +
-        '「見失い」ます。決定を永続的な成果物（Issue、PRの説明、ADR、コードコミット）' +
-        'に反映したら、クリーンなコンテキストウィンドウで新しいスレッドを始めましょう。' +
-        'Copilot CLIでは`/new`（または`/clear`）で新しい会話を開始できます。Chatでは' +
-        '新しいチャットセッションを開きます。',
-      useCases: ['Chat', 'Agent Mode', 'CLIセッション'],
+        'ツール出力がコンテキストに蓄積される長時間セッションを避けてください。蓄積された各 ' +
+        'ツール出力は後続の呼び出しに入力トークンを追加し、関連するコンテキストを希薄化させる ' +
+        '可能性があります。決定を耐久性のある成果物（issue、PR の説明、ADR、コードコミット）に ' +
+        '反映したら、クリーンなコンテキストウィンドウで新しいスレッドを開始してください。' +
+        'Copilot CLI では `/new`（または `/clear`）で新しい会話を開始でき、Chat では新しい ' +
+        'チャットセッションを開きます。',
+      useCases: ['Chat', 'Agent Mode', 'CLI セッション'],
     },
     'concise-instructions': {
-      name: '指示を圧縮する',
-      description: '.github/copilot-instructions.mdを短く、安定的に、原則ベースで保つ',
+      name: '指示を絞り込む',
+      path: 'Instructions',
+      description: 'タスク固有の詳細よりも、安定したプロジェクトガイドラインを優先する',
       details:
-        '指示はすべての会話に自動的に読み込まれます — 常時オンのコンテキストです。' +
-        'copilot-instructions.mdは短く安定的に保ちましょう：原則、規約、「やってはいけない」' +
-        'ルール。余分な1行が全インタラクションに入力トークンを追加します。詳細なガイダンス' +
-        '（プレイブック、例、ドメインルール）はSkillsやプロンプトファイルに移動し、' +
-        '必要な時だけ読み込まれるようにしましょう。',
-      useCases: ['指示ファイル', 'コスト最適化', '全インタラクション'],
+        'リポジトリの指示は、プロジェクトのマップ、検証済みのビルド／テスト／リント ' +
+        'コマンド、安定した慣例、譲れない制約に使用します。古くなった内容やタスク固有の詳細は ' +
+        '削除します。再利用可能なドメインプレイブック、例、スクリプト、リソースは skill に ' +
+        '置き、関連性がある場合に Copilot が読み込めるようにします。',
+      useCases: ['Instructions', 'コスト最適化', 'すべてのやり取り'],
     },
     'structure-for-reuse': {
-      name: '再利用のための構造化',
-      description: '重いガイダンスにはSkillsを、繰り返しワークフローにはプロンプトファイルを使う',
+      name: '再利用できる構造にする',
+      path: '再利用可能なコンテキスト',
+      description: '再利用可能な専門性には skill を、異なるロールにはエージェントを使う',
       details:
-        '重いガイダンス（プレイブック、例、ドメインルール、ランブック）はAgent Skillsに' +
-        '入れ、ユーザーのプロンプトにマッチした時だけ読み込まれるようにします。繰り返し' +
-        'ワークフロー（例：「ユニットテストを書いて」「ADRを作成して」「変更ログを生成して」）' +
-        'はプロンプトファイルに入れ、ユーザーが毎回巨大な指示を貼り付けなくて済むように' +
-        'します。これによりコンテキストを常時オン（高コスト）からオンデマンド（効率的）に移行できます。',
-      useCases: ['Skills', 'プロンプトファイル', 'チームワークフロー'],
+        'プレイブック、例、ドメインルール、スクリプト、runbook は Agent Skills に置き、' +
+        'Copilot が関連するタスクに対して選択できるようにします。ワークフローに異なるロール、' +
+        'ツールの境界、隔離されたコンテキストが必要な場合は custom agents を使います。リポジ ' +
+        'トリ全体の指示は、タスク横断で適用されるガイドラインに集中させておきます。',
+      useCases: ['Skills', 'Custom Agents', 'チームワークフロー'],
     },
     'concise-answers': {
-      name: '少なく求める',
-      description: '出力トークンを最小化するため、最小限の有用な回答を指示する',
+      name: '要求を減らす',
+      path: '出力制御',
+      description: '出力トークンを最小限に抑えるため、最小限の有用な回答を求める',
       details:
-        '出力トークンは最もコストが高い次元です。最小限の有用なレスポンスを求めましょう：' +
-        '「すべて説明して」ではなく「最小限のdiff + 3つの箇条書きの根拠」。アップグレード/' +
-        'マイグレーション時は「破壊的変更のみ列挙、背景は省略」。小さな出力はレスポンスが' +
-        '速く、読み飛ばすノイズも少なくなります。',
+        '最小限の有用な回答を求めてください：「すべてを説明して」ではなく、「最小限の差分 + ' +
+        '理由の箇条書き3つをください」のように。アップデートやマイグレーションでは「破壊的 ' +
+        '変更のみをリストして。コンテキストは省略して」。出力を小さくすることで、生成される ' +
+        'トークンとレビューのノイズが減ります。',
       useCases: ['Chat', 'コードレビュー', 'マイグレーション'],
     },
     'scope-context': {
-      name: 'コンテキストを意図的にスコープする',
-      description: '狭い質問には #file または #selection、横断的変更のみ #codebase を使う',
+      name: 'コンテキストを意図的にスコープ限定する',
+      path: 'コンテキスト戦略',
+      description: 'タスクに必要なファイル、選択範囲、ログのみを添付する',
       details:
-        'チャット参照（#file、#selection、#codebase）は、モデルが見るもの — そしてあなたが' +
-        '支払うもの — を正確に制御します。特定ファイルへの焦点を絞った質問には#file、' +
-        'さらに狭い範囲（ハイライトされた行のみ）には#selectionを使いましょう。#codebaseは' +
-        'モデルが本当にプロジェクト全体を推論する必要がある横断的変更のために予約します。' +
-        'ツール出力も同じ原則：完全なログではなく、失敗したテスト出力だけを添付しましょう。' +
-        '対象を絞ったコンテキストは安価で高速、そしてモデルが無関係なコードに気を取られないため、' +
-        '通常はより良い回答を生み出します。',
+        '関連するファイルを開く／添付し、無関係なタブは閉じてください。ログ全体ではなく、選択 ' +
+        'したコード、エラー、失敗したテストの出力を含めます。コンテキスト制御とキーワードは ' +
+        'IDE によって異なりますが、原則は変わりません：スコープ限定のコンテキストは注意の散漫 ' +
+        'さと AI クレジットの使用を減らします。',
       useCases: ['Chat', 'Agent Mode', 'CLI'],
     },
     'conditional-context': {
-      name: '条件付きで常時オンより優先',
-      description: '現在のタスクに関連する時だけ読み込まれるコンテキストを優先する',
+      name: '常時ではなく条件付きにする',
+      path: '条件付き読み込み',
+      description: '現在のタスクに関連する場合にのみ読み込まれるコンテキストを優先する',
       details:
-        '常時オンのコンテキスト（copilot-instructions.md）はすべての会話に読み込まれ、' +
-        '毎回トークンがかかります。条件付きコンテキスト（Skills、パススコープ付き指示）は' +
-        '関連する時だけ読み込まれます。専門的なガイダンスはモデルが読み込みタイミングを判断する' +
-        'Skillsに移動するか、applyToグロブで指示が一致するファイルにのみ適用されるように' +
-        'しましょう。',
-      useCases: ['指示ファイル', 'Skills', 'パススコーピング'],
+        '常時有効なコンテキスト（copilot-instructions.md）はすべての会話で読み込まれ、毎回 ' +
+        'トークンコストがかかります。条件付きコンテキスト（Skills、パスにスコープ限定された ' +
+        '指示）は関連する場合にのみ読み込まれます。専門的なガイドラインを Skills に移すと、' +
+        'モデルがいつ読み込むかを判断できるようになります。または applyTo glob を使って、一致 ' +
+        'するファイルにのみ指示が適用されるようにします。',
+      useCases: ['Instructions', 'Skills', 'パスのスコープ限定'],
     },
     'apply-to-paths': {
-      name: 'applyToパスを使う',
-      description: 'applyToグロブでカスタム指示を特定のファイルパターンにスコープする',
+      name: 'applyTo パスを使う',
+      path: 'パスのスコープ限定',
+      description: 'applyTo glob でカスタム指示を特定のファイルパターンにスコープ限定する',
       details:
-        'パス固有の指示（.github/instructions/内）はapplyToグロブフロントマターを' +
-        'サポートします。これにより指示はモデルがマッチするファイルで作業している時だけ' +
-        '読み込まれます — 例：テスト規約にはapplyTo: "**/*.test.ts"。関連しない時は' +
-        'コストゼロ、必要な時は精密なコンテキストとなります。',
-      useCases: ['指示ファイル', 'テストルール', 'フレームワーク固有'],
+        'パス固有の指示（.github/instructions/ 内）は applyTo glob フロントマターをサポート ' +
+        'します。これは、モデルが一致するファイルで作業する場合にのみ指示が読み込まれることを ' +
+        '意味します — 例えば、テストの慣例には applyTo: "**/*.test.ts" のように。これは無関係な ' +
+        '場合は無料のコンテキストであり、必要な場合は正確なコンテキストです。',
+      useCases: ['Instructions', 'テストルール', 'フレームワーク固有'],
     },
     'skills-mcp': {
-      name: 'Skills & MCPを活用する',
-      description: 'Skillsはオンデマンドで読み込まれる — ただしMCPツールスキーマは毎ループに加算される',
+      name: '必要なツールセットだけ有効にする',
+      path: 'ツールセットのスコープ限定',
+      description: 'MCP ツールをタスクが必要とする機能のみに制限する',
       details:
-        'Skillsはモデルが説明文から発見し、関連する時だけガイダンス全体をコンテキストに' +
-        '読み込みます。一方、MCPサーバーのツールスキーマは毎ループで静的トークンとして' +
-        '読み込まれます — 便利ですが積み重なります。ワークフローによっては素のCLIコマンドが' +
-        '同等のMCPツールより安いこともあります。明確で簡潔なスキル説明を書き、' +
-        'トレードオフが見合う場合はヘビーなMCPよりSkills/CLIを選びましょう。',
-      useCases: ['Skills', 'MCPサーバー', 'カスタムエージェント'],
+        '大規模な MCP ツールのコレクションはコンテキストを追加し、ツール選択を難しくします。' +
+        '現在のワークフローに必要な GitHub MCP のツールセットと外部サーバーのみを構成して ' +
+        'ください。発見のためにより広いカタログを利用可能にしつつ、タスクを開始する前に有効な ' +
+        'ツールをスコープ限定してください。',
+      useCases: ['MCP サーバー', 'GitHub MCP サーバー', 'コンテキスト管理'],
     },
     'context-command': {
       name: 'CLI の /context',
-      description: '/contextでコンテキストを監視し、長いセッションは最初からやり直さず/compactで圧縮する',
+      path: 'CLI のコンテキスト',
+      description: '/context でコンテキストを監視し、最初からやり直す代わりに /compact で長いセッションを圧縮する',
       details:
-        'Copilot CLIでは、`/context`を使ってコンテキストウィンドウの消費量を確認できます。' +
-        'セッションが大きくなっても続けたい場合は、`/compact`を実行して履歴を要約し、' +
-        'ウィンドウを縮小します — 例えば`/compact focus on the auth module`のように' +
-        '任意で焦点を指定できます。無関係な問題に切り替える時は、代わりに`/new`または' +
-        '`/clear`でクリーンに始めましょう。コンテキスト消費量を把握しておくと、圧縮するか、' +
-        '新しく始めるか、そのまま続けるかを判断しやすくなります。',
-      useCases: ['CLI', '長時間セッション', 'コンテキスト管理'],
+        'Copilot CLI では `/context` を使って、コンテキストウィンドウのどれだけが消費された ' +
+        'かを確認します。セッションが大きくなったが続けたい場合は、`/compact` を実行して履歴を ' +
+        '要約しウィンドウを縮小します — 必要に応じて `/compact focus on the auth module` の ' +
+        'ようにフォーカスすることもできます。無関係な問題に切り替える場合は、代わりに `/new` ' +
+        'または `/clear` でクリーンに始めてください。コンテキストの消費を意識することで、いつ ' +
+        '圧縮するか、やり直すか、続けるかを判断できます。',
+      useCases: ['CLI', '長いセッション', 'コンテキスト管理'],
     },
     'reuse-context': {
-      name: 'コンテキストの保存と再利用',
-      description: '共有コンテキストを早期に読み込み、後続の質問で安価に参照する',
+      name: 'コンテキストを保存して再利用する',
+      path: 'コンテキストの再利用',
+      description: '共有コンテキストを早期に読み込み、後続の質問が安価に参照できるようにする',
       details:
-        'プロンプト内でコンテキストを保存・再利用しましょう。例えば、会話の早い段階で' +
-        'データベーススキーマを読み込み、後続の作業でそれを再利用します — 毎回貼り直す' +
-        'のではなく、そのコンテキストを参照した的を絞った質問をしましょう。これはCLIで' +
-        '特に効果的で、セッションが長期化し、共有プレフィックスがプロンプトキャッシュを' +
+        'プロンプト内でコンテキストを保存・再利用してください。例えば、会話の早い段階で ' +
+        'データベーススキーマを読み込み、後続の作業がそれを再利用できるようにします — 毎回 ' +
+        '貼り直すのではなく、それを参照する具体的な質問をします。これは CLI で特に効果的です。' +
+        'セッションが長時間にわたることがあり、共有プレフィックスがプロンプトキャッシュを ' +
         '有効にします。',
-      useCases: ['CLIセッション', 'Chat', 'スキーマ重視の作業'],
+      useCases: ['CLI セッション', 'Chat', 'スキーマの多い作業'],
     },
     'prefix-matching': {
-      name: 'プロンプトプレフィックスキャッシング',
-      description: 'LLMキャッシュは正確なプレフィックス一致に依存 — プロンプトをそれに合わせて構造化',
+      name: 'プロンプトのプレフィックスキャッシュ',
+      path: 'プロンプトキャッシュ',
+      description: 'LLM のキャッシュは正確なプレフィックスの一致に依存する — それに応じてプロンプトを構成する',
       details:
-        'LLMのプロンプトキャッシング（プロバイダー横断）は一般的に正確なプレフィックス一致に' +
-        '依存します。例えば、Azure OpenAIのプロンプトキャッシングではプロンプトが1,024トークン' +
-        '以上で最初の1,024トークンが同一である必要があります。つまり、プロンプトの先頭にある' +
-        '安定したシステムプロンプトと指示がキャッシュヒットしやすいということです。前文を' +
-        '毎回変えるとキャッシュが効きません。',
-      useCases: ['全インタラクション', 'コスト最適化', 'パフォーマンス'],
+        'プロンプトキャッシュは一般的に繰り返されるプレフィックスに依存します。安定した ' +
+        '指示、ツール定義、関連する会話コンテキストは、絶えず変化する前置きよりも再利用される ' +
+        '可能性が高くなります。これは Copilot の固定されたトークンしきい値ではなく、実装上の ' +
+        'コンテキストとして捉えてください。',
+      useCases: ['すべてのやり取り', 'コスト最適化', 'パフォーマンス'],
     },
     'choose-right-model': {
-      name: '適切なモデルを選ぶ',
-      description: '能力をタスクに合わせる：推論、中間層、軽量モデル',
+      name: 'モデルと推論レベルを選ぶ',
+      path: 'モデル選択',
+      description: 'モデルの能力と推論の労力をタスクの複雑さに合わせる',
       details:
-        'モデル選択はコストを制御する最速の方法の1つです — タスクに必要なだけの能力を使い、' +
-        '必要以上は使わないことです。3つの層で考えましょう：アーキテクチャ判断、複雑なデバッグ、' +
-        'システム設計には推論モデル。計画が明確で、エージェントが実行するだけなら中間層モデル。' +
-        'リファクタリング、整形、ドキュメント、その他の日常的でスコープが明確な変更には軽量モデル。' +
-        'すべてに最も高性能なモデルをデフォルトで使うと、成果を改善しないままトークン使用量だけが' +
-        '増えます — さらに推論モデルを使いすぎると、タスクを考えすぎて品質が下がることさえあります。',
-      useCases: ['全インタラクション', '予算計画', 'タスクルーティング'],
-    },
-    'high-effort-tasks': {
-      name: '複雑な作業にはプレミアムモデル',
-      description: '深いアーキテクチャ、難しいデバッグ、エージェント作業には高性能モデルを使用',
-      details:
-        'プレミアム/高性能モデル（Claude Opus、GPT-4.1、o3）は本当に深い推論が必要な' +
-        'タスクに限定しましょう：複雑なアーキテクチャ決定、難しいマルチファイルデバッグ、' +
-        '大規模なエージェントワークフロー、セキュリティ重要なコードレビュー。これらの' +
-        'モデルはトークン単価が高いですが、一発で正解を出すことで時間を節約します。',
-      useCases: ['アーキテクチャ', 'デバッグ', 'セキュリティレビュー', 'Agent Mode'],
-    },
-    'low-effort-tasks': {
-      name: '単純なタスクにはMiniモデル',
-      description: '要約、簡単なQ&A、小さなリファクタにはデフォルトで効率的なモデルを使用',
-      details:
-        'mini/効率的なモデル（GPT-4.1 mini、Claude Haiku、Gemini Flash）を要約、' +
-        '簡単なQ&A、小さなリファクタ、ボイラープレート生成のデフォルトとして使いましょう。' +
-        'これらのモデルはトークン単価が大幅に安く、単純なタスクには十分高速です。' +
-        'インタラクションの大半が単純な場合、コスト削減は急速に積み上がります。',
-      useCases: ['要約', 'Q&A', 'リファクタリング', 'ボイラープレート'],
+        'モデルの選択は、コストを制御する最も速い方法の1つです — タスクが必要とするだけの ' +
+        '能力を使い、必要以上には使わないでください。3つのレベルで考えます：アーキテクチャの ' +
+        '判断、複雑なデバッグ、システム設計には推論モデルを。計画が明確でエージェントが実行 ' +
+        'するだけの場合は中間モデルを。リファクタリング、フォーマット、ドキュメント、その他の ' +
+        '日常的でよくスコープ限定された変更には軽量なモデルを使います。設定可能な推論をサポート ' +
+        'するモデルでは、デフォルトで通常の労力を使い、より難しい作業に対してのみ引き上げて ' +
+        'ください。労力を上げるほど AI クレジットを多く消費するためです。',
+      useCases: ['すべてのやり取り', '予算計画', 'タスクのルーティング'],
     },
     'auto-mode': {
-      name: 'Autoモードを使う',
-      description: 'Autoは各プロンプトを効率的にルーティングし、キャッシュを守り、10%割引を得る',
+      name: '自動モードを使う',
+      path: '自動選択',
+      description: 'Auto は各プロンプトを効率的なモデルにルーティングし、キャッシュを保護し、10% の割引を提供する',
       details:
-        'どのモデルを使うか迷ったら「Auto」を選択しましょう。小さなルーターがプロンプトを分析し、' +
-        '最も効率よく処理できるモデルへ送ります — 高価な推論モデルは本当に複雑な問題のために' +
-        '温存します。Autoはキャッシュも守ります：モデルを切り替えるのは自然な境界（新しいセッション' +
-        'または`/compact`後）だけで、タスクの途中では切り替えません。有料Copilotプランでは、' +
-        'Autoモデル選択によりChat、CLI、クラウドエージェントでモデルコストが10%割引になります。' +
-        'ほとんどのワークフローで良いデフォルトです。',
-      useCases: ['デフォルトワークフロー', '混在タスク', '新規ユーザー'],
+        '使用するモデルに迷ったら「Auto」を選択してください。小さなルーターがプロンプトを ' +
+        '分析し、それを最も効率的に処理できるモデルに送ります — 高コストな推論モデルは本当に ' +
+        '複雑な問題のために温存されます。Auto はキャッシュも保護します：モデルの切り替えは ' +
+        '自然な境界（新しいセッション、または `/compact` の後）でのみ行われ、タスクの途中で ' +
+        '切り替わることはありません。有料の Copilot プランでは、自動モデル選択を使用すると、' +
+        'Chat、CLI、Copilot アプリ、クラウドエージェント全体でモデルコストが 10% 割引されます。' +
+        'ほとんどのワークフローにとって良いデフォルトの選択です。',
+      useCases: ['デフォルトのワークフロー', '混在タスク', '新規ユーザー'],
     },
     'monitor-usage': {
-      name: 'ユーザー予算を設定する',
-      description: 'ペルソナ別に適切なデフォルトでユーザーレベルの予算を設定する',
+      name: '使用量を基準化してから予算を設定する',
+      path: '予算管理',
+      description: '観測された使用量からレポート、アラート、コストセンター、ユーザー上限を活用する',
       details:
-        'ペルソナ別に適切なデフォルトでユーザーレベルの予算を設定しましょう：ICエンジニア vs ' +
-        'パワーユーザー vs CIエージェント。控えめな制限から始め、観測された消費量に基づいて' +
-        '調整します。大量消費パターンを監視しましょう — 1回のエージェントセッションが' +
-        '1週間分のチャットインタラクションより多くのトークンを消費することがあります。' +
-        '管理ダッシュボードで外れ値を特定し調整しましょう。',
+        'モデル別の内訳（入力、出力、キャッシュの読み書き）を含む AI 使用状況レポートを使って ' +
+        'ベースラインを確立してください。履歴が限られている場合は、アラートのみの予算と寛容な ' +
+        '全ユーザー上限から始めます。所有権が委譲されている場所にはコストセンターごとの予算を ' +
+        '追加し、しきい値アラートを監視し、観測されたパターンから上限を調整します。',
       useCases: ['管理者', '予算管理', 'チームガバナンス'],
     },
     'managed-settings-tip': {
-      name: 'チーム別に Managed Settings を設定',
-      description: '企業ガードレールを維持しながら、承認済み設定をチームごとに調整する',
+      name: 'チームごとに管理設定を専門化する',
+      path: 'managed-settings.json\nteam-mappings.json\nteams/<name>.json',
+      description: 'チームが承認された設定をカスタマイズしつつ、Enterprise のガードレールを固定しておく',
       details:
-        '`copilot/managed-settings.json` の企業デフォルトから始めます。チームが変更できる' +
-        'キーだけを `overridable` にし、`copilot/team-mappings.json` で設定ファイルを' +
-        'エンタープライズチームの slug に割り当て、承認済みの値を `copilot/teams/` 配下に' +
-        '置きます。未設定値は企業デフォルトを継承します。上書き不可のキーは固定され、' +
-        '`enabledPlugins` と `extraKnownMarketplaces` は加算方式で統合されます。ユーザーが' +
-        '複数チームに所属する場合、チーム値は企業ポリシーの下で最も制限の少ない値を使って' +
-        '統合されます。',
-      useCases: ['プラットフォームチーム', 'AI パイオニア', '役割別ツール'],
+        '`copilot/managed-settings.json` の Enterprise のデフォルトから始めます。チームが変更 ' +
+        'できるキーのみを `overridable` としてマークし、`copilot/team-mappings.json` で設定 ' +
+        'ファイルを Enterprise のチームスラグにマッピングし、承認された値を ' +
+        '`copilot/teams/` 以下に配置します。未定義の値は Enterprise のデフォルトにフォール ' +
+        'バックします。オーバーライドできないキーはロックされたままですが、`enabledPlugins` と ' +
+        '`extraKnownMarketplaces` は加算的にマージされます。MCP の許可／拒否設定は、対応する ' +
+        'クライアントでサーバーを中央集権的に統制できます。ユーザーが割り当てられた複数の ' +
+        'チームに属する場合、チームの値は Enterprise ポリシーの下で最も制限の緩い値を使って ' +
+        'マージされます。',
+      useCases: ['プラットフォームチーム', 'AI パイオニア', 'ロールベースのツール'],
       docLabel: 'チーム固有の設定を構成',
-      altDocLabel: 'Managed Settings リファレンス',
+      altDocLabel: '管理設定リファレンス',
     },
     'compound-errors': {
-      name: '複利エラー問題',
-      description: 'ステップあたり99%でも、50ステップのワークフローは約60%にしか着地しない',
+      name: 'エラーの複合問題',
+      path: '品質の数学',
+      description: 'ステップごとの仮想的なエラー率は、長いワークフローにわたって複合する',
       details:
-        'ステップごとの精度はエージェントループ全体で乗算的に積み上がります。' +
-        'ステップあたり99%の信頼性では、50ステップのワークフローは0.99⁵⁰ ≈ 60%で終わります。' +
-        'ステップあたり95%まで落ちると、50ステップの実行はエンドツーエンドで成功する確率が' +
-        'たった約8%です。だからこそ「エージェントギャンブル」— 低品質な出力が上手くいくことを' +
-        '願うこと — はスケールしなくなります。ステップごとの品質を改善するすべて' +
-        '（より良いプロンプト、スコープ縮小、決定論的チェック）は、ワークフロー全体で乗算されます。',
-      useCases: ['Agent Mode', 'Cloud Agent', 'オーケストレーションワークフロー'],
-    },
-    'prompt-anatomy': {
-      name: 'プロンプトの解剖',
-      description: '正確に · 停止シグナルを追加 · 既知のコンテキストを事前に',
-      details:
-        'エージェントは設計上反復します：計画 → 編集 → ツール実行 → 修正 → 繰り返し。' +
-        '制限がなければ、成功する（またはコンテキストを使い果たす）まで続けます。' +
-        '効果的なプロンプトの信頼できる3つの構成要素が、エージェントを道から外させません：' +
-        '(1) 正確に — 望ましい結果を含めて、変更を明瞭で曖昧さのない言葉で記述。' +
-        '(2) 停止シグナルを追加 — 「最初のテスト成功で停止」「代替案は最大2つまで」' +
-        '「無関係なコードをリファクタしない」。(3) 既知のコンテキストを事前に — ' +
-        '関連するファイル、フォルダ、ドキュメントを指定し、エージェントが検索でトークンを' +
-        '無駄にしないようにする。決定論的ガードレール（テスト、リンター）と組み合わせる' +
-        'ことで、トークンを消費し続ける暴走セッションを防ぎます。',
-      useCases: ['Chat', 'Agent Mode', 'CLI'],
+        '説明のために、50 の独立したステップそれぞれが 99% 信頼できるとすると、エンドツー ' +
+        'エンドの仮想的な確率は約 60% になり、95% では約 8% になります。これらは数学的な例 ' +
+        'であり、測定された Copilot の信頼性ではありません。より小さなスコープと決定論的な ' +
+        '検証は、未検証のステップ数を減らします。',
+      useCases: ['Agent Mode', 'クラウドエージェント', 'オーケストレーションされたワークフロー'],
     },
     'context-rot': {
-      name: 'コンテキストロット',
-      description: '長いセッションは劣化する — 蓄積されたツール出力が後続の各呼び出しを汚染する',
+      name: 'コンテキストの劣化',
+      path: 'コンテキストの劣化',
+      description: '長い履歴はコストを増加させ、関連する意思決定を希薄化させる可能性がある',
       details:
-        'ツール出力、ファイル添付、会話ターンはコンテキストに積み上がります。ウィンドウが' +
-        '約50%を超えると、2つのことが起きます：入力コストが爆発し（後続の各呼び出しが' +
-        '全履歴を再送信）、モデルは直近のトークンに大きく依存し（直近バイアス）、' +
-        'セッション初期の決定を見失います。緩和策：冗長なツール出力をトリム、' +
-        '中間決定を永続的な成果物（Issue、PR、ADR）に反映、劣化が始まる前に新しいスレッドを開始。',
-      useCases: ['長時間セッション', 'Agent Mode', 'CLIセッション'],
+        '各ツール出力、添付ファイル、会話の各ターンはコンテキストに蓄積されます。長い履歴は ' +
+        '入力処理を増加させ、古い意思決定を取り出しにくくすることがあります。緩和策：冗長な ' +
+        'ツール出力を整形し、中間の意思決定を耐久性のある成果物（issue、PR、ADR）に反映し、' +
+        '劣化が定着する前に新しいスレッドを開始します。',
+      useCases: ['長いセッション', 'Agent Mode', 'CLI セッション'],
     },
     'lost-in-middle': {
-      name: 'Lost in the Middle',
-      description: '長いコンテキストの中央に置かれたトークンは信頼性が低く想起される',
+      name: '中間に埋もれる問題',
+      path: '位置バイアス',
+      description: '長いコンテキストの中間に位置するトークンは信頼性が低く記憶される',
       details:
-        '文書化された失敗モード：コンテキストが長いとき、モデルは先頭と末尾のトークンを' +
-        '高い忠実度で想起しますが、中央のトークンでは劣化します。200kウィンドウでも、' +
-        '8,000行のうち4,000行目に重要な指示を埋め込むと、事実上見えなくなる可能性が' +
-        'あります。緩和策：プロンプトを短く保つ、重要な指示はプロンプトの先頭または末尾に' +
-        '置く、長い入力は1つの巨大ドキュメントではなく集中したチャンクに分割する。',
-      useCases: ['大きなプロンプト', '長文ドキュメント', 'マルチファイルレビュー'],
+        '外部の LLM 研究では、長いコンテキストの中間にある情報の取り出しがより弱いことが ' +
+        '見つかっています。結果はモデルによって異なり、Copilot の信頼性の保証ではありません。' +
+        '重要な指示は目立たせておき、無関係な内容はスコープ限定されたエントリに分割します。',
+      useCases: ['大きなプロンプト', '長いドキュメント', 'マルチファイルレビュー'],
     },
     'think-in-code': {
       name: 'コードで考える',
-      description: '生ファイルを渡すよりスクリプトを優先 — 分析してから要約をモデルに渡す',
+      path: 'AI ではなくスクリプト',
+      description: '生ファイルを与えるより、スクリプトを優先する — 分析してからモデルに要約を渡す',
       details:
-        '10,000行のログや大きなJSONダンプを理解する必要があるとき、全部貼り付けないこと。' +
-        '小さなスクリプトを書く（またはエージェントに書かせる）：重要な部分だけを抽出 — ' +
-        '集計、エラー、関連スライス — してその出力をエージェントに渡しましょう。これは' +
-        '数千の入力トークンを数十に縮め、モデルを実際の問題に集中させます。grep、jq、awk、' +
-        '20行のPythonスクリプトでも同様に有効です。',
+        '10,000 行のログや大きな JSON ダンプを理解する必要があるとき、すべてを貼り付けないで ' +
+        'ください。重要な部分（件数、エラー、関連する部分）だけを抽出する小さなスクリプトを ' +
+        '書く（またはエージェントに書かせる）ようにし、代わりにそのスクリプトの出力をエージェ ' +
+        'ントに渡します。これにより、モデルは実際の質問に集中し続けられます。grep、jq、awk、' +
+        'または小さなスクリプトを使い、安全に一緒に実行できる独立した決定論的操作をまとめて ' +
+        'ください。',
       useCases: ['ログ分析', 'データ探索', '大きなファイル'],
     },
     'research-plan-implement': {
-      name: 'リサーチ → プラン → 実装',
-      description: '焦点を絞った3段階を、各段階に適したモデルで繋ぐ',
+      name: '調査 → 計画 → 実装',
+      path: '分割統治',
+      description: '発見、合意、実行を分離する。独立した作業は並列化する',
       details:
-        '非自明な変更を1つの巨大プロンプトでなく3つの引き渡しに分割しましょう。' +
-        '(1) リサーチ：高速で広範なモデル（例：Gemini 2.5 Pro）がコードベースを探索し、' +
-        '関連ファイルを特定。(2) プラン：深い推論モデル（例：Opus）がそのリサーチを精密な' +
-        '仕様に変換。(3) 実装：効率的なモデル（例：GPT-5.4 / Sonnet）が仕様をコードに適用。' +
-        '各段階は必要なコンテキストだけを受け取り、段階ごとのエラーが1つの暴走ループに' +
-        '複利化しません。Copilot CLIでは`/research` → `/plan` → 実装にマッピングされます。' +
-        '常に強い推論モデルで計画し、その後より安価なモデルで実装しましょう。フェーズ間では' +
-        '新しいセッションを開始し、不要なコンテキストを持ち越さないようにします。',
-      useCases: ['複雑なリファクタ', '横断的変更', 'マルチファイル編集'],
+        '`/research` を使って文書化された深い調査を行い、プランモードを使って変更前にスコープと ' +
+        '順序について合意し、計画が明確になってから初めて実装します。リクエストが並行して実行 ' +
+        'できる独立したタスクに分解できる場合は `/fleet` を使います。各段階をスコープ限定に ' +
+        '保ち、探索履歴全体ではなく、耐久性のある発見事項を引き継ぎます。',
+      useCases: ['複雑なリファクタリング', 'クロスカッティングな変更', 'マルチファイル編集'],
     },
     'deterministic-guardrails': {
-      name: '決定論的ガードレール',
-      description: '単体テスト、リンター、セキュリティスキャンが不良変更の複利化を止める',
+      name: 'Copilot の出力を検証する',
+      path: 'テスト駆動ループ',
+      description: '人間のレビューと決定論的なチェックは依然として必要である',
       details:
-        'LLMは確率的ですが、テスト、リンター、型チェッカーはそうではありません。単体テストが' +
-        'あれば、バグ入り変更は失敗テストを生み、エージェントが次のループでそれを見て修正します。' +
-        'テストがないと、エージェントは複数の変更にわたってバグを複利化し、誰かが気付くまで' +
-        '時間がかかります — CI/CD時間の無駄、レビューサイクルの無駄、人間のデバッグ時間の無駄。' +
-        'テスト + リンター + シークレットスキャンは、エージェントに信頼できるフィードバック信号を' +
-        '与える最も安価な方法です。',
-      useCases: ['Agent Mode', 'TDD', 'CIパイプライン'],
+        '本番環境で使用する前に、生成されたコードをレビューしてください。対象を絞ったテスト、' +
+        'リンター、型チェック、コードスキャン、シークレットスキャン、該当する場合は IP ' +
+        'スキャンを実行します。これらのチェックはエージェントのループ内で決定論的なフィード ' +
+        'バックを提供し、人間のレビューは意図、設計、セキュリティ、可読性、保守性を検証します。',
+      useCases: ['Agent Mode', 'TDD', 'CI パイプライン'],
     },
     'trim-shell-outputs': {
-      name: 'シェル出力を慎重にトリム',
-      description: '冗長なコマンドから既知のノイズを落とす — ただし一律圧縮はしばしば逆効果',
+      name: 'シェル出力を(慎重に)削る',
+      path: 'シェルの衛生',
+      description: '冗長なコマンドの既知のノイズを削除する — ただし一般的な圧縮はしばしば逆効果になる',
       details:
-        'CLIツールは冗長性が大好きです。たった1回の`npm install`や`terraform plan`が' +
-        '数千行をエージェントのコンテキストに投げ込むことがあります — その大半がノイズです。' +
-        'うるさいコマンドをラップして、エージェントが関連する末尾（エラー、警告、最終サマリー）' +
-        'だけを見るようにすると役立つことがあります。2つのコミュニティAgent Skillがこれを' +
-        '行います：**Snip**（github.com/edouard-claude/snip）はシェルコマンドに' +
-        '`snip -- npm install`のように前置し、エラーを保持しつつ冗長な出力をフィルタします。' +
-        '**Caveman**（github.com/juliusbrussee/caveman）はモデルに圧縮された電報スタイルで' +
-        '応答するよう指示します。⚠️ ただし、攻撃的な圧縮には懐疑的であるべきです：' +
-        '実務者による評価（RTK / "Headroom"型コンテキスト圧縮のCopilot内部テストを含む）は、' +
-        '良くても中立で、総トークン使用量を増やすことが頻繁にありました。圧縮はエージェントが' +
-        '後で必要とする情報を削り落とし、再読み込みを引き起こします — 結果としてトークンと' +
-        'レイテンシが減るどころか増えます。一律に「全部小さくする」アプローチではなく、狭く' +
-        '決定論的なトリミング（既知のノイズ行だけを落とし、エラーとサマリーは必ず残す）を' +
-        '優先し、ツール採用前に実際のトークン使用量を測定しましょう — うますぎる話に聞こえるなら、' +
-        'たいてい本当にそうです。',
-      useCases: ['CLIエージェント', 'ビルド出力', 'テスト実行'],
-    },
-    'collapse-tool-calls': {
-      name: 'ツール呼び出しの集約',
-      description: '複数のツール呼び出しを1つにバッチ — 往復が減り、トークンも減る',
-      details:
-        '各ツール呼び出しはフルラウンドトリップを追加します：リクエストの入力トークン、' +
-        '結果の出力トークン、毎回再生されるシステムプロンプト。jsturtevant/copilot-codeact-plugin' +
-        'のようなプラグインは、エージェントが複数のツール呼び出しを1つのcode-actブロックとして' +
-        '表現し、まとめて実行することを可能にします。5つの小さな呼び出しが1つのバッチ呼び出しに — ' +
-        '同じ結果で、はるかに少ないトークンとより速いウォールクロック。',
-      useCases: ['Agent Mode', 'CLI', 'マルチステップタスク'],
+        'CLI ツールは冗長さを好みます。単純な `npm install` や `terraform plan` は数千行を ' +
+        'エージェントのコンテキストにダンプすることがあり、そのほとんどがノイズです。ノイズの ' +
+        '多いコマンドをラップして、エージェントが最後の関連部分（エラー、警告、最終サマリー）' +
+        'だけを見るようにすることは有効です。コミュニティの2つのプロジェクトが異なる圧縮方法を ' +
+        '示しています：**Snip**（github.com/edouard-claude/snip）はシェルコマンドの前に置き ' +
+        '— `snip -- npm install` — エラーを保持しながら冗長な出力をフィルタリングします。' +
+        '**Caveman**（github.com/juliusbrussee/caveman）はモデルに圧縮されたテレグラフ ' +
+        'スタイルで応答するよう指示します。失われた情報が読み直しと修正を招く可能性があるため、' +
+        '積極的な圧縮には懐疑的に対応してください。「すべてを削減する」アプローチよりも、狭く ' +
+        '決定論的な整形（既知のノイズ行だけを削除し、エラーとサマリーは常に保持する）を優先し、' +
+        'ツールを採用する前に実際のトークン使用量を測定してください。',
+      useCases: ['CLI エージェント', 'ビルド出力', 'テスト実行'],
     },
     'apply-architecture': {
-      name: '良いアーキテクチャを適用',
-      description: 'DDD、ヘキサゴナル、CQRS — クリーンな境界がエージェントの道案内になる',
+      name: '良いアーキテクチャを適用する',
+      path: 'エージェントフレンドリーなコード',
+      description: '明確な境界と名前は不要な探索を減らす',
       details:
-        '散らかったコードベースは、エージェントが安全に変更を加えるためにはるかに多くの' +
-        'コンテキストを読み込ませます。クリーンアーキテクチャパターン（DDD、ヘキサゴナル/' +
-        'ポート＆アダプタ、CQRS、イベント駆動）はエージェントに強力なガードレールを与えます：' +
-        '名前で正しいモジュールを見つけ、孤立して変更し、無関係なコードに触れないようにします。' +
-        '結果は短いセッション、小さな差分、複利化エラーの減少 — 人間に役立つのと同じことです。',
-      useCases: ['新規プロジェクト', 'リファクタリング', 'チームコードベース'],
+        '明確なモジュール境界、説明的な名前、ローカルの慣例、スコープ限定されたテストは、人間 ' +
+        'とエージェントの両方が正しいコードを見つけ、隔離された変更を検証するのに役立ちます。' +
+        'AI ツールのためではなく、製品とチームのためにアーキテクチャを選んでください。エージェ ' +
+        'ントの効率は有用な副産物です。',
+      useCases: ['新規プロジェクト', 'リファクタリング', 'チームのコードベース'],
     },
     'iterate-configs': {
-      name: 'エージェントのミスをインシデントとして扱う',
-      description: 'エージェントが間違ったら、出力だけでなく設定を直す',
+      name: 'エージェントの見落としをインシデントとして扱う',
+      path: 'ミス → インシデント',
+      description: 'エージェントが間違えたとき、出力だけでなく設定を修正する',
       details:
-        '振る舞いの悪いエージェントは1回きりではなくシグナルです。重大なミスを小さな' +
-        'インシデントのように扱いましょう：何が欠けていたか — 指示、スキル、適切なモデル？ ' +
-        'copilot-instructions.md、該当スキル、プロンプトテンプレートを更新し、同じミスが' +
-        '二度起きないようにします。Copilot CLIには2つのコマンドがあります：' +
-        '`/chronicle improve`は現在のセッションを分析してワークフローの改善を提案し、' +
-        '`/chronicle tips`は使用履歴からパターンを表面化します。定期的に実行しましょう — ' +
-        '時間とともに、タスクごとに余計な作業をすることなく、エージェントが目に見えて' +
-        '信頼できるようになります。',
-      useCases: ['チームワークフロー', 'CLIパワーユーザー', '長寿命リポ'],
+        '重大なミスは小さなインシデントとして扱ってください。根本原因を特定します：欠けて ' +
+        'いるプロジェクトガイドライン、誤った skill やツール、弱い検証、または環境の問題。' +
+        '同じ失敗が繰り返される可能性を減らすために、持続的な修正を instructions、skills、' +
+        'テスト、または設定にコード化します。chronicle コマンドはガバナンス層で別途扱われます。',
+      useCases: ['チームワークフロー', 'CLI パワーユーザー', '長期的なリポジトリ'],
     },
     'project-map': {
-      name: 'Copilotにプロジェクトマップを渡す',
-      description: '整備されたAGENTS.md / copilot-instructions.mdが、エージェントに何十ものファイルを読ませずに済ませる',
+      name: 'Copilot にプロジェクトマップを渡す',
+      path: 'プロジェクトマップ',
+      description: '整備された AGENTS.md / copilot-instructions.md はエージェントが数十のファイルを読むのを防ぐ',
       details:
-        '構造の概要がないと、エージェントは方向づけのためだけに大量のファイルを読みます — ' +
-        'そのすべてが入力トークンです。整備されたマップ、例えば`AGENTS.md`や' +
-        '`.github/copilot-instructions.md`は、レイアウトを最初から渡します：どこに何があるか、' +
-        'モジュール同士がどう関係するか、ビルド/テスト/リンターのコマンド、主要な規約。' +
-        'エージェントは探索ではなく実際の変更に予算を使えるため、セッションは短くなり、' +
-        '差分も小さくなります。',
-      useCases: ['オンボーディング', '大規模リポ', '全インタラクション'],
+        '構造化された概要がなければ、エージェントは方向性を把握するためだけに大量のファイルを ' +
+        '読むことになり、それぞれが入力トークンとなります。`AGENTS.md` や ' +
+        '`.github/copilot-instructions.md` のような整備されたマップは、最初からレイアウトを ' +
+        '提供します：物事がどこにあるか、モジュールがどう関連するか、ビルド／テスト／リント ' +
+        'コマンド、重要な慣例です。エージェントは探索ではなく実際の変更に予算を費やせるように ' +
+        'なり、より短いセッションとより小さな差分が生まれます。',
+      useCases: ['オンボーディング', '大規模リポジトリ', 'すべてのやり取り'],
     },
     'preserve-cache': {
-      name: 'キャッシュを維持する',
-      description: 'セッション途中でモデル、推論レベル、ツールセットを切り替えない — キャッシュが無効になる',
+      name: 'キャッシュを保持する',
+      path: 'キャッシュの無効化',
+      description: 'セッションの途中でモデル、推論レベル、ツールセットを切り替えない — キャッシュが無効になる',
       details:
-        'キャッシュは大きく繰り返されるコンテキスト（システムプロンプト、ファイル内容、ツール定義）' +
-        'をターン間で再利用し、キャッシュされたトークンは通常の入力の約10%で課金されます。' +
-        'それを捨て、コンテキスト全体を新しい入力として再課金させる要因が3つあります：' +
-        'セッション途中でモデルを切り替える（あるモデルは別モデルのキャッシュを再利用できません）、' +
-        'セッション途中で推論レベル/コンテキストサイズ/有効なツールを変更する、キャッシュ期限切れ後' +
-        '（OpenAIモデルは24時間、その他の多くは約1時間）に古いセッションへ戻ることです。' +
-        '開始前にモデルと設定を選び、固定しましょう。古いセッションでは新しく始めるか`/compact`し、' +
-        '履歴全体ではなく短い要約だけを再構築するようにします。',
-      useCases: ['長時間セッション', 'CLI', 'コスト最適化'],
+        'キャッシュは、ターンをまたいで大きく繰り返されるコンテキスト（システムプロンプト、' +
+        'ファイル内容、ツール定義）を再利用し、キャッシュされたトークンは通常の入力の約 10% で ' +
+        '課金されます。次の3つはそれを破棄し、コンテキスト全体を新しい入力として再課金させ ' +
+        'ます：セッション途中でのモデル切り替え（あるモデルは別のモデルのキャッシュを再利用 ' +
+        'できません）、セッション途中での推論レベル／コンテキストサイズ／有効なツールの変更、' +
+        'キャッシュが失効した後（OpenAI モデルは24時間、他のほとんどは約1時間）古いセッション ' +
+        'に戻ること。開始前にモデルと設定を選び、それを固定し、古くなったセッションでは新しく ' +
+        '開始するか `/compact` を使って、再構築されるものが履歴全体ではなく短い要約になる ' +
+        'ようにしてください。',
+      useCases: ['長いセッション', 'CLI', 'コスト最適化'],
     },
     'cheaper-subagents': {
       name: 'サブエージェントには安価なモデルを使う',
-      description: 'サブエージェントは軽量モデルで実行する — スコープ済みコンテキストにプレミアムモデルはめったに不要',
+      path: 'サブエージェントのモデル',
+      description: 'サブエージェントは軽量なモデルで実行する — スコープ限定されたコンテキストにプレミアムモデルが必要なことは稀',
       details:
-        'サブエージェントは独自のセッションで動作し、メインエージェントの会話履歴を継承しません。' +
-        'コンテキストが1つの焦点を絞ったタスクにスコープされているため、通常は軽量モデルで' +
-        '十分にこなせます。サブエージェントに軽量モデルを割り当てても、セッション途中のモデル' +
-        '切り替えのようにメインエージェントのキャッシュには触れません — つまりメインスレッドで' +
-        'キャッシュ再構築のペナルティを払わずに、サブエージェント作業を節約できます。',
-      useCases: ['サブエージェント', 'オーケストレーションワークフロー', 'コスト最適化'],
+        'サブエージェントは独自のセッションで実行され、主エージェントの会話履歴を引き継ぎ ' +
+        'ません。コンテキストが単一の特定のタスクにスコープ限定されているため、軽量なモデルで ' +
+        '十分に作業をこなせることがよくあります。サブエージェントに軽量モデルを割り当てても、' +
+        'セッション途中でのモデル切り替えのように主エージェントのキャッシュに影響しないため、' +
+        '主スレッドでのキャッシュ再構築のペナルティを支払うことなく、サブエージェントの作業を ' +
+        '節約できます。',
+      useCases: ['サブエージェント', 'オーケストレーションされたワークフロー', 'コスト最適化'],
     },
     'chronicle-insights': {
-      name: '/chronicleでセッションを掘り起こす',
-      description: '/chronicle tipsと/chronicle cost-tipsでセッション履歴を節約に変える',
+      name: '/chronicle でセッションから知見を得る',
+      path: 'セッションから学ぶ',
+      description: 'Copilot CLI のセッション履歴を要約とワークフローの知見に変える',
       details:
-        'セッション履歴は効率化インサイトの無料の源泉です。Copilot CLIでは、' +
-        '`/chronicle tips`が最近のセッションを分析し、Copilotをより効率的に使う方法を' +
-        '表面化します。一方、`/chronicle cost-tips`はトークン使用パターンとクレジットの' +
-        '使い道を深掘りします。使いすぎのツール、繰り返し誤読されるプロンプトなど、再発する' +
-        'パターンが示されたら、その観察を`copilot-instructions.md`に直接エンコードし、' +
-        '一度きりの洞察を今後すべてのセッションに効く常設ガイダンスにしましょう。',
-      useCases: ['CLI', 'チームガバナンス', '継続的改善'],
+        '作業サマリーには `/chronicle standup` を、パーソナライズされた使用状況の指針には ' +
+        '`/chronicle tips` を、トークン支出に関するフィードバックには `/chronicle cost tips` ' +
+        'を、セッションの検索には `/chronicle search` を、リポジトリにスコープ限定された指示の ' +
+        '提案には `/chronicle improve` を使います。知見は Copilot CLI のセッションデータに ' +
+        '基づきます。セッション履歴を使用する前に、保存、同期、削除の制御を確認してください。',
+      useCases: ['CLI', 'チームガバナンス', '継続的な改善'],
+    },
+    'session-limits': {
+      name: 'AIクレジットのセッション上限を設定する',
+      path: 'セッションのガードレール',
+      description: 'セッション開始前に CLI と SDK の自律作業に上限を設ける',
+      details:
+        'Copilot CLI または SDK セッションに厳格な上限を設定するには `--max-ai-credits` を使い ' +
+        'ます。セッションの上限は監視のない、または長時間実行される作業をスコープ限定し、' +
+        '予算、アラート、人間の承認を補完します。タスクと停止条件に見合った上限を選んで ' +
+        'ください。',
+      useCases: ['Copilot CLI', 'Copilot SDK', '自律作業'],
+    },
+    'mcp-governance': {
+      name: 'MCP アクセスを統制する',
+      path: 'MCP のガバナンス',
+      description: '対応サーフェスでサーバーを厳選し、設定を保護する',
+      details:
+        '利用可能な場合は、承認された MCP レジストリと Enterprise の許可／拒否設定を使用して ' +
+        'ください。リポジトリの MCP 設定をレビュー制御で保護し、サーバーの所有者、スコープ、' +
+        'データアクセスを文書化します。適用方法は IDE、CLI、Copilot アプリ、クラウドエージェント ' +
+        'によって異なるため、レジストリは普遍的なセキュリティ境界としてではなく、ガバナンスと ' +
+        '発見の手段として扱ってください。',
+      useCases: ['Enterprise ガバナンス', '承認済みツール', 'データアクセス'],
     },
   },
   tipsInsights: [
     {
       icon: '📉',
       content:
-        '<strong>品質は複利化する。</strong>ステップあたり99%でも、50ステップのエージェント' +
-        'ワークフローは約60%にしか着地しません。ステップあたり95%なら8%です。ステップごとの' +
-        '改善は乗算されます — すべてのトークンを意味あるものにしましょう。',
+        '<strong>品質は複合する。</strong> ステップごとの仮想的な信頼性は長い連鎖にわたって ' +
+        '低下するため、より小さなスコープと決定論的な検証を使ってください。示されている ' +
+        'パーセンテージは例であり、Copilot の測定値ではありません。',
     },
     {
       icon: '💰',
       content:
-        '<strong>コスト面ではコンテキスト > プロンプト。</strong>各モデル呼び出しにどの' +
-        'コンテキストが流れ込むかを管理することが、プロンプトの表現を最適化するよりも' +
-        'はるかに大きなコスト効果があります。ファイルを削減し、新しいスレッドを始め、' +
-        '条件付きコンテキストを使いましょう。',
+        '<strong>コンテキストは軽く関連性を保つ。</strong> ファイルとツール出力を整形し、無関係 ' +
+        'な作業には新しいスレッドを開始し、スコープ限定されたコンテキストを使って AI クレジット ' +
+        'の使用を減らしてください。',
     },
     {
       icon: '🎯',
       content:
-        '<strong>モデルをタスクに合わせる。</strong>単純なQ&Aにプレミアムモデルを使わず、' +
-        '複雑なアーキテクチャにminiモデルを使わないこと。迷ったらAutoモードを使いましょう' +
-        ' — 自動でルーティングされます。',
+        '<strong>モデルと推論の労力をタスクに合わせる。</strong> デフォルトで通常の労力を使い、' +
+        '難しい問題には引き上げ、意図に基づくルーティングが欲しいときは Auto を使ってください。',
     },
     {
       icon: '🔄',
       content:
-        '<strong>エージェントループはコストを倍増させる。</strong>1つのエージェントリクエストが' +
-        '数十回のモデル呼び出しを発生させることがあります。「最初のテスト成功で停止」のような' +
-        '明示的な停止シグナルを設定して、トークンの暴走消費を防ぎましょう。',
+        '<strong>エージェントのループは作業を乗算する。</strong> 明確な停止条件を定義し、監視の ' +
+        'ない、または長時間の作業にはセッションの上限を使ってください。',
     },
     {
       icon: '📦',
       content:
-        '<strong>常時オンからオンデマンドへ移行する。</strong>指示は最小限に。重いガイダンスは' +
-        'Skills（関連する時にモデルが読み込む）とプロンプトファイル（明示的に呼び出す）に' +
-        '置き、copilot-instructions.mdには置かないようにしましょう。',
+        '<strong>専門的なガイドラインを幅広い指示から切り離す。</strong> 再利用可能な専門性には ' +
+        'Skills を、異なるロール、ツール、隔離されたコンテキストには custom agents を使って ' +
+        'ください。',
     },
   ],
 };

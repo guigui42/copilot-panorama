@@ -23,6 +23,18 @@ const TIPS_COMPONENT_META: Record<string, ComponentMeta> = {
     docUrl: `${OPT}#4-preserve-the-cache`,
     docLabel: OPT_LABEL,
   },
+  'session-limits': {
+    id: 'session-limits',
+    path: 'Session Guardrails',
+    icon: '🛑',
+    docUrl: 'https://docs.github.com/en/enterprise-cloud@latest/copilot/how-tos/copilot-cli/use-copilot-cli/set-session-limit',
+  },
+  'mcp-governance': {
+    id: 'mcp-governance',
+    path: 'MCP Governance',
+    icon: '🛡️',
+    docUrl: 'https://docs.github.com/en/enterprise-cloud@latest/copilot/concepts/mcp-management',
+  },
   'agentic-cost': {
     id: 'agentic-cost',
     path: 'Agentic Workflows',
@@ -60,13 +72,6 @@ const TIPS_COMPONENT_META: Record<string, ComponentMeta> = {
     docUrl: `${OPT}#start-a-new-conversation-when-you-switch-problems`,
     docLabel: OPT_LABEL,
   },
-  'prompt-anatomy': {
-    id: 'prompt-anatomy',
-    path: 'Prompt Anatomy',
-    icon: '🎯',
-    docUrl: `${OPT}#2-provide-clear-guidance-in-your-prompts`,
-    docLabel: OPT_LABEL,
-  },
   'concise-instructions': {
     id: 'concise-instructions',
     path: 'Instructions',
@@ -76,7 +81,7 @@ const TIPS_COMPONENT_META: Record<string, ComponentMeta> = {
   },
   'structure-for-reuse': {
     id: 'structure-for-reuse',
-    path: 'Skills & Prompts',
+    path: 'Reusable Context',
     icon: '📦',
     docUrl: 'https://docs.github.com/en/copilot/concepts/agents/about-agent-skills',
   },
@@ -99,17 +104,17 @@ const TIPS_COMPONENT_META: Record<string, ComponentMeta> = {
     id: 'conditional-context',
     path: 'Conditional Loading',
     icon: '🔀',
-    docUrl: 'https://docs.github.com/en/copilot/how-tos/configure-custom-instructions/add-repository-instructions',
+    docUrl: 'https://docs.github.com/en/enterprise-cloud@latest/copilot/how-tos/copilot-on-github/customize-copilot/add-custom-instructions/add-repository-instructions',
   },
   'apply-to-paths': {
     id: 'apply-to-paths',
     path: 'Path Scoping',
     icon: '📂',
-    docUrl: 'https://docs.github.com/en/copilot/how-tos/configure-custom-instructions/add-repository-instructions',
+    docUrl: 'https://docs.github.com/en/enterprise-cloud@latest/copilot/how-tos/copilot-on-github/customize-copilot/add-custom-instructions/add-repository-instructions',
   },
   'skills-mcp': {
     id: 'skills-mcp',
-    path: 'On-Demand Tools',
+    path: 'Toolset Scoping',
     icon: '🧩',
     docUrl: `${OPT}#bring-in-only-the-tools-you-need`,
     docLabel: OPT_LABEL,
@@ -196,33 +201,11 @@ const TIPS_COMPONENT_META: Record<string, ComponentMeta> = {
     altDocUrl: 'https://github.com/juliusbrussee/caveman',
     altDocLabel: 'Caveman skill',
   },
-  'collapse-tool-calls': {
-    id: 'collapse-tool-calls',
-    path: 'Batched Tools',
-    icon: '🧺',
-    docUrl: 'https://github.com/jsturtevant/copilot-codeact-plugin',
-    docLabel: 'CodeAct plugin',
-  },
-
   /* ── Models ── */
   'choose-right-model': {
     id: 'choose-right-model',
     path: 'Model Selection',
     icon: '🎛️',
-    docUrl: `${OPT}#select-the-right-model`,
-    docLabel: OPT_LABEL,
-  },
-  'high-effort-tasks': {
-    id: 'high-effort-tasks',
-    path: 'Complex Reasoning',
-    icon: '🧠',
-    docUrl: `${OPT}#configure-the-reasoning-level-of-the-model`,
-    docLabel: OPT_LABEL,
-  },
-  'low-effort-tasks': {
-    id: 'low-effort-tasks',
-    path: 'Quick Tasks',
-    icon: '⚡',
     docUrl: `${OPT}#select-the-right-model`,
     docLabel: OPT_LABEL,
   },
@@ -253,7 +236,7 @@ const TIPS_COMPONENT_META: Record<string, ComponentMeta> = {
     id: 'managed-settings-tip',
     path: 'managed-settings.json\nteam-mappings.json\nteams/<name>.json',
     icon: '🛡️',
-    docUrl: 'https://docs.github.com/en/enterprise-cloud@latest/copilot/how-tos/administer-copilot/manage-for-enterprise/manage-agents/configure-enterprise-managed-settings#overriding-settings-for-specific-teams',
+    docUrl: 'https://docs.github.com/en/enterprise-cloud@latest/copilot/how-tos/administer-copilot/manage-for-enterprise/manage-agents/configure-enterprise-managed-settings',
     altDocUrl: 'https://docs.github.com/en/enterprise-cloud@latest/copilot/reference/enterprise-administrators/enterprise-managed-settings',
   },
   'chronicle-insights': {
@@ -283,6 +266,7 @@ function buildTipComponent(id: string, t: Translations): Component {
   const text = t.tipsComponents[id];
   return {
     ...meta,
+    path: text.path ?? meta.path,
     name: text.name,
     description: text.description,
     details: text.details,
@@ -302,12 +286,12 @@ interface LayerDef {
 const TIPS_LAYER_DEFS: LayerDef[] = [
   { id: 'mechanics', number: 1, color: '#f0883e', componentIds: ['token-billing', 'agentic-cost', 'context-discipline'] },
   { id: 'pitfalls', number: 2, color: '#f85149', componentIds: ['compound-errors', 'context-rot', 'lost-in-middle'] },
-  { id: 'prompting', number: 3, color: '#3fb950', componentIds: ['quality-over-quantity', 'prompt-anatomy', 'fresh-threads', 'concise-instructions', 'structure-for-reuse', 'concise-answers'] },
+  { id: 'prompting', number: 3, color: '#3fb950', componentIds: ['quality-over-quantity', 'fresh-threads', 'concise-instructions', 'structure-for-reuse', 'concise-answers'] },
   { id: 'context', number: 4, color: '#58a6ff', componentIds: ['scope-context', 'conditional-context', 'apply-to-paths', 'skills-mcp', 'context-command', 'project-map', 'trim-shell-outputs', 'think-in-code'] },
   { id: 'workflow-design', number: 5, color: '#a371f7', componentIds: ['research-plan-implement', 'deterministic-guardrails', 'apply-architecture', 'iterate-configs'] },
-  { id: 'caching', number: 6, color: '#d2a8ff', componentIds: ['reuse-context', 'prefix-matching', 'preserve-cache', 'collapse-tool-calls'] },
-  { id: 'models', number: 7, color: '#f778ba', componentIds: ['choose-right-model', 'high-effort-tasks', 'low-effort-tasks', 'auto-mode', 'cheaper-subagents'] },
-  { id: 'governance', number: 8, color: '#8b949e', componentIds: ['monitor-usage', 'managed-settings-tip', 'chronicle-insights'] },
+  { id: 'caching', number: 6, color: '#d2a8ff', componentIds: ['reuse-context', 'prefix-matching', 'preserve-cache'] },
+  { id: 'models', number: 7, color: '#f778ba', componentIds: ['choose-right-model', 'auto-mode', 'cheaper-subagents'] },
+  { id: 'governance', number: 8, color: '#8b949e', componentIds: ['monitor-usage', 'managed-settings-tip', 'chronicle-insights', 'session-limits', 'mcp-governance'] },
 ];
 
 export function getTipsLayers(t: Translations): Layer[] {
