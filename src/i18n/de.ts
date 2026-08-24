@@ -41,9 +41,6 @@ export const de: Translations = {
     marketplace: 'Marketplace',
     gitRepo: 'Git-Repo',
     localPath: 'Lokaler Pfad',
-    managedPolicy: 'Unternehmensrichtlinie',
-    teamOverrides: 'Team-Spezialisierung',
-    enforcedAcross: 'Unterstützte Copilot-Clients',
   },
   layers: {
     'always-on-context': {
@@ -123,20 +120,6 @@ export const de: Translations = {
         'definiert. Anders als Instructions (die beratend sind) sind Hooks Durchsetzung.',
       useCases: ['Policy-Gates', 'Dateizugriffskontrollen', 'Audit-Logging'],
     },
-    'managed-settings': {
-      name: 'Managed Settings',
-      description: 'Unternehmensrichtlinien mit kontrollierter Team-Spezialisierung in Copilot-Clients',
-      details:
-        'Enterprise-Owner definieren serververwaltete Richtlinien in einem internen ' +
-        '`.github-private`-Repository unter `copilot/managed-settings.json`. Ausgewählte ' +
-        'Schlüssel können als `overridable` markiert und über `copilot/team-mappings.json` ' +
-        'sowie Dateien unter `copilot/teams/` spezialisiert werden. Nicht überschreibbare ' +
-        'Schlüssel bleiben auf Unternehmensebene gesperrt. Plugin- und Marketplace-Einstellungen ' +
-        'sind additiv, Teams erweitern also die Basis, ohne sie zu entfernen. Managed Settings ' +
-        'gelten in unterstützten Copilot-Clients gemäß der dokumentierten Priorität von MDM-, ' +
-        'Server-, Datei- und Benutzereinstellungen.',
-      useCases: ['Enterprise-Leitplanken', 'Team-Spezialisierung', 'Plugin-Governance'],
-    },
     'agentic-workflows': {
       name: 'Agentic Workflows',
       description: 'Repository-Automatisierung durch KI-Coding-Agenten, die in GitHub Actions mit Leitplanken laufen',
@@ -176,6 +159,8 @@ export const de: Translations = {
         'dem Copilot SDK und der Copilot App. Bestehende Copilot-Plugins bleiben ohne ' +
         'Migration unterstützt.',
       useCases: ['Clientübergreifende Portabilität', 'Wiederverwendbare Skills + MCP', 'Marketplace-Distribution'],
+      docLabel: 'Agent Plugins 1.0-Spezifikation',
+      altDocLabel: 'Agent Plugin erstellen',
     },
   },
   insights: [
@@ -808,6 +793,8 @@ export const de: Translations = {
         'Teams an, werden Teamwerte mit dem am wenigsten restriktiven Wert unterhalb der ' +
         'Enterprise-Richtlinie kombiniert.',
       useCases: ['Plattformteams', 'KI-Pioniere', 'Rollenbasierte Tools'],
+      docLabel: 'Teamspezifische Einstellungen konfigurieren',
+      altDocLabel: 'Referenz zu verwalteten Einstellungen',
     },
     'compound-errors': {
       name: 'Compound Error Problem',

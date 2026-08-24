@@ -92,26 +92,23 @@ const COMPONENT_META: Record<string, ComponentMeta> = {
     path: 'plugin.json\nskills/\nmcp.json\ncom.github.copilot/',
     icon: '📦',
     docUrl: 'https://agent-plugins.org/specification',
-    docLabel: 'Agent Plugins 1.0 specification',
     altDocUrl: 'https://agent-plugins.org/plugin-authors/build-an-agent-plugin',
-    altDocLabel: 'Build an Agent Plugin',
     awesomeUrl: 'https://awesome-copilot.github.com/plugins/',
-  },
-  'managed-settings': {
-    id: 'managed-settings',
-    path: '.github-private/copilot/managed-settings.json\n.github-private/copilot/team-mappings.json\n.github-private/copilot/teams/<name>.json',
-    icon: '🛡️',
-    docUrl: 'https://docs.github.com/en/enterprise-cloud@latest/copilot/how-tos/administer-copilot/manage-for-enterprise/manage-agents/configure-enterprise-managed-settings',
-    docLabel: 'Configure enterprise managed settings',
-    altDocUrl: 'https://docs.github.com/en/enterprise-cloud@latest/copilot/reference/enterprise-administrators/enterprise-managed-settings',
-    altDocLabel: 'Managed settings reference',
   },
 };
 
 function buildComponent(id: string, t: Translations): Component {
   const meta = COMPONENT_META[id];
   const text = t.components[id];
-  return { ...meta, name: text.name, description: text.description, details: text.details, useCases: text.useCases };
+  return {
+    ...meta,
+    name: text.name,
+    description: text.description,
+    details: text.details,
+    useCases: text.useCases,
+    docLabel: text.docLabel ?? meta.docLabel,
+    altDocLabel: text.altDocLabel ?? meta.altDocLabel,
+  };
 }
 
 interface LayerDef {
@@ -124,7 +121,7 @@ interface LayerDef {
 const LAYER_DEFS: LayerDef[] = [
   { id: 'always-on-context', number: 1, color: '#58a6ff', componentIds: ['instructions'] },
   { id: 'on-demand-capabilities', number: 2, color: '#3fb950', componentIds: ['prompt-files', 'custom-agents', 'skills'] },
-  { id: 'enforcement-automation', number: 3, color: '#d29922', componentIds: ['hooks', 'managed-settings', 'agentic-workflows', 'copilot-setup-steps'] },
+  { id: 'enforcement-automation', number: 3, color: '#d29922', componentIds: ['hooks', 'agentic-workflows', 'copilot-setup-steps'] },
   { id: 'distribution', number: 4, color: '#bc8cff', componentIds: ['plugins'] },
 ];
 

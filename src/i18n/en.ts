@@ -41,9 +41,6 @@ export const en: Translations = {
     marketplace: 'Marketplace',
     gitRepo: 'Git Repo',
     localPath: 'Local Path',
-    managedPolicy: 'Enterprise policy',
-    teamOverrides: 'Team specialization',
-    enforcedAcross: 'Supported Copilot clients',
   },
   layers: {
     'always-on-context': {
@@ -123,19 +120,6 @@ export const en: Translations = {
         'Unlike instructions (which are advisory), hooks are enforcement.',
       useCases: ['Policy Gates', 'File Access Controls', 'Audit Logging'],
     },
-    'managed-settings': {
-      name: 'Managed Settings',
-      description: 'Enterprise policies with controlled team specialization across Copilot clients',
-      details:
-        'Enterprise owners define server-managed policy in an internal `.github-private` ' +
-        'repository at `copilot/managed-settings.json`. Selected keys can be marked ' +
-        '`overridable`, then specialized through `copilot/team-mappings.json` and files ' +
-        'under `copilot/teams/`. Keys that are not overridable stay locked at the enterprise ' +
-        'level. Plugin and marketplace settings are additive, so teams can extend the baseline ' +
-        'without removing it. Managed settings apply across supported Copilot clients, with ' +
-        'MDM, server, file, and user settings following documented precedence.',
-      useCases: ['Enterprise Guardrails', 'Team Specialization', 'Plugin Governance'],
-    },
     'agentic-workflows': {
       name: 'Agentic Workflows',
       description: 'Repository automation powered by AI coding agents, running in GitHub Actions with guardrails',
@@ -175,6 +159,8 @@ export const en: Translations = {
         'Copilot CLI, the Copilot SDK, and the Copilot app. Existing Copilot plugins remain ' +
         'supported without migration.',
       useCases: ['Cross-Client Portability', 'Reusable Skills + MCP', 'Marketplace Distribution'],
+      docLabel: 'Agent Plugins 1.0 specification',
+      altDocLabel: 'Build an Agent Plugin',
     },
   },
   insights: [
@@ -801,6 +787,8 @@ export const en: Translations = {
         'additively. If a user belongs to multiple mapped teams, team values combine using ' +
         'the least restrictive value beneath the enterprise policy.',
       useCases: ['Platform Teams', 'AI Pioneers', 'Role-Based Tooling'],
+      docLabel: 'Configure team-specific settings',
+      altDocLabel: 'Managed settings reference',
     },
     'compound-errors': {
       name: 'Compound Error Problem',

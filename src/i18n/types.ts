@@ -5,6 +5,8 @@ export interface ComponentI18n {
   description: string;
   details: string;
   useCases: string[];
+  docLabel?: string;
+  altDocLabel?: string;
 }
 
 export interface LayerI18n {
@@ -62,9 +64,6 @@ export interface Translations {
     marketplace: string;
     gitRepo: string;
     localPath: string;
-    managedPolicy: string;
-    teamOverrides: string;
-    enforcedAcross: string;
   };
   layers: Record<string, LayerI18n>;
   components: Record<string, ComponentI18n>;

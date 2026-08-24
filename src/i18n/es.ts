@@ -41,9 +41,6 @@ export const es: Translations = {
     marketplace: 'Marketplace',
     gitRepo: 'Repositorio Git',
     localPath: 'Ruta local',
-    managedPolicy: 'Política empresarial',
-    teamOverrides: 'Especialización por equipo',
-    enforcedAcross: 'Clientes Copilot compatibles',
   },
   layers: {
     'always-on-context': {
@@ -124,20 +121,6 @@ export const es: Translations = {
         'son coercitivos.',
       useCases: ['Puertas de conformidad', 'Control de acceso a archivos', 'Registro de auditoría'],
     },
-    'managed-settings': {
-      name: 'Managed Settings',
-      description: 'Políticas empresariales con especialización controlada por equipo en clientes Copilot',
-      details:
-        'Los propietarios de empresa definen la política gestionada por servidor en un ' +
-        'repositorio interno `.github-private`, en `copilot/managed-settings.json`. Algunas ' +
-        'claves pueden marcarse como `overridable` y especializarse mediante ' +
-        '`copilot/team-mappings.json` y archivos en `copilot/teams/`. Las claves no ' +
-        'reemplazables siguen bloqueadas a nivel empresarial. Los ajustes de plugins y ' +
-        'marketplaces son aditivos, de modo que los equipos amplían la base sin eliminarla. ' +
-        'Los ajustes gestionados se aplican a los clientes Copilot compatibles según la ' +
-        'precedencia documentada entre MDM, servidor, archivo y usuario.',
-      useCases: ['Controles empresariales', 'Especialización por equipo', 'Gobernanza de plugins'],
-    },
     'agentic-workflows': {
       name: 'Agentic Workflows',
       description: 'Automatización de repositorios con agentes IA, ejecutados en GitHub Actions con protecciones',
@@ -178,6 +161,8 @@ export const es: Translations = {
         'Copilot y la aplicación Copilot. Los plugins Copilot existentes siguen siendo ' +
         'compatibles sin migración.',
       useCases: ['Portabilidad entre clientes', 'Skills + MCP reutilizables', 'Distribución marketplace'],
+      docLabel: 'Especificación de Agent Plugins 1.0',
+      altDocLabel: 'Crear un Agent Plugin',
     },
   },
   insights: [
@@ -816,6 +801,8 @@ export const es: Translations = {
         'varios equipos, sus valores se combinan con el valor menos restrictivo bajo la ' +
         'política empresarial.',
       useCases: ['Equipos de plataforma', 'Pioneros de IA', 'Herramientas por rol'],
+      docLabel: 'Configurar ajustes específicos del equipo',
+      altDocLabel: 'Referencia de ajustes administrados',
     },
     'compound-errors': {
       name: 'Errores que se acumulan',

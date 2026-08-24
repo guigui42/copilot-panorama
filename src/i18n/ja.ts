@@ -41,9 +41,6 @@ export const ja: Translations = {
     marketplace: 'マーケットプレイス',
     gitRepo: 'Git リポジトリ',
     localPath: 'ローカルパス',
-    managedPolicy: 'エンタープライズポリシー',
-    teamOverrides: 'チーム別設定',
-    enforcedAcross: '対応 Copilot クライアント',
   },
   layers: {
     'always-on-context': {
@@ -121,19 +118,6 @@ export const ja: Translations = {
         'Instructions（助言的）とは異なり、Hooks は強制的です。',
       useCases: ['ポリシーゲート', 'ファイルアクセス制御', '監査ログ'],
     },
-    'managed-settings': {
-      name: 'Managed Settings',
-      description: 'Copilot クライアント全体に適用する企業ポリシーと管理されたチーム別設定',
-      details:
-        'Enterprise Owner は内部 `.github-private` リポジトリの ' +
-        '`copilot/managed-settings.json` でサーバー管理ポリシーを定義します。選択したキーを ' +
-        '`overridable` にすると、`copilot/team-mappings.json` と `copilot/teams/` 配下の' +
-        'ファイルでチーム別に設定できます。上書き不可のキーはエンタープライズレベルで' +
-        '固定されます。プラグインとマーケットプレイスの設定は加算方式のため、チームは' +
-        'ベースラインを削除せず拡張できます。Managed Settings は、MDM、サーバー、ファイル、' +
-        'ユーザー設定の文書化された優先順位に従って対応 Copilot クライアントに適用されます。',
-      useCases: ['エンタープライズガードレール', 'チーム別設定', 'プラグインガバナンス'],
-    },
     'agentic-workflows': {
       name: 'Agentic Workflows',
       description: 'ガードレール付きで GitHub Actions で実行される AI コーディングエージェントによるリポジトリ自動化',
@@ -171,6 +155,8 @@ export const ja: Translations = {
         '同じパッケージが VS Code、Copilot CLI、Copilot SDK、Copilot アプリで動作します。' +
         '既存の Copilot プラグインも移行なしで引き続きサポートされます。',
       useCases: ['クライアント間ポータビリティ', '再利用可能な Skills + MCP', 'マーケットプレイス配布'],
+      docLabel: 'Agent Plugins 1.0 仕様',
+      altDocLabel: 'Agent Plugin を作成',
     },
   },
   insights: [
@@ -790,6 +776,8 @@ export const ja: Translations = {
         '複数チームに所属する場合、チーム値は企業ポリシーの下で最も制限の少ない値を使って' +
         '統合されます。',
       useCases: ['プラットフォームチーム', 'AI パイオニア', '役割別ツール'],
+      docLabel: 'チーム固有の設定を構成',
+      altDocLabel: 'Managed Settings リファレンス',
     },
     'compound-errors': {
       name: '複利エラー問題',

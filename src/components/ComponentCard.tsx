@@ -157,17 +157,6 @@ const PluginsViz: React.FC<{ v: Translations['viz'] }> = ({ v }) => (
   </div>
 );
 
-const ManagedSettingsViz: React.FC<{ v: Translations['viz'] }> = ({ v }) => (
-  <div className="viz viz-managed-settings" aria-hidden="true">
-    <span className="managed-policy">🛡️ {v.managedPolicy}</span>
-    <span className="managed-arrow">→</span>
-    <div className="managed-scope">
-      <span>{v.teamOverrides}</span>
-      <small>{v.enforcedAcross}</small>
-    </div>
-  </div>
-);
-
 /* ── Tools page visualizations ── */
 
 const CopilotCliViz: React.FC<{ v: Translations['toolsViz'] }> = ({ v }) => (
@@ -632,7 +621,6 @@ const ComponentCard: React.FC<ComponentCardProps> = ({ component, layerColor, on
       case 'agentic-workflows': return <WorkflowsViz />;
       case 'copilot-setup-steps': return <SetupStepsViz />;
       case 'plugins': return <PluginsViz v={v} />;
-      case 'managed-settings': return <ManagedSettingsViz v={v} />;
       /* Tools page */
       case 'copilot-cli': return <CopilotCliViz v={tv} />;
       case 'copilot-app': return <CopilotAppViz v={tv} />;

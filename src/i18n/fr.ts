@@ -41,9 +41,6 @@ export const fr: Translations = {
     marketplace: 'Marketplace',
     gitRepo: 'Dépôt Git',
     localPath: 'Chemin local',
-    managedPolicy: 'Politique d\'entreprise',
-    teamOverrides: 'Spécialisation d\'équipe',
-    enforcedAcross: 'Clients Copilot pris en charge',
   },
   layers: {
     'always-on-context': {
@@ -125,20 +122,6 @@ export const fr: Translations = {
         '(qui sont consultatives), les hooks sont coercitifs.',
       useCases: ['Portes de conformité', 'Contrôle d\'accès fichiers', 'Journalisation d\'audit'],
     },
-    'managed-settings': {
-      name: 'Managed Settings',
-      description: 'Politiques d\'entreprise avec spécialisation contrôlée par équipe dans les clients Copilot',
-      details:
-        'Les propriétaires d\'entreprise définissent la politique gérée par le serveur dans ' +
-        'un dépôt interne `.github-private`, sous `copilot/managed-settings.json`. Certaines ' +
-        'clés peuvent être marquées `overridable`, puis spécialisées via ' +
-        '`copilot/team-mappings.json` et les fichiers de `copilot/teams/`. Les clés non ' +
-        'remplaçables restent verrouillées au niveau de l\'entreprise. Les paramètres de ' +
-        'plugins et de marketplaces sont additifs, les équipes étendent donc le socle sans ' +
-        'le retirer. Les paramètres gérés s\'appliquent aux clients Copilot pris en charge ' +
-        'selon la précédence documentée entre MDM, serveur, fichier et utilisateur.',
-      useCases: ['Garde-fous d\'entreprise', 'Spécialisation d\'équipe', 'Gouvernance des plugins'],
-    },
     'agentic-workflows': {
       name: 'Agentic Workflows',
       description: 'Automatisation de dépôts par des agents IA, exécutés dans GitHub Actions avec des garde-fous',
@@ -180,6 +163,8 @@ export const fr: Translations = {
         'SDK Copilot et l\'application Copilot. Les plugins Copilot existants restent pris ' +
         'en charge sans migration.',
       useCases: ['Portabilité multi-client', 'Skills + MCP réutilisables', 'Distribution marketplace'],
+      docLabel: 'Spécification Agent Plugins 1.0',
+      altDocLabel: 'Créer un Agent Plugin',
     },
   },
   insights: [
@@ -830,6 +815,8 @@ export const fr: Translations = {
         'membre de plusieurs équipes, les valeurs d\'équipe se combinent selon la valeur la ' +
         'moins restrictive, sous la politique d\'entreprise.',
       useCases: ['Équipes plateforme', 'Pionniers IA', 'Outillage par rôle'],
+      docLabel: 'Configurer les paramètres propres à l\'équipe',
+      altDocLabel: 'Référence des Managed Settings',
     },
     'compound-errors': {
       name: 'Erreurs qui s\'accumulent',

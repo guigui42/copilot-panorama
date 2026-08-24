@@ -254,9 +254,7 @@ const TIPS_COMPONENT_META: Record<string, ComponentMeta> = {
     path: 'managed-settings.json\nteam-mappings.json\nteams/<name>.json',
     icon: '🛡️',
     docUrl: 'https://docs.github.com/en/enterprise-cloud@latest/copilot/how-tos/administer-copilot/manage-for-enterprise/manage-agents/configure-enterprise-managed-settings#overriding-settings-for-specific-teams',
-    docLabel: 'Configure team-specific settings',
     altDocUrl: 'https://docs.github.com/en/enterprise-cloud@latest/copilot/reference/enterprise-administrators/enterprise-managed-settings',
-    altDocLabel: 'Managed settings reference',
   },
   'chronicle-insights': {
     id: 'chronicle-insights',
@@ -289,6 +287,8 @@ function buildTipComponent(id: string, t: Translations): Component {
     description: text.description,
     details: text.details,
     useCases: [],
+    docLabel: text.docLabel ?? meta.docLabel,
+    altDocLabel: text.altDocLabel ?? meta.altDocLabel,
   };
 }
 
