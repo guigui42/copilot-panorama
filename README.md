@@ -6,7 +6,7 @@ An interactive visual guide to major GitHub Copilot surfaces, customizations, an
 
 The customization layer that lives in your repository:
 
-1. **Always-On Context** — Instructions that automatically apply to every conversation
+1. **Always-On Context** — Instructions that automatically apply within their configured scope
 2. **On-Demand Capabilities** — Custom agents, skills, and MCP servers
 3. **Enforcement & Automation** — Hooks and agentic workflows
 4. **Distribution** — Plugins that package agents, skills, hooks, and integrations

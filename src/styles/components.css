@@ -2303,10 +2303,8 @@ body[data-layer-focused] .detail-panel {
   background: linear-gradient(
     90deg,
     rgba(63, 185, 80, 0.85) 0%,
-    rgba(63, 185, 80, 0.55) 18%,
-    rgba(240, 136, 62, 0.25) 50%,
-    rgba(247, 120, 186, 0.55) 82%,
-    rgba(247, 120, 186, 0.85) 100%
+    rgba(240, 136, 62, 0.6) 55%,
+    rgba(248, 81, 73, 0.85) 100%
   );
 }
 
@@ -2365,67 +2363,6 @@ body[data-layer-focused] .detail-panel {
   color: var(--color-text-tertiary);
   text-align: center;
   font-style: italic;
-}
-
-.viz-checklist {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-
-.checklist-row {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 0.72rem;
-  font-weight: 600;
-  color: var(--color-text-primary);
-}
-
-.checklist-mark {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 16px;
-  height: 16px;
-  border-radius: 4px;
-  background: rgba(63, 185, 80, 0.18);
-  color: #3fb950;
-  font-weight: 700;
-  font-size: 0.7rem;
-  flex-shrink: 0;
-}
-
-.viz-prompt-anatomy {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.prompt-anatomy-terminal {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-  padding: 8px 10px;
-  border-radius: 6px;
-  background: rgba(13, 17, 23, 0.55);
-  border: 1px solid var(--color-border-subtle);
-  font-family: var(--font-mono);
-  font-size: 0.68rem;
-  line-height: 1.4;
-}
-
-.prompt-anatomy-terminal .terminal-comment {
-  color: var(--color-text-tertiary);
-}
-
-.prompt-anatomy-terminal .terminal-keyword {
-  color: var(--color-text-secondary);
-}
-
-.prompt-anatomy-terminal .terminal-cmd {
-  color: #f0883e;
-  font-weight: 600;
 }
 
 .viz-arch-stack {
@@ -2701,47 +2638,6 @@ body[data-layer-focused] .detail-panel {
 
 .auto-target--complex {
   color: #d2a8ff;
-}
-
-/* Budget bars */
-.viz-budget-bars {
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-}
-
-.budget-row {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.budget-label {
-  font-size: 0.6rem;
-  font-weight: 600;
-  min-width: 48px;
-  color: var(--color-text-secondary);
-}
-
-.budget-bar {
-  flex: 1;
-  height: 12px;
-  background: var(--color-bg-tertiary);
-  border-radius: 3px;
-  overflow: hidden;
-}
-
-.budget-fill {
-  display: block;
-  height: 100%;
-  border-radius: 3px;
-  background: linear-gradient(90deg, #3fb950, #56d364);
-  transform-origin: left center;
-  animation: growBarX 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
-}
-
-.budget-fill--warn {
-  background: linear-gradient(90deg, #f0883e, #f85149);
 }
 
 /* Managed Settings tip — specialization flow */

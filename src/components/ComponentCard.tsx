@@ -396,7 +396,7 @@ const ApplyToPathsViz: React.FC = () => (
 const ToolsetScopingViz: React.FC<{ v: Translations['tipsViz'] }> = ({ v }) => (
   <div className="viz viz-before-after" aria-hidden="true">
     <div className="ba-item ba-item--before">
-      <span className="ba-label">✗ {v.disabledTools}</span>
+      <span className="ba-label">✗ {v.allToolsEnabled}</span>
     </div>
     <div className="ba-item ba-item--after">
       <span className="ba-label">✓ {v.enabledTools}</span>
@@ -454,10 +454,12 @@ const AutoModeViz: React.FC<{ v: Translations['tipsViz'] }> = ({ v }) => (
 );
 
 const MonitorUsageViz: React.FC<{ v: Translations['tipsViz'] }> = ({ v }) => (
-  <div className="viz viz-budget-bars" aria-hidden="true">
-    <div className="budget-row"><span className="budget-label">{v.icEng}</span><span className="budget-bar"><span className="budget-fill" style={{ width: '40%' }} /></span></div>
-    <div className="budget-row"><span className="budget-label">{v.powerUser}</span><span className="budget-bar"><span className="budget-fill" style={{ width: '75%' }} /></span></div>
-    <div className="budget-row"><span className="budget-label">{v.ciAgent}</span><span className="budget-bar"><span className="budget-fill budget-fill--warn" style={{ width: '95%' }} /></span></div>
+  <div className="viz viz-thread-lifecycle" aria-hidden="true">
+    <span className="thread-step">📊 {v.usageBaseline}</span>
+    <span className="thread-arrow">→</span>
+    <span className="thread-step">🔔 {v.alertBudget}</span>
+    <span className="thread-arrow">→</span>
+    <span className="thread-step thread-step--fresh">💰 {v.costCenterBudget}</span>
   </div>
 );
 
@@ -480,11 +482,11 @@ const ContextRotViz: React.FC<{ v: Translations['tipsViz'] }> = ({ v }) => (
   <div className="viz viz-token-meter" aria-hidden="true">
     <div className="token-bar">
       <span className="token-bar-fill token-bar-fill--rot" style={{ width: '100%' }} />
-      <span className="token-bar-label">{v.middleDecay}</span>
+      <span className="token-bar-label">{v.historyAccumulates}</span>
     </div>
     <div className="rot-legend">
-      <span className="rot-tag">↦ {v.knownContext}</span>
-      <span className="rot-tag">↤ {v.recencyBias}</span>
+      <span className="rot-tag">📎 {v.everyTurnAdds}</span>
+      <span className="rot-tag">🔁 {v.reprocessedInput}</span>
     </div>
   </div>
 );

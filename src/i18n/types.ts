@@ -164,37 +164,29 @@ export interface Translations {
     onDemand: string;
     efficient: string;
     enabledTools: string;
-    disabledTools: string;
+    allToolsEnabled: string;
     taskScoped: string;
     loadOnce: string;
     reuseInQueries: string;
     tokenPrefixMatch: string;
     prefixDiffers: string;
     standard: string;
-    architecture: string;
-    debugging: string;
-    agentic: string;
-    summarize: string;
-    qa: string;
-    refactorLabel: string;
     simpleToMini: string;
     complexToPremium: string;
-    icEng: string;
-    powerUser: string;
-    ciAgent: string;
-    stopAfterTest: string;
+    /* monitor usage */
+    usageBaseline: string;
+    alertBudget: string;
+    costCenterBudget: string;
     /* compound errors */
     perStep: string;
     steps: string;
     accuracy99: string;
     accuracy95: string;
-    /* prompt anatomy */
-    bePrecise: string;
-    stopSignals: string;
-    knownContext: string;
     /* context rot */
     lostInMiddle: string;
-    recencyBias: string;
+    historyAccumulates: string;
+    everyTurnAdds: string;
+    reprocessedInput: string;
     middleDecay: string;
     /* lost in middle */
     startStrong: string;
@@ -219,9 +211,6 @@ export interface Translations {
     /* trim shell */
     rawOutput: string;
     trimmed: string;
-    /* collapse tool calls */
-    multipleCalls: string;
-    batchedCall: string;
     /* apply architecture */
     cleanLayers: string;
     /* iterate configs */

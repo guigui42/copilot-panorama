@@ -18,7 +18,7 @@ const TOOLS_COMPONENT_META: Record<string, ComponentMeta> = {
     icon: '💻',
     docUrl: 'https://docs.github.com/en/enterprise-cloud@latest/copilot/concepts/agents/copilot-cli/about-copilot-cli',
     altDocUrl: 'https://docs.github.com/en/enterprise-cloud@latest/copilot/concepts/about-cloud-and-local-sandboxes',
-    altDocLabel: 'CLI How-To',
+    altDocLabel: 'Cloud & Local Sandboxes',
   },
   'copilot-app': {
     id: 'copilot-app',
@@ -62,7 +62,7 @@ const TOOLS_COMPONENT_META: Record<string, ComponentMeta> = {
     icon: '💬',
     docUrl: 'https://docs.github.com/en/enterprise-cloud@latest/copilot/concepts/chat',
     altDocUrl: 'https://docs.github.com/en/enterprise-cloud@latest/copilot/how-tos/copilot-on-github/chat-with-copilot/chat-in-github',
-    altDocLabel: 'Features Overview',
+    altDocLabel: 'Chat in GitHub',
   },
   'coding-agent': {
     id: 'coding-agent',
