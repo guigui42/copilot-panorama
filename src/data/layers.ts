@@ -89,9 +89,10 @@ const COMPONENT_META: Record<string, ComponentMeta> = {
   },
   plugins: {
     id: 'plugins',
-    path: '.github/plugin/plugin.json',
+    path: 'plugin.json\nskills/\nmcp.json\ncom.github.copilot/',
     icon: '📦',
-    docUrl: 'https://docs.github.com/en/copilot/how-tos/copilot-cli/customize-copilot/plugins-finding-installing',
+    docUrl: 'https://agent-plugins.org/specification',
+    altDocUrl: 'https://agent-plugins.org/plugin-authors/build-an-agent-plugin',
     awesomeUrl: 'https://awesome-copilot.github.com/plugins/',
   },
 };
@@ -99,7 +100,15 @@ const COMPONENT_META: Record<string, ComponentMeta> = {
 function buildComponent(id: string, t: Translations): Component {
   const meta = COMPONENT_META[id];
   const text = t.components[id];
-  return { ...meta, name: text.name, description: text.description, details: text.details, useCases: text.useCases };
+  return {
+    ...meta,
+    name: text.name,
+    description: text.description,
+    details: text.details,
+    useCases: text.useCases,
+    docLabel: text.docLabel ?? meta.docLabel,
+    altDocLabel: text.altDocLabel ?? meta.altDocLabel,
+  };
 }
 
 interface LayerDef {

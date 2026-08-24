@@ -32,6 +32,12 @@ export const ja: Translations = {
     approveDeny: '承認 / 拒否',
 
     pluginJson: 'plugin.json',
+    skillsDir: 'skills/',
+    mcpJson: 'mcp.json',
+    copilotNamespace: 'com.github.copilot/',
+    vsCode: 'VS Code',
+    copilotCli: 'Copilot CLI',
+    copilotApp: 'Copilot アプリ',
     marketplace: 'マーケットプレイス',
     gitRepo: 'Git リポジトリ',
     localPath: 'ローカルパス',
@@ -139,15 +145,18 @@ export const ja: Translations = {
       useCases: ['依存関係の事前インストール', 'より大きなランナー', '環境変数'],
     },
     plugins: {
-      name: 'Plugins',
-      description: 'エージェント、スキル、フック、MCP 設定をバンドルしたインストール可能なパッケージ',
+      name: 'Agent Plugins 1.0',
+      description: '対応エージェントクライアント間でスキルと MCP サーバーを共有するポータブルパッケージ',
       details:
-        'Plugins は Copilot CLI を拡張する配布可能なパッケージです。各プラグインには ' +
-        'Custom Agents、Skills、Hooks、MCP サーバー設定、LSP サーバー設定を含めることができます。' +
-        '登録済みマーケットプレイス（`copilot-plugins` や `awesome-copilot` など）、' +
-        'Git リポジトリから直接、またはローカルパスからインストールできます。' +
-        'チーム固有のスタックを共有するための独自のマーケットプレイスを作成できます。',
-      useCases: ['プロジェクト横断の再利用', 'チーム標準化', 'マーケットプレイス配布'],
+        'Agent Plugins 1.0 はポータブルなエージェントパッケージのオープン標準です。' +
+        'ルートの `plugin.json` が 1.0 スキーマを宣言し、ポータブルなスキルは `skills/`、' +
+        'MCP 設定は `mcp.json` に配置します。Copilot 固有のエージェント、コマンド、ルール、' +
+        'フック、拡張機能は、他のクライアントが無視する `com.github.copilot/` 配下に置きます。' +
+        '同じパッケージが VS Code、Copilot CLI、Copilot SDK、Copilot アプリで動作します。' +
+        '既存の Copilot プラグインも移行なしで引き続きサポートされます。',
+      useCases: ['クライアント間ポータビリティ', '再利用可能な Skills + MCP', 'マーケットプレイス配布'],
+      docLabel: 'Agent Plugins 1.0 仕様',
+      altDocLabel: 'Agent Plugin を作成',
     },
   },
   insights: [
@@ -490,6 +499,9 @@ export const ja: Translations = {
     agentMiss: 'エージェントミス',
     chronicle: '/chronicle',
     updateInstructions: '指示を更新',
+    enterpriseDefault: '企業デフォルト',
+    overridableKeys: '上書き可能キー',
+    teamSpecialization: 'チーム設定',
   },
   tipsLayers: {
     mechanics: {
@@ -751,6 +763,21 @@ export const ja: Translations = {
         '1週間分のチャットインタラクションより多くのトークンを消費することがあります。' +
         '管理ダッシュボードで外れ値を特定し調整しましょう。',
       useCases: ['管理者', '予算管理', 'チームガバナンス'],
+    },
+    'managed-settings-tip': {
+      name: 'チーム別に Managed Settings を設定',
+      description: '企業ガードレールを維持しながら、承認済み設定をチームごとに調整する',
+      details:
+        '`copilot/managed-settings.json` の企業デフォルトから始めます。チームが変更できる' +
+        'キーだけを `overridable` にし、`copilot/team-mappings.json` で設定ファイルを' +
+        'エンタープライズチームの slug に割り当て、承認済みの値を `copilot/teams/` 配下に' +
+        '置きます。未設定値は企業デフォルトを継承します。上書き不可のキーは固定され、' +
+        '`enabledPlugins` と `extraKnownMarketplaces` は加算方式で統合されます。ユーザーが' +
+        '複数チームに所属する場合、チーム値は企業ポリシーの下で最も制限の少ない値を使って' +
+        '統合されます。',
+      useCases: ['プラットフォームチーム', 'AI パイオニア', '役割別ツール'],
+      docLabel: 'チーム固有の設定を構成',
+      altDocLabel: 'Managed Settings リファレンス',
     },
     'compound-errors': {
       name: '複利エラー問題',

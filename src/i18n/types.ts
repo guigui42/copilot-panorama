@@ -5,6 +5,8 @@ export interface ComponentI18n {
   description: string;
   details: string;
   useCases: string[];
+  docLabel?: string;
+  altDocLabel?: string;
 }
 
 export interface LayerI18n {
@@ -53,6 +55,12 @@ export interface Translations {
     approveDeny: string;
 
     pluginJson: string;
+    skillsDir: string;
+    mcpJson: string;
+    copilotNamespace: string;
+    vsCode: string;
+    copilotCli: string;
+    copilotApp: string;
     marketplace: string;
     gitRepo: string;
     localPath: string;
@@ -212,6 +220,9 @@ export interface Translations {
     agentMiss: string;
     chronicle: string;
     updateInstructions: string;
+    enterpriseDefault: string;
+    overridableKeys: string;
+    teamSpecialization: string;
   };
   tipsLayers: Record<string, LayerI18n>;
   tipsComponents: Record<string, ComponentI18n>;

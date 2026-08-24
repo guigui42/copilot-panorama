@@ -32,6 +32,12 @@ export const de: Translations = {
     approveDeny: 'genehmigen / ablehnen',
 
     pluginJson: 'plugin.json',
+    skillsDir: 'skills/',
+    mcpJson: 'mcp.json',
+    copilotNamespace: 'com.github.copilot/',
+    vsCode: 'VS Code',
+    copilotCli: 'Copilot CLI',
+    copilotApp: 'Copilot App',
     marketplace: 'Marketplace',
     gitRepo: 'Git-Repo',
     localPath: 'Lokaler Pfad',
@@ -142,15 +148,19 @@ export const de: Translations = {
       useCases: ['Abhängigkeiten vorinstallieren', 'Größere Runner', 'Umgebungsvariablen'],
     },
     plugins: {
-      name: 'Plugins',
-      description: 'Installierbare Pakete, die Agents, Skills, Hooks & MCP-Konfigurationen bündeln',
+      name: 'Agent Plugins 1.0',
+      description: 'Ein portables Paket für Skills und MCP-Server in kompatiblen Agent-Clients',
       details:
-        'Plugins sind verteilbare Pakete, die Copilot CLI erweitern. Jedes Plugin kann ' +
-        'Custom Agents, Skills, Hooks, MCP-Server-Konfigurationen und LSP-Server-Konfigurationen ' +
-        'enthalten. Installiere sie aus registrierten Marketplaces (wie `copilot-plugins` ' +
-        'oder `awesome-copilot`), direkt aus einem Git-Repo oder von einem lokalen Pfad. ' +
-        'Erstelle deinen eigenen Marketplace, um teamspezifische Stacks zu teilen.',
-      useCases: ['Projektübergreifende Wiederverwendung', 'Team-Standardisierung', 'Marketplace-Distribution'],
+        'Agent Plugins 1.0 ist ein offener Standard für portable Agent-Pakete. Eine ' +
+        '`plugin.json` im Stammverzeichnis deklariert das 1.0-Schema, portable Skills liegen ' +
+        'unter `skills/` und die MCP-Konfiguration in `mcp.json`. Copilot-spezifische Agents, ' +
+        'Befehle, Regeln, Hooks und Erweiterungen liegen unter `com.github.copilot/`, das ' +
+        'andere Clients ignorieren. Dasselbe Paket funktioniert in VS Code, Copilot CLI, ' +
+        'dem Copilot SDK und der Copilot App. Bestehende Copilot-Plugins bleiben ohne ' +
+        'Migration unterstützt.',
+      useCases: ['Clientübergreifende Portabilität', 'Wiederverwendbare Skills + MCP', 'Marketplace-Distribution'],
+      docLabel: 'Agent Plugins 1.0-Spezifikation',
+      altDocLabel: 'Agent Plugin erstellen',
     },
   },
   insights: [
@@ -494,6 +504,9 @@ export const de: Translations = {
     agentMiss: 'Agent-Fehler',
     chronicle: '/chronicle',
     updateInstructions: 'Anweisungen aktualisieren',
+    enterpriseDefault: 'Enterprise-Standard',
+    overridableKeys: 'Überschreibbare Schlüssel',
+    teamSpecialization: 'Team-Einstellungen',
   },
   tipsLayers: {
     mechanics: {
@@ -766,6 +779,22 @@ export const de: Translations = {
         'more tokens than a week of chat interactions. Use the admin dashboard to identify ' +
         'outliers and adjust.',
       useCases: ['Admin', 'Budget Control', 'Team Governance'],
+    },
+    'managed-settings-tip': {
+      name: 'Managed Settings nach Team spezialisieren',
+      description: 'Enterprise-Leitplanken beibehalten, während Teams freigegebene Einstellungen anpassen',
+      details:
+        'Beginne mit Enterprise-Standards in `copilot/managed-settings.json`. Markiere nur ' +
+        'Schlüssel, die Teams ändern dürfen, mit `overridable`, ordne Einstellungsdateien in ' +
+        '`copilot/team-mappings.json` Enterprise-Team-Slugs zu und lege freigegebene Werte ' +
+        'unter `copilot/teams/` ab. Nicht gesetzte Werte erben den Enterprise-Standard. ' +
+        'Nicht überschreibbare Schlüssel bleiben gesperrt, während `enabledPlugins` und ' +
+        '`extraKnownMarketplaces` additiv kombiniert werden. Gehört ein Benutzer mehreren ' +
+        'Teams an, werden Teamwerte mit dem am wenigsten restriktiven Wert unterhalb der ' +
+        'Enterprise-Richtlinie kombiniert.',
+      useCases: ['Plattformteams', 'KI-Pioniere', 'Rollenbasierte Tools'],
+      docLabel: 'Teamspezifische Einstellungen konfigurieren',
+      altDocLabel: 'Referenz zu verwalteten Einstellungen',
     },
     'compound-errors': {
       name: 'Compound Error Problem',
