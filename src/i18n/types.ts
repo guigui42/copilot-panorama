@@ -53,9 +53,18 @@ export interface Translations {
     approveDeny: string;
 
     pluginJson: string;
+    skillsDir: string;
+    mcpJson: string;
+    copilotNamespace: string;
+    vsCode: string;
+    copilotCli: string;
+    copilotApp: string;
     marketplace: string;
     gitRepo: string;
     localPath: string;
+    managedPolicy: string;
+    teamOverrides: string;
+    enforcedAcross: string;
   };
   layers: Record<string, LayerI18n>;
   components: Record<string, ComponentI18n>;
@@ -212,6 +221,9 @@ export interface Translations {
     agentMiss: string;
     chronicle: string;
     updateInstructions: string;
+    enterpriseDefault: string;
+    overridableKeys: string;
+    teamSpecialization: string;
   };
   tipsLayers: Record<string, LayerI18n>;
   tipsComponents: Record<string, ComponentI18n>;

@@ -249,6 +249,15 @@ const TIPS_COMPONENT_META: Record<string, ComponentMeta> = {
     docUrl: 'https://docs.github.com/en/enterprise-cloud@latest/copilot/how-tos/manage-and-track-spending/monitor-ai-usage',
     docLabel: 'AI usage dashboard',
   },
+  'managed-settings-tip': {
+    id: 'managed-settings-tip',
+    path: 'managed-settings.json\nteam-mappings.json\nteams/<name>.json',
+    icon: '🛡️',
+    docUrl: 'https://docs.github.com/en/enterprise-cloud@latest/copilot/how-tos/administer-copilot/manage-for-enterprise/manage-agents/configure-enterprise-managed-settings#overriding-settings-for-specific-teams',
+    docLabel: 'Configure team-specific settings',
+    altDocUrl: 'https://docs.github.com/en/enterprise-cloud@latest/copilot/reference/enterprise-administrators/enterprise-managed-settings',
+    altDocLabel: 'Managed settings reference',
+  },
   'chronicle-insights': {
     id: 'chronicle-insights',
     path: 'Learn From Sessions',
@@ -298,7 +307,7 @@ const TIPS_LAYER_DEFS: LayerDef[] = [
   { id: 'workflow-design', number: 5, color: '#a371f7', componentIds: ['research-plan-implement', 'deterministic-guardrails', 'apply-architecture', 'iterate-configs'] },
   { id: 'caching', number: 6, color: '#d2a8ff', componentIds: ['reuse-context', 'prefix-matching', 'preserve-cache', 'collapse-tool-calls'] },
   { id: 'models', number: 7, color: '#f778ba', componentIds: ['choose-right-model', 'high-effort-tasks', 'low-effort-tasks', 'auto-mode', 'cheaper-subagents'] },
-  { id: 'governance', number: 8, color: '#8b949e', componentIds: ['monitor-usage', 'chronicle-insights'] },
+  { id: 'governance', number: 8, color: '#8b949e', componentIds: ['monitor-usage', 'managed-settings-tip', 'chronicle-insights'] },
 ];
 
 export function getTipsLayers(t: Translations): Layer[] {

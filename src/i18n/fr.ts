@@ -32,9 +32,18 @@ export const fr: Translations = {
     approveDeny: 'approuver / refuser',
 
     pluginJson: 'plugin.json',
+    skillsDir: 'skills/',
+    mcpJson: 'mcp.json',
+    copilotNamespace: 'com.github.copilot/',
+    vsCode: 'VS Code',
+    copilotCli: 'Copilot CLI',
+    copilotApp: 'Application Copilot',
     marketplace: 'Marketplace',
     gitRepo: 'Dépôt Git',
     localPath: 'Chemin local',
+    managedPolicy: 'Politique d\'entreprise',
+    teamOverrides: 'Spécialisation d\'équipe',
+    enforcedAcross: 'Clients Copilot pris en charge',
   },
   layers: {
     'always-on-context': {
@@ -116,6 +125,20 @@ export const fr: Translations = {
         '(qui sont consultatives), les hooks sont coercitifs.',
       useCases: ['Portes de conformité', 'Contrôle d\'accès fichiers', 'Journalisation d\'audit'],
     },
+    'managed-settings': {
+      name: 'Managed Settings',
+      description: 'Politiques d\'entreprise avec spécialisation contrôlée par équipe dans les clients Copilot',
+      details:
+        'Les propriétaires d\'entreprise définissent la politique gérée par le serveur dans ' +
+        'un dépôt interne `.github-private`, sous `copilot/managed-settings.json`. Certaines ' +
+        'clés peuvent être marquées `overridable`, puis spécialisées via ' +
+        '`copilot/team-mappings.json` et les fichiers de `copilot/teams/`. Les clés non ' +
+        'remplaçables restent verrouillées au niveau de l\'entreprise. Les paramètres de ' +
+        'plugins et de marketplaces sont additifs, les équipes étendent donc le socle sans ' +
+        'le retirer. Les paramètres gérés s\'appliquent aux clients Copilot pris en charge ' +
+        'selon la précédence documentée entre MDM, serveur, fichier et utilisateur.',
+      useCases: ['Garde-fous d\'entreprise', 'Spécialisation d\'équipe', 'Gouvernance des plugins'],
+    },
     'agentic-workflows': {
       name: 'Agentic Workflows',
       description: 'Automatisation de dépôts par des agents IA, exécutés dans GitHub Actions avec des garde-fous',
@@ -146,16 +169,17 @@ export const fr: Translations = {
       useCases: ['Préinstaller les dépendances', 'Runners plus puissants', 'Variables d\'environnement'],
     },
     plugins: {
-      name: 'Plugins',
-      description: 'Paquets installables regroupant agents, skills, hooks et configs MCP',
+      name: 'Agent Plugins 1.0',
+      description: 'Un paquet portable pour les skills et serveurs MCP sur les clients agent compatibles',
       details:
-        'Les plugins sont des paquets distribuables qui étendent Copilot CLI. Chaque ' +
-        'plugin peut contenir des agents, skills, hooks, configs de serveurs MCP et ' +
-        'configs de serveurs LSP. Installez depuis des marketplaces enregistrées ' +
-        '(comme `copilot-plugins` ou `awesome-copilot`), directement depuis un dépôt ' +
-        'Git ou depuis un chemin local. Créez votre propre marketplace pour partager ' +
-        'des stacks spécifiques à votre équipe.',
-      useCases: ['Réutilisation inter-projets', 'Standardisation d\'équipe', 'Distribution marketplace'],
+        'Agent Plugins 1.0 est un standard ouvert pour les paquets d\'agents portables. Un ' +
+        '`plugin.json` racine déclare le schéma 1.0, les skills portables résident dans ' +
+        '`skills/` et la configuration MCP dans `mcp.json`. Les agents, commandes, règles, ' +
+        'hooks et extensions propres à Copilot résident sous `com.github.copilot/`, ignoré ' +
+        'par les autres clients. Le même paquet fonctionne dans VS Code, Copilot CLI, le ' +
+        'SDK Copilot et l\'application Copilot. Les plugins Copilot existants restent pris ' +
+        'en charge sans migration.',
+      useCases: ['Portabilité multi-client', 'Skills + MCP réutilisables', 'Distribution marketplace'],
     },
   },
   insights: [
@@ -508,6 +532,9 @@ export const fr: Translations = {
     agentMiss: 'Erreur de l\'agent',
     chronicle: '/chronicle',
     updateInstructions: 'Mettre à jour les instructions',
+    enterpriseDefault: 'Défaut entreprise',
+    overridableKeys: 'Clés remplaçables',
+    teamSpecialization: 'Paramètres d\'équipe',
   },
   tipsLayers: {
     mechanics: {
@@ -789,6 +816,20 @@ export const fr: Translations = {
         'seule session agentique peut consommer plus de tokens qu\'une semaine d\'interactions chat. ' +
         'Utilisez le tableau de bord administrateur pour identifier les valeurs aberrantes et ajuster.',
       useCases: ['Admin', 'Contrôle budgétaire', 'Gouvernance d\'équipe'],
+    },
+    'managed-settings-tip': {
+      name: 'Spécialiser les Managed Settings par équipe',
+      description: 'Conserver les garde-fous d\'entreprise tout en personnalisant les paramètres approuvés',
+      details:
+        'Commencez avec les valeurs d\'entreprise dans `copilot/managed-settings.json`. ' +
+        'Marquez uniquement les clés modifiables par les équipes avec `overridable`, associez ' +
+        'les fichiers aux slugs d\'équipes dans `copilot/team-mappings.json`, puis placez les ' +
+        'valeurs approuvées sous `copilot/teams/`. Les valeurs absentes héritent du défaut ' +
+        'd\'entreprise. Les clés non remplaçables restent verrouillées, tandis que ' +
+        '`enabledPlugins` et `extraKnownMarketplaces` sont additifs. Pour un utilisateur ' +
+        'membre de plusieurs équipes, les valeurs d\'équipe se combinent selon la valeur la ' +
+        'moins restrictive, sous la politique d\'entreprise.',
+      useCases: ['Équipes plateforme', 'Pionniers IA', 'Outillage par rôle'],
     },
     'compound-errors': {
       name: 'Erreurs qui s\'accumulent',

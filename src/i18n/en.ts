@@ -32,9 +32,18 @@ export const en: Translations = {
     approveDeny: 'approve / deny',
 
     pluginJson: 'plugin.json',
+    skillsDir: 'skills/',
+    mcpJson: 'mcp.json',
+    copilotNamespace: 'com.github.copilot/',
+    vsCode: 'VS Code',
+    copilotCli: 'Copilot CLI',
+    copilotApp: 'Copilot app',
     marketplace: 'Marketplace',
     gitRepo: 'Git Repo',
     localPath: 'Local Path',
+    managedPolicy: 'Enterprise policy',
+    teamOverrides: 'Team specialization',
+    enforcedAcross: 'Supported Copilot clients',
   },
   layers: {
     'always-on-context': {
@@ -114,6 +123,19 @@ export const en: Translations = {
         'Unlike instructions (which are advisory), hooks are enforcement.',
       useCases: ['Policy Gates', 'File Access Controls', 'Audit Logging'],
     },
+    'managed-settings': {
+      name: 'Managed Settings',
+      description: 'Enterprise policies with controlled team specialization across Copilot clients',
+      details:
+        'Enterprise owners define server-managed policy in an internal `.github-private` ' +
+        'repository at `copilot/managed-settings.json`. Selected keys can be marked ' +
+        '`overridable`, then specialized through `copilot/team-mappings.json` and files ' +
+        'under `copilot/teams/`. Keys that are not overridable stay locked at the enterprise ' +
+        'level. Plugin and marketplace settings are additive, so teams can extend the baseline ' +
+        'without removing it. Managed settings apply across supported Copilot clients, with ' +
+        'MDM, server, file, and user settings following documented precedence.',
+      useCases: ['Enterprise Guardrails', 'Team Specialization', 'Plugin Governance'],
+    },
     'agentic-workflows': {
       name: 'Agentic Workflows',
       description: 'Repository automation powered by AI coding agents, running in GitHub Actions with guardrails',
@@ -142,15 +164,17 @@ export const en: Translations = {
       useCases: ['Preinstall Dependencies', 'Larger Runners', 'Environment Variables'],
     },
     plugins: {
-      name: 'Plugins',
-      description: 'Installable packages bundling agents, skills, hooks & MCP configs',
+      name: 'Agent Plugins 1.0',
+      description: 'One portable package for skills and MCP servers across compatible agent clients',
       details:
-        'Plugins are distributable packages that extend Copilot CLI. Each plugin ' +
-        'can contain custom agents, skills, hooks, MCP server configs, and LSP ' +
-        'server configs. Install from registered marketplaces (like `copilot-plugins` ' +
-        'or `awesome-copilot`), directly from a Git repo, or from a local path. ' +
-        'Create your own marketplace to share team-specific stacks.',
-      useCases: ['Reuse Across Projects', 'Team Standardization', 'Marketplace Distribution'],
+        'Agent Plugins 1.0 is an open standard for portable agent packages. A root ' +
+        '`plugin.json` declares the 1.0 schema, while portable skills live in `skills/` ' +
+        'and MCP configuration lives in `mcp.json`. Copilot-specific agents, commands, ' +
+        'rules, hooks, and extensions belong under `com.github.copilot/`, which other ' +
+        'clients ignore. The same package works across compatible clients including VS Code, ' +
+        'Copilot CLI, the Copilot SDK, and the Copilot app. Existing Copilot plugins remain ' +
+        'supported without migration.',
+      useCases: ['Cross-Client Portability', 'Reusable Skills + MCP', 'Marketplace Distribution'],
     },
   },
   insights: [
@@ -494,6 +518,9 @@ export const en: Translations = {
     agentMiss: 'Agent miss',
     chronicle: '/chronicle',
     updateInstructions: 'Update instructions',
+    enterpriseDefault: 'Enterprise default',
+    overridableKeys: 'Overridable keys',
+    teamSpecialization: 'Team settings',
   },
   tipsLayers: {
     mechanics: {
@@ -761,6 +788,19 @@ export const en: Translations = {
         'more tokens than a week of chat interactions. Use the admin dashboard to identify ' +
         'outliers and adjust.',
       useCases: ['Admin', 'Budget Control', 'Team Governance'],
+    },
+    'managed-settings-tip': {
+      name: 'Specialize Managed Settings by Team',
+      description: 'Keep enterprise guardrails fixed while teams customize approved settings',
+      details:
+        'Start with enterprise defaults in `copilot/managed-settings.json`. Mark only the ' +
+        'keys teams may change with `overridable`, map settings files to enterprise team ' +
+        'slugs in `copilot/team-mappings.json`, then place approved values under ' +
+        '`copilot/teams/`. Unset values fall back to the enterprise default. Non-overridable ' +
+        'keys remain locked, while `enabledPlugins` and `extraKnownMarketplaces` combine ' +
+        'additively. If a user belongs to multiple mapped teams, team values combine using ' +
+        'the least restrictive value beneath the enterprise policy.',
+      useCases: ['Platform Teams', 'AI Pioneers', 'Role-Based Tooling'],
     },
     'compound-errors': {
       name: 'Compound Error Problem',

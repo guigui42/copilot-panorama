@@ -141,13 +141,29 @@ const SetupStepsViz: React.FC = () => (
 );
 
 const PluginsViz: React.FC<{ v: Translations['viz'] }> = ({ v }) => (
-  <div className="viz viz-distribution">
-    <span className="dist-source">📦 {v.pluginJson}</span>
-    <span className="dist-arrow">→</span>
-    <div className="dist-targets">
-      <span className="dist-target">🏪 {v.marketplace}</span>
-      <span className="dist-target">🔗 {v.gitRepo}</span>
-      <span className="dist-target">📁 {v.localPath}</span>
+  <div className="viz viz-agent-plugins" aria-hidden="true">
+    <div className="plugin-package">
+      <span className="plugin-file plugin-file--manifest">📦 {v.pluginJson}</span>
+      <span className="plugin-file">{v.skillsDir}</span>
+      <span className="plugin-file">{v.mcpJson}</span>
+      <span className="plugin-file">{v.copilotNamespace}</span>
+    </div>
+    <span className="plugin-portable-arrow">→</span>
+    <div className="plugin-clients">
+      <span>{v.vsCode}</span>
+      <span>{v.copilotCli}</span>
+      <span>{v.copilotApp}</span>
+    </div>
+  </div>
+);
+
+const ManagedSettingsViz: React.FC<{ v: Translations['viz'] }> = ({ v }) => (
+  <div className="viz viz-managed-settings" aria-hidden="true">
+    <span className="managed-policy">🛡️ {v.managedPolicy}</span>
+    <span className="managed-arrow">→</span>
+    <div className="managed-scope">
+      <span>{v.teamOverrides}</span>
+      <small>{v.enforcedAcross}</small>
     </div>
   </div>
 );
@@ -587,6 +603,16 @@ const IterateConfigsViz: React.FC<{ v: Translations['tipsViz'] }> = ({ v }) => (
   </div>
 );
 
+const ManagedSettingsTipViz: React.FC<{ v: Translations['tipsViz'] }> = ({ v }) => (
+  <div className="viz viz-managed-settings-tip" aria-hidden="true">
+    <span className="managed-tier managed-tier--enterprise">{v.enterpriseDefault}</span>
+    <span className="managed-tier-arrow">→</span>
+    <span className="managed-tier managed-tier--override">{v.overridableKeys}</span>
+    <span className="managed-tier-arrow">→</span>
+    <span className="managed-tier managed-tier--team">{v.teamSpecialization}</span>
+  </div>
+);
+
 /* ── Card ── */
 
 const ComponentCard: React.FC<ComponentCardProps> = ({ component, layerColor, onClick }) => {
@@ -606,6 +632,7 @@ const ComponentCard: React.FC<ComponentCardProps> = ({ component, layerColor, on
       case 'agentic-workflows': return <WorkflowsViz />;
       case 'copilot-setup-steps': return <SetupStepsViz />;
       case 'plugins': return <PluginsViz v={v} />;
+      case 'managed-settings': return <ManagedSettingsViz v={v} />;
       /* Tools page */
       case 'copilot-cli': return <CopilotCliViz v={tv} />;
       case 'copilot-app': return <CopilotAppViz v={tv} />;
@@ -649,6 +676,7 @@ const ComponentCard: React.FC<ComponentCardProps> = ({ component, layerColor, on
       case 'collapse-tool-calls': return <CollapseToolCallsViz v={tip} />;
       case 'apply-architecture': return <ApplyArchitectureViz v={tip} />;
       case 'iterate-configs': return <IterateConfigsViz v={tip} />;
+      case 'managed-settings-tip': return <ManagedSettingsTipViz v={tip} />;
       default: return null;
     }
   };

@@ -1102,43 +1102,106 @@ html[data-theme="light"] .viz-workflows-stack .viz-terminal:last-child {
   border-top-color: #313244;
 }
 
-/* Plugins — distribution flow */
-.viz-distribution {
+/* Agent Plugins — portable package */
+.viz-agent-plugins {
   display: flex;
   align-items: center;
-  gap: 10px;
-  flex-wrap: wrap;
+  gap: 8px;
 }
 
-.dist-source {
-  padding: 6px 14px;
+.plugin-package {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 4px;
+  flex: 1;
+  min-width: 0;
+}
+
+.plugin-file,
+.plugin-clients span {
+  padding: 4px 6px;
   background: var(--color-bg-tertiary);
-  border-radius: 6px;
-  font-size: 0.75rem;
-  font-weight: 600;
-  color: var(--color-text-primary);
   border: 1px solid var(--color-border-subtle);
+  border-radius: 5px;
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  color: var(--color-text-secondary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-.dist-arrow {
+.plugin-file--manifest {
+  color: var(--color-accent-purple);
+  font-weight: 600;
+  grid-column: 1 / -1;
+}
+
+.plugin-portable-arrow {
   color: var(--color-accent-purple);
   font-weight: 700;
   font-size: 1rem;
+  flex-shrink: 0;
 }
 
-.dist-targets {
+.plugin-clients {
   display: flex;
-  gap: 6px;
-  flex-wrap: wrap;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 80px;
 }
 
-.dist-target {
-  padding: 5px 12px;
+.plugin-clients span {
   background: color-mix(in srgb, var(--color-accent-purple) 8%, var(--color-bg-tertiary));
   border: 1px solid color-mix(in srgb, var(--color-accent-purple) 18%, transparent);
-  border-radius: 6px;
   color: var(--color-accent-purple);
-  font-size: 0.75rem;
+  font-family: var(--font-sans);
+  font-weight: 500;
+  text-align: center;
+}
+
+/* Managed Settings — enterprise enforcement */
+.viz-managed-settings {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.managed-policy,
+.managed-scope {
+  padding: 7px 9px;
+  border-radius: 6px;
+  font-size: 0.65rem;
+  font-weight: 600;
+}
+
+.managed-policy {
+  background: color-mix(in srgb, var(--color-accent-yellow) 10%, var(--color-bg-tertiary));
+  border: 1px solid color-mix(in srgb, var(--color-accent-yellow) 25%, transparent);
+  color: var(--color-accent-yellow);
+  white-space: nowrap;
+}
+
+.managed-arrow {
+  color: var(--color-accent-yellow);
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.managed-scope {
+  display: flex;
+  flex: 1;
+  min-width: 0;
+  flex-direction: column;
+  gap: 2px;
+  background: var(--color-bg-tertiary);
+  border: 1px solid var(--color-border-subtle);
+  color: var(--color-text-primary);
+}
+
+.managed-scope small {
+  color: var(--color-text-muted);
+  font-size: 0.55rem;
   font-weight: 500;
 }
 
@@ -2744,4 +2807,46 @@ body[data-layer-focused] .detail-panel {
 
 .budget-fill--warn {
   background: linear-gradient(90deg, #f0883e, #f85149);
+}
+
+/* Managed Settings tip — specialization flow */
+.viz-managed-settings-tip {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.managed-tier {
+  flex: 1;
+  min-width: 0;
+  padding: 6px 5px;
+  border-radius: 5px;
+  font-size: 0.58rem;
+  font-weight: 600;
+  line-height: 1.25;
+  text-align: center;
+}
+
+.managed-tier--enterprise {
+  color: var(--color-text-primary);
+  background: var(--color-bg-tertiary);
+  border: 1px solid var(--color-border-subtle);
+}
+
+.managed-tier--override {
+  color: var(--color-accent-yellow);
+  background: color-mix(in srgb, var(--color-accent-yellow) 8%, var(--color-bg-tertiary));
+  border: 1px dashed color-mix(in srgb, var(--color-accent-yellow) 35%, transparent);
+}
+
+.managed-tier--team {
+  color: var(--color-accent-blue);
+  background: color-mix(in srgb, var(--color-accent-blue) 8%, var(--color-bg-tertiary));
+  border: 1px solid color-mix(in srgb, var(--color-accent-blue) 25%, transparent);
+}
+
+.managed-tier-arrow {
+  color: var(--color-text-muted);
+  font-size: 0.7rem;
+  flex-shrink: 0;
 }
