@@ -13,6 +13,7 @@ export interface Component {
   altDocUrl?: string;
   altDocLabel?: string;
   awesomeUrl?: string;
+  learningUrl?: string;
 }
 
 export interface Layer {
@@ -33,6 +34,7 @@ interface ComponentMeta {
   altDocUrl?: string;
   altDocLabel?: string;
   awesomeUrl?: string;
+  learningUrl?: string;
 }
 
 const COMPONENT_META: Record<string, ComponentMeta> = {
@@ -40,38 +42,34 @@ const COMPONENT_META: Record<string, ComponentMeta> = {
     id: 'instructions',
     path: '.github/copilot-instructions.md\n.github/instructions/<name>.instructions.md',
     icon: '🧠',
-    docUrl: 'https://docs.github.com/en/copilot/how-tos/configure-custom-instructions/add-repository-instructions?tool=vscode',
+    docUrl: 'https://docs.github.com/en/enterprise-cloud@latest/copilot/concepts/prompting/response-customization',
     awesomeUrl: 'https://awesome-copilot.github.com/instructions/',
-  },
-  'prompt-files': {
-    id: 'prompt-files',
-    path: '.github/prompts/<name>.prompt.md',
-    icon: '📋',
-    docUrl: 'https://docs.github.com/en/copilot/how-tos/configure-custom-instructions/add-repository-instructions?tool=vscode&search-overlay-input=copilot+custom+prompts&search-overlay-ask-ai=true#enabling-and-using-prompt-files',
-    awesomeUrl: 'https://awesome-copilot.github.com/skills/',
+    learningUrl: 'https://awesome-copilot.github.com/learning-hub/defining-custom-instructions/',
   },
   'custom-agents': {
     id: 'custom-agents',
-    path: '.github/agents/<name>.agent.md',
+    path: '.github/agents/<name>.md',
     icon: '🤖',
-    docUrl: 'https://docs.github.com/en/copilot/how-tos/use-copilot-agents/coding-agent/create-custom-agents',
+    docUrl: 'https://docs.github.com/en/enterprise-cloud@latest/copilot/concepts/agents/cloud-agent/about-custom-agents',
     awesomeUrl: 'https://awesome-copilot.github.com/agents/',
+    learningUrl: 'https://awesome-copilot.github.com/learning-hub/building-custom-agents/',
   },
   skills: {
     id: 'skills',
-    path: '.github/skills/<name>/SKILL.md',
+    path: '.github/skills/<name>/SKILL.md\n.agents/skills/<name>/SKILL.md\n.claude/skills/<name>/SKILL.md',
     icon: '🧩',
     docUrl: 'https://docs.github.com/en/copilot/concepts/agents/about-agent-skills',
     awesomeUrl: 'https://awesome-copilot.github.com/skills/',
+    learningUrl: 'https://awesome-copilot.github.com/learning-hub/creating-effective-skills/',
   },
   hooks: {
     id: 'hooks',
     path: '.github/hooks/<name>.json',
     icon: '🔒',
-    docUrl: 'https://docs.github.com/en/copilot/how-tos/use-copilot-agents/coding-agent/use-hooks',
-    altDocUrl: 'https://code.visualstudio.com/docs/copilot/customization/hooks',
+    docUrl: 'https://docs.github.com/en/enterprise-cloud@latest/copilot/reference/hooks-reference',
+    altDocUrl: 'https://code.visualstudio.com/docs/agent-customization/hooks',
     altDocLabel: 'VS Code Hooks Guide',
-    awesomeUrl: 'https://awesome-copilot.github.com/hooks/',
+    learningUrl: 'https://awesome-copilot.github.com/learning-hub/automating-with-hooks/',
   },
   'agentic-workflows': {
     id: 'agentic-workflows',
@@ -79,21 +77,33 @@ const COMPONENT_META: Record<string, ComponentMeta> = {
     icon: '⚙️',
     docUrl: 'https://github.github.com/gh-aw/',
     docLabel: 'gh-aw docs',
-    awesomeUrl: 'https://awesome-copilot.github.com/workflows/',
+    learningUrl: 'https://awesome-copilot.github.com/learning-hub/agentic-workflows/',
   },
   'copilot-setup-steps': {
     id: 'copilot-setup-steps',
     path: '.github/workflows/copilot-setup-steps.yml',
     icon: '🏗️',
-    docUrl: 'https://docs.github.com/en/copilot/how-tos/use-copilot-agents/coding-agent/customize-the-agent-environment',
+    docUrl: 'https://docs.github.com/en/enterprise-cloud@latest/copilot/how-tos/copilot-on-github/customize-copilot/customize-cloud-agent/customize-the-agent-environment',
+  },
+  mcp: {
+    id: 'mcp',
+    path: 'Repository settings > Copilot > MCP servers\nmcp.json (IDE)',
+    icon: '🔌',
+    docUrl: 'https://docs.github.com/en/enterprise-cloud@latest/copilot/how-tos/copilot-on-github/customize-copilot/configure-mcp-servers',
+    altDocUrl: 'https://docs.github.com/en/enterprise-cloud@latest/copilot/concepts/context/mcp',
+    altDocLabel: 'About MCP',
+    awesomeUrl: 'https://github.com/mcp',
+    learningUrl: 'https://awesome-copilot.github.com/learning-hub/understanding-mcp-servers/',
   },
   plugins: {
     id: 'plugins',
-    path: 'plugin.json\nskills/\nmcp.json\ncom.github.copilot/',
+    path: 'plugin.json\nagents/\nskills/\nhooks.json\n.mcp.json\nlsp.json',
     icon: '📦',
-    docUrl: 'https://agent-plugins.org/specification',
-    altDocUrl: 'https://agent-plugins.org/plugin-authors/build-an-agent-plugin',
+    docUrl: 'https://docs.github.com/en/enterprise-cloud@latest/copilot/concepts/agents/about-plugins',
+    altDocUrl: 'https://agent-plugins.org/specification',
+    altDocLabel: 'Agent Plugins 1.0 standard',
     awesomeUrl: 'https://awesome-copilot.github.com/plugins/',
+    learningUrl: 'https://awesome-copilot.github.com/learning-hub/installing-and-using-plugins/',
   },
 };
 
@@ -102,6 +112,7 @@ function buildComponent(id: string, t: Translations): Component {
   const text = t.components[id];
   return {
     ...meta,
+    path: text.path ?? meta.path,
     name: text.name,
     description: text.description,
     details: text.details,
@@ -120,7 +131,7 @@ interface LayerDef {
 
 const LAYER_DEFS: LayerDef[] = [
   { id: 'always-on-context', number: 1, color: '#58a6ff', componentIds: ['instructions'] },
-  { id: 'on-demand-capabilities', number: 2, color: '#3fb950', componentIds: ['prompt-files', 'custom-agents', 'skills'] },
+  { id: 'on-demand-capabilities', number: 2, color: '#3fb950', componentIds: ['custom-agents', 'skills', 'mcp'] },
   { id: 'enforcement-automation', number: 3, color: '#d29922', componentIds: ['hooks', 'agentic-workflows', 'copilot-setup-steps'] },
   { id: 'distribution', number: 4, color: '#bc8cff', componentIds: ['plugins'] },
 ];

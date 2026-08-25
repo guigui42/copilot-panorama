@@ -10,7 +10,7 @@ Developers, team leads, and decision-makers evaluating or adopting GitHub Copilo
 
 ## Product Purpose
 
-An interactive visual guide that maps *everything GitHub Copilot can do* across three views — the `.github/` composable stack, "Copilot Everywhere" surfaces, and efficiency tips. It exists to turn a sprawling, fast-moving product into one legible picture. Success is the "now I get it" moment: a visitor leaves with an accurate mental model of the layers and where to go next, in multiple languages.
+A curated visual guide to major GitHub Copilot customization layers, product surfaces, and efficiency practices across three views: the `.github/` composable stack, "Copilot Everywhere," and efficiency tips. It exists to turn a fast-moving product into one legible mental model while linking readers to current authoritative detail.
 
 ## Brand Personality
 
@@ -31,4 +31,4 @@ Friendly, clear, approachable. Voice is a knowledgeable guide, not a marketer �
 
 ## Accessibility & Inclusion
 
-Target WCAG 2.1 AA: ≥4.5:1 body contrast, visible focus states, keyboard-operable cards/panels/switchers, and a working focus trap in the detail modal. Honor `prefers-reduced-motion` on every animation. Five locales (en, fr, es, de, ja) must all stay legible and on-brand.
+Target WCAG 2.2 AA: ≥4.5:1 body contrast, visible focus states, keyboard-operable cards/panels/switchers, and a working focus trap in the detail modal. Honor `prefers-reduced-motion` on every animation. Five locales (en, fr, es, de, ja) must all stay legible and on-brand. This target does not claim completed conformance testing.

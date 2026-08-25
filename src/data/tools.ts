@@ -9,6 +9,7 @@ interface ComponentMeta {
   docLabel?: string;
   altDocUrl?: string;
   altDocLabel?: string;
+  learningUrl?: string;
 }
 
 const TOOLS_COMPONENT_META: Record<string, ComponentMeta> = {
@@ -16,77 +17,89 @@ const TOOLS_COMPONENT_META: Record<string, ComponentMeta> = {
     id: 'copilot-cli',
     path: 'copilot',
     icon: '💻',
-    docUrl: 'https://docs.github.com/en/copilot/concepts/agents/about-copilot-cli',
-    altDocUrl: 'https://docs.github.com/en/copilot/using-github-copilot/using-github-copilot-in-the-command-line',
-    altDocLabel: 'CLI How-To',
+    docUrl: 'https://docs.github.com/en/enterprise-cloud@latest/copilot/concepts/agents/copilot-cli/about-copilot-cli',
+    altDocUrl: 'https://docs.github.com/en/enterprise-cloud@latest/copilot/concepts/about-cloud-and-local-sandboxes',
+    altDocLabel: 'Cloud & Local Sandboxes',
+    learningUrl: 'https://awesome-copilot.github.com/learning-hub/cli-for-beginners/',
   },
   'copilot-app': {
     id: 'copilot-app',
     path: 'GitHub Copilot App',
     icon: '🖥️',
-    docUrl: 'https://docs.github.com/en/copilot/concepts/agents/github-copilot-app',
+    docUrl: 'https://docs.github.com/en/enterprise-cloud@latest/copilot/concepts/agents/github-copilot-app',
     altDocUrl: 'https://github.com/github/app',
     altDocLabel: 'App Repository',
+    learningUrl: 'https://awesome-copilot.github.com/learning-hub/copilot-workshops/app/',
   },
   autocomplete: {
     id: 'autocomplete',
     path: 'IDE inline suggestions',
     icon: '✨',
-    docUrl: 'https://docs.github.com/en/copilot/using-github-copilot/getting-code-suggestions-in-your-ide-with-github-copilot',
+    docUrl: 'https://docs.github.com/en/enterprise-cloud@latest/copilot/how-tos/get-code-suggestions/get-ide-code-suggestions',
   },
   ask: {
     id: 'ask',
     path: 'Copilot Chat',
     icon: '💬',
-    docUrl: 'https://docs.github.com/en/copilot/using-github-copilot/asking-github-copilot-questions-in-your-ide',
+    docUrl: 'https://docs.github.com/en/enterprise-cloud@latest/copilot/how-tos/chat-with-copilot/chat-in-ide',
   },
   'agent-mode': {
     id: 'agent-mode',
     path: 'Agent Mode in IDE',
     icon: '🤖',
-    docUrl: 'https://docs.github.com/en/copilot/using-github-copilot/asking-github-copilot-questions-in-your-ide#agent-mode',
-    altDocUrl: 'https://docs.github.com/en/copilot/about-github-copilot/github-copilot-features#agent-mode',
-    altDocLabel: 'Features Overview',
+    docUrl: 'https://docs.github.com/en/enterprise-cloud@latest/copilot/how-tos/chat-with-copilot/chat-in-ide#agent-mode',
+    docLabel: 'Using Agent Mode',
+    altDocUrl: 'https://docs.github.com/en/enterprise-cloud@latest/copilot/tutorials/enhance-agent-mode-with-mcp',
+    altDocLabel: 'Enhance Agent Mode with MCP',
   },
   'third-party-agents-ide': {
     id: 'third-party-agents-ide',
     path: 'VS Code 3rd-Party Agents',
     icon: '🧠',
-    docUrl: 'https://code.visualstudio.com/docs/copilot/agents/third-party-agents',
-    altDocUrl: 'https://code.visualstudio.com/docs/copilot/agents/overview',
+    docUrl: 'https://code.visualstudio.com/docs/agents/run/agent-harnesses',
+    altDocUrl: 'https://code.visualstudio.com/docs/agents/overview',
     altDocLabel: 'Agents Overview',
   },
   'copilot-chat-cloud': {
     id: 'copilot-chat-cloud',
     path: 'GitHub.com & Mobile',
     icon: '💬',
-    docUrl: 'https://docs.github.com/en/copilot/using-github-copilot/asking-github-copilot-questions-in-github',
-    altDocUrl: 'https://docs.github.com/en/copilot/about-github-copilot/github-copilot-features#copilot-chat',
-    altDocLabel: 'Features Overview',
+    docUrl: 'https://docs.github.com/en/enterprise-cloud@latest/copilot/concepts/chat',
+    altDocUrl: 'https://docs.github.com/en/enterprise-cloud@latest/copilot/how-tos/copilot-on-github/chat-with-copilot/chat-in-github',
+    altDocLabel: 'Chat in GitHub',
   },
   'coding-agent': {
     id: 'coding-agent',
     path: 'GitHub Actions',
     icon: '🔧',
-    docUrl: 'https://docs.github.com/en/copilot/concepts/agents/coding-agent/about-coding-agent',
-    altDocUrl: 'https://docs.github.com/en/copilot/using-github-copilot/coding-agent',
+    docUrl: 'https://docs.github.com/en/enterprise-cloud@latest/copilot/concepts/agents/cloud-agent/about-cloud-agent',
+    altDocUrl: 'https://docs.github.com/en/enterprise-cloud@latest/copilot/how-tos/use-copilot-agents/cloud-agent',
     altDocLabel: 'How-To Guide',
   },
   'review-agent': {
     id: 'review-agent',
     path: 'Pull Requests',
     icon: '👀',
-    docUrl: 'https://docs.github.com/en/copilot/concepts/agents/code-review',
-    altDocUrl: 'https://docs.github.com/en/copilot/using-github-copilot/code-review/using-copilot-code-review',
+    docUrl: 'https://docs.github.com/en/enterprise-cloud@latest/copilot/concepts/agents/code-review',
+    altDocUrl: 'https://docs.github.com/en/enterprise-cloud@latest/copilot/how-tos/use-copilot-agents/request-a-code-review/use-code-review',
     altDocLabel: 'Using Code Review',
   },
   'third-party-agents-cloud': {
     id: 'third-party-agents-cloud',
     path: 'GitHub Platform',
     icon: '🔌',
-    docUrl: 'https://docs.github.com/en/copilot/concepts/agents/about-third-party-agents',
-    altDocUrl: 'https://docs.github.com/en/copilot/concepts/agents/anthropic-claude',
+    docUrl: 'https://docs.github.com/en/enterprise-cloud@latest/copilot/concepts/agents/about-third-party-coding-agents',
+    altDocUrl: 'https://docs.github.com/en/enterprise-cloud@latest/copilot/concepts/agents/anthropic-claude',
     altDocLabel: 'Anthropic Claude',
+  },
+  'slack-teams': {
+    id: 'slack-teams',
+    path: 'Slack\nMicrosoft Teams',
+    icon: '🤝',
+    docUrl: 'https://docs.github.com/en/enterprise-cloud@latest/copilot/how-tos/copilot-integrations/integrate-cloud-agent-with-slack',
+    docLabel: 'Slack integration',
+    altDocUrl: 'https://docs.github.com/en/enterprise-cloud@latest/copilot/how-tos/copilot-integrations/integrate-cloud-agent-with-teams',
+    altDocLabel: 'Teams integration',
   },
 };
 
@@ -95,6 +108,7 @@ function buildToolComponent(id: string, t: Translations): Component {
   const text = t.toolsComponents[id];
   return {
     ...meta,
+    path: text.path ?? meta.path,
     name: text.name,
     description: text.description,
     details: text.details,
@@ -112,7 +126,7 @@ interface LayerDef {
 const TOOLS_LAYER_DEFS: LayerDef[] = [
   { id: 'ide', number: 1, color: '#3fb950', componentIds: ['autocomplete', 'ask', 'agent-mode', 'third-party-agents-ide'] },
   { id: 'standalone-apps', number: 2, color: '#8b949e', componentIds: ['copilot-cli', 'copilot-app'] },
-  { id: 'cloud', number: 3, color: '#58a6ff', componentIds: ['copilot-chat-cloud', 'coding-agent', 'review-agent', 'third-party-agents-cloud'] },
+  { id: 'cloud', number: 3, color: '#58a6ff', componentIds: ['copilot-chat-cloud', 'coding-agent', 'review-agent', 'third-party-agents-cloud', 'slack-teams'] },
 ];
 
 export function getToolsLayers(t: Translations): Layer[] {

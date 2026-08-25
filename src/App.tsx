@@ -140,10 +140,10 @@ function AppContent() {
   const currentFooterBuiltFor = page === 'tips' ? t.tipsUi.footerBuiltFor : page === 'tools' ? t.toolsUi.footerBuiltFor : t.ui.footerBuiltFor;
   const currentFooterDocsLink = page === 'tips' ? t.tipsUi.footerDocsLink : page === 'tools' ? t.toolsUi.footerDocsLink : t.ui.footerDocsLink;
   const footerDocsUrl = page === 'tips'
-    ? ''
+    ? 'https://docs.github.com/en/enterprise-cloud@latest/copilot/tutorials/optimize-ai-usage'
     : page === 'tools'
-    ? 'https://docs.github.com/en/copilot/about-github-copilot/github-copilot-features'
-    : 'https://docs.github.com/en/copilot/concepts/agents';
+    ? 'https://docs.github.com/en/enterprise-cloud@latest/copilot/get-started/features'
+    : 'https://docs.github.com/en/enterprise-cloud@latest/copilot/reference/customization-cheat-sheet';
 
   useEffect(() => {
     if (focusedLayerId || insightsFocused) {

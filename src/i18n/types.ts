@@ -2,6 +2,7 @@ export type Locale = 'en' | 'fr' | 'es' | 'de' | 'ja';
 
 export interface ComponentI18n {
   name: string;
+  path?: string;
   description: string;
   details: string;
   useCases: string[];
@@ -37,6 +38,8 @@ export interface Translations {
     detailsLabel: string;
     useCasesLabel: string;
     documentationLabel: string;
+    communityExamplesLabel: string;
+    learningHubLabel: string;
     footerBuiltFor: string;
     footerDocsLink: string;
     pageStack: string;
@@ -55,9 +58,13 @@ export interface Translations {
     approveDeny: string;
 
     pluginJson: string;
+    agentsDir: string;
     skillsDir: string;
+    hooksJson: string;
     mcpJson: string;
-    copilotNamespace: string;
+    lspJson: string;
+    repositorySettings: string;
+    ideConfig: string;
     vsCode: string;
     copilotCli: string;
     copilotApp: string;
@@ -109,6 +116,9 @@ export interface Translations {
     inbox: string;
     agenticMerge: string;
     savedWorkflows: string;
+    slack: string;
+    teams: string;
+    sharedSession: string;
   };
   toolsLayers: Record<string, LayerI18n>;
   toolsComponents: Record<string, ComponentI18n>;
@@ -148,45 +158,36 @@ export interface Translations {
     principlesBrief: string;
     heavy: string;
     skills: string;
-    repetitive: string;
-    promptFiles: string;
+    customAgents: string;
     minimalDiff: string;
     alwaysOn: string;
     costly: string;
     onDemand: string;
     efficient: string;
-    modelReads: string;
-    descriptionLabel: string;
-    loadsIfRelevant: string;
+    enabledTools: string;
+    allToolsEnabled: string;
+    taskScoped: string;
     loadOnce: string;
     reuseInQueries: string;
     tokenPrefixMatch: string;
     prefixDiffers: string;
     standard: string;
-    architecture: string;
-    debugging: string;
-    agentic: string;
-    summarize: string;
-    qa: string;
-    refactorLabel: string;
     simpleToMini: string;
     complexToPremium: string;
-    icEng: string;
-    powerUser: string;
-    ciAgent: string;
-    stopAfterTest: string;
+    /* monitor usage */
+    usageBaseline: string;
+    alertBudget: string;
+    costCenterBudget: string;
     /* compound errors */
     perStep: string;
     steps: string;
     accuracy99: string;
     accuracy95: string;
-    /* prompt anatomy */
-    bePrecise: string;
-    stopSignals: string;
-    knownContext: string;
     /* context rot */
     lostInMiddle: string;
-    recencyBias: string;
+    historyAccumulates: string;
+    everyTurnAdds: string;
+    reprocessedInput: string;
     middleDecay: string;
     /* lost in middle */
     startStrong: string;
@@ -211,15 +212,12 @@ export interface Translations {
     /* trim shell */
     rawOutput: string;
     trimmed: string;
-    /* collapse tool calls */
-    multipleCalls: string;
-    batchedCall: string;
     /* apply architecture */
     cleanLayers: string;
     /* iterate configs */
     agentMiss: string;
-    chronicle: string;
-    updateInstructions: string;
+    rootCause: string;
+    durableFix: string;
     enterpriseDefault: string;
     overridableKeys: string;
     teamSpecialization: string;
