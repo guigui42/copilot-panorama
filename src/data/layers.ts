@@ -40,7 +40,7 @@ const COMPONENT_META: Record<string, ComponentMeta> = {
     id: 'instructions',
     path: '.github/copilot-instructions.md\n.github/instructions/<name>.instructions.md',
     icon: '🧠',
-    docUrl: 'https://docs.github.com/en/enterprise-cloud@latest/copilot/reference/customization-cheat-sheet',
+    docUrl: 'https://docs.github.com/en/enterprise-cloud@latest/copilot/concepts/prompting/response-customization',
     awesomeUrl: 'https://awesome-copilot.github.com/instructions/',
   },
   'custom-agents': {
