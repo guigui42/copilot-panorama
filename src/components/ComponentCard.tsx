@@ -672,21 +672,41 @@ const ComponentCard: React.FC<ComponentCardProps> = ({ component, layerColor, on
         </div>
       )}
 
-      {component.awesomeUrl && (
-        <a
-          href={component.awesomeUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="awesome-link"
-          onClick={(e) => { e.stopPropagation(); trackEvent('analytics.click', { category: 'outbound', action: 'awesome_link', label: component.id }); }}
-        >
-          ✨ {t.ui.communityExamplesLabel}
-          <svg width="11" height="11" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{ marginLeft: 2 }}>
-            <path d="M6 3H3a1 1 0 0 0-1 1v9a1 1 0 0 0 1 1h9a1 1 0 0 0 1-1v-3" />
-            <path d="M10 2h4v4" />
-            <path d="M14 2 7.5 8.5" />
-          </svg>
-        </a>
+      {(component.awesomeUrl || component.learningUrl) && (
+        <div className="community-links">
+          {component.awesomeUrl && (
+            <a
+              href={component.awesomeUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="awesome-link"
+              onClick={(e) => { e.stopPropagation(); trackEvent('analytics.click', { category: 'outbound', action: 'awesome_link', label: component.id }); }}
+            >
+              ✨ {t.ui.communityExamplesLabel}
+              <svg width="11" height="11" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{ marginLeft: 2 }}>
+                <path d="M6 3H3a1 1 0 0 0-1 1v9a1 1 0 0 0 1 1h9a1 1 0 0 0 1-1v-3" />
+                <path d="M10 2h4v4" />
+                <path d="M14 2 7.5 8.5" />
+              </svg>
+            </a>
+          )}
+          {component.learningUrl && (
+            <a
+              href={component.learningUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="awesome-link"
+              onClick={(e) => { e.stopPropagation(); trackEvent('analytics.click', { category: 'outbound', action: 'learning_hub_link', label: component.id }); }}
+            >
+              📚 {t.ui.learningHubLabel}
+              <svg width="11" height="11" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{ marginLeft: 2 }}>
+                <path d="M6 3H3a1 1 0 0 0-1 1v9a1 1 0 0 0 1 1h9a1 1 0 0 0 1-1v-3" />
+                <path d="M10 2h4v4" />
+                <path d="M14 2 7.5 8.5" />
+              </svg>
+            </a>
+          )}
+        </div>
       )}
     </div>
   );

@@ -1184,11 +1184,18 @@ html[data-theme="light"] .viz-workflows-stack .viz-terminal:last-child {
 }
 
 /* === Awesome Copilot Link (per card) === */
+.community-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+}
+
 .awesome-link {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  margin-top: 12px;
+  margin-top: 0;
   padding: 6px 14px;
   font-size: 0.625rem;
   font-weight: var(--font-weight-medium);

@@ -13,6 +13,7 @@ export interface Component {
   altDocUrl?: string;
   altDocLabel?: string;
   awesomeUrl?: string;
+  learningUrl?: string;
 }
 
 export interface Layer {
@@ -33,6 +34,7 @@ interface ComponentMeta {
   altDocUrl?: string;
   altDocLabel?: string;
   awesomeUrl?: string;
+  learningUrl?: string;
 }
 
 const COMPONENT_META: Record<string, ComponentMeta> = {
@@ -42,6 +44,7 @@ const COMPONENT_META: Record<string, ComponentMeta> = {
     icon: '🧠',
     docUrl: 'https://docs.github.com/en/enterprise-cloud@latest/copilot/concepts/prompting/response-customization',
     awesomeUrl: 'https://awesome-copilot.github.com/instructions/',
+    learningUrl: 'https://awesome-copilot.github.com/learning-hub/defining-custom-instructions/',
   },
   'custom-agents': {
     id: 'custom-agents',
@@ -49,6 +52,7 @@ const COMPONENT_META: Record<string, ComponentMeta> = {
     icon: '🤖',
     docUrl: 'https://docs.github.com/en/enterprise-cloud@latest/copilot/concepts/agents/cloud-agent/about-custom-agents',
     awesomeUrl: 'https://awesome-copilot.github.com/agents/',
+    learningUrl: 'https://awesome-copilot.github.com/learning-hub/building-custom-agents/',
   },
   skills: {
     id: 'skills',
@@ -56,6 +60,7 @@ const COMPONENT_META: Record<string, ComponentMeta> = {
     icon: '🧩',
     docUrl: 'https://docs.github.com/en/copilot/concepts/agents/about-agent-skills',
     awesomeUrl: 'https://awesome-copilot.github.com/skills/',
+    learningUrl: 'https://awesome-copilot.github.com/learning-hub/creating-effective-skills/',
   },
   hooks: {
     id: 'hooks',
@@ -64,6 +69,7 @@ const COMPONENT_META: Record<string, ComponentMeta> = {
     docUrl: 'https://docs.github.com/en/enterprise-cloud@latest/copilot/reference/hooks-reference',
     altDocUrl: 'https://code.visualstudio.com/docs/agent-customization/hooks',
     altDocLabel: 'VS Code Hooks Guide',
+    learningUrl: 'https://awesome-copilot.github.com/learning-hub/automating-with-hooks/',
   },
   'agentic-workflows': {
     id: 'agentic-workflows',
@@ -71,6 +77,7 @@ const COMPONENT_META: Record<string, ComponentMeta> = {
     icon: '⚙️',
     docUrl: 'https://github.github.com/gh-aw/',
     docLabel: 'gh-aw docs',
+    learningUrl: 'https://awesome-copilot.github.com/learning-hub/agentic-workflows/',
   },
   'copilot-setup-steps': {
     id: 'copilot-setup-steps',
@@ -86,6 +93,7 @@ const COMPONENT_META: Record<string, ComponentMeta> = {
     altDocUrl: 'https://docs.github.com/en/enterprise-cloud@latest/copilot/concepts/context/mcp',
     altDocLabel: 'About MCP',
     awesomeUrl: 'https://github.com/mcp',
+    learningUrl: 'https://awesome-copilot.github.com/learning-hub/understanding-mcp-servers/',
   },
   plugins: {
     id: 'plugins',
@@ -95,6 +103,7 @@ const COMPONENT_META: Record<string, ComponentMeta> = {
     altDocUrl: 'https://agent-plugins.org/specification',
     altDocLabel: 'Agent Plugins 1.0 standard',
     awesomeUrl: 'https://awesome-copilot.github.com/plugins/',
+    learningUrl: 'https://awesome-copilot.github.com/learning-hub/installing-and-using-plugins/',
   },
 };
 
