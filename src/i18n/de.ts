@@ -3,11 +3,11 @@ import type { Translations } from './types';
 export const de: Translations = {
   locale: 'de',
   seo: {
-    title: 'Copilot Panorama — .github/ Stack',
+    title: 'Copilot Panorama — Copilot-Anpassungs-Stack',
     description: 'Interaktiver visueller Leitfaden zum komponierbaren System von GitHub Copilot — erkunde die 4 Ebenen: immer aktiver Kontext, bedarfsgesteuerte Fähigkeiten, Kontrolle und Automatisierung sowie Distribution.',
   },
   ui: {
-    heroTitle: 'komponierbarer Stack',
+    heroTitle: 'Copilot-Anpassungs-Stack',
     layerPrefix: 'EBENE',
     insightsTitle: 'Wie das System wirklich funktioniert',
     insightsSubtitle: 'Zentrale Architekturerkenntnisse, die die meisten Teams übersehen',
@@ -18,8 +18,8 @@ export const de: Translations = {
     learningHubLabel: 'Learning-Hub-Leitfaden',
     footerBuiltFor: 'Erstellt für GitHub-Copilot-Nutzer',
     footerDocsLink: 'Vollständige Dokumentation zum komponierbaren System',
-    pageStack: '.github/ Stack',
-    pageTools: 'Copilot Everywhere',
+    pageStack: 'Anpassung',
+    pageTools: 'Surfaces',
     shareLink: 'Link teilen',
     shareCopied: 'Kopiert!',
   },
@@ -205,11 +205,11 @@ export const de: Translations = {
 
   /* ── Tools-Seite ── */
   toolsSeo: {
-    title: 'Copilot Panorama — Copilot Everywhere',
+    title: 'Copilot Panorama — Copilot Surfaces',
     description: 'Interaktiver visueller Leitfaden zu GitHub Copilot in IDEs, eigenständigen Apps und GitHub Cloud, einschließlich Copilot CLI, Cloud-Agent, Code-Review, Drittanbieter-Agenten, Slack und Teams.',
   },
   toolsUi: {
-    heroTitle: 'Copilot Everywhere',
+    heroTitle: 'Copilot Surfaces',
     insightsTitle: 'Die wichtigsten Unterschiede, die die meisten Entwickler übersehen',
     insightsSubtitle: 'Architekturerkenntnisse über alle drei Ebenen hinweg',
     footerBuiltFor: 'Erstellt für GitHub-Copilot-Nutzer',
