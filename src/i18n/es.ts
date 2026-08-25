@@ -68,7 +68,7 @@ export const es: Translations = {
   components: {
     instructions: {
       name: 'Instructions',
-      description: 'Directrices acotadas que dan forma automáticamente a las respuestas de Copilot',
+      description: 'Directrices del repositorio que dan forma automáticamente a las respuestas de Copilot',
       details:
         'Usa `.github/copilot-instructions.md` para directrices válidas en todo el repositorio y ' +
         '`.github/instructions/NOMBRE.instructions.md` con globs `applyTo` para rutas ' +

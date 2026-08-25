@@ -68,7 +68,7 @@ export const ja: Translations = {
   components: {
     instructions: {
       name: 'Instructions',
-      description: 'Copilot の応答を自動的に形作るスコープ限定のガイドライン',
+      description: 'Copilot の応答を自動的に形作るリポジトリガイドライン',
       details:
         'リポジトリ全体のガイドラインには `.github/copilot-instructions.md` を、パスに ' +
         '一致する指示には `applyTo` glob 付きの ' +
