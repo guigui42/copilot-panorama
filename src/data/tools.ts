@@ -9,6 +9,7 @@ interface ComponentMeta {
   docLabel?: string;
   altDocUrl?: string;
   altDocLabel?: string;
+  learningUrl?: string;
 }
 
 const TOOLS_COMPONENT_META: Record<string, ComponentMeta> = {
@@ -19,6 +20,7 @@ const TOOLS_COMPONENT_META: Record<string, ComponentMeta> = {
     docUrl: 'https://docs.github.com/en/enterprise-cloud@latest/copilot/concepts/agents/copilot-cli/about-copilot-cli',
     altDocUrl: 'https://docs.github.com/en/enterprise-cloud@latest/copilot/concepts/about-cloud-and-local-sandboxes',
     altDocLabel: 'Cloud & Local Sandboxes',
+    learningUrl: 'https://awesome-copilot.github.com/learning-hub/cli-for-beginners/',
   },
   'copilot-app': {
     id: 'copilot-app',
@@ -27,6 +29,7 @@ const TOOLS_COMPONENT_META: Record<string, ComponentMeta> = {
     docUrl: 'https://docs.github.com/en/enterprise-cloud@latest/copilot/concepts/agents/github-copilot-app',
     altDocUrl: 'https://github.com/github/app',
     altDocLabel: 'App Repository',
+    learningUrl: 'https://awesome-copilot.github.com/learning-hub/copilot-workshops/app/',
   },
   autocomplete: {
     id: 'autocomplete',
