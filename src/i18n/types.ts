@@ -40,6 +40,10 @@ export interface Translations {
     documentationLabel: string;
     communityExamplesLabel: string;
     learningHubLabel: string;
+    viewDetailsLabel: string;
+    resourcesLabel: string;
+    opensNewTabLabel: string;
+    closeDetailsLabel: string;
     footerBuiltFor: string;
     footerDocsLink: string;
     pageStack: string;

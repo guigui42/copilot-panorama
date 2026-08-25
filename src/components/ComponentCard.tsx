@@ -1,7 +1,6 @@
 import React from 'react';
 import type { Component } from '../data/layers';
 import { useI18n } from '../i18n';
-import { useTrackEvent } from '../hooks/useAnalytics';
 import type { Translations } from '../i18n';
 
 interface ComponentCardProps {
@@ -572,7 +571,6 @@ const ManagedSettingsTipViz: React.FC<{ v: Translations['tipsViz'] }> = ({ v }) 
 
 const ComponentCard: React.FC<ComponentCardProps> = ({ component, layerColor, onClick }) => {
   const t = useI18n();
-  const trackEvent = useTrackEvent();
   const v = t.viz;
 
   const renderViz = () => {
@@ -633,19 +631,10 @@ const ComponentCard: React.FC<ComponentCardProps> = ({ component, layerColor, on
   };
 
   return (
-    <div
+    <article
       className="component-section"
       style={{ '--layer-color': layerColor } as React.CSSProperties}
       onClick={() => onClick(component)}
-      role="button"
-      tabIndex={0}
-      aria-label={`${component.name} — ${component.description}`}
-      onKeyDown={(e) => {
-        if (e.key === 'Enter' || e.key === ' ') {
-          e.preventDefault();
-          onClick(component);
-        }
-      }}
     >
       <div className="component-section-body">
         <div className="component-section-header">
@@ -672,43 +661,33 @@ const ComponentCard: React.FC<ComponentCardProps> = ({ component, layerColor, on
         </div>
       )}
 
-      {(component.awesomeUrl || component.learningUrl) && (
-        <div className="community-links">
-          {component.awesomeUrl && (
-            <a
-              href={component.awesomeUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="awesome-link"
-              onClick={(e) => { e.stopPropagation(); trackEvent('analytics.click', { category: 'outbound', action: 'awesome_link', label: component.id }); }}
-            >
-              ✨ {t.ui.communityExamplesLabel}
-              <svg width="11" height="11" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{ marginLeft: 2 }}>
-                <path d="M6 3H3a1 1 0 0 0-1 1v9a1 1 0 0 0 1 1h9a1 1 0 0 0 1-1v-3" />
-                <path d="M10 2h4v4" />
-                <path d="M14 2 7.5 8.5" />
-              </svg>
-            </a>
-          )}
-          {component.learningUrl && (
-            <a
-              href={component.learningUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="awesome-link"
-              onClick={(e) => { e.stopPropagation(); trackEvent('analytics.click', { category: 'outbound', action: 'learning_hub_link', label: component.id }); }}
-            >
-              📚 {t.ui.learningHubLabel}
-              <svg width="11" height="11" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{ marginLeft: 2 }}>
-                <path d="M6 3H3a1 1 0 0 0-1 1v9a1 1 0 0 0 1 1h9a1 1 0 0 0 1-1v-3" />
-                <path d="M10 2h4v4" />
-                <path d="M14 2 7.5 8.5" />
-              </svg>
-            </a>
-          )}
-        </div>
-      )}
-    </div>
+      <button
+        type="button"
+        className="component-section-action"
+        aria-label={`${t.ui.viewDetailsLabel}: ${component.name}`}
+        onClick={(event) => {
+          event.stopPropagation();
+          onClick(component);
+        }}
+      >
+        <span>{t.ui.viewDetailsLabel}</span>
+        <svg
+          className="component-section-action-icon"
+          width="18"
+          height="18"
+          viewBox="0 0 20 20"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="1.75"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          aria-hidden="true"
+        >
+          <path d="M4 10h12" />
+          <path d="m11 5 5 5-5 5" />
+        </svg>
+      </button>
+    </article>
   );
 };
 
