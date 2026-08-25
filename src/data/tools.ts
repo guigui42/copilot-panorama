@@ -44,9 +44,10 @@ const TOOLS_COMPONENT_META: Record<string, ComponentMeta> = {
     id: 'agent-mode',
     path: 'Agent Mode in IDE',
     icon: '🤖',
-    docUrl: 'https://docs.github.com/en/enterprise-cloud@latest/copilot/get-started/features',
-    altDocUrl: 'https://docs.github.com/en/enterprise-cloud@latest/copilot/get-started/features',
-    altDocLabel: 'Features Overview',
+    docUrl: 'https://docs.github.com/en/enterprise-cloud@latest/copilot/how-tos/chat-with-copilot/chat-in-ide#agent-mode',
+    docLabel: 'Using Agent Mode',
+    altDocUrl: 'https://docs.github.com/en/enterprise-cloud@latest/copilot/tutorials/enhance-agent-mode-with-mcp',
+    altDocLabel: 'Enhance Agent Mode with MCP',
   },
   'third-party-agents-ide': {
     id: 'third-party-agents-ide',
