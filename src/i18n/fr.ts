@@ -28,8 +28,8 @@ export const fr: Translations = {
     planning: 'Planification',
     implementation: 'Implémentation',
     review: 'Revue',
-    descriptionRead: 'les métadonnées du skill identifient l\'expertise pertinente',
-    fullSkillInjected: 'Les instructions et ressources se chargent quand le skill est sélectionné',
+    descriptionRead: 'Copilot lit les métadonnées du skill',
+    fullSkillInjected: 'Le modèle charge automatiquement le skill correspondant',
     approveDeny: 'autoriser / refuser / modifier',
 
     pluginJson: 'plugin.json',
@@ -93,10 +93,11 @@ export const fr: Translations = {
     },
     skills: {
       name: 'Skills',
-      description: 'Instructions, scripts et ressources réutilisables, chargés quand pertinent',
+      description: 'Instructions, scripts et ressources réutilisables, chargés automatiquement quand pertinent',
       details:
         'Chaque skill est un dossier contenant `SKILL.md` ainsi que des scripts et ressources ' +
-        'optionnels. Copilot sélectionne un skill quand son expertise correspond à la tâche. ' +
+        'optionnels. Copilot sélectionne automatiquement un skill quand son expertise correspond ' +
+        'à la tâche ; les utilisateurs peuvent aussi demander explicitement un skill. ' +
         'Stockez les skills de projet dans `.github/skills/`, `.agents/skills/` ou `.claude/skills/` ; ' +
         'les skills personnels peuvent résider dans `~/.copilot/skills/` ou `~/.agents/skills/`. La ' +
         'prise en charge varie selon la surface.',

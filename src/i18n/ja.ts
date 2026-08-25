@@ -28,8 +28,8 @@ export const ja: Translations = {
     planning: '計画',
     implementation: '実装',
     review: 'レビュー',
-    descriptionRead: 'skill のメタデータが関連する専門性を特定',
-    fullSkillInjected: 'skill 選択時に指示とリソースを読み込み',
+    descriptionRead: 'Copilot が skill のメタデータを読み取る',
+    fullSkillInjected: 'モデルが一致する skill を自動的に読み込む',
     approveDeny: '承認 / 拒否 / 変更',
 
     pluginJson: 'plugin.json',
@@ -93,10 +93,11 @@ export const ja: Translations = {
     },
     skills: {
       name: 'Skills',
-      description: '関連性がある場合に読み込まれる、再利用可能な指示・スクリプト・リソース',
+      description: '関連性がある場合に Copilot が自動で読み込む、再利用可能な指示・スクリプト・リソース',
       details:
         '各 skill は `SKILL.md` とオプションのスクリプト・リソースを含むフォルダです。専門性が ' +
-        'タスクに一致すると、Copilot が skill を選択します。プロジェクトの skill は ' +
+        'タスクに一致すると Copilot が skill を自動選択し、ユーザーが明示的に指定することも ' +
+        'できます。プロジェクトの skill は ' +
         '`.github/skills/`、`.agents/skills/`、`.claude/skills/` に保存し、個人の skill は ' +
         '`~/.copilot/skills/` や `~/.agents/skills/` に置けます。サポート状況はサーフェス ' +
         'によって異なります。',

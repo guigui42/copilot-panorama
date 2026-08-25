@@ -28,8 +28,8 @@ export const de: Translations = {
     planning: 'Planung',
     implementation: 'Umsetzung',
     review: 'Review',
-    descriptionRead: 'Skill-Metadaten identifizieren relevante Expertise',
-    fullSkillInjected: 'Anweisungen und Ressourcen werden bei Auswahl des Skills geladen',
+    descriptionRead: 'Copilot liest die Skill-Metadaten',
+    fullSkillInjected: 'Das Modell lädt automatisch den passenden Skill',
     approveDeny: 'Genehmigen / Ablehnen / Ändern',
 
     pluginJson: 'plugin.json',
@@ -93,10 +93,11 @@ export const de: Translations = {
     },
     skills: {
       name: 'Skills',
-      description: 'Wiederverwendbare Anweisungen, Skripte und Ressourcen, die bei Relevanz geladen werden',
+      description: 'Wiederverwendbare Anweisungen, Skripte und Ressourcen, die bei Relevanz automatisch geladen werden',
       details:
         'Jeder Skill ist ein Ordner mit `SKILL.md` sowie optionalen Skripten und Ressourcen. ' +
-        'Copilot wählt einen Skill aus, wenn dessen Expertise zur Aufgabe passt. Speichere ' +
+        'Copilot wählt automatisch einen Skill aus, wenn dessen Expertise zur Aufgabe passt; ' +
+        'Benutzer können einen Skill auch ausdrücklich anfordern. Speichere ' +
         'Projekt-Skills in `.github/skills/`, `.agents/skills/` oder `.claude/skills/`; ' +
         'persönliche Skills können in `~/.copilot/skills/` oder `~/.agents/skills/` liegen. Der ' +
         'Umfang der Unterstützung variiert je nach Oberfläche.',

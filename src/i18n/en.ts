@@ -28,8 +28,8 @@ export const en: Translations = {
     planning: 'Planning',
     implementation: 'Implementation',
     review: 'Review',
-    descriptionRead: 'skill metadata identifies relevant expertise',
-    fullSkillInjected: 'Instructions and resources load when the skill is selected',
+    descriptionRead: 'Copilot reads skill metadata',
+    fullSkillInjected: 'The model automatically loads a matching skill',
     approveDeny: 'allow / deny / modify',
 
     pluginJson: 'plugin.json',
@@ -91,10 +91,11 @@ export const en: Translations = {
     },
     skills: {
       name: 'Skills',
-      description: 'Reusable instructions, scripts, and resources loaded when relevant',
+      description: 'Reusable instructions, scripts, and resources automatically loaded when relevant',
       details:
         'Each skill is a folder containing `SKILL.md` plus optional scripts and resources. ' +
-        'Copilot selects skills when their expertise matches the task. Store project skills ' +
+        'Copilot automatically selects a skill when its expertise matches the task; users can ' +
+        'also request a skill explicitly. Store project skills ' +
         'under `.github/skills/`, `.agents/skills/`, or `.claude/skills/`; personal skills can ' +
         'live under `~/.copilot/skills/` or `~/.agents/skills/`. Surface support varies.',
       useCases: ['Terraform Modules', 'K8s Manifests', 'Observability Stack'],
