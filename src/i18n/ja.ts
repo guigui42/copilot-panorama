@@ -3,11 +3,11 @@ import type { Translations } from './types';
 export const ja: Translations = {
   locale: 'ja',
   seo: {
-    title: 'Copilot Panorama — .github/ スタック',
+    title: 'Copilot Panorama — Copilot カスタマイズスタック',
     description: 'GitHub Copilot のコンポーザブルシステムをインタラクティブに可視化 — 常時適用コンテキスト、オンデマンド機能、制御と自動化、配布の4層を解説。',
   },
   ui: {
-    heroTitle: 'コンポーザブルスタック',
+    heroTitle: 'Copilot カスタマイズスタック',
     layerPrefix: 'レイヤー',
     insightsTitle: 'システムが実際にどう動くか',
     insightsSubtitle: 'ほとんどのチームが見落としがちな主要なアーキテクチャの要点',
@@ -18,8 +18,8 @@ export const ja: Translations = {
     learningHubLabel: 'Learning Hub ガイド',
     footerBuiltFor: 'GitHub Copilot ユーザーのために作成',
     footerDocsLink: 'コンポーザブルシステムの完全なドキュメント',
-    pageStack: '.github/ Stack',
-    pageTools: 'Copilot Everywhere',
+    pageStack: 'カスタマイズ',
+    pageTools: 'Surfaces',
     shareLink: 'リンクを共有',
     shareCopied: 'コピーしました！',
   },
@@ -200,11 +200,11 @@ export const ja: Translations = {
 
   /* ── Tools ページ ── */
   toolsSeo: {
-    title: 'Copilot Panorama — Copilot Everywhere',
+    title: 'Copilot Panorama — Copilot Surfaces',
     description: 'IDE、スタンドアロンアプリ、GitHub クラウドにおける GitHub Copilot をインタラクティブに可視化 — Copilot CLI、クラウドエージェント、コードレビュー、サードパーティエージェント、Slack、Teams を含む。',
   },
   toolsUi: {
-    heroTitle: 'Copilot Everywhere',
+    heroTitle: 'Copilot Surfaces',
     insightsTitle: 'ほとんどの開発者が見落とす主要な違い',
     insightsSubtitle: '3層にわたるアーキテクチャの要点',
     footerBuiltFor: 'GitHub Copilot ユーザーのために作成',

@@ -9,6 +9,19 @@ import type { PageId } from '../i18n/types';
 
 const SHARE_URL = 'https://gh.io/copilot-panorama';
 
+const HighlightCopilot: React.FC<{ title: string }> = ({ title }) => {
+  const index = title.indexOf('Copilot');
+  if (index === -1) return title;
+
+  return (
+    <>
+      {title.slice(0, index)}
+      <span className="hero-page-subtitle-accent">Copilot</span>
+      {title.slice(index + 'Copilot'.length)}
+    </>
+  );
+};
+
 const PageIcon: React.FC<{ page: PageId }> = ({ page }) => {
   const common = {
     width: 15,
@@ -109,6 +122,7 @@ const Header: React.FC<HeaderProps> = ({ theme, onToggleTheme, page, onPageChang
             className={`page-switcher-btn ${page === 'stack' ? 'page-switcher-btn--active' : ''}`}
             onClick={() => onPageChange('stack')}
             aria-current={page === 'stack' ? 'page' : undefined}
+            aria-label={t.ui.pageStack}
           >
             <PageIcon page="stack" />
             <span className="page-switcher-label">{t.ui.pageStack}</span>
@@ -117,6 +131,7 @@ const Header: React.FC<HeaderProps> = ({ theme, onToggleTheme, page, onPageChang
             className={`page-switcher-btn ${page === 'tools' ? 'page-switcher-btn--active' : ''}`}
             onClick={() => onPageChange('tools')}
             aria-current={page === 'tools' ? 'page' : undefined}
+            aria-label={t.ui.pageTools}
           >
             <PageIcon page="tools" />
             <span className="page-switcher-label">{t.ui.pageTools}</span>
@@ -125,6 +140,7 @@ const Header: React.FC<HeaderProps> = ({ theme, onToggleTheme, page, onPageChang
             className={`page-switcher-btn ${page === 'tips' ? 'page-switcher-btn--active' : ''}`}
             onClick={() => onPageChange('tips')}
             aria-current={page === 'tips' ? 'page' : undefined}
+            aria-label={t.tipsUi.pageTips}
           >
             <PageIcon page="tips" />
             <span className="page-switcher-label">{t.tipsUi.pageTips}</span>
@@ -203,17 +219,13 @@ const Header: React.FC<HeaderProps> = ({ theme, onToggleTheme, page, onPageChang
 
       <p className="hero-page-subtitle">
         {page === 'stack' ? (
-          <>
-            <code>.github/</code> {t.ui.heroTitle}
-          </>
+          <HighlightCopilot title={t.ui.heroTitle} />
         ) : page === 'tips' ? (
           <>
             <span className="hero-page-subtitle-accent">Copilot</span> {t.tipsUi.heroTitle}
           </>
         ) : (
-          <>
-            <span className="hero-page-subtitle-accent">Copilot</span> Everywhere
-          </>
+          <HighlightCopilot title={t.toolsUi.heroTitle} />
         )}
       </p>
     </header>

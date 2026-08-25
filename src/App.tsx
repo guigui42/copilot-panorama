@@ -171,7 +171,7 @@ function AppContent() {
         <span className="export-banner-brand">Copilot Panorama</span>
         <span className="export-banner-page">
           {page === 'stack' ? (
-            <><code>.github/</code> {t.ui.heroTitle}</>
+            t.ui.heroTitle
           ) : page === 'tips' ? (
             t.tipsUi.heroTitle
           ) : (

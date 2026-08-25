@@ -6,11 +6,11 @@ brand
 
 ## Users
 
-Developers, team leads, and decision-makers evaluating or adopting GitHub Copilot. They arrive curious but unsure of the full surface area — what Copilot is, where it lives (CLI, IDE, Cloud), and how the `.github/` composable stack fits together. Context is exploratory: skimming on a laptop, often linked from docs or social, wanting a fast mental model rather than reference detail.
+Developers, team leads, and decision-makers evaluating or adopting GitHub Copilot. They arrive curious but unsure of the full surface area — what Copilot is, how it can be customized, and where it lives (CLI, IDE, Cloud). Context is exploratory: skimming on a laptop, often linked from docs or social, wanting a fast mental model rather than reference detail.
 
 ## Product Purpose
 
-A curated visual guide to major GitHub Copilot customization layers, product surfaces, and efficiency practices across three views: the `.github/` composable stack, "Copilot Everywhere," and efficiency tips. It exists to turn a fast-moving product into one legible mental model while linking readers to current authoritative detail.
+A curated visual guide to major GitHub Copilot customization layers, product surfaces, and efficiency practices across three views: Customization, Surfaces, and efficiency tips. It exists to turn a fast-moving product into one legible mental model while linking readers to current authoritative detail.
 
 ## Brand Personality
 

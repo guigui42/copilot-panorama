@@ -2,16 +2,16 @@
 
 An interactive visual guide to major GitHub Copilot surfaces, customizations, and efficiency practices across three views:
 
-### `.github/` Composable Stack
+### Customization
 
-The customization layer that lives in your repository:
+The layers used to customize Copilot:
 
 1. **Always-On Context** — Instructions that automatically apply within their configured scope
 2. **On-Demand Capabilities** — Custom agents, skills, and MCP servers
 3. **Enforcement & Automation** — Hooks and agentic workflows
 4. **Distribution** — Plugins that package agents, skills, hooks, and integrations
 
-### Copilot Everywhere
+### Surfaces
 
 All the surfaces where Copilot meets you:
 

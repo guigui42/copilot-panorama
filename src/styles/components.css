@@ -1897,6 +1897,10 @@ body[data-layer-focused] .detail-panel {
     font-size: 0.875rem;
   }
 
+  .page-switcher-label {
+    display: none;
+  }
+
   .poster {
     padding: 16px 8px;
   }

@@ -3,11 +3,11 @@ import type { Translations } from './types';
 export const es: Translations = {
   locale: 'es',
   seo: {
-    title: 'Copilot Panorama — .github/ Stack',
+    title: 'Copilot Panorama — Stack de personalización de Copilot',
     description: 'Guía visual interactiva del sistema componible de GitHub Copilot — explora las 4 capas: Contexto siempre activo, Capacidades bajo demanda, Control y Automatización, y Distribución.',
   },
   ui: {
-    heroTitle: 'stack componible',
+    heroTitle: 'Stack de personalización de Copilot',
     layerPrefix: 'CAPA',
     insightsTitle: 'Cómo funciona realmente el sistema',
     insightsSubtitle: 'Ideas clave de arquitectura que la mayoría de los equipos pasan por alto',
@@ -18,8 +18,8 @@ export const es: Translations = {
     learningHubLabel: 'Guía del Learning Hub',
     footerBuiltFor: 'Creado para usuarios de GitHub Copilot',
     footerDocsLink: 'Documentación completa sobre el sistema componible',
-    pageStack: '.github/ Stack',
-    pageTools: 'Copilot Everywhere',
+    pageStack: 'Personalización',
+    pageTools: 'Surfaces',
     shareLink: 'Compartir enlace',
     shareCopied: '¡Copiado!',
   },
@@ -205,11 +205,11 @@ export const es: Translations = {
 
   /* ── Página de herramientas ── */
   toolsSeo: {
-    title: 'Copilot Panorama — Copilot Everywhere',
+    title: 'Copilot Panorama — Copilot Surfaces',
     description: 'Guía visual interactiva de GitHub Copilot en IDEs, aplicaciones independientes y GitHub Cloud, incluyendo Copilot CLI, el agente en la nube, revisión de código, agentes de terceros, Slack y Teams.',
   },
   toolsUi: {
-    heroTitle: 'Copilot Everywhere',
+    heroTitle: 'Copilot Surfaces',
     insightsTitle: 'Las distinciones clave que la mayoría de los desarrolladores pasan por alto',
     insightsSubtitle: 'Ideas de arquitectura a través de las tres capas',
     footerBuiltFor: 'Creado para usuarios de GitHub Copilot',

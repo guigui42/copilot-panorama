@@ -3,11 +3,11 @@ import type { Translations } from './types';
 export const fr: Translations = {
   locale: 'fr',
   seo: {
-    title: 'Copilot Panorama — .github/ Stack',
+    title: 'Copilot Panorama — Stack de personnalisation Copilot',
     description: 'Guide visuel interactif du système composable GitHub Copilot — explorez les 4 couches : Contexte permanent, Capacités à la demande, Contrôle & Automatisation, et Distribution.',
   },
   ui: {
-    heroTitle: 'stack composable',
+    heroTitle: 'Stack de personnalisation Copilot',
     layerPrefix: 'COUCHE',
     insightsTitle: 'Comment le système fonctionne réellement',
     insightsSubtitle: 'Les points d\'architecture clés que la plupart des équipes ignorent',
@@ -18,8 +18,8 @@ export const fr: Translations = {
     learningHubLabel: 'Guide du Learning Hub',
     footerBuiltFor: 'Conçu pour les utilisateurs de GitHub Copilot',
     footerDocsLink: 'Documentation complète sur le système composable',
-    pageStack: '.github/ Stack',
-    pageTools: 'Copilot Everywhere',
+    pageStack: 'Personnalisation',
+    pageTools: 'Surfaces',
     shareLink: 'Partager le lien',
     shareCopied: 'Copié !',
   },
@@ -205,11 +205,11 @@ export const fr: Translations = {
 
   /* ── Page Outils ── */
   toolsSeo: {
-    title: 'Copilot Panorama — Copilot Everywhere',
+    title: 'Copilot Panorama — Copilot Surfaces',
     description: 'Guide visuel interactif de GitHub Copilot à travers les IDE, les applications autonomes et le Cloud GitHub, incluant Copilot CLI, l\'agent cloud, la revue de code, les agents tiers, Slack et Teams.',
   },
   toolsUi: {
-    heroTitle: 'Copilot Everywhere',
+    heroTitle: 'Copilot Surfaces',
     insightsTitle: 'Les distinctions clés que la plupart des développeurs ignorent',
     insightsSubtitle: 'Points d\'architecture à travers les trois couches',
     footerBuiltFor: 'Conçu pour les utilisateurs de GitHub Copilot',
