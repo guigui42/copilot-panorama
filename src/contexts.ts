@@ -8,6 +8,6 @@ export const LocaleContext = createContext<{ locale: Locale; setLocale: (l: Loca
 });
 
 export const PageContext = createContext<{ page: PageId; setPage: (p: PageId) => void }>({
-  page: 'stack',
+  page: 'tools',
   setPage: () => {},
 });

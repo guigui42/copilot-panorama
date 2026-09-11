@@ -18,14 +18,14 @@ import { GitHubMark } from './components/GitHubIcons';
 function getInitialPage(): PageId {
   const urlParams = new URLSearchParams(window.location.search);
   const p = urlParams.get('page');
-  if (p === 'tools') return 'tools';
+  if (p === 'stack') return 'stack';
   if (p === 'tips') return 'tips';
-  return 'stack';
+  return 'tools';
 }
 
 function persistPage(page: PageId) {
   const url = new URL(window.location.href);
-  if (page === 'stack') {
+  if (page === 'tools') {
     url.searchParams.delete('page');
   } else {
     url.searchParams.set('page', page);
