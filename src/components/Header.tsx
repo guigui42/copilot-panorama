@@ -115,7 +115,7 @@ const Header: React.FC<HeaderProps> = ({ theme, onToggleTheme, page, onPageChang
         <nav
           className="page-switcher"
           data-page={page}
-          aria-label={`${t.ui.pageStack} / ${t.ui.pageTools} / ${t.tipsUi.pageTips}`}
+          aria-label={`${t.ui.pageStack} / ${t.ui.pageTools} / ${t.tipsUi.pageTips} / Secure Copilot`}
         >
           <span className="page-switcher-thumb" aria-hidden="true" />
           <button
@@ -145,6 +145,26 @@ const Header: React.FC<HeaderProps> = ({ theme, onToggleTheme, page, onPageChang
             <PageIcon page="tips" />
             <span className="page-switcher-label">{t.tipsUi.pageTips}</span>
           </button>
+          <a
+            className="page-switcher-btn"
+            href="https://gh.io/secure-copilot"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={`Secure Copilot (${t.ui.opensNewTabLabel})`}
+            onClick={() => trackEvent('analytics.click', { category: 'outbound', action: 'secure_copilot', label: 'header' })}
+          >
+            <svg
+              width="15"
+              height="15"
+              viewBox="0 0 16 16"
+              fill="currentColor"
+              aria-hidden="true"
+              className="page-switcher-icon"
+            >
+              <path d="M8 0.75 13.5 3v3.75c0 3.61-2.23 6.87-5.5 8.5-3.27-1.63-5.5-4.89-5.5-8.5V3L8 0.75Zm0 1.62L4 4v2.75c0 2.79 1.59 5.35 4 6.8 2.41-1.45 4-4.01 4-6.8V4L8 2.37Z" />
+            </svg>
+            <span className="page-switcher-label">Secure Copilot</span>
+          </a>
         </nav>
 
         <div className="hero-menu-wrapper" ref={menuRef}>

@@ -2084,7 +2084,7 @@ html[data-theme="light"] .viz-workflows-stack .viz-terminal:last-child {
   top: 4px;
   left: 4px;
   bottom: 4px;
-  width: calc((100% - 8px) / 3);
+  width: calc((100% - 8px) / 4);
   border-radius: 999px;
   background: var(--color-accent-primary-emphasis);
   box-shadow: 0 0 12px color-mix(in srgb, var(--color-accent-primary) 35%, transparent),
@@ -2118,6 +2118,7 @@ html[data-theme="light"] .viz-workflows-stack .viz-terminal:last-child {
   font-family: var(--font-family);
   font-size: var(--font-size-sm);
   font-weight: 500;
+  text-decoration: none;
   cursor: pointer;
   transition: color var(--transition-normal) ease;
   white-space: nowrap;
