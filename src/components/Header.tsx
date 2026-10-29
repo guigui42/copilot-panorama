@@ -1,6 +1,7 @@
 import React, { useContext, useState, useRef, useEffect, useCallback } from 'react';
 import ThemeToggle from './ThemeToggle';
 import LanguageSwitcher from './LanguageSwitcher';
+import ShareQrDialog from './ShareQrDialog';
 import { CopilotIcon } from './GitHubIcons';
 import { useI18n } from '../i18n';
 import { useTrackEvent } from '../hooks/useAnalytics';
@@ -70,7 +71,9 @@ const Header: React.FC<HeaderProps> = ({ theme, onToggleTheme, page, onPageChang
   const { locale, setLocale } = useContext(LocaleContext);
   const [menuOpen, setMenuOpen] = useState(false);
   const [copied, setCopied] = useState(false);
+  const [qrOpen, setQrOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
+  const closeQr = useCallback(() => setQrOpen(false), []);
 
   // Close menu when clicking outside
   useEffect(() => {
@@ -169,6 +172,22 @@ const Header: React.FC<HeaderProps> = ({ theme, onToggleTheme, page, onPageChang
 
         <div className="hero-menu-wrapper" ref={menuRef}>
           <button
+            type="button"
+            className="hero-qr-toggle"
+            onClick={() => {
+              setMenuOpen(false);
+              setQrOpen(true);
+            }}
+            aria-haspopup="dialog"
+            aria-expanded={qrOpen}
+            aria-controls={qrOpen ? 'share-qr-dialog' : undefined}
+          >
+            <svg width="18" height="18" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+              <path d="M1 1h6v6H1V1Zm1.5 1.5v3h3v-3h-3ZM9 1h6v6H9V1Zm1.5 1.5v3h3v-3h-3ZM1 9h6v6H1V9Zm1.5 1.5v3h3v-3h-3ZM9 9h3v3H9V9Zm4 0h2v2h-2V9Zm0 4h2v2h-2v-2Zm-4 0h2v2H9v-2Z" />
+            </svg>
+            <span>{t.ui.shareQrCode}</span>
+          </button>
+          <button
             className="hero-menu-toggle"
             onClick={() => setMenuOpen((v) => !v)}
             aria-expanded={menuOpen}
@@ -248,6 +267,7 @@ const Header: React.FC<HeaderProps> = ({ theme, onToggleTheme, page, onPageChang
           <HighlightCopilot title={t.toolsUi.heroTitle} />
         )}
       </p>
+      {qrOpen && <ShareQrDialog url={SHARE_URL} onClose={closeQr} />}
     </header>
   );
 };

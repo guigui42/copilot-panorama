@@ -26,6 +26,9 @@ export const ja: Translations = {
     pageTools: 'Surfaces',
     shareLink: 'リンクを共有',
     shareCopied: 'コピーしました！',
+    shareQrCode: 'QRコード',
+    shareQrDescription: 'スマートフォンのカメラでスキャンして、Copilot Panoramaを開きます。',
+    closeQrCode: 'QRコードを閉じる',
   },
   viz: {
     alwaysActive: '対応スコープ内で自動適用',

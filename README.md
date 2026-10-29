@@ -54,6 +54,7 @@ The output is written to `dist/` and can be deployed to any static host.
 - 🎨 Dark / light theme toggle
 - 🌍 Multi-language support (English, French, Spanish, German, Japanese)
 - 📱 Fully responsive layout
+- Share the site by clicking the title to copy its URL, or use the header's **QR code** button to display a locally generated, scannable code. Close it with Escape, the close button, or a click outside.
 - ✨ Links to official documentation and selected [Awesome GitHub Copilot](https://awesome-copilot.github.com/) community resources
 
 ## Contributing
