@@ -26,6 +26,9 @@ export const fr: Translations = {
     pageTools: 'Surfaces',
     shareLink: 'Partager le lien',
     shareCopied: 'Copié !',
+    shareQrCode: 'QR code',
+    shareQrDescription: 'Scannez avec l’appareil photo de votre téléphone pour ouvrir Copilot Panorama.',
+    closeQrCode: 'Fermer le QR code',
   },
   viz: {
     alwaysActive: 'S\'applique automatiquement',

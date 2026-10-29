@@ -50,6 +50,9 @@ export interface Translations {
     pageTools: string;
     shareLink: string;
     shareCopied: string;
+    shareQrCode: string;
+    shareQrDescription: string;
+    closeQrCode: string;
   };
   viz: {
     alwaysActive: string;
