@@ -203,7 +203,7 @@ export const en: Translations = {
   /* ── Tools page ── */
   toolsSeo: {
     title: 'Copilot Panorama — Copilot Surfaces',
-    description: 'Interactive visual guide to GitHub Copilot across IDEs, standalone apps, and GitHub Cloud, including Copilot CLI, cloud agent, code review, third-party agents, Slack, and Teams.',
+    description: 'Interactive visual guide to GitHub Copilot across IDEs, standalone apps, and GitHub Cloud, including Copilot CLI, cloud agent, automations, code review, third-party agents, Slack, and Teams.',
   },
   toolsUi: {
     heroTitle: 'Copilot Surfaces',
@@ -230,6 +230,9 @@ export const en: Translations = {
     agentCodes: 'Agent codes',
     prCreated: 'PR created',
     securityChecks: 'Security checks',
+    schedule: 'Schedule',
+    repositoryEvent: 'Repo event',
+    apiTrigger: 'API trigger',
     addReviewer: 'Add reviewer',
     reviewComments: 'Review comments',
     suggestedFixes: 'Suggested fixes',
@@ -258,7 +261,7 @@ export const en: Translations = {
     },
     cloud: {
       title: 'Cloud',
-      subtitle: 'Autonomous agents on the GitHub platform — coding, reviewing, and 3rd-party',
+      subtitle: 'Agents on the GitHub platform: coding, review, automations, and third-party agents',
     },
   },
   toolsComponents: {
@@ -354,6 +357,23 @@ export const en: Translations = {
         '(public preview) can customize the session. Code scanning, secret scanning, dependency ' +
         'checks, and firewall rules are configurable protections, not universal guarantees.',
       useCases: ['Bug Fixes', 'Feature Implementation', 'Test Coverage', 'Technical Debt', 'Security Campaigns'],
+    },
+    automations: {
+      name: 'Automations',
+      path: 'Agents > Automations',
+      description: 'Run Copilot cloud agent on a schedule, repository events, or API calls',
+      details:
+        'Define a prompt, triggers, and allowed tools for recurring or event-driven cloud-agent work. ' +
+        'Manage automations from GitHub, the Copilot app, VS Code\'s Agents window, or the REST API. ' +
+        'Requires a private or internal repository, cloud agent enabled, and organization policies ' +
+        'allowing cloud agent and automations; public repositories are not supported. Personal and ' +
+        'shared types differ in visibility, AI-credit billing, and action identity; all runs remain ' +
+        'visible to repository readers. Selected GitHub and repository-configured MCP tools govern ' +
+        'actions; MCP access follows its server configuration and credentials. Unlike GitHub Agentic ' +
+        'Workflows, automations are stored outside Git, not managed through pull requests.',
+      useCases: ['Issue Triage', 'Scheduled Maintenance', 'Incident Investigation'],
+      docLabel: 'About automations',
+      altDocLabel: 'Create automations',
     },
     'review-agent': {
       name: 'Copilot Code Review',

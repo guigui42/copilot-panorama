@@ -208,7 +208,7 @@ export const ja: Translations = {
   /* ── Tools ページ ── */
   toolsSeo: {
     title: 'Copilot Panorama — Copilot Surfaces',
-    description: 'IDE、スタンドアロンアプリ、GitHub クラウドにおける GitHub Copilot をインタラクティブに可視化 — Copilot CLI、クラウドエージェント、コードレビュー、サードパーティエージェント、Slack、Teams を含む。',
+    description: 'IDE、スタンドアロンアプリ、GitHub クラウドにおける GitHub Copilot をインタラクティブに可視化 — Copilot CLI、クラウドエージェント、自動化、コードレビュー、サードパーティエージェント、Slack、Teams を含む。',
   },
   toolsUi: {
     heroTitle: 'Copilot Surfaces',
@@ -235,6 +235,9 @@ export const ja: Translations = {
     agentCodes: 'エージェントがコーディング',
     prCreated: 'PR 作成',
     securityChecks: 'セキュリティチェック',
+    schedule: 'スケジュール',
+    repositoryEvent: 'リポジトリイベント',
+    apiTrigger: 'API トリガー',
     addReviewer: 'レビュアーを追加',
     reviewComments: 'レビューコメント',
     suggestedFixes: '修正提案',
@@ -263,7 +266,7 @@ export const ja: Translations = {
     },
     cloud: {
       title: 'クラウド',
-      subtitle: 'GitHub プラットフォーム上の自律エージェント — コーディング、レビュー、サードパーティ',
+      subtitle: 'GitHub 上のエージェント：コーディング、レビュー、自動化、サードパーティ',
     },
   },
   toolsComponents: {
@@ -363,6 +366,25 @@ export const ja: Translations = {
         'スキャン、シークレットスキャン、依存関係チェック、ファイアウォールルールは設定可能な ' +
         '保護策であり、普遍的な保証ではありません。',
       useCases: ['バグ修正', '機能実装', 'テストカバレッジ', '技術的負債', 'セキュリティキャンペーン'],
+    },
+    automations: {
+      name: '自動化',
+      path: 'Agents > Automations',
+      description: 'スケジュール、リポジトリイベント、API 呼び出しで Copilot クラウドエージェントを実行',
+      details:
+        'プロンプト、トリガー、許可するツールを定義し、クラウドエージェントで定期的な作業や ' +
+        'イベントに応じた作業を実行します。GitHub、Copilot アプリ、VS Code の Agents ' +
+        'ウィンドウ、REST API から管理できます。プライベートまたは内部リポジトリでクラウド ' +
+        'エージェントを有効にし、組織ポリシーでクラウドエージェントと自動化を許可する必要が ' +
+        'あります。パブリックリポジトリは非対応です。個人用と共有の種類では、可視性、AI ' +
+        'クレジットの請求先、アクションの実行者が異なりますが、すべての実行はリポジトリの ' +
+        '読み取り権限を持つ人に表示されます。選択した GitHub ツールとリポジトリに設定された ' +
+        'MCP ツールがアクションを制御し、MCP のアクセス範囲はサーバー設定と認証情報に従います。' +
+        'GitHub Agentic Workflows と異なり、自動化は Git の外部に保存され、pull request ' +
+        'では管理されません。',
+      useCases: ['Issue のトリアージ', '定期メンテナンス', 'インシデント調査'],
+      docLabel: '自動化について',
+      altDocLabel: '自動化を作成',
     },
     'review-agent': {
       name: 'Copilot Code Review',

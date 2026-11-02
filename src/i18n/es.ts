@@ -213,7 +213,7 @@ export const es: Translations = {
   /* ── Página de herramientas ── */
   toolsSeo: {
     title: 'Copilot Panorama — Copilot Surfaces',
-    description: 'Guía visual interactiva de GitHub Copilot en IDEs, aplicaciones independientes y GitHub Cloud, incluyendo Copilot CLI, el agente en la nube, revisión de código, agentes de terceros, Slack y Teams.',
+    description: 'Guía visual interactiva de GitHub Copilot en IDEs, aplicaciones independientes y GitHub Cloud, incluyendo Copilot CLI, el agente en la nube, automatizaciones, revisión de código, agentes de terceros, Slack y Teams.',
   },
   toolsUi: {
     heroTitle: 'Copilot Surfaces',
@@ -240,6 +240,9 @@ export const es: Translations = {
     agentCodes: 'El agente codifica',
     prCreated: 'PR creada',
     securityChecks: 'Verificaciones de seguridad',
+    schedule: 'Calendario',
+    repositoryEvent: 'Evento del repo',
+    apiTrigger: 'Disparador API',
     addReviewer: 'Añadir revisor',
     reviewComments: 'Comentarios de revisión',
     suggestedFixes: 'Correcciones sugeridas',
@@ -268,7 +271,7 @@ export const es: Translations = {
     },
     cloud: {
       title: 'Nube',
-      subtitle: 'Agentes autónomos en la plataforma GitHub — codificación, revisión y terceros',
+      subtitle: 'Agentes en la plataforma GitHub: código, revisión, automatizaciones y terceros',
     },
   },
   toolsComponents: {
@@ -371,6 +374,26 @@ export const es: Translations = {
         'el secret scanning, las verificaciones de dependencias y las reglas de firewall son ' +
         'protecciones configurables, no garantías universales.',
       useCases: ['Corrección de errores', 'Implementación de funciones', 'Cobertura de pruebas', 'Deuda técnica', 'Campañas de seguridad'],
+    },
+    automations: {
+      name: 'Automatizaciones',
+      path: 'Agents > Automations',
+      description: 'Ejecuta el agente en la nube de Copilot según un calendario, eventos del repositorio o llamadas API',
+      details:
+        'Define un prompt, disparadores y herramientas permitidas para tareas recurrentes o basadas ' +
+        'en eventos con el agente en la nube. Gestiona las automatizaciones desde GitHub, la ' +
+        'aplicación Copilot, la ventana Agents de VS Code o la API REST. Requiere un repositorio ' +
+        'privado o interno, el agente en la nube habilitado y políticas de organización que permitan ' +
+        'el agente en la nube y las automatizaciones; los repositorios públicos no son compatibles. ' +
+        'Los tipos personal y compartido difieren en visibilidad, facturación de créditos de IA e ' +
+        'identidad de las acciones; todas las ejecuciones son visibles para los lectores del ' +
+        'repositorio. Las herramientas de GitHub y MCP seleccionadas rigen las acciones; el acceso ' +
+        'MCP depende de la configuración y las credenciales del servidor configurado para el ' +
+        'repositorio. A diferencia de GitHub Agentic Workflows, las automatizaciones se guardan ' +
+        'fuera de Git y no se gestionan mediante pull requests.',
+      useCases: ['Clasificación de issues', 'Mantenimiento programado', 'Investigación de incidentes'],
+      docLabel: 'Acerca de las automatizaciones',
+      altDocLabel: 'Crear automatizaciones',
     },
     'review-agent': {
       name: 'Copilot Code Review',

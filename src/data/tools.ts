@@ -76,6 +76,13 @@ const TOOLS_COMPONENT_META: Record<string, ComponentMeta> = {
     altDocUrl: 'https://docs.github.com/en/enterprise-cloud@latest/copilot/how-tos/use-copilot-agents/cloud-agent',
     altDocLabel: 'How-To Guide',
   },
+  automations: {
+    id: 'automations',
+    path: 'Agents > Automations',
+    icon: '⏱️',
+    docUrl: 'https://docs.github.com/en/enterprise-cloud@latest/copilot/concepts/agent-capabilities/agent-powered-workflows-and-operations/about-automations',
+    altDocUrl: 'https://docs.github.com/en/enterprise-cloud@latest/copilot/how-tos/use-copilot-agents/cloud-agent/create-automations',
+  },
   'review-agent': {
     id: 'review-agent',
     path: 'Pull Requests',
@@ -113,6 +120,8 @@ function buildToolComponent(id: string, t: Translations): Component {
     description: text.description,
     details: text.details,
     useCases: text.useCases,
+    docLabel: text.docLabel ?? meta.docLabel,
+    altDocLabel: text.altDocLabel ?? meta.altDocLabel,
   };
 }
 
@@ -126,7 +135,7 @@ interface LayerDef {
 const TOOLS_LAYER_DEFS: LayerDef[] = [
   { id: 'ide', number: 1, color: '#3fb950', componentIds: ['autocomplete', 'ask', 'agent-mode', 'third-party-agents-ide'] },
   { id: 'standalone-apps', number: 2, color: '#8b949e', componentIds: ['copilot-cli', 'copilot-app'] },
-  { id: 'cloud', number: 3, color: '#58a6ff', componentIds: ['copilot-chat-cloud', 'coding-agent', 'review-agent', 'third-party-agents-cloud', 'slack-teams'] },
+  { id: 'cloud', number: 3, color: '#58a6ff', componentIds: ['copilot-chat-cloud', 'coding-agent', 'automations', 'review-agent', 'third-party-agents-cloud', 'slack-teams'] },
 ];
 
 export function getToolsLayers(t: Translations): Layer[] {
