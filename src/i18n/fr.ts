@@ -213,7 +213,7 @@ export const fr: Translations = {
   /* ── Page Outils ── */
   toolsSeo: {
     title: 'Copilot Panorama — Copilot Surfaces',
-    description: 'Guide visuel interactif de GitHub Copilot à travers les IDE, les applications autonomes et le Cloud GitHub, incluant Copilot CLI, l\'agent cloud, la revue de code, les agents tiers, Slack et Teams.',
+    description: 'Guide visuel interactif de GitHub Copilot à travers les IDE, les applications autonomes et le Cloud GitHub, incluant Copilot CLI, l\'agent cloud, les automatisations, la revue de code, les agents tiers, Slack et Teams.',
   },
   toolsUi: {
     heroTitle: 'Copilot Surfaces',
@@ -240,6 +240,9 @@ export const fr: Translations = {
     agentCodes: 'L\'agent code',
     prCreated: 'PR créée',
     securityChecks: 'Vérifications de sécurité',
+    schedule: 'Calendrier',
+    repositoryEvent: 'Événement du dépôt',
+    apiTrigger: 'Déclencheur API',
     addReviewer: 'Ajouter un reviewer',
     reviewComments: 'Commentaires de revue',
     suggestedFixes: 'Corrections suggérées',
@@ -268,7 +271,7 @@ export const fr: Translations = {
     },
     cloud: {
       title: 'Cloud',
-      subtitle: 'Agents autonomes sur la plateforme GitHub — codage, revue et agents tiers',
+      subtitle: 'Agents sur la plateforme GitHub : codage, revue, automatisations et agents tiers',
     },
   },
   toolsComponents: {
@@ -373,6 +376,26 @@ export const fr: Translations = {
         'scanning, le secret scanning, les vérifications de dépendances et les règles de ' +
         'pare-feu sont des protections configurables, pas des garanties universelles.',
       useCases: ['Corrections de bugs', 'Implémentation de fonctionnalités', 'Couverture de tests', 'Dette technique', 'Campagnes de sécurité'],
+    },
+    automations: {
+      name: 'Automatisations',
+      path: 'Agents > Automations',
+      description: 'Exécutez l\'agent cloud Copilot selon un calendrier, des événements du dépôt ou des appels API',
+      details:
+        'Définissez un prompt, des déclencheurs et les outils autorisés pour des tâches récurrentes ' +
+        'ou déclenchées par événement avec l\'agent cloud. Gérez les automatisations depuis GitHub, ' +
+        'l\'application Copilot, la fenêtre Agents de VS Code ou l\'API REST. Un dépôt privé ou interne, ' +
+        'l\'agent cloud activé et des politiques d\'organisation autorisant l\'agent cloud et les ' +
+        'automatisations sont requis ; les dépôts publics ne sont pas pris en charge. Les types ' +
+        'personnel et partagé diffèrent par la visibilité, la facturation des crédits IA et ' +
+        'l\'identité des actions ; toutes les exécutions restent visibles aux lecteurs du dépôt. ' +
+        'Les outils GitHub et MCP sélectionnés encadrent les actions ; les accès MCP dépendent de ' +
+        'la configuration et des identifiants du serveur configuré pour le dépôt. Contrairement à ' +
+        'GitHub Agentic Workflows, les automatisations sont stockées hors de Git et ne sont pas ' +
+        'gérées par pull requests.',
+      useCases: ['Tri des issues', 'Maintenance planifiée', 'Investigation d\'incidents'],
+      docLabel: 'À propos des automatisations',
+      altDocLabel: 'Créer des automatisations',
     },
     'review-agent': {
       name: 'Copilot Code Review',

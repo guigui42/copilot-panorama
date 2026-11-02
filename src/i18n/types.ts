@@ -110,6 +110,9 @@ export interface Translations {
     agentCodes: string;
     prCreated: string;
     securityChecks: string;
+    schedule: string;
+    repositoryEvent: string;
+    apiTrigger: string;
     addReviewer: string;
     reviewComments: string;
     suggestedFixes: string;

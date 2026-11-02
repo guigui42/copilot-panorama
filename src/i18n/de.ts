@@ -213,7 +213,7 @@ export const de: Translations = {
   /* ── Tools-Seite ── */
   toolsSeo: {
     title: 'Copilot Panorama — Copilot Surfaces',
-    description: 'Interaktiver visueller Leitfaden zu GitHub Copilot in IDEs, eigenständigen Apps und GitHub Cloud, einschließlich Copilot CLI, Cloud-Agent, Code-Review, Drittanbieter-Agenten, Slack und Teams.',
+    description: 'Interaktiver visueller Leitfaden zu GitHub Copilot in IDEs, eigenständigen Apps und GitHub Cloud, einschließlich Copilot CLI, Cloud-Agent, Automatisierungen, Code-Review, Drittanbieter-Agenten, Slack und Teams.',
   },
   toolsUi: {
     heroTitle: 'Copilot Surfaces',
@@ -240,6 +240,9 @@ export const de: Translations = {
     agentCodes: 'Agent programmiert',
     prCreated: 'PR erstellt',
     securityChecks: 'Sicherheitsprüfungen',
+    schedule: 'Zeitplan',
+    repositoryEvent: 'Repository-Ereignis',
+    apiTrigger: 'API-Auslöser',
     addReviewer: 'Reviewer hinzufügen',
     reviewComments: 'Review-Kommentare',
     suggestedFixes: 'Vorgeschlagene Korrekturen',
@@ -268,7 +271,7 @@ export const de: Translations = {
     },
     cloud: {
       title: 'Cloud',
-      subtitle: 'Autonome Agenten auf der GitHub-Plattform — Coding, Review und Drittanbieter',
+      subtitle: 'Agenten auf der GitHub-Plattform: Coding, Review, Automatisierungen und Drittanbieter',
     },
   },
   toolsComponents: {
@@ -372,6 +375,26 @@ export const de: Translations = {
         'anpassen. Code-Scanning, Secret-Scanning, Abhängigkeitsprüfungen und Firewall-Regeln ' +
         'sind konfigurierbare Schutzmaßnahmen, keine universellen Garantien.',
       useCases: ['Fehlerbehebung', 'Feature-Umsetzung', 'Testabdeckung', 'Technische Schulden', 'Sicherheitskampagnen'],
+    },
+    automations: {
+      name: 'Automatisierungen',
+      path: 'Agents > Automations',
+      description: 'Copilots Cloud-Agent nach Zeitplan, bei Repository-Ereignissen oder per API ausführen',
+      details:
+        'Definiere einen Prompt, Auslöser und erlaubte Tools für wiederkehrende oder ereignisbasierte ' +
+        'Cloud-Agent-Aufgaben. Verwalte Automatisierungen über GitHub, die Copilot-App, das ' +
+        'Agents-Fenster in VS Code oder die REST-API. Erforderlich sind ein privates oder internes ' +
+        'Repository, ein aktivierter Cloud-Agent und Organisationsrichtlinien, die Cloud-Agent und ' +
+        'Automatisierungen erlauben; öffentliche Repositorys werden nicht unterstützt. Persönliche ' +
+        'und geteilte Automatisierungen unterscheiden sich bei Sichtbarkeit, KI-Credit-Abrechnung ' +
+        'und Aktionsidentität; alle Ausführungen bleiben für Personen mit Lesezugriff sichtbar. ' +
+        'Ausgewählte GitHub- und MCP-Tools bestimmen die Aktionen; MCP-Zugriff hängt von Konfiguration ' +
+        'und Zugangsdaten des für das Repository eingerichteten Servers ab. Anders als GitHub Agentic ' +
+        'Workflows werden Automatisierungen außerhalb von Git gespeichert und nicht über Pull ' +
+        'Requests verwaltet.',
+      useCases: ['Issue-Triage', 'Geplante Wartung', 'Incident-Untersuchung'],
+      docLabel: 'Über Automatisierungen',
+      altDocLabel: 'Automatisierungen erstellen',
     },
     'review-agent': {
       name: 'Copilot Code Review',

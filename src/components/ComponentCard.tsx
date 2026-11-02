@@ -249,6 +249,14 @@ const CodingAgentViz: React.FC<{ v: Translations['toolsViz'] }> = ({ v }) => (
   </div>
 );
 
+const AutomationsViz: React.FC<{ v: Translations['toolsViz'] }> = ({ v }) => (
+  <div className="viz viz-agent-flow" aria-hidden="true">
+    <span className="agent-step">⏱️ {v.schedule}</span>
+    <span className="agent-step">⚡ {v.repositoryEvent}</span>
+    <span className="agent-step">🔌 {v.apiTrigger}</span>
+  </div>
+);
+
 const ReviewAgentViz: React.FC<{ v: Translations['toolsViz'] }> = ({ v }) => (
   <div className="viz viz-review-flow" aria-hidden="true">
     <div className="review-step">👤 {v.addReviewer}</div>
@@ -593,6 +601,7 @@ const ComponentCard: React.FC<ComponentCardProps> = ({ component, layerColor, on
       case 'agent-mode': return <AgentModeViz v={tv} />;
       case 'third-party-agents-ide': return <ThirdPartyAgentsIdeViz v={tv} />;
       case 'coding-agent': return <CodingAgentViz v={tv} />;
+      case 'automations': return <AutomationsViz v={tv} />;
       case 'review-agent': return <ReviewAgentViz v={tv} />;
       case 'third-party-agents-cloud': return <ThirdPartyAgentsCloudViz v={tv} />;
       case 'copilot-chat-cloud': return <CopilotChatCloudViz v={tv} />;

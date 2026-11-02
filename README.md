@@ -17,7 +17,7 @@ All the surfaces where Copilot meets you:
 
 1. **IDE** — Inline Suggestions, Chat, Agent Mode, and third-party agent harnesses
 2. **Standalone Apps** — GitHub Copilot CLI and the GitHub Copilot app
-3. **GitHub Cloud** — Copilot cloud agent, code review, third-party coding agents, Slack, and Teams
+3. **GitHub Cloud** — Copilot cloud agent, [Automations](https://docs.github.com/en/enterprise-cloud@latest/copilot/concepts/agent-capabilities/agent-powered-workflows-and-operations/about-automations), code review, third-party coding agents, Slack, and Teams
 
 ### Efficiency Tips
 
